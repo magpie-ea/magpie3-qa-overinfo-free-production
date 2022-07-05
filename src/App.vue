@@ -1,7 +1,20 @@
 <template>
-  <Experiment title="magpie demo">
+  <Experiment title="question-answering-experiment">
+
     <InstructionScreen :title="'Welcome'">
-      This is a sample introduction screen.
+      Thanks for taking part in our experiment!
+      <br />
+      <br />
+      In the following, you will see short descriptions of scenes in which a
+      character asks a question. Your task is to write down an answer to that
+      question.
+      <br />
+      <br />
+      Please answer like you would naturally do when you were in a situation
+      like the one described on each screen. <br />
+      Please respond naturally and reasonably. <br />
+      Please avoid jokes, insults or otherwise making the dialogues into
+      something else than simple, harmless exchanges of information.
     </InstructionScreen>
 
     <template v-for="(trial, i) in trials">
@@ -37,7 +50,10 @@
       </Screen>
     </template>
 
+    <PostTestScreen />
+
     <SubmitResultsScreen />
+
   </Experiment>
 </template>
 
