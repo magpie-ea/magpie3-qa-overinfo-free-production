@@ -35,7 +35,10 @@
             {{ line }}<br />
           </span>
 
-          <TextareaInput :response.sync="$magpie.measurements.answer" />
+          <textarea
+            v-model="$magpie.measurements.answer"
+            style="width: 500px; height: 300px"
+          />
 
           <button
             v-if="
