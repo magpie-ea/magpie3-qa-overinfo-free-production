@@ -2,7 +2,7 @@
 
 This is an online experiment using [magpie](https://magpie-experiments.org/).
 
-You can inspect a live version [here](XXX).
+You can inspect a live version [here](https://magpie-ea.github.io/magpie3-qa-overinfo-free-production/).
 
 ### Local execution 
 
