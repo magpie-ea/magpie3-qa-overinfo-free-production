@@ -35,13 +35,28 @@
 
 <script>
 import _ from 'lodash';
-import trials from '../trials/trials.csv';
+import trialsAll from '../trials/trials.csv';
+
+var group = _.sample(['odd', 'even']);
+
+
+const trials = group == 'odd' ?
+      trialsAll.filter((element, index) => {
+        return (index % 2 === 0);
+      }) :
+      trialsAll.filter((element, index) => {
+        return (index % 2 != 0);
+      });
+
+console.log(group, trials)
+
+console.log('test')
 
 export default {
   name: 'App',
   data() {
     return {
-      trials: trials
+      trials: _.shuffle(trials)
     };
   },
   computed: {
