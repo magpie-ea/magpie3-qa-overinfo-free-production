@@ -9,6 +9,14 @@
 
       <Slide>
 
+      <Record
+        :data="{
+          trialNr: i + 1,
+          itemName: trial.itemName,
+          settingName: trial.settingName
+        }"
+      />
+
         <span
          v-for="(line,lineNumber) of trial.vignette.split('\\n')"
          v-bind:key="lineNumber" >
