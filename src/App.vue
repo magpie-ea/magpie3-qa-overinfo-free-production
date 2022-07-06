@@ -75,10 +75,6 @@ const trials =
         return index % 2 != 0;
       });
 
-console.log(group, trials);
-
-console.log('test');
-
 // Disable selecting text
 // Supported by the following browsers:
 // https://caniuse.com/mdn-api_document_selectstart_event
