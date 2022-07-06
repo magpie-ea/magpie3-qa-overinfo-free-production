@@ -35,7 +35,10 @@
             {{ line }}<br />
           </span>
 
-          <TextareaInput :response.sync="$magpie.measurements.answer" />
+          <textarea
+            v-model="$magpie.measurements.answer"
+            style="width: 500px; height: 300px"
+          />
 
           <button
             v-if="
@@ -76,6 +79,16 @@ console.log(group, trials);
 
 console.log('test');
 
+// Disable selecting text
+// Supported by the following browsers:
+// https://caniuse.com/mdn-api_document_selectstart_event
+document.onselectstart = () => false;
+
+// Disable context menu
+// Supported by the following browsers:
+// https://caniuse.com/mdn-api_element_contextmenu_event
+document.oncontextmenu = () => false;
+
 export default {
   name: 'App',
   data() {
@@ -91,3 +104,16 @@ export default {
   }
 };
 </script>
+<style>
+body {
+  /*
+  Disable selecting text via css
+  Supported by the following browsers
+  https://caniuse.com/mdn-css_properties_user-select
+  */
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+</style>
