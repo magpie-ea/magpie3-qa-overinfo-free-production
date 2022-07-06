@@ -37,7 +37,7 @@
 
           <textarea
             v-model="$magpie.measurements.answer"
-            style="width: 500px; height: 300px"
+            style="width: 500px; height: 200px"
           />
 
           <button
