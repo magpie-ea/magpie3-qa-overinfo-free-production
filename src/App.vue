@@ -6,20 +6,25 @@
       <br />
       <br />
       In the following, you will see short descriptions of scenes in which a
-      character asks a question. Your task is to write down an answer to that
-      question.
+      character asks a question. Below, you will see different possible answers to that question. 
+      Your task is to rate how likely it is for each of the answers to provide helpful information for the questioner.
       <br />
       <br />
-      Please answer like you would naturally do when you were in a situation
-      like the one described on each screen. <br />
-      Please respond naturally and reasonably. <br />
-      Please avoid jokes, insults or otherwise making the dialogues into
-      something else than simple, harmless exchanges of information.
+      Please imagine that you are answering the question in a situation like the one described on each screen. 
+      Imagine you are trying to be helpful for the questioner.
+      Please try to respond intuitively, do not overthink your ratings. <br />
     </InstructionScreen>
 
     <template v-for="(trial, i) in trials">
+      
+
       <Screen :key="i">
-        <Slide>
+
+      <template
+            v-for="(answerOption, index) of [trial.taciturn, trial.competitor, trial.sameCategory, trial.otherCategory, trial.fullList]"
+            
+      >
+        <Slide :key="index">
           <Record
             :data="{
               trialNr: i + 1,
@@ -27,35 +32,63 @@
               settingName: trial.settingName
             }"
           />
-
-          <span
+      
+         <span
             v-for="(line, lineNumber) of trial.vignette.split('\\n')"
             :key="lineNumber"
           >
-            {{ line }}<br />
+            {{ line }}<br /><br />
           </span>
-
-          <textarea
-            v-model="$magpie.measurements.answer"
-            style="width: 500px; height: 200px"
-          />
-
-          <button
-            v-if="
-              $magpie.measurements.answer &&
-              $magpie.measurements.answer.length > 2
-            "
-            @click="$magpie.saveAndNextScreen()"
-          >
-            Submit
-          </button>
+          
+            {{answerOption}} <br />
+            <SliderInput
+              left="not helpful at all"
+              right="very helpful"
+              :response.sync= "$magpie.measurements.rating" 
+            />
+            
+            <button
+              v-if="
+                $magpie.measurements.rating &&
+                index < 4
+              "
+              @click="$magpie.addTrialData({
+                rating: $magpie.measurements.rating, 
+                answerOption: answerOption,
+                trialNr: i + 1,
+              itemName: trial.itemName,
+              settingName: trial.settingName
+              }); $magpie.nextSlide()"
+            >
+              Submit
+            </button>
+            <button
+              v-else-if="
+                index == 4
+              "
+              @click="$magpie.addTrialData({
+                rating: $magpie.measurements.rating, 
+                answerOption: answerOption,
+                trialNr: i + 1,
+              itemName: trial.itemName,
+              settingName: trial.settingName
+              }); $magpie.nextScreen()"
+            >
+              Submit
+            </button>
+          
         </Slide>
+        </template>
+        
       </Screen>
+
+      
+    
     </template>
 
     <PostTestScreen />
 
-    <SubmitResultsScreen />
+    <DebugResultsScreen />
 
   </Experiment>
 </template>
