@@ -21,13 +21,14 @@
     <template v-for="(trial, i) in trials">
       
 
-      <Screen :key="i">
+      
 
       <template
-            v-for="(answerOption, index) of ['taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList']"
+            v-for="(answerOption, index) of _.shuffle(['taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'])"
             
       >
-        <Slide :key="index">
+      <Screen :key="i">
+        <Slide>
           <Record
             :data="{
               trialNr: i + 1,
@@ -42,8 +43,12 @@
           >
             {{ line }}<br /><br />
           </span>
-            {{trial[answerOption]}} <br /> <br />
-
+            AnswerOption {{answerOption}} <br/>
+            Index {{index}} <br/>
+            I {{i}}
+            <br/>
+            <b>{{trial[answerOption]}} </b><br /> <br />
+            
             How good is this answer for the questioner?
 
             <SliderInput
@@ -53,40 +58,20 @@
               :response.sync= "$magpie.measurements.rating" 
             />
             
+            
             <button
-              v-if="
-                $magpie.measurements.rating &&
-                index < 4
-              "
-              @click="$magpie.addTrialData({
-                rating: $magpie.measurements.rating, 
-                answerOption: answerOption,
-                trialNr: i + 1,
-              itemName: trial.itemName,
-              settingName: trial.settingName
-              }); $magpie.nextSlide()"
-            >
-              Submit
-            </button>
-            <button
-              v-else-if="
-                index == 4
-              "
-              @click="$magpie.addTrialData({
-                rating: $magpie.measurements.rating, 
-                answerOption: answerOption,
-                trialNr: i + 1,
-              itemName: trial.itemName,
-              settingName: trial.settingName
-              }); $magpie.nextScreen()"
+              v-if="$magpie.measurements.rating"
+              @click="$magpie.saveAndNextScreen()"
             >
               Submit
             </button>
           
         </Slide>
+
+        </Screen>
         </template>
         
-      </Screen>
+      
 
       
     
