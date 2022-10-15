@@ -6,13 +6,16 @@
       <br />
       <br />
       In the following, you will see short descriptions of scenes in which a
-      character asks a question. Below, you will see different possible answers to that question. 
-      Your task is to rate how likely it is for each of the answers to provide helpful information for the questioner.
+      character asks a question. Please read them very carefully, even if they appear to be repeated and you think that you remember them well enough. 
+      <br />
+      Below, you will see a possible answer to that question. 
+      <b>Your task is to rate how likely it is that the answer provides helpful information for the questioner.</b>
       <br />
       <br />
       Please imagine that you are answering the question in a situation like the one described on each screen. 
       Imagine you are trying to be helpful for the questioner.
-      Please try to respond intuitively, do not overthink your ratings. <br />
+      Please try to respond intuitively, do not overthink your ratings. 
+      <br />
     </InstructionScreen>
 
     <template v-for="(trial, i) in trials">
@@ -21,7 +24,7 @@
       <Screen :key="i">
 
       <template
-            v-for="(answerOption, index) of [trial.taciturn, trial.competitor, trial.sameCategory, trial.otherCategory, trial.fullList]"
+            v-for="(answerOption, index) of ['taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList']"
             
       >
         <Slide :key="index">
@@ -39,11 +42,14 @@
           >
             {{ line }}<br /><br />
           </span>
-          
-            {{answerOption}} <br />
+            {{trial[answerOption]}} <br /> <br />
+
+            How good is this answer for the questioner?
+
             <SliderInput
               left="not helpful at all"
               right="very helpful"
+              initial="50"
               :response.sync= "$magpie.measurements.rating" 
             />
             
