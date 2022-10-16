@@ -32,7 +32,7 @@
        </template>
       </template>
       <template v-else>
-        <SliderRatingScreen :key=i :trial=trial :answerOption='filler' :index=i :progress="i / trials.length"/>   
+        <SliderRatingScreen :key=i :trial=trial :answerOption="'filler'" :index=i :progress="i / trials.length"/>   
       </template>
     </template>
 
