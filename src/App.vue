@@ -19,21 +19,15 @@
     </InstructionScreen>
 
     <template v-for="(trial, i) in trials">
-      
-
-      
-
-      <template
-            v-for="(answerOption, index) of _.shuffle(['taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'])"
-            
-      >
+     
       <Screen :key="i">
         <Slide>
           <Record
             :data="{
               trialNr: i + 1,
               itemName: trial.itemName,
-              settingName: trial.settingName
+              settingName: trial.settingName,
+              answerOption: trial.variable
             }"
           />
       
@@ -43,11 +37,10 @@
           >
             {{ line }}<br /><br />
           </span>
-            AnswerOption {{answerOption}} <br/>
-            Index {{index}} <br/>
+            AnswerOption {{trial.variable}} <br/>
             I {{i}}
             <br/>
-            <b>{{trial[answerOption]}} </b><br /> <br />
+            <b>{{trial.value}} </b><br /> <br />
             
             How good is this answer for the questioner?
 
@@ -69,11 +62,7 @@
         </Slide>
 
         </Screen>
-        </template>
         
-      
-
-      
     
     </template>
 
@@ -86,7 +75,7 @@
 
 <script>
 import _ from 'lodash';
-import trialsAll from '../trials/trials.csv';
+import trialsAll from '../trials/trials_long.csv';
 
 var group = _.sample(['odd', 'even']);
 
