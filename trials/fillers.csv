@@ -1,0 +1,2 @@
+itemName,settingName,vignette,variable,value
+airport,airport-europe,"You are a customer service agent helping book flights. Please move the slider all the way to the right. Today there is a morning flight to Berlin, an afternoon flight to Madrid, an evening flight to Paris, and several flights to the US.\n\nA customer asks: <b>""Do you have a morning flight to Madrid?”</b>\n\nYou reply:",filler,"""I'm sorry, we don't have a morning flight to Madrid today."""
