@@ -19,51 +19,11 @@
     </InstructionScreen>
 
     <template v-for="(trial, i) in trials">
-     
-      <Screen :key="i">
-        <Slide>
-          <Record
-            :data="{
-              trialNr: i + 1,
-              itemName: trial.itemName,
-              settingName: trial.settingName,
-              answerOption: trial.variable
-            }"
-          />
-      
-         <span
-            v-for="(line, lineNumber) of trial.vignette.split('\\n')"
-            :key="lineNumber"
-          >
-            {{ line }}<br /><br />
-          </span>
-            AnswerOption {{trial.variable}} <br/>
-            I {{i}}
-            <br/>
-            <b>{{trial.value}} </b><br /> <br />
-            
-            How good is this answer for the questioner?
-
-            <SliderInput
-              left="not helpful at all"
-              right="very helpful"
-              initial="50"
-              :response.sync= "$magpie.measurements.rating" 
-            />
-            
-            
-            <button
-              v-if="$magpie.measurements.rating"
-              @click="$magpie.saveAndNextScreen()"
-            >
-              Submit
-            </button>
-          
-        </Slide>
-
-        </Screen>
-        
-    
+       <template
+            v-for="(answerOption, index) of _.shuffle(['taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'])"
+      >         
+         <SliderRatingScreen :key=i :trial=trial :answerOption=answerOption :index=i />      
+      </template>
     </template>
 
     <PostTestScreen />
@@ -75,7 +35,8 @@
 
 <script>
 import _ from 'lodash';
-import trialsAll from '../trials/trials_long.csv';
+import trialsAll from '../trials/trials.csv';
+import SliderRatingScreen from './SliderRatingScreen';
 
 var group = _.sample(['odd', 'even']);
 
@@ -100,6 +61,7 @@ document.oncontextmenu = () => false;
 
 export default {
   name: 'App',
+  components: { SliderRatingScreen },
   data() {
     return {
       trials: _.shuffle(trials)
