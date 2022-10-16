@@ -19,10 +19,15 @@
     </InstructionScreen>
 
     <template v-for="(trial, i) in trials">
+      <template v-if="!trial.type">
        <template
             v-for="(answerOption, index) of _.shuffle(['taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'])"
-      >         
-         <SliderRatingScreen :key=i :trial=trial :answerOption=answerOption :index=i />      
+       >         
+         <SliderRatingScreen :key=i :trial=trial :answerOption=answerOption :index=i :progress="i / trials.length"/>      
+       </template>
+      </template>
+      <template v-else>
+        <SliderRatingScreen :key=i :trial=trial :answerOption='filler' :index=i :progress="i / trials.length"/>   
       </template>
     </template>
 
@@ -35,7 +40,8 @@
 
 <script>
 import _ from 'lodash';
-import trialsAll from '../trials/trials.csv';
+import trialsAll from '../trials/trials_extended.csv';
+import fillersAll from '../trials/fillers.csv';
 import SliderRatingScreen from './SliderRatingScreen';
 
 var group = _.sample(['odd', 'even']);
@@ -46,6 +52,15 @@ const trials =
         return index % 2 === 0;
       })
     : trialsAll.filter((element, index) => {
+        return index % 2 != 0;
+      });
+
+const fillers =
+  group == 'odd'
+    ? fillersAll.filter((element, index) => {
+        return index % 2 === 0;
+      })
+    : fillersAll.filter((element, index) => {
         return index % 2 != 0;
       });
 
@@ -64,7 +79,7 @@ export default {
   components: { SliderRatingScreen },
   data() {
     return {
-      trials: _.shuffle(trials)
+      trials: _.shuffle(_.concat(trials, fillers))
     };
   },
   computed: {
