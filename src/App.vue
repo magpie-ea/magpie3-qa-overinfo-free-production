@@ -6,7 +6,7 @@
       <br />
       <br />
       In the following, you will see short descriptions of scenes in which a
-      character asks a question. Please read them very carefully, even if they appear to be repeated and you think that you remember them well enough. 
+      character asks a question. Please read them very carefully, even if they appear to be repeated and you think that you remember them well enough.
       <br />
       Below, you will see a possible answer to that question. 
       <b>Your task is to rate how likely it is that the answer provides helpful information for the questioner.</b>
@@ -45,8 +45,8 @@
 
 <script>
 import _ from 'lodash';
-import trialsAll from '../trials/trials_extended.csv';
-import fillersAll from '../trials/fillers.csv';
+import trialsAll from '../trials/trials_extended2.csv';
+import fillersAll from '../trials/fillers2.csv';
 import SliderRatingScreen from './SliderRatingScreen';
 
 var group = _.sample(['odd', 'even']);

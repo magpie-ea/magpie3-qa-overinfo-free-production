@@ -5,9 +5,11 @@
             v-for="(line, lineNumber) of trial.vignette.split('\\n')"
             :key="lineNumber"
           >
-            {{ line }}<br /><br />
+            {{ line }}
           </span>
-
+          <br /><br />
+          <b>{{trial.question}}</b><br /><br />
+          You reply:
             <Record
                 :data="{
                     trialNr: index + 1,
@@ -16,7 +18,7 @@
                     answerOption: answerOption
                 }"
             />
-      
+
             <b>{{trial[answerOption]}} </b><br /> <br />
             
             How good is this answer for the questioner?
