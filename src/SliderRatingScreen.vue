@@ -29,10 +29,14 @@
               initial="50"
               :response.sync= "$magpie.measurements.rating" 
             />
-            
-            
             <button
               v-if="$magpie.measurements.rating"
+              @click="$magpie.saveAndNextScreen()"
+            >
+              Submit
+            </button>
+            <button
+              v-else-if="$magpie.measurements.rating == 0"
               @click="$magpie.saveAndNextScreen()"
             >
               Submit
@@ -56,6 +60,6 @@ export default {
             type: Number,
             required: true
         }
-    }
-}    
+    },
+};  
 </script>

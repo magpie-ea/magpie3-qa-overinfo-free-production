@@ -13,8 +13,8 @@
       <br />
       <br />
       Notice that there will also be simple attention checking trials. 
-      You will recognize them immediately when you read the important text on each trial carefully - those trials contain instructions for you to move the slider in a certain way. 
-      Please follow those instructions.
+      You will recognize them immediately when you read the important text on each trial carefully -- those trials contain instructions for you to move the slider in a certain way. 
+      Please follow those instructions in the text and ignore the instructions appearing above the rating slider.
       <br />
       <br />
       Please imagine that you are answering the question in a situation like the one described on each screen. 
