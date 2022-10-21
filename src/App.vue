@@ -32,7 +32,7 @@
        </template>
       </template>
       <template v-else>
-        <SliderRatingScreen :key=i :trial=trial :answerOption="'filler'" :index=i :progress="i / trials.length"/>   
+        <SliderRatingScreen :key=i :trial=trial :answerOption="'fullList'" :index=i :progress="i / trials.length"/>   
       </template>
     </template>
 
@@ -46,7 +46,7 @@
 <script>
 import _ from 'lodash';
 import trialsAll from '../trials/trials_extended2.csv';
-import fillersAll from '../trials/fillers2.csv';
+import fillersAll from '../trials/fillers_split.csv';
 import SliderRatingScreen from './SliderRatingScreen';
 
 var group = _.sample(['odd', 'even']);
@@ -84,7 +84,7 @@ export default {
   components: { SliderRatingScreen },
   data() {
     return {
-      trials: _.shuffle(_.concat(trials, fillers))
+      trials: _.shuffle(_.concat(fillers, fillers))
     };
   },
   computed: {
