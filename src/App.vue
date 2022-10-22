@@ -10,6 +10,11 @@
       question.
       <br />
       <br />
+      Notice that there will also be simple attention checking trials. 
+      You will recognize them immediately when you read the important text on each trial carefully -- those trials contain instructions for you to type a certain word in the textbox. 
+      Please spell the words exactly as stated in the instructions. 
+      <br />
+      <br />
       Please answer like you would naturally do when you were in a situation
       like the one described on each screen. <br />
       Please respond naturally and reasonably. <br />
@@ -18,51 +23,26 @@
     </InstructionScreen>
 
     <template v-for="(trial, i) in trials">
-      <Screen :key="i">
-        <Slide>
-          <Record
-            :data="{
-              trialNr: i + 1,
-              itemName: trial.itemName,
-              settingName: trial.settingName
-            }"
-          />
-
-          <span
-            v-for="(line, lineNumber) of trial.vignette.split('\\n')"
-            :key="lineNumber"
-          >
-            {{ line }}<br />
-          </span>
-
-          <textarea
-            v-model="$magpie.measurements.answer"
-            style="width: 500px; height: 200px"
-          />
-
-          <button
-            v-if="
-              $magpie.measurements.answer &&
-              $magpie.measurements.answer.length > 2
-            "
-            @click="$magpie.saveAndNextScreen()"
-          >
-            Submit
-          </button>
-        </Slide>
-      </Screen>
+     <template v-if="!trial.type">
+      <FreetypingScreen :key=i :trial=trial :trial_type="'main'" :index=i />     
+     </template>
+     <template v-else>
+      <FreetypingScreen :key=i :trial=trial :trial_type="'filler'" :index=i />     
+     </template>
     </template>
 
     <PostTestScreen />
 
-    <SubmitResultsScreen />
+    <DebugResultsScreen />
 
   </Experiment>
 </template>
 
 <script>
 import _ from 'lodash';
-import trialsAll from '../trials/trials.csv';
+import trialsAll from '../trials/trials_split.csv';
+import fillersAll from '../trials/fillers_split.csv';
+import FreetypingScreen from './FreetypingScreen';
 
 var group = _.sample(['odd', 'even']);
 
@@ -72,6 +52,14 @@ const trials =
         return index % 2 === 0;
       })
     : trialsAll.filter((element, index) => {
+        return index % 2 != 0;
+      });
+const fillers =
+  group == 'odd'
+    ? fillersAll.filter((element, index) => {
+        return index % 2 === 0;
+      })
+    : fillersAll.filter((element, index) => {
         return index % 2 != 0;
       });
 
@@ -87,9 +75,10 @@ document.oncontextmenu = () => false;
 
 export default {
   name: 'App',
+  components: { FreetypingScreen },
   data() {
     return {
-      trials: _.shuffle(trials)
+      trials: _.shuffle(_.concat( trials, fillers ))
     };
   },
   computed: {
