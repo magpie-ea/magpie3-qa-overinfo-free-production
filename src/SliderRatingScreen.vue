@@ -103,7 +103,7 @@ function createText(trial, option){
       var context = itemOrder.map(x => trial[x])
       context.splice(-1, 1, "and ".concat(context.at(-1)));
       var context = context.join(", ").concat(".");
-      var slide_text = [vignette_start, context, vignette_continuation, question, "\\n\\n", "You reply: ", "\"".concat(taciturn), answer.concat("\"")].join(" ");
+      var slide_text = [vignette_start, context, vignette_continuation, "\"".concat(question).concat("\""), "\\n\\n", "You reply: ", "\"".concat(taciturn), answer.concat("\"")].join(" ");
       return slide_text
 };
 
