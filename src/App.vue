@@ -28,24 +28,24 @@
        <template
             v-for="(answerOption, index) of _.shuffle(['taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'])"
        >         
-         <SliderRatingScreen :key=i :trial=trial :answerOption=answerOption :index=i :progress="i / trials.length"/>      
+         <SliderRatingScreen :key=i :trial=trial :answerOption=answerOption :index=i :trial_type="'main'" />      
        </template>
       </template>
       <template v-else>
-        <SliderRatingScreen :key=i :trial=trial :answerOption="'fullList'" :index=i :progress="i / trials.length"/>   
+        <SliderRatingScreen :key=i :trial=trial :answerOption="'taciturn'" :index=i :trial_type="'filler'" />   
       </template>
     </template>
 
     <PostTestScreen />
 
-    <DebugResultsScreen />
+    <SubmitResultsScreen />
 
   </Experiment>
 </template>
 
 <script>
 import _ from 'lodash';
-import trialsAll from '../trials/trials_extended2.csv';
+import trialsAll from '../trials/trials_split.csv';
 import fillersAll from '../trials/fillers_split.csv';
 import SliderRatingScreen from './SliderRatingScreen';
 
@@ -84,7 +84,7 @@ export default {
   components: { SliderRatingScreen },
   data() {
     return {
-      trials: _.shuffle(_.concat(fillers, fillers))
+      trials: _.shuffle(_.concat(trials, fillers))
     };
   },
   computed: {

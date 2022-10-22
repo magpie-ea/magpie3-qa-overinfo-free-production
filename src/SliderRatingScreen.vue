@@ -13,7 +13,8 @@
                     trialNr: index + 1,
                     itemName: trial.itemName,
                     settingName: trial.settingName,
-                    answerOption: answerOption
+                    answerOption: answerOption,
+                    trial_type: trial_type
                 }"
             />
 
@@ -121,7 +122,11 @@ export default {
         index: {
             type: Number,
             required: true
-        }
+        },
+        trial_type: {
+          type: String,
+          required: true
+        },
     },
     methods: {
       createText
