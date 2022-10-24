@@ -2,10 +2,9 @@
 <template>
     <Screen>
         <span
-            v-for="(line, lineNumber) of createScreen.split('\\n')"
-            :key="lineNumber"
+            v-html="createScreen"
           >
-            {{ line }}<br/>
+            
           </span>
 
             <Record
@@ -104,7 +103,7 @@ function createText(trial, option){
       var context = itemOrder.map(x => trial[x])
       context.splice(-1, 1, "and ".concat(context.at(-1)));
       var context = context.join(", ").concat(".");
-      var slide_text = [vignette_start, context, vignette_continuation, "\"".concat(question).concat("\""), "\\n\\n", "You reply: ", "\"".concat(taciturn), answer.concat("\"")].join(" ");
+      var slide_text = [vignette_start, context, "<br/><br/>", vignette_continuation, "<b>", "\"".concat(question).concat("\""), "</b>", "<br/><br/>", "You reply: ", "<b>", "\"".concat(taciturn), answer.concat("\""), "</b>"].join(" ");
       return slide_text
 };
 
