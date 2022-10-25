@@ -1,6 +1,6 @@
 <!-- FreetypingScreen.vue -->
 <template>
-    <Screen>
+    <Screen :progress="progress">
         <Slide>
           <Record
             :data="{
@@ -58,17 +58,21 @@ export default {
     name: 'SliderRatingScreen',
     props: {
         trial: {
-            type: Object,
-            required: true
+          type: Object,
+          required: true
         },
         trial_type: {
           type: String,
           required: true
         },
         index: {
-            type: Number,
-            required: true
+          type: Number,
+          required: true
         },
+        progress: {
+          type: Number,
+          default: undefined
+        }
     },
     methods: {
       createText

@@ -24,10 +24,10 @@
 
     <template v-for="(trial, i) in trials">
      <template v-if="!trial.type">
-      <FreetypingScreen :key=i :trial=trial :trial_type="'main'" :index=i />     
+      <FreetypingScreen :key=i :trial=trial :trial_type="'main'" :index=i :progress="i / trials.length" />     
      </template>
      <template v-else>
-      <FreetypingScreen :key=i :trial=trial :trial_type="'filler'" :index=i />     
+      <FreetypingScreen :key=i :trial=trial :trial_type="'filler'" :index=i :progress="i / trials.length" />     
      </template>
     </template>
 
@@ -45,6 +45,8 @@ import fillersAll from '../trials/fillers_split.csv';
 import FreetypingScreen from './FreetypingScreen';
 
 var group = _.sample(['odd', 'even']);
+
+const n_vignettes = 7;
 
 const trials =
   group == 'odd'
@@ -78,7 +80,7 @@ export default {
   components: { FreetypingScreen },
   data() {
     return {
-      trials: _.shuffle(_.concat( trials, fillers ))
+      trials: _.shuffle(_.concat( _.sampleSize(trials, n_vignettes), fillers ))
     };
   },
   computed: {
