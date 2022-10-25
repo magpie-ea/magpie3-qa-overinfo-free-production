@@ -1,6 +1,6 @@
 <!-- SliderRatingScreen.vue -->
 <template>
-    <Screen>
+    <Screen :progress="progress">
         <span
             v-html="createScreen"
           >
@@ -19,7 +19,7 @@
 
             <br/>
             <br/>
-            How good is this answer for the questioner?
+            How likely is it that you would say this?
 
             <SliderInput
               left="not helpful at all"
@@ -126,6 +126,10 @@ export default {
           type: String,
           required: true
         },
+        progress: {
+          type: Number,
+          default: undefined
+        }
     },
     methods: {
       createText

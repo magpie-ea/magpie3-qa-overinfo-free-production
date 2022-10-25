@@ -8,8 +8,8 @@
       In the following, you will see short descriptions of scenes in which a
       character asks a question. Please read them very carefully, even if they appear to be repeated and you think that you remember them well enough.
       <br />
-      Below, you will see a possible answer to that question. 
-      <b>Your task is to rate how likely it is that the answer provides helpful information for the questioner.</b>
+      You will see a possible answer to that question. 
+      <b>Your task is to rate how likely it is that you would provide that answer to the questioner.</b>
       <br />
       <br />
       Notice that there will also be simple attention checking trials. 
@@ -28,11 +28,11 @@
        <template
             v-for="(answerOption, index) of _.shuffle(['taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'])"
        >         
-         <SliderRatingScreen :key=i :trial=trial :answerOption=answerOption :index=i :trial_type="'main'" />      
+         <SliderRatingScreen :key=i :trial=trial :answerOption=answerOption :index=i :trial_type="'main'" :progress="i / trials.length" />      
        </template>
       </template>
       <template v-else>
-        <SliderRatingScreen :key=i :trial=trial :answerOption="'taciturn'" :index=i :trial_type="'filler'" />   
+        <SliderRatingScreen :key=i :trial=trial :answerOption="'taciturn'" :index=i :trial_type="'filler'" :progress="i / trials.length" />   
       </template>
     </template>
 
@@ -50,6 +50,8 @@ import fillersAll from '../trials/fillers_split.csv';
 import SliderRatingScreen from './SliderRatingScreen';
 
 var group = _.sample(['odd', 'even']);
+
+const n_vignettes = 4;
 
 const trials =
   group == 'odd'
@@ -84,7 +86,7 @@ export default {
   components: { SliderRatingScreen },
   data() {
     return {
-      trials: _.shuffle(_.concat(trials, fillers))
+      trials: _.shuffle(_.concat(_.sampleSize(trials, n_vignettes), fillers))
     };
   },
   computed: {
