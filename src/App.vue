@@ -25,14 +25,28 @@
 
     <template v-for="(trial, i) in trials">
       <template v-if="!trial.type">
-       <template
-            v-for="(answerOption, index) of _.shuffle(['taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'])"
-       >         
-         <SliderRatingScreen :key=i :trial=trial :answerOption=answerOption :index=i :trial_type="'main'" :progress="i / trials.length" />      
-       </template>
+               
+         <ParallelRatingScreen 
+            :key=i 
+            :trial=trial 
+            :index=i 
+            :trial_type="'main'" 
+            :progress="i / trials.length" 
+            :itemOrder="_.shuffle(['competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2'])" 
+            :answerOptionsOrder="_.shuffle(['taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'])"
+         />      
+       
       </template>
       <template v-else>
-        <SliderRatingScreen :key=i :trial=trial :answerOption="'taciturn'" :index=i :trial_type="'filler'" :progress="i / trials.length" />   
+        <ParallelRatingScreen 
+            :key=i 
+            :trial=trial 
+            :index=i 
+            :trial_type="'filler'" 
+            :progress="i / trials.length" 
+            :itemOrder="_.shuffle(['competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2'])"
+            :answerOptionsOrder="_.shuffle(['taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'])"
+        />   
       </template>
     </template>
 
@@ -48,6 +62,7 @@ import _ from 'lodash';
 import trialsAll from '../trials/trials_split.csv';
 import fillersAll from '../trials/fillers_split.csv';
 import SliderRatingScreen from './SliderRatingScreen';
+import ParallelRatingScreen from './ParallelRatingScreen';
 
 var group = _.sample(['odd', 'even']);
 
@@ -83,7 +98,7 @@ document.oncontextmenu = () => false;
 
 export default {
   name: 'App',
-  components: { SliderRatingScreen },
+  components: { ParallelRatingScreen },
   data() {
     return {
       trials: _.shuffle(_.concat(_.sampleSize(trials, n_vignettes), fillers))
