@@ -67,6 +67,7 @@ import ParallelRatingScreen from './ParallelRatingScreen';
 var group = _.sample(['odd', 'even']);
 
 const n_vignettes = 4;
+const n_fillers = 2;
 
 const trials =
   group == 'odd'
@@ -101,7 +102,7 @@ export default {
   components: { ParallelRatingScreen },
   data() {
     return {
-      trials: _.shuffle(_.concat(_.sampleSize(trials, n_vignettes), fillers))
+      trials: _.shuffle(_.concat(_.sampleSize(trials, n_vignettes), _.sampleSize(fillers, n_fillers)))
     };
   },
   computed: {
