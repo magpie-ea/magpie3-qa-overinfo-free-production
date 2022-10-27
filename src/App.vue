@@ -46,7 +46,8 @@ import FreetypingScreen from './FreetypingScreen';
 
 var group = _.sample(['odd', 'even']);
 
-const n_vignettes = 7;
+const n_vignettes = 8;
+const n_fillers = 3;
 
 const trials =
   group == 'odd'
@@ -80,7 +81,7 @@ export default {
   components: { FreetypingScreen },
   data() {
     return {
-      trials: _.shuffle(_.concat( _.sampleSize(trials, n_vignettes), fillers ))
+      trials: _.shuffle(_.concat( _.sampleSize(trials, n_vignettes), _.sampleSize(fillers, n_fillers)))
     };
   },
   computed: {
