@@ -70,8 +70,6 @@ function createText(trial, option){
 
       } else if (option == 'sameCategory') {
         // compute index or respective elements in itemOrder
-
-        // TODO competitor missing 
         var sameCat1 = itemOrder.indexOf('sameCategory1');
         var sameCat2 = itemOrder.indexOf('sameCategory2');
         var comp = itemOrder.indexOf('competitor');

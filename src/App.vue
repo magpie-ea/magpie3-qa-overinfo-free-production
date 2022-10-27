@@ -8,13 +8,13 @@
       In the following, you will see short descriptions of scenes in which a
       character asks a question. Please read them very carefully, even if they appear to be repeated and you think that you remember them well enough.
       <br />
-      You will see a possible answer to that question. 
-      <b>Your task is to rate how likely it is that you would provide that answer to the questioner.</b>
+      You will see five possible answers to that question. 
+      <b>Your task is to rate how likely it is that you would provide each of the answers to the questioner.</b>
       <br />
       <br />
       Notice that there will also be simple attention checking trials. 
-      You will recognize them immediately when you read the important text on each trial carefully -- those trials contain instructions for you to move the slider in a certain way. 
-      Please follow those instructions in the text and ignore the instructions appearing above the rating slider.
+      You will recognize them immediately when you read the important text on each trial carefully -- those trials contain instructions for you to move the rating sliders in a certain way. 
+      Please follow those instructions in the text and ignore the instructions appearing above the rating sliders.
       <br />
       <br />
       Please imagine that you are answering the question in a situation like the one described on each screen. 
