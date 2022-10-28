@@ -8,8 +8,8 @@
           itemName: trial.itemName,
           settingName: trial.settingName,
           trial_type: trial_type,
-          itemOrder: itemOrder,
-          answerOptionsOrder: answerOptionsOrder
+          itemOrder: itemOrder.join(','),
+          answerOptionsOrder: answerOptionsOrder.join(',')
         }"
       />
 
