@@ -61,7 +61,6 @@
 import _ from 'lodash';
 import trialsAll from '../trials/trials_split.csv';
 import fillersAll from '../trials/fillers_split.csv';
-import SliderRatingScreen from './SliderRatingScreen';
 import ParallelRatingScreen from './ParallelRatingScreen';
 
 var group = _.sample(['odd', 'even']);
