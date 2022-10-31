@@ -1,11 +1,11 @@
 export default {
-  experimentId: '95',
-  serverUrl: 'https://mcmpact.ikw.uni-osnabrueck.de/magpie/',
+  experimentId: '5',
+  serverUrl: 'https://magpie-temp.herokuapp.com/',
   // socketUrl: 'wss://mcmpact.ikw.uni-osnabrueck.de/magpie/socket',
   // this will be used in prolific mode
   completionUrl: 'https://app.prolific.co/submissions/complete?cc=C1J3ETN9',
   contactEmail: 'polina.tsvilodub@gmail.com',
   // Either 'debug', 'directLink' or 'prolific'
-  mode: 'prolific',
+  mode: 'directLink',
   language: 'en'
 };
