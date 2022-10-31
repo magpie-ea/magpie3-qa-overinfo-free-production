@@ -19,7 +19,7 @@
     "stylelint-config-standard": "^20.0.0"
   },
   "dependencies": {
-    "magpie-base": "3.3.x"
+    "magpie-base": "^3.4.0"
   },
   "engines": {
     "node": ">=14.0.0",
