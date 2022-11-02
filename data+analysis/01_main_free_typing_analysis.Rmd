@@ -81,6 +81,8 @@ cat("Number of excluded inccorect ('yes') responses: ", nrow(df %>% filter(categ
 df_clean_main <- df %>% filter(!(submission_id %in% subj_id_attention_fails)) %>%
   filter(trial_type == "main", category != "yes")
 
+cat("\nNumber of analysed responses: ", nrow(df_clean_main))
+
 df_clean_main %>% count(category)
 
 df_clean_main %>% count(itemName) 
@@ -114,7 +116,7 @@ df_clean_main_summary  %>%
   ylab("Proportion of answer type") +
   xlab("answer type")
 
-#ggsave("viz/free_production_byAnswerOption_100.pdf", width = 12, height = 28)
+ggsave("viz/free_production_byAnswerOption_100.pdf", width = 12, height = 28)
 ```
 
 ```{r, echo=FALSE, fig.height=28, fig.width=12}
@@ -142,7 +144,7 @@ d_clean_main_collapsedCompetitor_summary %>%
   xlab("answer type")
   
 
-#ggsave("viz/free_production_byAnswerOption_acrossCompetitor_100.pdf", width = 12, height = 28)
+ggsave("viz/free_production_byAnswerOption_acrossCompetitor_100.pdf", width = 12, height = 28)
 ```
 ```{r, echo=FALSE, fig.height=6, fig.width=8}
 # plot answerTypes proportions averaged over items
@@ -159,7 +161,7 @@ df_answerOptions_global_summary %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ylab("Global proportion of answer type") +
   xlab("answer type")
-#ggsave("viz/free_production_global_answerTypes_100.pdf", width = 8, height = 6)
+ggsave("viz/free_production_global_answerTypes_100.pdf", width = 8, height = 6)
 
 # collapsed across different competitor response types
 df_answerOptions_acrossCompetitor_global_summary <- df_clean_main %>%
@@ -178,7 +180,7 @@ df_answerOptions_acrossCompetitor_global_summary %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ylab("Global proportion of answer type") +
   xlab("answer type")
-#ggsave("viz/free_production_global_answerTypes_acrossCompetitor_100.pdf", width = 8, height = 6)
+ggsave("viz/free_production_global_answerTypes_acrossCompetitor_100.pdf", width = 8, height = 6)
 
 ```
 
@@ -214,4 +216,24 @@ cat("\nMaximal number of distinct response types provided by a participant: ", b
 cat("\nNumber of participants providing maximal number of distinct response types: ", bySubj_type_counts %>% filter(n_distinct_types == 6) %>% pull(submission_id) %>% unique() %>% length())
 
 cat("\nAverage number of response types provided by a participant: ", bySubj_type_counts %>%select(-category) %>% pull(n_distinct_types) %>% mean())
+```
+
+```{r}
+# explore global distribution if participants producing "No" responses only would be excluded
+df_clean_main <- df_clean_main %>% rowwise() %>% mutate(
+  bad_response = gsub("\n", "", gsub(" ", "", tolower(answer))) == "no"
+) 
+df_clean_main %>% filter(bad_response == TRUE)
+## it seems that participants 307 and 347 only provded bad responses ('no')
+
+df_clean_main %>% filter(!(submission_id %in% c(307, 347))) %>% 
+  group_by(answerType) %>% 
+  summarise(answerType_count = n(), 
+            answerType_proportion = answerType_count / nrow(df_clean_main)
+            ) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = answerType_proportion)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Global proportion of answer type") +
+  xlab("answer type")
 ```
