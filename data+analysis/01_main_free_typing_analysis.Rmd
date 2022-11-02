@@ -1,0 +1,217 @@
+---
+title: "QA free typing analysis"
+author: "Polina Tsvilodub"
+date: '2022-11-01'
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tidyboot)
+library(aida)
+```
+
+```{r, include=FALSE}
+# these options help Stan run faster
+options(mc.cores = parallel::detectCores())
+
+# use the aida-theme for plotting
+theme_set(theme_aida())
+
+# global color scheme / non-optimized
+project_colors = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
+
+# setting theme colors globally
+scale_colour_discrete <- function(...) {
+  scale_colour_manual(..., values = project_colors)
+}
+scale_fill_discrete <- function(...) {
+  scale_fill_manual(..., values = project_colors)
+} 
+```
+
+# Intro
+
+Below, exploratory analysis of the free production QA experiment data can be found.
+
+The responses were manually classified by Polina into seven categories: 
+
+* The "taciturn" category includes "No, we don't have XY" responses. It also subsumes the responses which include some kind of explanation (like "Moana isn’t here today, she is helping her islanders so can’t be with us."). 
+* The "competitor" category includes responses offering the competitor instead of the target object. It includes responses where the alternative is the anticipated competitor.
+* The "competitor/other" category includes responses where either additional information was included next to offering the competitor or the named competitor differed from our preclassification.
+* The "sameCategory" option includes responses offering several alternatives (2-3) from the same category or offering one option which I did not consider a direct competitor.
+* The "otherCategory" option includes responses offering 1-2 alternatives from the different category.
+* The "fullList" option includes responses where all alternatives were presented.
+* The "other" category includes other unclassifiable responses as well as responses trying to offer some kind of vague solution to the request on top of saying "No" (like "We sell a selection of different types of books, I am sure you will find something in the adventure section.").
+
+An analysis making the distinction between the two competitor-containing categories is compared to an analysis collapsing the two competitor categories into one "competitor" category. Additionally, single responses were classified as incorrect with the "yes" category (e.g., "Yes let's go see it" for the zoo-xl vignette).
+
+```{r, include=FALSE, warning=FALSE, message=FALSE}
+answerOrder <- c( 'competitor', 'competitor/other', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn')
+#df100 <- read_csv("results_5_QA-overinfo-freeTyping-extendedExpt_100.csv")
+#df100 %>% filter(answer != "ptsv") %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>%  write_csv("results_QA-overinfo-freeTyping-extendedExpt_100_anonymized.csv")
+
+df <- read_csv("results_QA-overinfo-freeTyping-extendedExpt_100_anonymized_categorized.csv")
+head(df)
+cat("Number of recruited subjects: ", df %>% pull(submission_id) %>% unique() %>% length())
+```
+
+```{r, echo=FALSE}
+# check attention check completion
+df_attention <- df %>% filter(trial_type == "filler") %>% rowwise() %>%
+  mutate(passed_trial = grepl(tolower(correct_response), tolower(answer))) 
+
+df_attention_fail <- df_attention %>% group_by(submission_id) %>% 
+  mutate(passed_subj = sum(passed_trial) > 0)
+
+# participants who failed attention checks 
+subj_id_attention_fails <- df_attention_fail %>% filter(passed_subj == FALSE) %>% pull(submission_id) %>% unique()
+cat("Subjects who failed attention checks: ", subj_id_attention_fails)  
+cat("\nSubject exclusion rate: ", length(subj_id_attention_fails)/(unique(df$submission_id) %>% length()))
+```
+
+```{r, echo=FALSE}
+cat("Number of excluded inccorect ('yes') responses: ", nrow(df %>% filter(category == "yes")))
+
+# exclude failing participnats and incorrect ("yes") responses
+df_clean_main <- df %>% filter(!(submission_id %in% subj_id_attention_fails)) %>%
+  filter(trial_type == "main", category != "yes")
+
+df_clean_main %>% count(category)
+
+df_clean_main %>% count(itemName) 
+
+cat("\naverage number of responses per vignette:", mean(df_clean_main %>% count(itemName) %>% pull(n)))
+
+cat("\nvignette with most responses: ", df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$n)
+cat("\nvignette with least responses: ", df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$n)
+```
+
+```{r, echo=FALSE, fig.height=28, fig.width=12}
+# plot by vignette
+df_clean_main <- df_clean_main %>% group_by(itemName) %>%
+  mutate(response_count = n(), 
+         answerType = factor(category, levels = answerOrder)) %>% ungroup()
+  
+
+df_clean_main_summary <- df_clean_main %>% group_by(itemName, answerType) %>% 
+  mutate(responseCategory_count = n(),
+         responseCategory_proportion = responseCategory_count / response_count
+         ) %>% ungroup() %>%
+  select(itemName, answerType, responseCategory_proportion) %>% unique()
+
+df_clean_main_summary  %>%
+  ggplot(aes(x = answerType, fill = answerType, y = responseCategory_proportion)) +
+  geom_col() +
+  facet_wrap( itemName ~ . , ncol = 4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Proportion of answer type") +
+  xlab("answer type")
+
+#ggsave("viz/free_production_byAnswerOption_100.pdf", width = 12, height = 28)
+```
+
+```{r, echo=FALSE, fig.height=28, fig.width=12}
+# collapsing across the two competitor categories
+d_clean_main_collapsedCompetitor <- df_clean_main %>% rowwise() %>% mutate(
+  answerType = ifelse(category == "competitor/other", "competitor", category)
+) 
+
+d_clean_main_collapsedCompetitor_summary <- d_clean_main_collapsedCompetitor %>%
+  group_by(itemName, answerType) %>%
+  mutate(responseCategory_count = n(),
+         responseCategory_proportion = responseCategory_count / response_count,
+         answerType = factor(answerType, levels = answerOrder)
+         ) %>%
+  select(itemName, answerType, responseCategory_proportion) %>% unique()
+
+d_clean_main_collapsedCompetitor_summary %>% 
+  ggplot(aes(x = answerType, fill = answerType, y = responseCategory_proportion)) +
+  geom_col() +
+  facet_wrap( itemName ~ . , ncol = 4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Proportion of answer types collapsing competitors") +
+  xlab("answer type")
+  
+
+#ggsave("viz/free_production_byAnswerOption_acrossCompetitor_100.pdf", width = 12, height = 28)
+```
+```{r, echo=FALSE, fig.height=6, fig.width=8}
+# plot answerTypes proportions averaged over items
+df_answerOptions_global_summary <- df_clean_main %>% group_by(answerType) %>% 
+  summarise(answerType_count = n(), 
+            answerType_proportion = answerType_count / nrow(df_clean_main)
+            )
+sum(df_answerOptions_global_summary$answerType_proportion)
+df_answerOptions_global_summary
+
+df_answerOptions_global_summary %>%
+  ggplot(aes(x = answerType, fill = answerType, y = answerType_proportion)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Global proportion of answer type") +
+  xlab("answer type")
+#ggsave("viz/free_production_global_answerTypes_100.pdf", width = 8, height = 6)
+
+# collapsed across different competitor response types
+df_answerOptions_acrossCompetitor_global_summary <- df_clean_main %>%
+  mutate(answerType = ifelse(category == "competitor/other", "competitor", category),
+         answerType = factor(answerType, levels = c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn'))) %>% 
+  group_by(answerType) %>% 
+  summarise(answerType_count = n(), 
+            answerType_proportion = answerType_count / nrow(df_clean_main)
+            )
+sum(df_answerOptions_acrossCompetitor_global_summary$answerType_proportion)
+df_answerOptions_acrossCompetitor_global_summary
+
+df_answerOptions_acrossCompetitor_global_summary %>%
+  ggplot(aes(x = answerType, fill = answerType, y = answerType_proportion)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Global proportion of answer type") +
+  xlab("answer type")
+#ggsave("viz/free_production_global_answerTypes_acrossCompetitor_100.pdf", width = 8, height = 6)
+
+```
+
+```{r, echo=FALSE}
+# checking vignettes by number of competitor/other responses
+cat("Vignettes receiving the most 'other' responses (mostly 'no but we have other options which might interest you')")
+df_clean_main_summary %>% filter(answerType == "other") %>%
+  arrange(desc(responseCategory_proportion)) %>% head()
+
+cat("\nVignettes with highest proportion of competitor responses where either additional information was included or the named competitor differed from our preclassification")
+df_clean_main_summary %>% filter(answerType == "competitor/other") %>%
+  arrange(desc(responseCategory_proportion)) %>% head()
+
+cat("\nVignettes receiving the most 'taciturn' responses")
+df_clean_main_summary %>% filter(answerType == "taciturn") %>%
+  arrange(desc(responseCategory_proportion)) %>% head()
+
+```
+
+```{r, echo=FALSE}
+# by-subject exploration
+bySubj_type_counts <- df_clean_main %>% distinct(submission_id, category) %>% 
+  group_by(submission_id) %>%
+  mutate(n_distinct_types = n())
+
+cat("Number of participants providing taciturn responses only: ", bySubj_type_counts %>% arrange(n_distinct_types) %>% filter(category == "taciturn", n_distinct_types == 1) %>% nrow(.))
+
+cat("\nNumber of participants providing competitor responses only: ", bySubj_type_counts %>% arrange(n_distinct_types) %>% filter(category == "competitor", n_distinct_types == 1) %>% nrow(.))
+
+cat("\nNumber of participants providing 'other' responses only: ", bySubj_type_counts %>% arrange(n_distinct_types) %>% filter(category == "other", n_distinct_types == 1) %>% nrow(.))
+
+cat("\nMaximal number of distinct response types provided by a participant: ", bySubj_type_counts %>% arrange(desc(n_distinct_types)) %>% .[1,] %>% .$n_distinct_types)
+cat("\nNumber of participants providing maximal number of distinct response types: ", bySubj_type_counts %>% filter(n_distinct_types == 6) %>% pull(submission_id) %>% unique() %>% length())
+
+cat("\nAverage number of response types provided by a participant: ", bySubj_type_counts %>%select(-category) %>% pull(n_distinct_types) %>% mean())
+```
