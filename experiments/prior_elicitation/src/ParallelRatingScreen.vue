@@ -22,38 +22,46 @@
       <SliderInput
         left="makes it much less likely"
         right="makes it much more likely"
-        initial="20"
+        initial="50"
         :response.sync=$magpie.measurements[itemOrder[0]]
       />
+      <p style="color:grey; margin-top: -25px;">no change at all</p>
 
       <span v-html="createAnswerOption(trial, itemOrder[1])"></span>
       <SliderInput
         left="makes it much less likely"
         right="makes it much more likely"
-        initial="20"
+        initial="50"
         :response.sync=$magpie.measurements[itemOrder[1]]
       />
+      <p style="color:grey; margin-top: -25px;">no change at all</p>
+
       <span v-html="createAnswerOption(trial, itemOrder[2])"></span>
       <SliderInput
         left="makes it much less likely"
         right="makes it much more likely"
-        initial="20"
+        initial="50"
         :response.sync=$magpie.measurements[itemOrder[2]]
       />
+      <p style="color:grey; margin-top: -25px;">no change at all</p>
+
       <span v-html="createAnswerOption(trial, itemOrder[3])"></span>
       <SliderInput
         left="makes it much less likely"
         right="makes it much more likely"
-        initial="20"
+        initial="50"
         :response.sync=$magpie.measurements[itemOrder[3]]
       />
+      <p style="color:grey; margin-top: -25px;">no change at all</p>
+
       <span v-html="createAnswerOption(trial, itemOrder[4])"></span>
       <SliderInput
         left="makes it much less likely"
         right="makes it much more likely"
-        initial="20"
+        initial="50"
         :response.sync=$magpie.measurements[itemOrder[4]]
       />
+      <p style="color:grey; margin-top: -25px;">no change at all</p>
 
       
       <button
