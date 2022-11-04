@@ -1,5 +1,5 @@
 export default {
-  experimentId: '7',
+  experimentId: '5',
   serverUrl: 'https://magpie-temp.herokuapp.com/',
   socketUrl: 'wss://magpie-temp.herokuapp.com/socket',
   // this will be used in prolific mode
