@@ -48,7 +48,7 @@
 
     <PostTestScreen />
 
-    <DebugResultsScreen />
+    <SubmitResultsScreen />
 
   </Experiment>
 </template>
