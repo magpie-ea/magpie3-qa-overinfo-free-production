@@ -1,0 +1,55 @@
+submission_id,age,ambiguous_response,itemName,category,answer,comments,correct_response,education,experiment_duration,experiment_end_time,experiment_start_time,gender,languages,responseTime,settingName,trialNr,trial_type
+88,33,1,touristInfo-clubbing,competitor/other,"I don't believe there is, but there is a club with a hip hop DJ.  Otherwise there is a rock concert, live jazz, street performers or a circus show if any of those interest you instead.",NA,main,Graduated High-school,351454,1667218614550,1667218263096,female,English,70604,touristInfo,8,main
+92,62,1,cafe-pizza,competitor,Yes we have a cheese pizza.,NA,main,Graduated College,520701,1667218817681,1667218296980,female,English,35283,cafe,5,main
+93,41,1,dutyFree-sweets,other,we have something similar,NA,main,Higher degree,592941,1667218861635,1667218268694,male,NA,24487,dutyFree,6,main
+95,34,1,disney-princess,other,"Unfortunately Moana is away fishing today, is there any other people you would like to meet?",NA,main,Higher degree,648267,1667218918202,1667218269935,female,English,59807,disney,4,main
+105,37,1,gym-yoga,other,"No, sorry, but here is what we do offer",NA,main,Graduated High-school,485605,1667240354134,1667239868529,female,English,29495,gymActivities,4,main
+108,29,1,books-romance,taciturn,"I'm sorry, we don't currently. Would you like me to order some?",NA,main,Graduated College,562006,1667240441550,1667239879544,female,English,94747,books,2,main
+108,29,1,kidsActivities-crafts,other,"No, here is a list of available classes",NA,main,Graduated College,562006,1667240441550,1667239879544,female,English,18334,kidsActivities,7,main
+107,51,1,furniture-indoors,competitor/other,"we have e rocking chair , thats as close as we have if thats any good ? or a sofa",ran well,main,Graduated High-school,538631,1667240410521,1667239871890,male,English,85424,furniture,1,main
+107,51,1,kidsActivities-crafts,competitor/other,no but we have many others like painting,ran well,main,Graduated High-school,538631,1667240410521,1667239871890,male,English,48249,kidsActivities,9,main
+139,42,1,furniture-indoors,other,I do not have one on display but I can see if we have one in the back of the store,NA,main,Graduated College,365151,1667310941530,1667310576379,female,English,56674,furniture,1,main
+148,34,1,bar-tea,other,"We don't, is there something else I could offer you?",NA,main,Graduated High-school,443610,1667311022151,1667310578541,female,English,32152,bar,9,main
+138,48,1,zoo-xl,other,"The map says there isn't a tiger, but we could ask a member of staff",NA,main,Higher degree,355196,1667310920159,1667310564963,female,English,30652,zoo,5,main
+138,48,1,movie-fantasy,taciturn,We do not have any fantasy programmed. Are you interested in any other genres?,NA,main,Higher degree,355196,1667310920159,1667310564963,female,English,26934,movie,9,main
+167,56,1,clothing-beach,other,"Hiya, so sorry but we don't have any at the moment. Have you tried the charity shops on the high street?",NA,main,Graduated High-school,1039270,1667311622930,1667310583660,female,English,101001,clothing,4,main
+167,56,1,books-romance,other,Sorry we don't have any but I can order some in for you if you'd like.,NA,main,Graduated High-school,1039270,1667311622930,1667310583660,female,English,176069,books,7,main
+167,56,1,furniture-indoors,other,Sorry we don't currently have one. I'll keep an eye out for you though.,NA,main,Graduated High-school,1039270,1667311622930,1667310583660,female,English,52294,furniture,9,main
+135,49,1,zoo-reptiles,other,"I don't think we can, but I'll ask if there are any not on the map.",NA,main,Graduated High-school,303512,1667310885944,1667310582432,male,English,42491,zoo,10,main
+160,61,1,disney-princess,other,"Sorry, I don't know who Moana is, what about Batman, Cinderella or Spiderman?",NA,main,Did not graduate High-school,620366,1667311208761,1667310588395,female,English,51416,disney,4,main
+160,61,1,zoo-reptiles,fullList,"Later, first lets go check out the gorillas, snakes, lion, turtles and iguanas and if we have any time left I will check for the chameleon",NA,main,Did not graduate High-school,620366,1667311208761,1667310588395,female,English,62689,zoo,8,main
+163,40,1,clothing-winter,other,"Yes, I'll take you over to our sweater section, which are available in several different materials.",NA,main,Higher degree,767496,1667311334089,1667310566593,female,English,88022,clothing,2,main
+163,40,1,zoo-reptiles,competitor,"I'm not sure that they have chameleons here, but we could head over to see the iguanas?",NA,main,Higher degree,767496,1667311334089,1667310566593,female,English,90062,zoo,3,main
+140,35,1,friendsActivities-videoEntertainment,other,No. We have a ps4 or some fun board games,NA,main,Higher degree,370847,1667310948037,1667310577190,female,English,34523,friendsActivities,2,main
+140,35,1,electronics-console,other,No - we have everything but!,NA,main,Higher degree,370847,1667310948037,1667310577190,female,English,33191,electronics,3,main
+146,38,1,movie-western,other,Currently we are not playing a Western movie but perhaps at some point today we will,NA,main,Graduated College,424181,1667311007004,1667310582823,female,british,46095,movie,6,main
+151,53,1,books-fantasy,sameCategory,Not fantasy but you might want to look at our romance section.,NA,main,Graduated High-school,484493,1667311063405,1667310578912,female,English,48008,books,11,main
+141,42,1,plants-flowers,other,Not at the moment but I will grow some for you if you want,NA,main,Graduated College,390282,1667310959284,1667310569002,male,English,56622,plants,3,main
+141,42,1,bar-tea,other,"Unfortunately not, can i get you anything else",NA,main,Graduated College,390282,1667310959284,1667310569002,male,English,26579,bar,4,main
+152,61,1,petAdoption-dogs,other,No Dalmatians currently but we have new animals coming in every day - would you like to go on a waiting list?,"That was fun, thank you.",main,Higher degree,470980,1667311073244,1667310602264,female,English,35480,petAdoption,4,main
+152,61,1,furniture-indoors,other,"We don't, sorry.  If you want to give me an idea of what you would like I can keep a look out for an armchair for you.","That was fun, thank you.",main,Higher degree,470980,1667311073244,1667310602264,female,English,32902,furniture,11,main
+144,43,1,zoo-xl,other,There's no tigers nut let's find something else,NA,main,Graduated High-school,408222,1667310980822,1667310572600,female,English,24321,zoo,9,main
+166,33,1,touristInfo-clubbing,competitor/other,"No, but there will be a fun street dance performance!",NA,main,Graduated High-school,796118,1667311500848,1667310704730,female,English,53479,touristInfo,4,main
+154,43,1,disney-princess,other,"Moana is on holiday today, who likes Spiderman or Ariel",fun survey,main,Graduated High-school,580199,1667311154607,1667310574408,female,English,66724,disney,2,main
+154,43,1,friendsActivities-videoEntertainment,taciturn,"Everything but Xbox, now who wants a drink",fun survey,main,Graduated High-school,580199,1667311154607,1667310574408,female,English,44138,friendsActivities,4,main
+158,57,1,cafe-pie,sameCategory,No raspberry cake as such. If you want cake then we lemon cake. Otherwise we have raspberry pie.,None,main,Higher degree,392536,1667311201350,1667310808814,male,English,40822,cafe,7,main
+156,26,1,friendsActivities-boardGames,other,"No I don’t, did anyone bring it and we could play?",The level of education tab doesn’t work,main,NA,615758,1667311184498,1667310568740,female,English,39074,friendsActivities,5,main
+310,30,1,clothing-winter,sameCategory,Yes sweatshirts and hoodies,NA,main,Graduated College,407268,1667331534014,1667331126746,female,English,34598,clothing,2,main
+310,30,1,books-fantasy,other,There is romance novels and science fiction,NA,main,Graduated College,407268,1667331534014,1667331126746,female,English,75616,books,10,main
+319,38,1,bar-whiteWine,taciturn,"No we don’t sell wine
+",NA,main,Higher degree,292059,1667372100116,1667371808057,female,English,36711,bar,2,main
+320,46,1,touristInfo-clubbing,other,we do have a variety of music,NA,main,Graduated High-school,350174,1667372141937,1667371791763,female,english,32205,touristInfo,10,main
+321,24,1,gym-yoga,competitor/other,"Sadly we do not offer yoga classes but we have a wide range of classes including karate, aeorobics, pilates, kickboxing and zumba which you may enjoy. Pilates definitely has some overlaps with yoga for example.",NA,main,Higher degree,453191,1667372171798,1667371718607,female,NA,68599,gymActivities,8,main
+336,59,1,zoo-xl,other,No because they are hiding in the bushes,NA,main,Graduated High-school,588359,1667372369483,1667371781124,female,English,39293,zoo,6,main
+346,56,1,petAdoption-dogs,other,"I’m afraid not. Would you be interested in any other breeds?
+
+",NA,main,Graduated High-school,504159,1667372524683,1667372020524,female,English,59876,petAdoption,2,main
+322,60,1,electronics-laptop,other,"Just what ya see, pal.",NA,main,Graduated College,335871,1667372175003,1667371839132,other,English,23285,electronics,9,main
+327,24,1,movie-fantasy,sameCategory,"No, we have an adventure movie or musical that may be of interest",NA,main,Graduated College,375844,1667372264518,1667371888674,female,English,55011,movie,7,main
+329,39,1,waterSport-motor,other,"Hi, yes we rent a range of ski equipment.",NA,main,Higher degree,356632,1667372295674,1667371939042,female,English,43198,waterSport,9,main
+332,48,1,bookingAgency-lowClassAccommodation,other,No but we have three cheap alternatives,NA,main,Graduated College,565246,1667372318104,1667371752858,male,NA,94839,bookingAgency,2,main
+337,45,1,bookingAgency-lowClassAccommodation,fullList,i reply sorry we have accomodation at a lodge and 2 types of hotels and a bed and breakfast. we have no information on a youth hostel,NA,main,Graduated High-school,567616,1667372401931,1667371834316,male,english,128031,bookingAgency,1,main
+345,26,1,electronics-console,other,No we have these other consoles available. We could also take a number for when we do have one in Stock.,NA,main,Graduated College,513582,1667372508855,1667371995273,male,English,77204,electronics,1,main
+348,33,1,kidsActivities-sports,fullList,"We don't have any cheerleading classes, we have do have a dancing class and acrobatics class. You could also try karate, pottery or watercolour.",NA,main,Graduated High-school,763044,1667372528469,1667371765425,female,English,127639,kidsActivities,8,main
+354,32,1,waterSport-motor,other,"I'm sorry but we don't offer jet skis at the moment. However, we do have other options available. If you're looking for some fast fun we have a speedboat. Or if you're looking for something a little more lazy and laid back we offer kayaks or pedal boats.",NA,main,Graduated High-school,1382536,1667373299827,1667371917291,female,English,161482,waterSport,10,main
+355,44,1,friendsActivities-boardGames,otherCategory,Yes. We have the PlayStation version.,NA,main,Higher degree,559842,1667373301546,1667372741704,female,English,33979,friendsActivities,6,main

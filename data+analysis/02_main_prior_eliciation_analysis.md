@@ -195,3 +195,9 @@ qualitative differences between the cleaned results with 60 subjects and
 non-cleaned results with 80 subjects. This does not seem to be the case.
 
 ![](02_main_prior_eliciation_analysis_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
+## Preprocessing for RSA model fitting
+
+``` r
+# TODO: z-scoring
+```

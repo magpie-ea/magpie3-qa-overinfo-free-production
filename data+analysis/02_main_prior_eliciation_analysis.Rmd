@@ -352,3 +352,8 @@ p5 <- d_clean_main_collapsedCompetitor_summary_100 %>%
 p5
 
 ```
+
+## Preprocessing for RSA model fitting
+```{r}
+# TODO: z-scoring
+```
