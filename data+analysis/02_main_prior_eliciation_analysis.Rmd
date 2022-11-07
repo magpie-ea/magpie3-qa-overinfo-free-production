@@ -1,0 +1,354 @@
+---
+title: "QA prior elicitation & free typing analysis"
+author: "Polina Tsvilodub"
+date: '2022-11-06'
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tidyboot)
+library(aida)
+library(forcats)
+library("gridExtra")
+```
+
+```{r, include=FALSE}
+# these options help Stan run faster
+options(mc.cores = parallel::detectCores())
+
+# use the aida-theme for plotting
+theme_set(theme_aida())
+
+# global color scheme / non-optimized
+project_colors = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
+
+# setting theme colors globally
+scale_colour_discrete <- function(...) {
+  scale_colour_manual(..., values = project_colors)
+}
+scale_fill_discrete <- function(...) {
+  scale_fill_manual(..., values = project_colors)
+} 
+```
+
+## Intro
+
+Below, exploratory analysis of the prior elicitation QA experiment data can be found. In the end, the results are compared against the free production results. Details of the free production analysis can be found [here](https://github.com/magpie-ea/magpie3-qa-overinfo-free-production/blob/main/data%2Banalysis/01_main_free_typing_analysis.md).
+
+```{r, include=FALSE, warning=FALSE, message=FALSE}
+answerOrder <- c( 'competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2')
+#df <- read_csv("../../raw_data/results_97_QA-overinformative-priorElicitation-magpie_80.csv") 
+#df %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>% write_csv("results_QA-overinfo-priorElicitation-magpie-80_anonymized.csv")
+
+df <- read_csv("results_QA-overinfo-priorElicitation-magpie-80_anonymized.csv")
+head(df)
+cat("Number of recruited subjects: ", df %>% pull(submission_id) %>% unique() %>% length())
+```
+
+Participants failing all attention checks (3 out of 11 trials) are excluded from analysis. The attention checks consisted of trials where participants read instructions to move all sliders all the way to the left or to the right.
+
+```{r, echo=FALSE}
+# check attention check completion
+df <- df %>% mutate(
+  expected_attention = case_when(
+    itemName == 'jobCenter-office' ~ 0,
+    itemName == 'jobCenter-engineer' ~ 0,
+    itemName == 'art-painting' ~ 100,
+    itemName == 'art-drawing' ~ 100,
+    itemName == 'carRental-fun' ~ 0,
+    itemName == 'carRental-moving' ~ 0,
+    itemName == 'music-hardrock' ~ 100,
+    itemName == 'music-softrock' ~ 100,
+    itemName == 'airport-usa' ~ 0,
+    itemName == 'airport-europe' ~ 100,
+    TRUE ~ 50
+  )
+)
+
+df_attention <- df %>% filter(trial_type == "filler") %>% 
+  select(submission_id, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2, expected_attention, itemName) %>% 
+  pivot_longer(cols = c(competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2), names_to = "answerType", values_to = "response") %>%
+  rowwise() %>%
+  mutate(passed_trial = abs(response - expected_attention) < 5 )
+
+df_attention_fail <- df_attention %>% group_by(submission_id) %>% 
+  mutate(passed_subj = sum(passed_trial) > 0)
+
+df_attention_fail %>% ungroup() %>% filter( passed_subj == FALSE) %>% count(itemName, passed_subj)
+
+# participants who failed attention checks 
+subj_id_attention_fails <- df_attention_fail %>% filter(passed_subj == FALSE) %>% pull(submission_id) %>% unique()
+cat("Numbrer of subjects who failed attention checks: ", length(subj_id_attention_fails)  )
+cat("\nSubject exclusion rate: ", length(subj_id_attention_fails)/(unique(df$submission_id) %>% length()))
+```
+
+
+```{r, echo=FALSE}
+# get main clean data
+df_clean_main <- df %>% filter(!(submission_id %in% subj_id_attention_fails)) %>%
+  filter(trial_type == "main")
+
+df_clean_main_long <- df_clean_main %>%
+  select(itemName, submission_id, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2) %>%
+   pivot_longer(cols = c(competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2), names_to = 'answerType', values_to = "response") 
+```
+
+We further exclude participants who provide the same responses on all trials (i.e. responses within the range of 5 points, basically just click trough the experiment).
+
+```{r, echo=FALSE}
+df_bad_subj <- df_clean_main_long %>% group_by(submission_id) %>%
+  mutate(bad_subj = (max(response) - min(response)) < 5)
+df_bad_subj %>% filter(bad_subj == TRUE)
+cat("\nnumber of subjects who provided the same responses within 5 points on all main trials:",  df_bad_subj %>% filter(bad_subj == TRUE) %>% pull(submission_id) %>% unique() %>% length())
+bad_subj_ids <- df_bad_subj %>% filter(bad_subj == TRUE) %>% pull(submission_id) %>% unique()
+
+df_clean_main <- df_clean_main %>% filter(!(submission_id %in% bad_subj_ids))
+df_clean_main_long <- df_clean_main_long %>% filter(!(submission_id %in% bad_subj_ids))
+
+```
+
+```{r}
+cat("\nNumber of analysed vignette responses: ", nrow(df_clean_main))
+
+df_clean_main %>% count(itemName) 
+
+cat("\naverage number of responses per vignette:", mean(df_clean_main %>% count(itemName) %>% pull(n)))
+
+cat("\nvignette with most responses: ", df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$n)
+cat("\nvignette with least responses: ", df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$n)
+
+```
+
+
+```{r, include=FALSE, message=FALSE, warning=FALSE}
+# wrangle target names and answer options for easier parsing
+df_vignettes <- read_csv("../experiments/prior_elicitation/trials/trials_split.csv") %>% 
+  select(itemName, itemQuestion, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2)
+
+df_clean_main_wItems <- df_clean_main %>% left_join(., df_vignettes, by="itemName", suffix=c("", "_string"))
+
+df_clean_main_wItems_woExclusions <- df %>% filter(trial_type == "main") %>%
+  left_join(., df_vignettes, by="itemName", suffix=c("", "_string"))
+
+df_clean_main_wItems_long <- df_clean_main_wItems %>%
+  select(itemName, submission_id, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2, itemQuestion, competitor_string, sameCategory1_string, sameCategory2_string, otherCategory1_string, otherCategory2_string) %>%
+   pivot_longer(cols = c(competitor_string, sameCategory1_string, sameCategory2_string, otherCategory1_string, otherCategory2_string), names_to = 'answerType_string', values_to = "answerOption_string") %>% 
+  mutate(answerType_string = gsub("_string", "", answerType_string)) %>%
+  pivot_longer(cols = c(competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2), names_to = 'answerType', values_to = "response") %>% 
+  filter(answerType_string == answerType) %>%
+  mutate(answerType = factor(answerType, levels = answerOrder))
+
+df_clean_main_wItems_woExclusions_long <- df_clean_main_wItems_woExclusions %>%  
+  select(itemName, submission_id, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2, itemQuestion, competitor_string, sameCategory1_string, sameCategory2_string, otherCategory1_string, otherCategory2_string) %>%
+   pivot_longer(cols = c(competitor_string, sameCategory1_string, sameCategory2_string, otherCategory1_string, otherCategory2_string), names_to = 'answerType_string', values_to = "answerOption_string") %>% 
+  mutate(answerType_string = gsub("_string", "", answerType_string)) %>%
+  pivot_longer(cols = c(competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2), names_to = 'answerType', values_to = "response") %>% 
+  filter(answerType_string == answerType) %>%
+  mutate(answerType = factor(answerType, levels = answerOrder))
+
+```
+
+The first plot below shows the raw prior ratings (y-axis) against the alternative category (i.e., competitor, sameCategory1, otherCategory1 etc; x-axis). The second plot shows only by-vignette by-alternative average ratings across participants. 
+
+```{r, echo=FALSE, fig.height=28, fig.width=12}
+# plot by vignette
+df_clean_main_summary <- df_clean_main %>% group_by(itemName) %>%
+  mutate(competitor = mean(competitor),
+         sameCategory1 = mean(sameCategory1),
+         sameCategory2 = mean(sameCategory2),
+         otherCategory1 = mean(otherCategory1),
+         otherCategory2 = mean(otherCategory2)) %>% ungroup()
+  
+
+df_clean_main_summary_unique <- df_clean_main_summary %>% ungroup() %>%
+  select(itemName, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2) %>% unique() %>%
+   pivot_longer(cols = -itemName, names_to = 'answerType', values_to = "count") 
+
+df_clean_main_long  %>%
+  mutate(answerType = factor(answerType, levels = c('competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2'))) %>%
+  ggplot(aes(x = answerType, color = answerType, y = response)) +
+  geom_point() +
+  facet_wrap( itemName ~ . , ncol = 4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Raw ratings") +
+  xlab("Alternative type")
+
+df_clean_main_summary_unique  %>%
+  mutate(answerType = factor(answerType, levels = c('competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2'))) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = count)) +
+  geom_col() +
+  facet_wrap( itemName ~ . , ncol = 4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Average rating") +
+  xlab("Alternative type")
+
+#ggsave("viz/priorElicitation_byAnswerOption_80.pdf", width = 12, height = 28)
+```
+
+The global plot below shows by-category ratings averaging over vignettes:
+```{r, echo=FALSE, fig.height=6, fig.width=10}
+df_clean_main_summary_unique %>%
+  mutate(answerType = factor(answerType, levels = c('competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2'))) %>%
+  group_by(answerType) %>%
+  summarize(mean = mean(count)) %>% 
+  ggplot(aes(x = answerType, fill = answerType, y = mean)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Mean ratings") +
+  xlab("Alternative type")
+
+#ggsave("viz/priorElicitation_byAnswerOption_avg_80.pdf", width = 10, height = 6)
+```
+
+The plot below shows the raw by-vignette by-alternative ratings (small points) with labels representing the actual alternative options. The large points indicate the by-vignette by-alternative means. **Please note the varying order of the answer alternative categories on the x-axis (color).**
+```{r, fig.height=32, fig.width=12}
+df_clean_main_wItems_long_summary <- df_clean_main_wItems_long %>%
+  group_by(answerOption_string, answerType, itemQuestion) %>% 
+  summarize(mean_response = mean(response)) 
+
+df_clean_main_wItems_long2 <- left_join(df_clean_main_wItems_long, df_clean_main_wItems_long_summary, by=c('answerOption_string', 'answerType', 'itemQuestion') )
+
+df_clean_main_wItems_long2  %>%
+  mutate(answerOption_string = tidytext::reorder_within(answerOption_string, response, itemQuestion)) %>%
+  ggplot(aes(x = reorder(answerOption_string, response), color = answerType, y = response)) +
+  geom_point(size=2, alpha=0.5) +
+  geom_point(aes(y = mean_response), size=3.5) +
+ # aes(x = fct_inorder(answerType)) +
+  #scale_x_discrete(answerType) +
+  tidytext::scale_x_reordered() +
+  facet_wrap( itemQuestion ~ . , scales='free', ncol = 4) +
+  theme(axis.text.x = element_text(angle = 55, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Rating") +
+  ylim(0, 100) +
+  xlab("Alternative") 
+
+#ggsave("viz/priorElicitation_byAnswerOption_wLabels_wMeans_woExclusions_80.pdf", width = 12, height = 32)
+
+```
+
+
+## Comparing prior ratings to free production
+
+Below, the prior ratings are aligned with the free production data. In this plot, the item free production responses and respective prior ratings can be seen side by side.
+
+```{r, fig.width=13, fig.height=49, echo=FALSE}
+d_clean_main_collapsedCompetitor_summary_100 <- read_csv("d_clean_main_collapsedCompetitor_summary_100.csv")
+
+p1 <- d_clean_main_collapsedCompetitor_summary_100 %>% 
+  mutate(answerType = factor(answerType, levels=c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn'))) %>%
+  ggplot(aes(x = answerType, 
+             fill = answerType, 
+             y = responseCategory_proportion)) +
+  geom_col() +
+  facet_wrap( itemName ~ . , ncol = 1) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Proportion of answer types collapsing competitors") +
+  ylim(0, 1) +
+  xlab("Answer type free production")
+
+p2 <- df_clean_main_wItems_long2  %>%
+  ggplot(aes(x = answerType, color = answerType, y = response)) +
+  geom_point(size=2, alpha=0.5) +
+  geom_point(aes(y = mean_response), size=3.5) +
+  facet_wrap( itemName ~ ., ncol = 1) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Rating") +
+  ylim(0, 100) +
+  xlab("Alternative prior elicitation") 
+
+p3 <- grid.arrange(p1, p2, ncol=2)
+#ggsave("viz/freeProduction_100_vs_priorElicitation_80.pdf", p3, width=13, height=49)
+```
+
+The plot below combines free production response rates with prior ratings. More specifically, the x axis shows the categorized free production response proportions (over participants) as bars. The prior elicitation raw responses were collapsed into the categories 'competitor', 'sameCategory' (comprising ratings for 'sameCategory1' and 'sameCategory2' alternatives, respectively) and 'otherCategory' (collapsing 'otherCategory1' and 'otherCategory2' ratings). The raw responses (samller points) as well as by-item by-alternative means (larger points) are added in the respective answer categories for easier comparison. 
+
+```{r, fig.width=10, fig.height=35, echo=FALSE}
+df_clean_main_wItems_long2_scaled <- df_clean_main_wItems_long2 %>%
+  mutate(response = response/100,
+         mean_response = mean_response / 100,
+         answerType = case_when(
+           answerType_string == "otherCategory1" ~ "otherCategory",
+           answerType_string == "otherCategory2" ~ "otherCategory",
+           answerType_string == "sameCategory1" ~ "sameCategory",
+           answerType_string == "sameCategory2" ~ "sameCategory",
+           TRUE ~ answerType_string
+         ),
+         answerType = factor(answerType, levels = c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn')))
+
+p4 <- d_clean_main_collapsedCompetitor_summary_100 %>% 
+  mutate(answerType = factor(answerType, levels=c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn'))) %>%
+  ggplot(aes(x = answerType, 
+             fill = answerType, 
+             y = responseCategory_proportion)) +
+  geom_col(alpha=0.75) +
+  geom_point(data=df_clean_main_wItems_long2_scaled, aes(x=answerType, y = response, color = answerType), size=2, alpha=0.5) +
+  geom_point(data=df_clean_main_wItems_long2_scaled, aes(x=answerType, y = mean_response, color = answerType), size=3.5) +
+  facet_wrap( itemName ~ . , ncol = 2) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  theme(legend.position="none") +
+  ylab("Proportion of answer types") +
+  ylim(0, 1) +
+  xlab("Answer type free production and prior ratings")
+
+p4
+#ggsave("viz/freeProduction_100_and_priorElicitation_80.pdf", p4, width=10, height=35)
+```
+
+## Exploratory analysis without participant exclusions
+
+Since a relatively large proportion of participants was excluded due to attention check failure, the plot below explores whether there are qualitative differences  between the cleaned results with 60 subjects and non-cleaned results with 80 subjects. This does not seem to be the case.
+
+```{r, fig.width=10, fig.height=35, echo=FALSE}
+df_clean_main_wItems_woExclusion_long2 <- left_join(df_clean_main_wItems_woExclusions_long, df_clean_main_wItems_long_summary, by=c('answerOption_string', 'answerType', 'itemQuestion') )
+
+df_clean_main_wItems_woExclusion_long2_scaled <- df_clean_main_wItems_woExclusion_long2 %>%
+  mutate(response = response/100,
+         mean_response = mean_response / 100,
+         answerType = case_when(
+           answerType_string == "otherCategory1" ~ "otherCategory",
+           answerType_string == "otherCategory2" ~ "otherCategory",
+           answerType_string == "sameCategory1" ~ "sameCategory",
+           answerType_string == "sameCategory2" ~ "sameCategory",
+           TRUE ~ answerType_string
+         ),
+         answerType = factor(answerType, levels = c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn')))
+
+p5 <- d_clean_main_collapsedCompetitor_summary_100 %>% 
+  mutate(answerType = factor(answerType, levels=c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn'))) %>%
+  ggplot(aes(x = answerType, 
+             fill = answerType, 
+             y = responseCategory_proportion)) +
+  geom_col(alpha=0.75) +
+  geom_point(data=df_clean_main_wItems_woExclusion_long2_scaled, aes(x=answerType, y = response, color = answerType), size=2, alpha=0.5) +
+  geom_point(data=df_clean_main_wItems_woExclusion_long2_scaled, aes(x=answerType, y = mean_response, color = answerType), size=3.5) +
+  facet_wrap( itemName ~ . , ncol = 2) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  theme(legend.position="none") +
+  ylab("Proportion of answer types") +
+  ylim(0, 1) +
+  xlab("Answer type free production and prior ratings")
+
+p5
+
+```

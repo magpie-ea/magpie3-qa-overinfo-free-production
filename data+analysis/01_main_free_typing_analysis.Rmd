@@ -51,7 +51,7 @@ The responses were manually classified by Polina into seven categories:
 An analysis making the distinction between the two competitor-containing categories is compared to an analysis collapsing the two competitor categories into one "competitor" category. Additionally, single responses were classified as incorrect with the "yes" category (e.g., "Yes let's go see it" for the zoo-xl vignette).
 
 ```{r, include=FALSE, warning=FALSE, message=FALSE}
-answerOrder <- c( 'competitor', 'competitor/other', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn')
+answerOrder <- c( 'competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn')
 #df100 <- read_csv("results_5_QA-overinfo-freeTyping-extendedExpt_100.csv")
 #df100 %>% filter(answer != "ptsv") %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>%  write_csv("results_QA-overinfo-freeTyping-extendedExpt_100_anonymized.csv")
 
@@ -123,7 +123,10 @@ ggsave("viz/free_production_byAnswerOption_100.pdf", width = 12, height = 28)
 # collapsing across the two competitor categories
 d_clean_main_collapsedCompetitor <- df_clean_main %>% rowwise() %>% mutate(
   answerType = ifelse(category == "competitor/other", "competitor", category)
-) 
+) %>% group_by(itemName, answerType) %>% 
+  mutate(responseCategory_count = n(),
+         responseCategory_proportion = responseCategory_count / response_count
+         ) %>% ungroup()
 
 d_clean_main_collapsedCompetitor_summary <- d_clean_main_collapsedCompetitor %>%
   group_by(itemName, answerType) %>%
@@ -133,10 +136,12 @@ d_clean_main_collapsedCompetitor_summary <- d_clean_main_collapsedCompetitor %>%
          ) %>%
   select(itemName, answerType, responseCategory_proportion) %>% unique()
 
+#d_clean_main_collapsedCompetitor_summary %>% write_csv(., "d_clean_main_collapsedCompetitor_summary_100.csv")
+
 d_clean_main_collapsedCompetitor_summary %>% 
   ggplot(aes(x = answerType, fill = answerType, y = responseCategory_proportion)) +
   geom_col() +
-  facet_wrap( itemName ~ . , ncol = 4) +
+  facet_wrap( itemName ~ . , ncol = 1) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
   theme(panel.spacing = unit(2, "lines")) +
@@ -146,6 +151,7 @@ d_clean_main_collapsedCompetitor_summary %>%
 
 ggsave("viz/free_production_byAnswerOption_acrossCompetitor_100.pdf", width = 12, height = 28)
 ```
+
 ```{r, echo=FALSE, fig.height=6, fig.width=8}
 # plot answerTypes proportions averaged over items
 df_answerOptions_global_summary <- df_clean_main %>% group_by(answerType) %>% 

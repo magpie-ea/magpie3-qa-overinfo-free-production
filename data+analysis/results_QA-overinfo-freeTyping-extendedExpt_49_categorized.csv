@@ -1,0 +1,552 @@
+submission_id,age,itemName,category,answer,comments,correct_response,education,experiment_duration,experiment_end_time,experiment_start_time,gender,languages,responseTime,settingName,trialNr,trial_type
+80,49,touristInfo-childTheatre,competitor,No I'm sorry there isn't.  There is a circus on though.   Would you like the details?,,main,Graduated College,1022613,1667217900813,1667216878200,female,,91713,touristInfo,1,main
+80,49,electronics-laptop,competitor,No I'm sorry.   We do have a MacBook Air if you would like to look at that. ,,main,Graduated College,1022613,1667217900813,1667216878200,female,,91031,electronics,2,main
+80,49,waterSport-motor,fullList,"No I'm sorry.   We have small sail boats, speedboats, pedal boats, water ski equipment mnd kayaks if you bare interested. ",,main,Graduated College,1022613,1667217900813,1667216878200,female,,157419,waterSport,3,main
+80,49,disney-action,fullList,"No sorry.  Superman isnt available today...but you can see Spiderman, Ariel, Princess Elsa, Batman and the Hulk.",,main,Graduated College,1022613,1667217900813,1667216878200,female,,99278,disney,4,main
+80,49,zoo-xl,competitor,There isn't a tiger in this zoo...but we can go and see the lion !!,,main,Graduated College,1022613,1667217900813,1667216878200,female,,73905,zoo,5,main
+80,49,carRental-fun,,motorcycle,,motorcycle,Graduated College,1022613,1667217900813,1667216878200,female,,33685,carRental,6,filler
+80,49,gym-yoga,competitor,No we don't do yoga classes. ..we do offer pirates classes though. ,,main,Graduated College,1022613,1667217900813,1667216878200,female,,39642,gymActivities,7,main
+80,49,art-painting,,sculpture,,sculpture,Graduated College,1022613,1667217900813,1667216878200,female,,98031,art,8,filler
+80,49,friendsActivities-boardGames,other,No I haven't got clue bit I've got lots of other games...have a look and see which ones you like ,,main,Graduated College,1022613,1667217900813,1667216878200,female,,51138,friendsActivities,9,main
+80,49,kidsActivities-crafts,fullList,"No there isn't.  We have got lot of other classes though....swimming , watercolour painting,  sewing, origami and acrobatics !",,main,Graduated College,1022613,1667217900813,1667216878200,female,,229081,kidsActivities,10,main
+80,49,jobCenter-office,,teacher,,teacher,Graduated College,1022613,1667217900813,1667216878200,female,,14767,jobCenter,11,filler
+83,42,petAdoption-hamster,taciturn,We do not have any hamsters at the moment.,,main,Higher degree,249186,1667218497844,1667218248658,male,English,31604,petAdoption,1,main
+83,42,dutyFree-sweets,taciturn,"We don't sell cookies, sorry.",,main,Higher degree,249186,1667218497844,1667218248658,male,English,15927,dutyFree,2,main
+83,42,carRental-moving,,motorcycle,,motorcycle,Higher degree,249186,1667218497844,1667218248658,male,English,15856,carRental,3,filler
+83,42,furniture-outdoors,taciturn,"Sorry, we don't have a deck chair.",,main,Higher degree,249186,1667218497844,1667218248658,male,English,40897,furniture,4,main
+83,42,electronics-console,taciturn,"We have no PlayStations in stock, sorry.",,main,Higher degree,249186,1667218497844,1667218248658,male,English,17022,electronics,5,main
+83,42,movie-western,taciturn,We're not showing any Western's at the moment.,,main,Higher degree,249186,1667218497844,1667218248658,male,English,20146,movie,6,main
+83,42,plants-flowers,taciturn,"We haven't, sorry.",,main,Higher degree,249186,1667218497844,1667218248658,male,English,17376,plants,7,main
+83,42,touristInfo-clubbing,taciturn,There's no electronic music in town today.,,main,Higher degree,249186,1667218497844,1667218248658,male,English,22719,touristInfo,8,main
+83,42,music-softrock,,classic,,classic,Higher degree,249186,1667218497844,1667218248658,male,English,6616,music,9,filler
+83,42,airport-europe-UPDATED,,London,,London,Higher degree,249186,1667218497844,1667218248658,male,English,11344,airport,10,filler
+83,42,bar-tea,taciturn,"We don't serve sweet tea, sorry.",,main,Higher degree,249186,1667218497844,1667218248658,male,English,15024,bar,11,main
+90,40,furniture-indoors,other,"Unfortunately not, but we do have other items on display. ",,main,Graduated College,454429,1667218707469,1667218253040,female,English ,69455,furniture,1,main
+90,40,music-hardrock,,classic,,classic,Graduated College,454429,1667218707469,1667218253040,female,English ,17619,music,2,filler
+90,40,disney-action,taciturn,Unfortunately Superman isn't available today. ,,main,Graduated College,454429,1667218707469,1667218253040,female,English ,30159,disney,3,main
+90,40,carRental-fun,,motorcycle ,,motorcycle,Graduated College,454429,1667218707469,1667218253040,female,English ,17024,carRental,4,filler
+90,40,electronics-laptop,competitor,"Unfortunately not, but we do have a MacBook Air. ",,main,Graduated College,454429,1667218707469,1667218253040,female,English ,75698,electronics,5,main
+90,40,kidsActivities-crafts,other,"Unfortunately not, but we have other classes you may be interested in. ",,main,Graduated College,454429,1667218707469,1667218253040,female,English ,38318,kidsActivities,6,main
+90,40,plants-green,other,"Unfortunately not, but I've got other flowers and plants if you want to take a look? ",,main,Graduated College,454429,1667218707469,1667218253040,female,English ,48092,plants,7,main
+90,40,art-painting,,sculpture,,sculpture,Graduated College,454429,1667218707469,1667218253040,female,English ,17776,art,8,filler
+90,40,gym-yoga,competitor,"Unfortunately not, but we do have a plates class if that's of any interest? ",,main,Graduated College,454429,1667218707469,1667218253040,female,English ,35613,gymActivities,9,main
+90,40,cafe-pie,competitor,"Unfortunately not, but we do have raspberry pie. ",,main,Graduated College,454429,1667218707469,1667218253040,female,English ,21690,cafe,10,main
+90,40,movie-fantasy,other,"Unfortunately not, but there are other options available if you wanted to try something else. ",,main,Graduated College,454429,1667218707469,1667218253040,female,English ,39183,movie,11,main
+88,33,dutyFree-sweets,competitor,We sell gingerbread if that's any good.,,main,Graduated High-school,351454,1667218614550,1667218263096,female,English,41613,dutyFree,1,main
+88,33,furniture-outdoors,taciturn,No sorry we don't have a deck chair,,main,Graduated High-school,351454,1667218614550,1667218263096,female,English,17457,furniture,2,main
+88,33,plants-flowers,competitor/other,"No sorry, but I have tulips!",,main,Graduated High-school,351454,1667218614550,1667218263096,female,English,42053,plants,3,main
+88,33,books-fantasy,taciturn,"No sorry we don't sell fantasy novels.
+",,main,Graduated High-school,351454,1667218614550,1667218263096,female,English,28144,books,4,main
+88,33,jobCenter-engineer,,Teacher,,teacher,Graduated High-school,351454,1667218614550,1667218263096,female,English,20395,jobCenter,5,filler
+88,33,gym-boxing,competitor,We offer kickboxing classes if that's any good?,,main,Graduated High-school,351454,1667218614550,1667218263096,female,English,20699,gymActivities,6,main
+88,33,waterSport-muscle,competitor,"No sorry we don't rent canoes, but I can offer you a kayak instead if that would work?",,main,Graduated High-school,351454,1667218614550,1667218263096,female,English,40791,waterSport,7,main
+88,33,touristInfo-clubbing,competitor/other,"I don't believe there is, but there is a club with a hip hop DJ.  Otherwise there is a rock concert, live jazz, street performers or a circus show if any of those interest you instead.",,main,Graduated High-school,351454,1667218614550,1667218263096,female,English,70604,touristInfo,8,main
+88,33,movie-western,other,"No sorry we aren't playing a western today, but we have lots of other films on offer if something else would be of interest?",,main,Graduated High-school,351454,1667218614550,1667218263096,female,English,26119,movie,9,main
+88,33,carRental-moving,,motorcycle,,motorcycle,Graduated High-school,351454,1667218614550,1667218263096,female,English,10601,carRental,10,filler
+88,33,airport-europe-UPDATED,,London,,London,Graduated High-school,351454,1667218614550,1667218263096,female,English,9552,airport,11,filler
+89,51,furniture-outdoors,other,No i have none in stock but I do have these other chairs.,,main,Graduated High-school,403735,1667218643971,1667218240236,male,English,47715,furniture,1,main
+89,51,carRental-moving,,motorcycle,,motorcycle,Graduated High-school,403735,1667218643971,1667218240236,male,English,33223,carRental,2,filler
+89,51,art-drawing,,sculpture,,sculpture,Graduated High-school,403735,1667218643971,1667218240236,male,English,22544,art,3,filler
+89,51,touristInfo-clubbing,competitor,No but you make like the hip hop dj event,,main,Graduated High-school,403735,1667218643971,1667218240236,male,English,48541,touristInfo,4,main
+89,51,music-softrock,,classic,,classic,Graduated High-school,403735,1667218643971,1667218240236,male,English,7632,music,5,filler
+89,51,bar-tea,competitor,No but can I interest you in some homemade lemonade,,main,Graduated High-school,403735,1667218643971,1667218240236,male,English,38127,bar,6,main
+89,51,waterSport-muscle,yes,Yes we have kayaks,,main,Graduated High-school,403735,1667218643971,1667218240236,male,English,34603,waterSport,7,main
+89,51,friendsActivities-videoEntertainment,sameCategory,No but I have a wii & playstation,,main,Graduated High-school,403735,1667218643971,1667218240236,male,English,34165,friendsActivities,8,main
+89,51,bookingAgency-highClassAccommodation,other,No but we do have other options,,main,Graduated High-school,403735,1667218643971,1667218240236,male,English,41255,bookingAgency,9,main
+89,51,kidsActivities-sports,sameCategory,No but we do have dancing & acrobatics classes,,main,Graduated High-school,403735,1667218643971,1667218240236,male,English,51076,kidsActivities,10,main
+89,51,zoo-reptiles,other,No but there are other animals to see,,main,Graduated High-school,403735,1667218643971,1667218240236,male,English,26619,zoo,11,main
+92,62,petAdoption-hamster,sameCategory,No I'm sorry but we do have some beautiful gerbils and mice.,,main,Graduated College,520701,1667218817681,1667218296980,female,English,74520,petAdoption,1,main
+92,62,disney-princess,other,Not today but we have lots of other great characters.,,main,Graduated College,520701,1667218817681,1667218296980,female,English,47783,disney,2,main
+92,62,bookingAgency-highClassAccommodation,competitor,We have a suite in a four star or a luxury lodge.,,main,Graduated College,520701,1667218817681,1667218296980,female,English,83652,bookingAgency,3,main
+92,62,touristInfo-clubbing,competitor,we do have a club event with a hip hop dj,,main,Graduated College,520701,1667218817681,1667218296980,female,English,68653,touristInfo,4,main
+92,62,cafe-pizza,competitor,Yes we have a cheese pizza.,,main,Graduated College,520701,1667218817681,1667218296980,female,English,35283,cafe,5,main
+92,62,music-softrock,,classic,,classic,Graduated College,520701,1667218817681,1667218296980,female,English,15996,music,6,filler
+92,62,bar-tea,sameCategory,No I'm sorry we could offer soda or lemonade.,,main,Graduated College,520701,1667218817681,1667218296980,female,English,56466,bar,7,main
+92,62,gym-boxing,competitor,We do have kick boxing,,main,Graduated College,520701,1667218817681,1667218296980,female,English,30990,gymActivities,8,main
+92,62,clothing-winter,sameCategory,No but we have some sweatshirts or cosy hoodies.,,main,Graduated College,520701,1667218817681,1667218296980,female,English,38195,clothing,9,main
+92,62,carRental-moving,,motorcycle,,motorcycle,Graduated College,520701,1667218817681,1667218296980,female,English,13577,carRental,10,filler
+92,62,jobCenter-engineer,,teacher,,teacher,Graduated College,520701,1667218817681,1667218296980,female,English,16503,jobCenter,11,filler
+96,51,plants-green,taciturn,No sorry I do not.,,main,Graduated College,736212,1667218998155,1667218261943,male,English,44448,plants,1,main
+96,51,bookingAgency-lowClassAccommodation,sameCategory,No sorry there isn't but I there is a room available in a B and B or there is the option to couch surf.,,main,Graduated College,736212,1667218998155,1667218261943,male,English,94498,bookingAgency,2,main
+96,51,clothing-beach,competitor,No sorry we don't have Hawaiian shirts just normal T Shirts,,main,Graduated College,736212,1667218998155,1667218261943,male,English,61936,clothing,3,main
+96,51,books-romance,sameCategory,Sorry no but we do have romance novels and books for french love letters.,,main,Graduated College,736212,1667218998155,1667218261943,male,English,59342,books,4,main
+96,51,dutyFree-smokes,competitor,Sorry no but do have cigarettes,,main,Graduated College,736212,1667218998155,1667218261943,male,English,41205,dutyFree,5,main
+96,51,bar-whiteWine,competitor,Sorry no but what about a Chardonnay instead.,,main,Graduated College,736212,1667218998155,1667218261943,male,English,49270,bar,6,main
+96,51,petAdoption-dogs,sameCategory,"Sorry no, but what about a Golden Retriever or a chocolate Lab?",,main,Graduated College,736212,1667218998155,1667218261943,male,English,69487,petAdoption,7,main
+96,51,gym-yoga,taciturn,Sorry no we don't,,main,Graduated College,736212,1667218998155,1667218261943,male,English,28868,gymActivities,8,main
+96,51,music-hardrock,,classic,,classic,Graduated College,736212,1667218998155,1667218261943,male,English,40853,music,9,filler
+96,51,jobCenter-office,,teacher,,teacher,Graduated College,736212,1667218998155,1667218261943,male,English,27043,jobCenter,10,filler
+96,51,airport-usa,,London,,London,Graduated College,736212,1667218998155,1667218261943,male,English,40653,airport,11,filler
+93,41,electronics-console,taciturn,I'm afraid not.,,main,Higher degree,592941,1667218861635,1667218268694,male,,36938,electronics,1,main
+93,41,jobCenter-engineer,,teacher,,teacher,Higher degree,592941,1667218861635,1667218268694,male,,16601,jobCenter,2,filler
+93,41,carRental-moving,,motorcycle,,motorcycle,Higher degree,592941,1667218861635,1667218268694,male,,109429,carRental,3,filler
+93,41,touristInfo-clubbing,yes,there is indeed,,main,Higher degree,592941,1667218861635,1667218268694,male,,52868,touristInfo,4,main
+93,41,cafe-pizza,yes,we do!,,main,Higher degree,592941,1667218861635,1667218268694,male,,15733,cafe,5,main
+93,41,dutyFree-sweets,other,we have something similar,,main,Higher degree,592941,1667218861635,1667218268694,male,,24487,dutyFree,6,main
+93,41,plants-flowers,other,"I'm afraid I don't, but I have other flowers",,main,Higher degree,592941,1667218861635,1667218268694,male,,79153,plants,7,main
+93,41,bookingAgency-highClassAccommodation,other,"We have something similar, but not in 5 star",,main,Higher degree,592941,1667218861635,1667218268694,male,,41517,bookingAgency,8,main
+93,41,gym-boxing,competitor,We offer kickboxing classes if that is any good for you?,,main,Higher degree,592941,1667218861635,1667218268694,male,,65777,gymActivities,9,main
+93,41,music-softrock,,classic,,classic,Higher degree,592941,1667218861635,1667218268694,male,,10898,music,10,filler
+93,41,waterSport-muscle,other,We dont rent canoes but we do have other options,,main,Higher degree,592941,1667218861635,1667218268694,male,,92745,waterSport,11,main
+95,34,music-softrock,,classic,,classic,Higher degree,648267,1667218918202,1667218269935,female,English,37436,music,1,filler
+95,34,books-fantasy,sameCategory,"Hello, we currently have science fiction and adventure novels which may interest you? ",,main,Higher degree,648267,1667218918202,1667218269935,female,English,98760,books,2,main
+95,34,zoo-reptiles,other,"There are no chameleons, there’s lots of other animals to see though! ",,main,Higher degree,648267,1667218918202,1667218269935,female,English,76616,zoo,3,main
+95,34,disney-princess,other,"Unfortunately Moana is away fishing today, is there any other people you would like to meet? ",,main,Higher degree,648267,1667218918202,1667218269935,female,English,59807,disney,4,main
+95,34,airport-europe-UPDATED,,London,,London,Higher degree,648267,1667218918202,1667218269935,female,English,26136,airport,5,filler
+95,34,kidsActivities-sports,sameCategory,"No but there’s an athletics or dancing, would you be interested in those? ",,main,Higher degree,648267,1667218918202,1667218269935,female,English,68411,kidsActivities,6,main
+95,34,friendsActivities-videoEntertainment,sameCategory,No I have a Playstation and a wii though ,,main,Higher degree,648267,1667218918202,1667218269935,female,English,49030,friendsActivities,7,main
+95,34,art-drawing,,sculpture,,sculpture,Higher degree,648267,1667218918202,1667218269935,female,English,28564,art,8,filler
+95,34,petAdoption-hamster,sameCategory,"No we do not, only mice and gerbils at the moment sorry. ",,main,Higher degree,648267,1667218918202,1667218269935,female,English,43128,petAdoption,9,main
+95,34,cafe-pizza,competitor,"We have a cheese pizza, do you eat dairy? ",,main,Higher degree,648267,1667218918202,1667218269935,female,English,40623,cafe,10,main
+95,34,bar-tea,sameCategory,"No but we have iced coffee, soda and home made lemonade which is lovely, would you like any of those? ",,main,Higher degree,648267,1667218918202,1667218269935,female,English,58807,bar,11,main
+97,36,kidsActivities-crafts,sameCategory,"No there is not, but have a look at the other classes on offer. I think you might enjoy the sewing or oragami?
+",,main,Higher degree,846575,1667219127224,1667218280649,female,English ,96367,kidsActivities,1,main
+97,36,touristInfo-childTheatre,competitor,There is a circus performance today that the kids will love!,,main,Higher degree,846575,1667219127224,1667218280649,female,English ,45439,touristInfo,2,main
+97,36,music-hardrock,,classic ,,classic,Higher degree,846575,1667219127224,1667218280649,female,English ,28356,music,3,filler
+97,36,gym-yoga,competitor,No but we have Pilates classes that are great for strength and core.,,main,Higher degree,846575,1667219127224,1667218280649,female,English ,49468,gymActivities,4,main
+97,36,carRental-fun,,motorcycle ,,motorcycle,Higher degree,846575,1667219127224,1667218280649,female,English ,113415,carRental,5,filler
+97,36,art-painting,,Sculpture ,,sculpture,Higher degree,846575,1667219127224,1667218280649,female,English ,27979,art,6,filler
+97,36,bookingAgency-lowClassAccommodation,other,No but there are other options that will probably suit your budget.,,main,Higher degree,846575,1667219127224,1667218280649,female,English ,217947,bookingAgency,7,main
+97,36,furniture-indoors,other,"No, but please have a look at some of the other options available.",,main,Higher degree,846575,1667219127224,1667218280649,female,English ,34197,furniture,8,main
+97,36,cafe-pie,competitor,We have this delicious raspberry pie!,,main,Higher degree,846575,1667219127224,1667218280649,female,English ,38975,cafe,9,main
+97,36,books-romance,competitor,We have this amazing book of love letters written in France.,,main,Higher degree,846575,1667219127224,1667218280649,female,English ,32327,books,10,main
+97,36,waterSport-motor,competitor,We have some great water skis to hire.,,main,Higher degree,846575,1667219127224,1667218280649,female,English ,90625,waterSport,11,main
+103,40,kidsActivities-sports,taciturn,No there isn't,,main,Graduated College,362617,1667240241654,1667239879037,female,English,47683,kidsActivities,1,main
+103,40,plants-flowers,taciturn,"No I don't, sorry.",,main,Graduated College,362617,1667240241654,1667239879037,female,English,105679,plants,2,main
+103,40,books-fantasy,taciturn,"No, I don't. Sorry",,main,Graduated College,362617,1667240241654,1667239879037,female,English,21377,books,3,main
+103,40,zoo-reptiles,taciturn,we don't have chameleons,,main,Graduated College,362617,1667240241654,1667239879037,female,English,20178,zoo,4,main
+103,40,bookingAgency-highClassAccommodation,taciturn,no there isn't,,main,Graduated College,362617,1667240241654,1667239879037,female,English,23317,bookingAgency,5,main
+103,40,art-drawing,,sculpture,,sculpture,Graduated College,362617,1667240241654,1667239879037,female,English,17947,art,6,filler
+103,40,gym-boxing,taciturn,no we don't,,main,Graduated College,362617,1667240241654,1667239879037,female,English,13453,gymActivities,7,main
+103,40,bar-tea,taciturn,no we don't,,main,Graduated College,362617,1667240241654,1667239879037,female,English,13865,bar,8,main
+103,40,airport-europe-UPDATED,,London,,London,Graduated College,362617,1667240241654,1667239879037,female,English,7834,airport,9,filler
+103,40,jobCenter-engineer,,teacher,,teacher,Graduated College,362617,1667240241654,1667239879037,female,English,23169,jobCenter,10,filler
+103,40,touristInfo-clubbing,competitor,"no, just a club event with a hip hop DJ",,main,Graduated College,362617,1667240241654,1667239879037,female,English,46383,touristInfo,11,main
+104,20,electronics-laptop,taciturn,No I do not,,main,Graduated High-school,366256,1667240244906,1667239878650,female,English,18196,electronics,1,main
+104,20,clothing-beach,taciturn,No I do not ,,main,Graduated High-school,366256,1667240244906,1667239878650,female,English,14390,clothing,2,main
+104,20,art-painting,,Sculpture ,,sculpture,Graduated High-school,366256,1667240244906,1667239878650,female,English,33409,art,3,filler
+104,20,waterSport-motor,taciturn,No we don't ,,main,Graduated High-school,366256,1667240244906,1667239878650,female,English,49136,waterSport,4,main
+104,20,cafe-pie,taciturn,No we don't,,main,Graduated High-school,366256,1667240244906,1667239878650,female,English,89137,cafe,5,main
+104,20,furniture-indoors,taciturn,No we don't ,,main,Graduated High-school,366256,1667240244906,1667239878650,female,English,9960,furniture,6,main
+104,20,gym-yoga,taciturn,No we dont,,main,Graduated High-school,366256,1667240244906,1667239878650,female,English,62401,gymActivities,7,main
+104,20,airport-usa,,"London
+",,London,Graduated High-school,366256,1667240244906,1667239878650,female,English,16858,airport,8,filler
+104,20,carRental-fun,,"Motorcycle
+",,motorcycle,Graduated High-school,366256,1667240244906,1667239878650,female,English,7667,carRental,9,filler
+104,20,kidsActivities-crafts,taciturn,"No
+",,main,Graduated High-school,366256,1667240244906,1667239878650,female,English,11010,kidsActivities,10,main
+104,20,petAdoption-dogs,taciturn,"No
+",,main,Graduated High-school,366256,1667240244906,1667239878650,female,English,9309,petAdoption,11,main
+105,37,bar-whiteWine,competitor,"No sorry, but we do have Chardonnay",,main,Graduated High-school,485605,1667240354134,1667239868529,female,English,29781,bar,1,main
+105,37,music-hardrock,,classic,,classic,Graduated High-school,485605,1667240354134,1667239868529,female,English,16512,music,2,filler
+105,37,dutyFree-smokes,competitor,"Only cigarettes, sorry",,main,Graduated High-school,485605,1667240354134,1667239868529,female,English,48153,dutyFree,3,main
+105,37,gym-yoga,other,"No, sorry, but here is what we do offer",,main,Graduated High-school,485605,1667240354134,1667239868529,female,English,29495,gymActivities,4,main
+105,37,waterSport-motor,taciturn,No sorry,,main,Graduated High-school,485605,1667240354134,1667239868529,female,English,76399,waterSport,5,main
+105,37,airport-usa,,London,,London,Graduated High-school,485605,1667240354134,1667239868529,female,English,20696,airport,6,filler
+105,37,petAdoption-dogs,sameCategory,"Currently no Dalmatians, but we do have some gorgeous chocolate labs and golden retrievers.  ",,main,Graduated High-school,485605,1667240354134,1667239868529,female,English,74128,petAdoption,7,main
+105,37,clothing-beach,sameCategory,"Sorry no Hawaiian shirts at the minute, but please check out our stock of t-shits and tank tops, I am sure there will be something you will like. ",,main,Graduated High-school,485605,1667240354134,1667239868529,female,English,74431,clothing,8,main
+105,37,jobCenter-office,,teacher,,teacher,Graduated High-school,485605,1667240354134,1667239868529,female,English,11431,jobCenter,9,filler
+105,37,movie-fantasy,taciturn,"No not today, sorry",,main,Graduated High-school,485605,1667240354134,1667239868529,female,English,22575,movie,10,main
+105,37,disney-action,sameCategory,"Not today sorry, but Spiderman, Batman and Hulk are here",,main,Graduated High-school,485605,1667240354134,1667239868529,female,English,47329,disney,11,main
+108,29,waterSport-motor,yes,"Yes, we do.",,main,Graduated College,562006,1667240441550,1667239879544,female,English,35962,waterSport,1,main
+108,29,books-romance,taciturn,"I'm sorry, we don't currently. Would you like me to order some?",,main,Graduated College,562006,1667240441550,1667239879544,female,English,94747,books,2,main
+108,29,disney-action,competitor/other,"Superman's currently out fighting crime, however Batman is excited you meet you.",,main,Graduated College,562006,1667240441550,1667239879544,female,English,87204,disney,3,main
+108,29,dutyFree-smokes,competitor,"I'm afraid not, we do sell cigarettes, however.",,main,Graduated College,562006,1667240441550,1667239879544,female,English,38141,dutyFree,4,main
+108,29,carRental-fun,,"Not today, I'm sorry. I can check the next availability if you'd like, or if you need a car for today we currently have..... available",,motorcycle,Graduated College,562006,1667240441550,1667239879544,female,English,94067,carRental,5,filler
+108,29,bar-whiteWine,competitor,"Sorry, ma'am, however we do have a lovely bottle of chardonnay if you're willing to try.",,main,Graduated College,562006,1667240441550,1667239879544,female,English,49068,bar,6,main
+108,29,kidsActivities-crafts,other,"No, here is a list of available classes",,main,Graduated College,562006,1667240441550,1667239879544,female,English,18334,kidsActivities,7,main
+108,29,zoo-xl,other,"I don't think there are tigers at this zoo, but there's still plenty of other animals to see",,main,Graduated College,562006,1667240441550,1667239879544,female,English,46707,zoo,8,main
+108,29,clothing-beach,taciturn,Not currently,,main,Graduated College,562006,1667240441550,1667239879544,female,English,23356,clothing,9,main
+108,29,airport-usa,,"There is no current availability, I'm sorry. There is a morning flight we could book you on?",,London,Graduated College,562006,1667240441550,1667239879544,female,English,43736,airport,10,filler
+108,29,jobCenter-office,,Not currently,,teacher,Graduated College,562006,1667240441550,1667239879544,female,English,13826,jobCenter,11,filler
+107,51,furniture-indoors,competitor/other,"we have e rocking chair , thats as close as we have if thats any good ? or a sofa ",ran well,main,Graduated High-school,538631,1667240410521,1667239871890,male,English,85424,furniture,1,main
+107,51,movie-fantasy,taciturn,not today sorry,ran well,main,Graduated High-school,538631,1667240410521,1667239871890,male,English,31623,movie,2,main
+107,51,clothing-beach,taciturn,no sorry,ran well,main,Graduated High-school,538631,1667240410521,1667239871890,male,English,28216,clothing,3,main
+107,51,plants-green,competitor,no sorry but i do have agave ,ran well,main,Graduated High-school,538631,1667240410521,1667239871890,male,English,54152,plants,4,main
+107,51,books-romance,competitor,i have French love letters but no poems sorry,ran well,main,Graduated High-school,538631,1667240410521,1667239871890,male,English,40215,books,5,main
+107,51,bookingAgency-lowClassAccommodation,sameCategory,cheap BB or couch surfing ?,ran well,main,Graduated High-school,538631,1667240410521,1667239871890,male,English,61823,bookingAgency,6,main
+107,51,airport-usa,,no sorry just morning,ran well,London,Graduated High-school,538631,1667240410521,1667239871890,male,English,33441,airport,7,filler
+107,51,bar-whiteWine,competitor,no Chardonnay only sorry,ran well,main,Graduated High-school,538631,1667240410521,1667239871890,male,English,50983,bar,8,main
+107,51,kidsActivities-crafts,competitor/other,no but we have many others like painting,ran well,main,Graduated High-school,538631,1667240410521,1667239871890,male,English,48249,kidsActivities,9,main
+107,51,music-hardrock,,power metal anygood?,ran well,classic,Graduated High-school,538631,1667240410521,1667239871890,male,English,31848,music,10,filler
+107,51,jobCenter-office,,we have a opening for a book keeper,ran well,teacher,Graduated High-school,538631,1667240410521,1667239871890,male,English,49543,jobCenter,11,filler
+133,19,waterSport-motor,competitor,We rent water ski equipment,N/A,main,Graduated College,225287,1667310814122,1667310588835,male,English,35004,waterSport,1,main
+133,19,art-painting,,Sculpture,N/A,sculpture,Graduated College,225287,1667310814122,1667310588835,male,English,18683,art,2,filler
+133,19,bookingAgency-lowClassAccommodation,taciturn,No there is not,N/A,main,Graduated College,225287,1667310814122,1667310588835,male,English,29617,bookingAgency,3,main
+133,19,clothing-beach,taciturn,No ,N/A,main,Graduated College,225287,1667310814122,1667310588835,male,English,8831,clothing,4,main
+133,19,plants-green,taciturn,"No we don't, sorry",N/A,main,Graduated College,225287,1667310814122,1667310588835,male,English,16620,plants,5,main
+133,19,furniture-indoors,taciturn,No ,N/A,main,Graduated College,225287,1667310814122,1667310588835,male,English,26974,furniture,6,main
+133,19,jobCenter-office,taciturn,no there isn't ,N/A,teacher,Graduated College,225287,1667310814122,1667310588835,male,English,12118,jobCenter,7,filler
+133,19,carRental-fun,,Motorcylce,N/A,motorcycle,Graduated College,225287,1667310814122,1667310588835,male,English,21098,carRental,8,filler
+133,19,touristInfo-childTheatre,taciturn,No ,N/A,main,Graduated College,225287,1667310814122,1667310588835,male,English,11821,touristInfo,9,main
+133,19,petAdoption-dogs,taciturn,No ,N/A,main,Graduated College,225287,1667310814122,1667310588835,male,English,10877,petAdoption,10,main
+133,19,friendsActivities-boardGames,taciturn,No ,N/A,main,Graduated College,225287,1667310814122,1667310588835,male,English,12257,friendsActivities,11,main
+136,35,petAdoption-dogs,sameCategory,"No sorry, we only have terriers, golden retrievers and chocolate labs.",,main,Graduated High-school,327387,1667310893620,1667310566233,male,English,58675,petAdoption,1,main
+136,35,touristInfo-childTheatre,competitor,Yes we have a Circus show for you.,,main,Graduated High-school,327387,1667310893620,1667310566233,male,English,39561,touristInfo,2,main
+136,35,carRental-fun,,Motorcycle,,motorcycle,Graduated High-school,327387,1667310893620,1667310566233,male,English,45298,carRental,3,filler
+136,35,friendsActivities-boardGames,taciturn,No sorry,,main,Graduated High-school,327387,1667310893620,1667310566233,male,English,14350,friendsActivities,4,main
+136,35,jobCenter-office,,teacher,,teacher,Graduated High-school,327387,1667310893620,1667310566233,male,English,13717,jobCenter,5,filler
+136,35,disney-action,taciturn,Sorry we superman isn't here today,,main,Graduated High-school,327387,1667310893620,1667310566233,male,English,26067,disney,6,main
+136,35,waterSport-motor,taciturn,No sorry we don't,,main,Graduated High-school,327387,1667310893620,1667310566233,male,English,22766,waterSport,7,main
+136,35,bar-whiteWine,competitor,No sorry but we have Chardonnay,,main,Graduated High-school,327387,1667310893620,1667310566233,male,English,31532,bar,8,main
+136,35,books-romance,competitor/other,No sorry but we have romance novels,,main,Graduated High-school,327387,1667310893620,1667310566233,male,English,20750,books,9,main
+136,35,movie-fantasy,taciturn,No sorry not today,,main,Graduated High-school,327387,1667310893620,1667310566233,male,English,16767,movie,10,main
+136,35,airport-usa,,yes we have a morning flight to boston,,London,Graduated High-school,327387,1667310893620,1667310566233,male,English,22399,airport,11,filler
+139,42,furniture-indoors,other,I do not have one on display but I can see if we have one in the back of the store,,main,Graduated College,365151,1667310941530,1667310576379,female,English,56674,furniture,1,main
+139,42,art-painting,,sculpture,,sculpture,Graduated College,365151,1667310941530,1667310576379,female,English,18807,art,2,filler
+139,42,touristInfo-childTheatre,competitor,Im affraid not. There is however a circus show today.,,main,Graduated College,365151,1667310941530,1667310576379,female,English,43958,touristInfo,3,main
+139,42,gym-yoga,sameCategory,"Unfortunately we do not. We do however offer aerobics, zumba and pilates",,main,Graduated College,365151,1667310941530,1667310576379,female,English,40838,gymActivities,4,main
+139,42,kidsActivities-crafts,taciturn,Im sorry we do not have a potter class.,,main,Graduated College,365151,1667310941530,1667310576379,female,English,26351,kidsActivities,5,main
+139,42,jobCenter-office,,teacher,,teacher,Graduated College,365151,1667310941530,1667310576379,female,English,13160,jobCenter,6,filler
+139,42,movie-fantasy,taciturn,Im sorry but today we are not showing any fantasy movies,,main,Graduated College,365151,1667310941530,1667310576379,female,English,24878,movie,7,main
+139,42,electronics-laptop,competitor,We do not have a macbook Pro but we do currently have a macbook Air,,main,Graduated College,365151,1667310941530,1667310576379,female,English,31278,electronics,8,main
+139,42,zoo-xl,taciturn,Im sorry but there is not a tiger.,,main,Graduated College,365151,1667310941530,1667310576379,female,English,24135,zoo,9,main
+139,42,music-hardrock,,classic,,classic,Graduated College,365151,1667310941530,1667310576379,female,English,11271,music,10,filler
+139,42,dutyFree-smokes,competitor,Im sorry but we do not have any cigars. We only have cigarettes.,,main,Graduated College,365151,1667310941530,1667310576379,female,English,25511,dutyFree,11,main
+148,34,jobCenter-engineer,,teacher,,teacher,Graduated High-school,443610,1667311022151,1667310578541,female,English,15239,jobCenter,1,filler
+148,34,books-fantasy,taciturn,"We do not, I'm sorry!",,main,Graduated High-school,443610,1667311022151,1667310578541,female,English,29788,books,2,main
+148,34,disney-princess,taciturn,"Moana is out sailing today, I'm sorry!",,main,Graduated High-school,443610,1667311022151,1667310578541,female,English,24980,disney,3,main
+148,34,dutyFree-sweets,competitor,"Unfortunately not, but you might like the gingerbread.",,main,Graduated High-school,443610,1667311022151,1667310578541,female,English,57937,dutyFree,4,main
+148,34,petAdoption-hamster,competitor,"No we don't, but gerbils are comparable pets, and more friendly and interactive. Let me know if you'd like to learn more about them!",,main,Graduated High-school,443610,1667311022151,1667310578541,female,English,46666,petAdoption,5,main
+148,34,furniture-outdoors,competitor,"We don't, but we do have a wicker back cane chair if you'd like to see that",,main,Graduated High-school,443610,1667311022151,1667310578541,female,English,44627,furniture,6,main
+148,34,cafe-pizza,competitor/other,"Unfortunately not, but we do have plain cheese if you're avoiding meat.",,main,Graduated High-school,443610,1667311022151,1667310578541,female,English,74764,cafe,7,main
+148,34,art-drawing,,sculpture,,sculpture,Graduated High-school,443610,1667311022151,1667310578541,female,English,18308,art,8,filler
+148,34,bar-tea,other,"We don't, is there something else I could offer you?",,main,Graduated High-school,443610,1667311022151,1667310578541,female,English,32152,bar,9,main
+148,34,gym-boxing,competitor,"No, but our kickboxing class is awesome if you'd like to try that instead.",,main,Graduated High-school,443610,1667311022151,1667310578541,female,English,35078,gymActivities,10,main
+148,34,airport-europe-UPDATED,,London,,London,Graduated High-school,443610,1667311022151,1667310578541,female,English,13346,airport,11,filler
+138,48,art-painting,,sculpture,,sculpture,Higher degree,355196,1667310920159,1667310564963,female,English,31080,art,1,filler
+138,48,disney-action,other,"Not today, sorry. But we have got lots of other characters available.",,main,Higher degree,355196,1667310920159,1667310564963,female,English,44466,disney,2,main
+138,48,dutyFree-smokes,other,Sorry we do not sell that item. We do however sell other items.,,main,Higher degree,355196,1667310920159,1667310564963,female,English,35552,dutyFree,3,main
+138,48,electronics-laptop,competitor,"Sorry, the only Apple product we have today is a Macbook Air.",,main,Higher degree,355196,1667310920159,1667310564963,female,English,32869,electronics,4,main
+138,48,zoo-xl,other,"The map says there isn't a tiger, but we could ask a member of staff",,main,Higher degree,355196,1667310920159,1667310564963,female,English,30652,zoo,5,main
+138,48,gym-yoga,sameCategory,"Sorry we don't at the moment. The classes we offer are pilates, zumba and aerobics.",,main,Higher degree,355196,1667310920159,1667310564963,female,English,41229,gymActivities,6,main
+138,48,furniture-indoors,other,"We don't have any armchairs, would you like to look at the other chairs we have?",,main,Higher degree,355196,1667310920159,1667310564963,female,English,32422,furniture,7,main
+138,48,airport-usa,,London ,,London,Higher degree,355196,1667310920159,1667310564963,female,English,14632,airport,8,filler
+138,48,movie-fantasy,taciturn,We do not have any fantasy programmed. Are you interested in any other genres?,,main,Higher degree,355196,1667310920159,1667310564963,female,English,26934,movie,9,main
+138,48,waterSport-motor,competitor,We don't do jet skis. Have you tried water skiing?,,main,Higher degree,355196,1667310920159,1667310564963,female,English,30571,waterSport,10,main
+138,48,carRental-fun,,motorcycle,,motorcycle,Higher degree,355196,1667310920159,1667310564963,female,English,13985,carRental,11,filler
+167,56,airport-usa,,London,,London,Graduated High-school,1039270,1667311622930,1667310583660,female,English,20895,airport,1,filler
+167,56,waterSport-motor,yes,Yes we absolutely do rent jet skis. When are you looking at renting them so I can check availablity.,,main,Graduated High-school,1039270,1667311622930,1667310583660,female,English,144114,waterSport,2,main
+167,56,petAdoption-dogs,sameCategory,"Hi there, awww sorry but we don't have any dalmatians. We do however have a gorgeous golden retriever and terriers - would you like to have a little look at them before you go?",,main,Graduated High-school,1039270,1667311622930,1667310583660,female,English,125558,petAdoption,3,main
+167,56,clothing-beach,other,"Hiya, so sorry but we don't have any at the moment. Have you tried the charity shops on the high street?",,main,Graduated High-school,1039270,1667311622930,1667310583660,female,English,101001,clothing,4,main
+167,56,electronics-laptop,competitor,"Hi there, sorry I don't at the minute although I do have the MacBook Air. Failing that if I could take your details then I can always contact you if one comes in.",,main,Graduated High-school,1039270,1667311622930,1667310583660,female,English,215148,electronics,5,main
+167,56,dutyFree-smokes,taciturn,Sorry we don't sell them.,,main,Graduated High-school,1039270,1667311622930,1667310583660,female,English,45742,dutyFree,6,main
+167,56,books-romance,other,Sorry we don't have any but I can order some in for you if you'd like.,,main,Graduated High-school,1039270,1667311622930,1667310583660,female,English,176069,books,7,main
+167,56,carRental-fun,,Motorcycle,,motorcycle,Graduated High-school,1039270,1667311622930,1667310583660,female,English,27156,carRental,8,filler
+167,56,furniture-indoors,other,Sorry we don't currently have one. I'll keep an eye out for you though.,,main,Graduated High-school,1039270,1667311622930,1667310583660,female,English,52294,furniture,9,main
+167,56,jobCenter-office,,teacher,,teacher,Graduated High-school,1039270,1667311622930,1667310583660,female,English,14203,jobCenter,10,filler
+167,56,gym-yoga,competitor,"Sorry no we don't have yoga classes but have you tried the pilates classes, they're very relaxing too.",,main,Graduated High-school,1039270,1667311622930,1667310583660,female,English,66189,gymActivities,11,main
+132,27,music-softrock,,classic,,classic,Higher degree,201857,1667310768263,1667310566406,male,English,18624,music,1,filler
+132,27,disney-princess,taciturn,No she isn't here today.,,main,Higher degree,201857,1667310768263,1667310566406,male,English,16123,disney,2,main
+132,27,cafe-pizza,sameCategory,"We don't, but we have cheese or pepperoni.",,main,Higher degree,201857,1667310768263,1667310566406,male,English,16494,cafe,3,main
+132,27,bar-tea,taciturn,No we don't sorry.,,main,Higher degree,201857,1667310768263,1667310566406,male,English,11728,bar,4,main
+132,27,books-fantasy,sameCategory,"No, but we have science fiction or adventure novels",,main,Higher degree,201857,1667310768263,1667310566406,male,English,35517,books,5,main
+132,27,waterSport-muscle,taciturn,"No, sorry.",,main,Higher degree,201857,1667310768263,1667310566406,male,English,11264,waterSport,6,main
+132,27,gym-boxing,competitor,"No, but we offer kickboxing.",,main,Higher degree,201857,1667310768263,1667310566406,male,English,11881,gymActivities,7,main
+132,27,touristInfo-clubbing,competitor,"Not today, sorry, but there's a club event with a hip-hop dj.",,main,Higher degree,201857,1667310768263,1667310566406,male,English,26520,touristInfo,8,main
+132,27,dutyFree-sweets,competitor,We have gingerbread if that would work?,,main,Higher degree,201857,1667310768263,1667310566406,male,English,19396,dutyFree,9,main
+132,27,jobCenter-engineer,,teacher,,teacher,Higher degree,201857,1667310768263,1667310566406,male,English,7318,jobCenter,10,filler
+132,27,carRental-moving,,motorcycle,,motorcycle,Higher degree,201857,1667310768263,1667310566406,male,English,8704,carRental,11,filler
+142,45,waterSport-muscle,competitor,We don't rent canoes however we do rent kayaks.,,main,Graduated College,387087,1667310964561,1667310577474,female,English,62620,waterSport,1,main
+142,45,books-fantasy,competitor,Currently we don't have any fantasy novels but we do have science fiction novels if those would be of interest?,,main,Graduated College,387087,1667310964561,1667310577474,female,English,47872,books,2,main
+142,45,zoo-reptiles,competitor,There isn't a chameleon but there are iguanas which are similar,,main,Graduated College,387087,1667310964561,1667310577474,female,English,29181,zoo,3,main
+142,45,art-drawing,,sculpture,,sculpture,Graduated College,387087,1667310964561,1667310577474,female,English,16645,art,4,filler
+142,45,music-softrock,,classic,,classic,Graduated College,387087,1667310964561,1667310577474,female,English,7634,music,5,filler
+142,45,petAdoption-hamster,sameCategory,"No hamsters but we have other rodents like gerbils, mice and ferrets",,main,Graduated College,387087,1667310964561,1667310577474,female,English,29852,petAdoption,6,main
+142,45,airport-europe-UPDATED,,London,,London,Graduated College,387087,1667310964561,1667310577474,female,English,14660,airport,7,filler
+142,45,electronics-console,taciturn,Unfortunately not today,,main,Graduated College,387087,1667310964561,1667310577474,female,English,28758,electronics,8,main
+142,45,plants-flowers,sameCategory,I don't have peonies but I do have a rose bush or sunflowers,,main,Graduated College,387087,1667310964561,1667310577474,female,English,34492,plants,9,main
+142,45,furniture-outdoors,other,I don't have a deck chair but I have some other items which may be of interest,,main,Graduated College,387087,1667310964561,1667310577474,female,English,45052,furniture,10,main
+142,45,bar-tea,other,Unfortunately I don't have sweet tea but I have some other options which may interest you,,main,Graduated College,387087,1667310964561,1667310577474,female,English,27274,bar,11,main
+147,33,zoo-xl,competitor,"I don't think they have tigers here I'm afraid, shall we go and see the Lion instead?",,main,Graduated High-school,433359,1667311005516,1667310572157,male,English,39329,zoo,1,main
+147,33,movie-fantasy,fullList,"Sorry we haven't got a fantasy movie today. We've got an adventure movie, an animated film, a comedy, a horror movie or a musical.",,main,Graduated High-school,433359,1667311005516,1667310572157,male,English,37946,movie,2,main
+147,33,plants-green,other,"Sorry I don't have an aloe vera at the moment. You can have a look at what I have got, or I can let you know when I next have an aloe vera plant?",,main,Graduated High-school,433359,1667311005516,1667310572157,male,English,43558,plants,3,main
+147,33,jobCenter-office,,"teacher
+
+I'm afraid we don't have an accountant job available right now, the closest job we have is a manager assistant job, a front secretary job or a bookkeeper job.",,teacher,Graduated High-school,433359,1667311005516,1667310572157,male,English,77128,jobCenter,4,filler
+147,33,touristInfo-childTheatre,competitor,Sorry there isn't a theatre performance today. There is a circus show available if you are interested though?,,main,Graduated High-school,433359,1667311005516,1667310572157,male,English,29277,touristInfo,5,main
+147,33,waterSport-motor,fullList,"Hi, we don't rent jet skis unfortunately. We have water ski's, sailboats, pedal boats, speedboats or kayaks available though.",,main,Graduated High-school,433359,1667311005516,1667310572157,male,English,35560,waterSport,6,main
+147,33,dutyFree-smokes,competitor,"Sorry we don't sell cigars, we only have cigarettes available.",,main,Graduated High-school,433359,1667311005516,1667310572157,male,English,24093,dutyFree,7,main
+147,33,carRental-fun,,"motorcycle
+
+Sorry we don't have a Porsche available today, we have a Ford Mustang, a BMW convertible, a Ferrari or a truck available.",,motorcycle,Graduated High-school,433359,1667311005516,1667310572157,male,English,50360,carRental,8,filler
+147,33,clothing-beach,sameCategory,"Hi, sorry we don't stock Haiwaiian shirts, we have t-shirts or tank tops available.",,main,Graduated High-school,433359,1667311005516,1667310572157,male,English,27462,clothing,9,main
+147,33,books-romance,sameCategory,"Hi, sorry we don't have love poems, only French love letters or romance novels.",,main,Graduated High-school,433359,1667311005516,1667310572157,male,English,21685,books,10,main
+147,33,music-hardrock,,"classic
+
+Hi I don't have any hard rock. I have heavy metal, classic rock or power metal if you are interested?",,classic,Graduated High-school,433359,1667311005516,1667310572157,male,English,36190,music,11,filler
+134,39,carRental-fun,,Motorcycle ,Thank you. I hope the data is useful.,motorcycle,Graduated College,259231,1667310832918,1667310573687,male,English,27472,carRental,1,filler
+134,39,gym-yoga,taciturn,I'm afraid not.,Thank you. I hope the data is useful.,main,Graduated College,259231,1667310832918,1667310573687,male,English,25230,gymActivities,2,main
+134,39,kidsActivities-crafts,taciturn,I'm afraid not ,Thank you. I hope the data is useful.,main,Graduated College,259231,1667310832918,1667310573687,male,English,19848,kidsActivities,3,main
+134,39,friendsActivities-boardGames,taciturn,Nope,Thank you. I hope the data is useful.,main,Graduated College,259231,1667310832918,1667310573687,male,English,23214,friendsActivities,4,main
+134,39,airport-usa,,London,Thank you. I hope the data is useful.,London,Graduated College,259231,1667310832918,1667310573687,male,English,13237,airport,5,filler
+134,39,waterSport-motor,competitor,We have water skis,Thank you. I hope the data is useful.,main,Graduated College,259231,1667310832918,1667310573687,male,English,23012,waterSport,6,main
+134,39,disney-action,yes,You're looking at him (winks),Thank you. I hope the data is useful.,main,Graduated College,259231,1667310832918,1667310573687,male,English,30541,disney,7,main
+134,39,music-hardrock,,Classic,Thank you. I hope the data is useful.,classic,Graduated College,259231,1667310832918,1667310573687,male,English,10659,music,8,filler
+134,39,electronics-laptop,competitor,No but we have the air,Thank you. I hope the data is useful.,main,Graduated College,259231,1667310832918,1667310573687,male,English,22543,electronics,9,main
+134,39,cafe-pie,competitor,No but we have raspberry pie ,Thank you. I hope the data is useful.,main,Graduated College,259231,1667310832918,1667310573687,male,English,20734,cafe,10,main
+134,39,movie-fantasy,taciturn,I'm afraid not,Thank you. I hope the data is useful.,main,Graduated College,259231,1667310832918,1667310573687,male,English,14867,movie,11,main
+135,49,carRental-moving,,motorcycle,,motorcycle,Graduated High-school,303512,1667310885944,1667310582432,male,English,19075,carRental,1,filler
+135,49,plants-flowers,taciturn,"No, I don't.",,main,Graduated High-school,303512,1667310885944,1667310582432,male,English,49977,plants,2,main
+135,49,dutyFree-sweets,competitor,"No, but I have gingerbread.",,main,Graduated High-school,303512,1667310885944,1667310582432,male,English,29893,dutyFree,3,main
+135,49,gym-boxing,competitor,Only kickboxing classes.,,main,Graduated High-school,303512,1667310885944,1667310582432,male,English,19740,gymActivities,4,main
+135,49,airport-europe-UPDATED,,London,,London,Graduated High-school,303512,1667310885944,1667310582432,male,English,16268,airport,5,filler
+135,49,movie-western,taciturn,"No, we're not.",,main,Graduated High-school,303512,1667310885944,1667310582432,male,English,16288,movie,6,main
+135,49,disney-princess,taciturn,"No, not today.",,main,Graduated High-school,303512,1667310885944,1667310582432,male,English,15091,disney,7,main
+135,49,jobCenter-engineer,,teacher,,teacher,Graduated High-school,303512,1667310885944,1667310582432,male,English,11313,jobCenter,8,filler
+135,49,books-fantasy,taciturn,Not currently.,,main,Graduated High-school,303512,1667310885944,1667310582432,male,English,15862,books,9,main
+135,49,zoo-reptiles,other,"I don't think we can, but I'll ask if there are any not on the map.",,main,Graduated High-school,303512,1667310885944,1667310582432,male,English,42491,zoo,10,main
+135,49,furniture-outdoors,taciturn,"No, not at the current moment.",,main,Graduated High-school,303512,1667310885944,1667310582432,male,English,22373,furniture,11,main
+159,72,disney-princess,taciturn,sorry Moana isnt available today,none,main,Graduated High-school,638276,1667311208348,1667310570072,male,english,52699,disney,1,main
+159,72,clothing-winter,other,sorry we dont have any sweaters would you like to look at our other stock,none,main,Graduated High-school,638276,1667311208348,1667310570072,male,english,74775,clothing,2,main
+159,72,cafe-pizza,taciturn,srry its not on the menu today,none,main,Graduated High-school,638276,1667311208348,1667310570072,male,english,38382,cafe,3,main
+159,72,music-softrock,,classic,none,classic,Graduated High-school,638276,1667311208348,1667310570072,male,english,24297,music,4,filler
+159,72,jobCenter-engineer,,teacher,none,teacher,Graduated High-school,638276,1667311208348,1667310570072,male,english,20788,jobCenter,5,filler
+159,72,zoo-reptiles,taciturn,there are not any chameleons on the map,none,main,Graduated High-school,638276,1667311208348,1667310570072,male,english,61873,zoo,6,main
+159,72,friendsActivities-videoEntertainment,other,sorry guys but i do have plenty other ideas,none,main,Graduated High-school,638276,1667311208348,1667310570072,male,english,50601,friendsActivities,7,main
+159,72,carRental-moving,,motorcycle,none,motorcycle,Graduated High-school,638276,1667311208348,1667310570072,male,english,26840,carRental,8,filler
+159,72,plants-flowers,taciturn,i am sorry i dont,none,main,Graduated High-school,638276,1667311208348,1667310570072,male,english,44320,plants,9,main
+159,72,bar-tea,taciturn,i am so sorry sweet tea is not available,none,main,Graduated High-school,638276,1667311208348,1667310570072,male,english,57317,bar,10,main
+159,72,petAdoption-hamster,taciturn,sorry not at the moment,none,main,Graduated High-school,638276,1667311208348,1667310570072,male,english,125682,petAdoption,11,main
+137,30,zoo-reptiles,taciturn,"No, unfortunately there aren't any chameleons in this zoo",,main,Graduated College,310723,1667310893738,1667310583015,male,English,33559,zoo,1,main
+137,30,jobCenter-engineer,,teacher,,teacher,Graduated College,310723,1667310893738,1667310583015,male,English,14647,jobCenter,2,filler
+137,30,plants-flowers,taciturn,"Sorry, i don't grow any of those",,main,Graduated College,310723,1667310893738,1667310583015,male,English,33754,plants,3,main
+137,30,waterSport-muscle,other,"We don't, but we have other equipment for rent if you're interested",,main,Graduated College,310723,1667310893738,1667310583015,male,English,32890,waterSport,4,main
+137,30,airport-europe-UPDATED,,London,,London,Graduated College,310723,1667310893738,1667310583015,male,English,10530,airport,5,filler
+137,30,dutyFree-sweets,taciturn,"Sorry, we dont unfortunately",,main,Graduated College,310723,1667310893738,1667310583015,male,English,23849,dutyFree,6,main
+137,30,gym-boxing,competitor,"We don't, however we do offer kickboxing if youre interested",,main,Graduated College,310723,1667310893738,1667310583015,male,English,22778,gymActivities,7,main
+137,30,clothing-winter,competitor,"We have sweatshirts, but no wool sweaters unfortunately",,main,Graduated College,310723,1667310893738,1667310583015,male,English,26921,clothing,8,main
+137,30,music-softrock,,classic,,classic,Graduated College,310723,1667310893738,1667310583015,male,English,6555,music,9,filler
+137,30,touristInfo-clubbing,taciturn,Unfortunately there isn't today,,main,Graduated College,310723,1667310893738,1667310583015,male,English,34646,touristInfo,10,main
+137,30,bookingAgency-highClassAccommodation,competitor,"No, but there is a four star hotel with a room available if you're interested",,main,Graduated College,310723,1667310893738,1667310583015,male,English,38952,bookingAgency,11,main
+160,61,friendsActivities-videoEntertainment,fullList,"Unfortunately not but I have other interesting exciting games to play such as a poker set, PlayStation games, Wii games, Monopoly, and some movies",,main,Did not graduate High-school,620366,1667311208761,1667310588395,female,English,63081,friendsActivities,1,main
+160,61,carRental-moving,,'motorcycle',,motorcycle,Did not graduate High-school,620366,1667311208761,1667310588395,female,English,23844,carRental,2,filler
+160,61,plants-flowers,competitor,Peonies are not blooming at the moment but I can give you a rose bush which is just as beautiful,,main,Did not graduate High-school,620366,1667311208761,1667310588395,female,English,44791,plants,3,main
+160,61,disney-princess,other,"Sorry, I don't know who Moana is, what about Batman, Cinderella or Spiderman?",,main,Did not graduate High-school,620366,1667311208761,1667310588395,female,English,51416,disney,4,main
+160,61,gym-boxing,sameCategory,"Not currently but we provide other exciting combat classes such as kickboxing, karate classes and judo",,main,Did not graduate High-school,620366,1667311208761,1667310588395,female,English,47343,gymActivities,5,main
+160,61,touristInfo-clubbing,sameCategory,"Electronic music today comes in the guise of a rock concert, live ja zz music and a hip hop DJ for your entertainment",,main,Did not graduate High-school,620366,1667311208761,1667310588395,female,English,73751,touristInfo,6,main
+160,61,music-softrock,,'classic',,classic,Did not graduate High-school,620366,1667311208761,1667310588395,female,English,25437,music,7,filler
+160,61,zoo-reptiles,fullList,"Later, first lets go check out the gorillas, snakes, lion, turtles and iguanas and if we have any time left I will check for the chameleon",,main,Did not graduate High-school,620366,1667311208761,1667310588395,female,English,62689,zoo,8,main
+160,61,airport-europe-UPDATED,,'London',,London,Did not graduate High-school,620366,1667311208761,1667310588395,female,English,18921,airport,9,filler
+160,61,electronics-console,sameCategory,"No PlayStation at present but an Xbox or Nintendo Switch are very similar, would you be interested in either of these?",,main,Did not graduate High-school,620366,1667311208761,1667310588395,female,English,58456,electronics,10,main
+160,61,clothing-winter,sameCategory,They may be on order at the moment but we do have sweatshirts and winter coats available which would keep you just as warm,,main,Did not graduate High-school,620366,1667311208761,1667310588395,female,English,60413,clothing,11,main
+163,40,carRental-moving,,motorcycle,,motorcycle,Higher degree,767496,1667311334089,1667310566593,female,English,18056,carRental,1,filler
+163,40,clothing-winter,other,"Yes, I'll take you over to our sweater section, which are available in several different materials.",,main,Higher degree,767496,1667311334089,1667310566593,female,English,88022,clothing,2,main
+163,40,zoo-reptiles,competitor,"I'm not sure that they have chameleons here, but we could head over to see the iguanas?",,main,Higher degree,767496,1667311334089,1667310566593,female,English,90062,zoo,3,main
+163,40,airport-europe-UPDATED,,London,,London,Higher degree,767496,1667311334089,1667310566593,female,English,15811,airport,4,filler
+163,40,waterSport-muscle,competitor,"WE don't have canoes, but you could hire a kayak instead?",,main,Higher degree,767496,1667311334089,1667310566593,female,English,44034,waterSport,5,main
+163,40,plants-flowers,competitor,"I don't have any peonies, but I could give you a cutting from my rose bush, which flowers for longer",,main,Higher degree,767496,1667311334089,1667310566593,female,English,53418,plants,6,main
+163,40,touristInfo-clubbing,sameCategory,"There's no electronic music event today, but are other music event like a hip hop DJ or there's the rock concert if you fancy going to either of those?",,main,Higher degree,767496,1667311334089,1667310566593,female,English,145629,touristInfo,7,main
+163,40,electronics-console,other,"Sorry we don't have any PlayStations available today, but we regularly get different consoles in, I could contact you next time we get a PlayStation in if you like?",,main,Higher degree,767496,1667311334089,1667310566593,female,English,85474,electronics,8,main
+163,40,movie-western,other,"No we're not showing any Westerns today, but keep an eye on our schedule for future showings.",,main,Higher degree,767496,1667311334089,1667310566593,female,English,67060,movie,9,main
+163,40,petAdoption-hamster,competitor,"No sorry we don't have any hamsters available today, but we do have gerbils which are equally easy to look after or we could contact you when we do have a hamster available?",,main,Higher degree,767496,1667311334089,1667310566593,female,English,79021,petAdoption,10,main
+163,40,music-softrock,,classic,,classic,Higher degree,767496,1667311334089,1667310566593,female,English,7257,music,11,filler
+140,35,bookingAgency-highClassAccommodation,competitor,No; but we have a 4 star available or alternative accommodation,,main,Higher degree,370847,1667310948037,1667310577190,female,English ,51646,bookingAgency,1,main
+140,35,friendsActivities-videoEntertainment,competitor/other,No. We have a ps4 or some fun board games,,main,Higher degree,370847,1667310948037,1667310577190,female,English ,34523,friendsActivities,2,main
+140,35,electronics-console,other,No - we have everything but!,,main,Higher degree,370847,1667310948037,1667310577190,female,English ,33191,electronics,3,main
+140,35,clothing-winter,sameCategory,No but we do have hoodies or sweatshirts ,,main,Higher degree,370847,1667310948037,1667310577190,female,English ,23965,clothing,4,main
+140,35,music-softrock,,Classic,,classic,Higher degree,370847,1667310948037,1667310577190,female,English ,9915,music,5,filler
+140,35,plants-flowers,sameCategory,No but we have Roses or sunflowers ,,main,Higher degree,370847,1667310948037,1667310577190,female,English ,55130,plants,6,main
+140,35,petAdoption-hamster,competitor,"No, but we have some Gerbils ",,main,Higher degree,370847,1667310948037,1667310577190,female,English ,26553,petAdoption,7,main
+140,35,art-drawing,,Sculpture ,,sculpture,Higher degree,370847,1667310948037,1667310577190,female,English ,19901,art,8,filler
+140,35,bar-tea,sameCategory,"No, we have soda, iced coffee or homemade lemonade ",,main,Higher degree,370847,1667310948037,1667310577190,female,English ,34725,bar,9,main
+140,35,disney-princess,sameCategory,"She’s not here today but Cinderella, Ariel and Elsa are instead ",,main,Higher degree,370847,1667310948037,1667310577190,female,English ,42363,disney,10,main
+140,35,airport-europe-UPDATED,,London,,London,Higher degree,370847,1667310948037,1667310577190,female,English ,13398,airport,11,filler
+146,38,waterSport-muscle,taciturn,No canoes are not something we offer,,main,Graduated College,424181,1667311007004,1667310582823,female,british,52882,waterSport,1,main
+146,38,electronics-console,taciturn,We do not have a PlayStation,,main,Graduated College,424181,1667311007004,1667310582823,female,british,29441,electronics,2,main
+146,38,carRental-moving,,motorcycle,,motorcycle,Graduated College,424181,1667311007004,1667310582823,female,british,31583,carRental,3,filler
+146,38,books-fantasy,taciturn,No we don't sell fantasy novels,,main,Graduated College,424181,1667311007004,1667310582823,female,british,25884,books,4,main
+146,38,friendsActivities-videoEntertainment,taciturn,We don't have an xbox,,main,Graduated College,424181,1667311007004,1667310582823,female,british,27430,friendsActivities,5,main
+146,38,movie-western,other,Currently we are not playing a Western movie but perhaps at some point today we will,,main,Graduated College,424181,1667311007004,1667310582823,female,british,46095,movie,6,main
+146,38,airport-europe-UPDATED,,No we only have afternoon flights to Madrid,,London,Graduated College,424181,1667311007004,1667310582823,female,british,27528,airport,7,filler
+146,38,zoo-reptiles,taciturn,There are no chameleons,,main,Graduated College,424181,1667311007004,1667310582823,female,british,24256,zoo,8,main
+146,38,music-softrock,,classic,,classic,Graduated College,424181,1667311007004,1667310582823,female,british,11173,music,9,filler
+146,38,clothing-winter,taciturn,No we do not ,,main,Graduated College,424181,1667311007004,1667310582823,female,british,16357,clothing,10,main
+146,38,plants-flowers,taciturn,We do not have any peonies,,main,Graduated College,424181,1667311007004,1667310582823,female,british,38737,plants,11,main
+151,53,jobCenter-engineer,,teacher,,teacher,Graduated High-school,484493,1667311063405,1667310578912,female,English,38388,jobCenter,1,filler
+151,53,art-drawing,,sculpture,,sculpture,Graduated High-school,484493,1667311063405,1667310578912,female,English,25776,art,2,filler
+151,53,bookingAgency-highClassAccommodation,taciturn,No ,,main,Graduated High-school,484493,1667311063405,1667310578912,female,English,63216,bookingAgency,3,main
+151,53,zoo-reptiles,competitor,No but we can see an iguana.,,main,Graduated High-school,484493,1667311063405,1667310578912,female,English,35360,zoo,4,main
+151,53,plants-flowers,competitor/other,No I don't sorry but I do have some tulips you may like.,,main,Graduated High-school,484493,1667311063405,1667310578912,female,English,52160,plants,5,main
+151,53,electronics-console,competitor,I'm sorry we don't stock those. Would you like to look at the Xbox?,,main,Graduated High-school,484493,1667311063405,1667310578912,female,English,36280,electronics,6,main
+151,53,gym-boxing,competitor/other,Not boxing but we do offer kickboxing? If that doesn't appeal there are a few other things to choose from.,,main,Graduated High-school,484493,1667311063405,1667310578912,female,English,42967,gymActivities,7,main
+151,53,carRental-moving,,motorcycle,,motorcycle,Graduated High-school,484493,1667311063405,1667310578912,female,English,16063,carRental,8,filler
+151,53,disney-princess,other,Moana is having a rest but we have lots of other characters for you to meet.,,main,Graduated High-school,484493,1667311063405,1667310578912,female,English,41472,disney,9,main
+151,53,movie-western,other,Not today but there's a few choices on offer that may appeal to you.,,main,Graduated High-school,484493,1667311063405,1667310578912,female,English,43951,movie,10,main
+151,53,books-fantasy,sameCategory,Not fantasy but you might want to look at our romance section.,,main,Graduated High-school,484493,1667311063405,1667310578912,female,English,48008,books,11,main
+153,50,bar-tea,competitor/other,"Sorry, we only have iced coffee.",,main,Higher degree,564725,1667311134184,1667310569459,male,English,41533,bar,1,main
+153,50,clothing-winter,taciturn,"Sorry, we do not.",,main,Higher degree,564725,1667311134184,1667310569459,male,English,32283,clothing,2,main
+153,50,furniture-outdoors,competitor/other,"No, but we do have wicker-back cane chairs.",,main,Higher degree,564725,1667311134184,1667310569459,male,English,47326,furniture,3,main
+153,50,airport-europe-UPDATED,,London,,London,Higher degree,564725,1667311134184,1667310569459,male,English,12377,airport,4,filler
+153,50,jobCenter-engineer,,teacher,,teacher,Higher degree,564725,1667311134184,1667310569459,male,English,16737,jobCenter,5,filler
+153,50,friendsActivities-videoEntertainment,sameCategory,"No, but you can choose between Playstation and Wii games.",,main,Higher degree,564725,1667311134184,1667310569459,male,English,41133,friendsActivities,6,main
+153,50,touristInfo-clubbing,sameCategory,"No, but there is live Jazz, a rock concert or a club event with a Hip Hop DJ.",,main,Higher degree,564725,1667311134184,1667310569459,male,English,52917,touristInfo,7,main
+153,50,petAdoption-hamster,sameCategory,"No, but we do have gerbils and mice.",,main,Higher degree,564725,1667311134184,1667310569459,male,English,28995,petAdoption,8,main
+153,50,music-softrock,,classic,,classic,Higher degree,564725,1667311134184,1667310569459,male,English,10402,music,9,filler
+153,50,zoo-reptiles,competitor,An iguana is a bit like a chameleon that doesn't change colour.,,main,Higher degree,564725,1667311134184,1667310569459,male,English,42724,zoo,10,main
+153,50,books-fantasy,competitor,"No, but we do have science fiction novels.",,main,Higher degree,564725,1667311134184,1667310569459,male,English,34620,books,11,main
+141,42,carRental-moving,,motorcycle,,motorcycle,Graduated College,390282,1667310959284,1667310569002,male,English,15237,carRental,1,filler
+141,42,disney-princess,yes,Yes of course you can,,main,Graduated College,390282,1667310959284,1667310569002,male,English,30547,disney,2,main
+141,42,plants-flowers,other,Not at the moment but I will grow some for you if you want,,main,Graduated College,390282,1667310959284,1667310569002,male,English,56622,plants,3,main
+141,42,bar-tea,other,"Unfortunately not, can i get you anything else",,main,Graduated College,390282,1667310959284,1667310569002,male,English,26579,bar,4,main
+141,42,friendsActivities-videoEntertainment,sameCategory,No just playstation and wii,,main,Graduated College,390282,1667310959284,1667310569002,male,English,25953,friendsActivities,5,main
+141,42,art-drawing,,sculpture,,sculpture,Graduated College,390282,1667310959284,1667310569002,male,English,20661,art,6,filler
+141,42,jobCenter-engineer,,teacher,,teacher,Graduated College,390282,1667310959284,1667310569002,male,English,11831,jobCenter,7,filler
+141,42,zoo-reptiles,competitor/other,"they dont have any here, shall we go and see the turtles instead?",,main,Graduated College,390282,1667310959284,1667310569002,male,English,36572,zoo,8,main
+141,42,touristInfo-clubbing,competitor,"no not today, there is a hip hop DJ though",,main,Graduated College,390282,1667310959284,1667310569002,male,English,49864,touristInfo,9,main
+141,42,electronics-console,other,We don't but would you like to look at what we do have?,,main,Graduated College,390282,1667310959284,1667310569002,male,English,51564,electronics,10,main
+141,42,furniture-outdoors,other,Im afraid not but would you like to see what we do have?,,main,Graduated College,390282,1667310959284,1667310569002,male,English,36564,furniture,11,main
+149,39,petAdoption-hamster,sameCategory,"We don't have any hamsters at the moment but we do have other small rodents, gerbils and mice.",,main,Graduated College,475423,1667311040692,1667310565269,female,,43108,petAdoption,1,main
+149,39,touristInfo-clubbing,sameCategory,"There is a rock event, a hip hop even and a jazz event, could I interest you in those?",,main,Graduated College,475423,1667311040692,1667310565269,female,,72317,touristInfo,2,main
+149,39,plants-flowers,competitor,No but I have rosses which are silmilar.,,main,Graduated College,475423,1667311040692,1667310565269,female,,27069,plants,3,main
+149,39,friendsActivities-videoEntertainment,sameCategory,I don't but I do have Playstation and WII,,main,Graduated College,475423,1667311040692,1667310565269,female,,31076,friendsActivities,4,main
+149,39,waterSport-muscle,sameCategory,We have row boats and kayaks.,,main,Graduated College,475423,1667311040692,1667310565269,female,,40351,waterSport,5,main
+149,39,jobCenter-engineer,,There is an electrician's job available.,,teacher,Graduated College,475423,1667311040692,1667310565269,female,,24673,jobCenter,6,filler
+149,39,books-fantasy,sameCategory,"Check out the mystery and adventure section, you might find something that  takes your fancy there.",,main,Graduated College,475423,1667311040692,1667310565269,female,,47272,books,7,main
+149,39,cafe-pizza,competitor/other,We have a cheese pizza but I can ask the kitchen if any other ingredients can be added if you like?,,main,Graduated College,475423,1667311040692,1667310565269,female,,40357,cafe,8,main
+149,39,bar-tea,sameCategory,"We don't serve tea, can I offer coffe of sweet lemonade?",,main,Graduated College,475423,1667311040692,1667310565269,female,,30263,bar,9,main
+149,39,art-drawing,,"The artist usses a lot of mediums but ink isn't one of them, there are some beautiful gouache paintings that you might like.",,sculpture,Graduated College,475423,1667311040692,1667310565269,female,,48953,art,10,filler
+149,39,airport-europe-UPDATED,,"We have an afternoon flight to Madrid but We have a morning flight to Barcelona, maybe I can find a connecting flight to Madrid from there.",,London,Graduated College,475423,1667311040692,1667310565269,female,,58377,airport,11,filler
+152,61,gym-yoga,competitor,"No, I'm afraid not but our pilates class is very popular.","That was fun, thank you.  ",main,Higher degree,470980,1667311073244,1667310602264,female,English,26031,gymActivities,1,main
+152,61,touristInfo-childTheatre,competitor,No but we have a circus show that is suitable for all ages.,"That was fun, thank you.  ",main,Higher degree,470980,1667311073244,1667310602264,female,English,25318,touristInfo,2,main
+152,61,zoo-xl,competitor,We don't have any tigers - but we have a very ferocious lion would you like to feed him?,"That was fun, thank you.  ",main,Higher degree,470980,1667311073244,1667310602264,female,English,33449,zoo,3,main
+152,61,petAdoption-dogs,other,No Dalmatians currently but we have new animals coming in every day - would you like to go on a waiting list?,"That was fun, thank you.  ",main,Higher degree,470980,1667311073244,1667310602264,female,English,35480,petAdoption,4,main
+152,61,carRental-fun,,motorcycle,"That was fun, thank you.  ",motorcycle,Higher degree,470980,1667311073244,1667310602264,female,English,16368,carRental,5,filler
+152,61,music-hardrock,,classic,"That was fun, thank you.  ",classic,Higher degree,470980,1667311073244,1667310602264,female,English,7551,music,6,filler
+152,61,bookingAgency-lowClassAccommodation,other,No sorry - there are other budget options available though.,"That was fun, thank you.  ",main,Higher degree,470980,1667311073244,1667310602264,female,English,28680,bookingAgency,7,main
+152,61,kidsActivities-crafts,other,"Hey, what a great idea!  But no, sorry not today.  I bet you would really enjoy one of our other classes though.","That was fun, thank you.  ",main,Higher degree,470980,1667311073244,1667310602264,female,English,35664,kidsActivities,8,main
+152,61,jobCenter-office,,teacher,"That was fun, thank you.  ",teacher,Higher degree,470980,1667311073244,1667310602264,female,English,6783,jobCenter,9,filler
+152,61,bar-whiteWine,competitor,No but we have Chardonnay - would that fit the bill?,"That was fun, thank you.  ",main,Higher degree,470980,1667311073244,1667310602264,female,English,30297,bar,10,main
+152,61,furniture-indoors,other,"We don't, sorry.  If you want to give me an idea of what you would like I can keep a look out for an armchair for you.","That was fun, thank you.  ",main,Higher degree,470980,1667311073244,1667310602264,female,English,32902,furniture,11,main
+144,43,cafe-pie,competitor,We have raspberry pie,,main,Graduated High-school,408222,1667310980822,1667310572600,female,English ,37767,cafe,1,main
+144,43,electronics-laptop,competitor,We don't but we do have a MacBook air,,main,Graduated High-school,408222,1667310980822,1667310572600,female,English ,37514,electronics,2,main
+144,43,gym-yoga,competitor,We don't at the moment but would you be interested in trying pilates,,main,Graduated High-school,408222,1667310980822,1667310572600,female,English ,34413,gymActivities,3,main
+144,43,jobCenter-office,,Teacher,,teacher,Graduated High-school,408222,1667310980822,1667310572600,female,English ,19520,jobCenter,4,filler
+144,43,carRental-fun,,Motorcycle ,,motorcycle,Graduated High-school,408222,1667310980822,1667310572600,female,English ,13111,carRental,5,filler
+144,43,airport-usa,,London,,London,Graduated High-school,408222,1667310980822,1667310572600,female,English ,16955,airport,6,filler
+144,43,movie-fantasy,taciturn,Not today ,,main,Graduated High-school,408222,1667310980822,1667310572600,female,English ,36657,movie,7,main
+144,43,friendsActivities-boardGames,other,I haven't but if you have do you wa t to get it,,main,Graduated High-school,408222,1667310980822,1667310572600,female,English ,45193,friendsActivities,8,main
+144,43,zoo-xl,taciturn,There's no tigers nut let's find something else,,main,Graduated High-school,408222,1667310980822,1667310572600,female,English ,24321,zoo,9,main
+144,43,kidsActivities-crafts,other,I'm. Sorry there is not pottery class but would you like to try something else,,main,Graduated High-school,408222,1667310980822,1667310572600,female,English ,67638,kidsActivities,10,main
+144,43,touristInfo-childTheatre,other,All our shows are children friendly ,,main,Graduated High-school,408222,1667310980822,1667310572600,female,English ,43820,touristInfo,11,main
+145,39,plants-flowers,sameCategory,"I don't, but you are welcome to some sunflowers, tulips or roses, if you'd like.",,main,Higher degree,406685,1667310990110,1667310583425,female,English,52751,plants,1,main
+145,39,furniture-outdoors,sameCategory,"I'm sorry, we don't right now, but we do have a porch swing, a cane chair or a bench, if you are looking for outdoor furniture.",,main,Higher degree,406685,1667310990110,1667310583425,female,English,40459,furniture,2,main
+145,39,clothing-winter,sameCategory,"I'm sorry, not at present, but we do have warm hoodies and sweatshirts. ",,main,Higher degree,406685,1667310990110,1667310583425,female,English,24511,clothing,3,main
+145,39,books-fantasy,sameCategory,"We don't have a fantasy selection presently, but you might enjoy something from our science fiction or adventure books. ",,main,Higher degree,406685,1667310990110,1667310583425,female,English,35734,books,4,main
+145,39,music-softrock,,classic,,classic,Higher degree,406685,1667310990110,1667310583425,female,English,7659,music,5,filler
+145,39,jobCenter-engineer,,teacher,,teacher,Higher degree,406685,1667310990110,1667310583425,female,English,7382,jobCenter,6,filler
+145,39,bookingAgency-highClassAccommodation,sameCategory,"I'm afraid not, but we do have a suite in a four star hotel or a lodge available, if you are looking for high quality accommodation. ",,main,Higher degree,406685,1667310990110,1667310583425,female,English,62453,bookingAgency,7,main
+145,39,touristInfo-clubbing,competitor/other,"I'm afraid not, but we do have a hip hop club event  as well as a few other music events I can advise you about. ",,main,Higher degree,406685,1667310990110,1667310583425,female,English,48159,touristInfo,8,main
+145,39,kidsActivities-sports,sameCategory,"Not today, but I bet you would be great at acrobatics or dance. Shall I show you where to sign up?",,main,Higher degree,406685,1667310990110,1667310583425,female,English,42359,kidsActivities,9,main
+145,39,art-drawing,,sculpture,,sculpture,Higher degree,406685,1667310990110,1667310583425,female,English,6547,art,10,filler
+145,39,dutyFree-sweets,sameCategory,"We don't have cookies, I'm sorry, but if you want something sweet, we have gingerbread, chocolate or waffles.",,main,Higher degree,406685,1667310990110,1667310583425,female,English,45325,dutyFree,11,main
+162,45,plants-green,competitor/other,"No i'm sorry I don't have any aloe vera, however I have a bamboo plant if you like?",,main,Higher degree,708080,1667311288044,1667310579964,female,English,61494,plants,1,main
+162,45,music-hardrock,,classic,,classic,Higher degree,708080,1667311288044,1667310579964,female,English,20382,music,2,filler
+162,45,friendsActivities-boardGames,sameCategory,"no, i don't have Clue, but i do have monopoly and twister!",,main,Higher degree,708080,1667311288044,1667310579964,female,English,34528,friendsActivities,3,main
+162,45,books-romance,competitor,I don't have a book of love poems but i do have some books of French love letters that you might like.,,main,Higher degree,708080,1667311288044,1667310579964,female,English,48906,books,4,main
+162,45,bookingAgency-lowClassAccommodation,sameCategory,"I'm afraid there aren't any rooms left in the youth hostel, but we have some other budget options; a b and b, hotel and even a couch surfing place.",,main,Higher degree,708080,1667311288044,1667310579964,female,English,92653,bookingAgency,5,main
+162,45,gym-yoga,competitor/other,No i'm sorry we don't offer yoga however we do have other classes including pilates.,,main,Higher degree,708080,1667311288044,1667310579964,female,English,44678,gymActivities,6,main
+162,45,airport-usa,,London,,London,Higher degree,708080,1667311288044,1667310579964,female,English,26699,airport,7,filler
+162,45,art-painting,,sculpture,,sculpture,Higher degree,708080,1667311288044,1667310579964,female,English,19440,art,8,filler
+162,45,petAdoption-dogs,sameCategory,"No. i'm sorry but we don't have any dalmations. We do haver some other dogs, terriers, chocolate labs and golden retrievers.",,main,Higher degree,708080,1667311288044,1667310579964,female,English,51557,petAdoption,9,main
+162,45,kidsActivities-crafts,fullList,"no sorry there isn't a pottery class but there is acrobatics, painting, swimming and origami classes. What do you like?",,main,Higher degree,708080,1667311288044,1667310579964,female,English,238022,kidsActivities,10,main
+162,45,waterSport-motor,competitor,no sorry we don't rent jet skis but would you like water skiing?,,main,Higher degree,708080,1667311288044,1667310579964,female,English,27433,waterSport,11,main
+166,33,dutyFree-sweets,sameCategory,"No, but I do have waffles and gingerbread if you'd like something sweet!",,main,Graduated High-school,796118,1667311500848,1667310704730,female,English,62775,dutyFree,1,main
+166,33,airport-europe-UPDATED,,London,,London,Graduated High-school,796118,1667311500848,1667310704730,female,English,12764,airport,2,filler
+166,33,clothing-winter,,"I'm sorry, I do not.",,main,Graduated High-school,796118,1667311500848,1667310704730,female,English,53029,clothing,3,main
+166,33,touristInfo-clubbing,competitor/other,"No, but there will be a fun street dance performance!",,main,Graduated High-school,796118,1667311500848,1667310704730,female,English,53479,touristInfo,4,main
+166,33,waterSport-muscle,competitor/other,"Unfortunately not, but we do have rowing boats!",,main,Graduated High-school,796118,1667311500848,1667310704730,female,English,112008,waterSport,5,main
+166,33,plants-flowers,competitor/other,"No, but sunflowers would look gorgeous in your new place!",,main,Graduated High-school,796118,1667311500848,1667310704730,female,English,258927,plants,6,main
+166,33,jobCenter-engineer,,Teacher,,teacher,Graduated High-school,796118,1667311500848,1667310704730,female,English,13918,jobCenter,7,filler
+166,33,bookingAgency-highClassAccommodation,competitor,"No, but I do have a suite in a four star hotel",,main,Graduated High-school,796118,1667311500848,1667310704730,female,English,69658,bookingAgency,8,main
+166,33,carRental-moving,,motorcycle,,motorcycle,Graduated High-school,796118,1667311500848,1667310704730,female,English,12355,carRental,9,filler
+166,33,petAdoption-hamster,competitor,"No, but gerbils make great pets as well!",,main,Graduated High-school,796118,1667311500848,1667310704730,female,English,68798,petAdoption,10,main
+166,33,movie-western,taciturn,"No, I'm sorry",,main,Graduated High-school,796118,1667311500848,1667310704730,female,English,47004,movie,11,main
+154,43,electronics-console,sameCategory,Would you like to Switch to an Nintendo,fun survey,main,Graduated High-school,580199,1667311154607,1667310574408,female,English,61292,electronics,1,main
+154,43,disney-princess,other,"Moana is on holiday today, who likes Spiderman or Ariel ",fun survey,main,Graduated High-school,580199,1667311154607,1667310574408,female,English,66724,disney,2,main
+154,43,carRental-moving,,motorcycle,fun survey,motorcycle,Graduated High-school,580199,1667311154607,1667310574408,female,English,34057,carRental,3,filler
+154,43,friendsActivities-videoEntertainment,taciturn,"Everything but Xbox, now who wants a drink ",fun survey,main,Graduated High-school,580199,1667311154607,1667310574408,female,English,44138,friendsActivities,4,main
+154,43,kidsActivities-sports,competitor/other,No sorry but the dance class is just about to start,fun survey,main,Graduated High-school,580199,1667311154607,1667310574408,female,English,41364,kidsActivities,5,main
+154,43,waterSport-muscle,other,what type of kayak would you like,fun survey,main,Graduated High-school,580199,1667311154607,1667310574408,female,English,36085,waterSport,6,main
+154,43,art-drawing,,sculpture,fun survey,sculpture,Graduated High-school,580199,1667311154607,1667310574408,female,English,21496,art,7,filler
+154,43,jobCenter-engineer,,teacher,fun survey,teacher,Graduated High-school,580199,1667311154607,1667310574408,female,English,19409,jobCenter,8,filler
+154,43,movie-western,competitor,"todays not western movie day, how about an adventure instead  ",fun survey,main,Graduated High-school,580199,1667311154607,1667310574408,female,English,55277,movie,9,main
+154,43,books-fantasy,sameCategory,We have loads of adventure and science fiction you may find what your looking for over there,fun survey,main,Graduated High-school,580199,1667311154607,1667310574408,female,English,64731,books,10,main
+154,43,plants-flowers,other,sorry no peonies but feel free to chose from whats available,fun survey,main,Graduated High-school,580199,1667311154607,1667310574408,female,English,66986,plants,11,main
+158,57,petAdoption-dogs,taciturn,"No, sorry",None,main,Higher degree,392536,1667311201350,1667310808814,male,English,18977,petAdoption,1,main
+158,57,books-romance,yes,"Yes, we have a book of French love poems.",None,main,Higher degree,392536,1667311201350,1667310808814,male,English,26228,books,2,main
+158,57,electronics-laptop,yes,No exactly. But we do have a MacBook Pro. Very similar.,None,main,Higher degree,392536,1667311201350,1667310808814,male,English,32202,electronics,3,main
+158,57,kidsActivities-crafts,competitor,No pottery class but there is a watercolour painting class that may be of interest.,None,main,Higher degree,392536,1667311201350,1667310808814,male,English,40584,kidsActivities,4,main
+158,57,waterSport-motor,competitor,We offer water ski equipment for rent so if you come in we should be able to sort you out with something.,None,main,Higher degree,392536,1667311201350,1667310808814,male,English,54439,waterSport,5,main
+158,57,art-painting,,sculpture,None,sculpture,Higher degree,392536,1667311201350,1667310808814,male,English,16884,art,6,filler
+158,57,cafe-pie,sameCategory,No raspberry cake as such. If you want cake then we lemon cake. Otherwise we have raspberry pie.,None,main,Higher degree,392536,1667311201350,1667310808814,male,English,40822,cafe,7,main
+158,57,disney-action,sameCategory,Sorry to disappoint but no Superman. But we have Batman and Spiderman and they are just as cool.,None,main,Higher degree,392536,1667311201350,1667310808814,male,English,58316,disney,8,main
+158,57,carRental-fun,,motorcycle,None,motorcycle,Higher degree,392536,1667311201350,1667310808814,male,English,9142,carRental,9,filler
+158,57,clothing-beach,other,Not exactly but we do have t-shirts and sweatshirts.,None,main,Higher degree,392536,1667311201350,1667310808814,male,English,33612,clothing,10,main
+158,57,jobCenter-office,,teacher,None,teacher,Higher degree,392536,1667311201350,1667310808814,male,English,12520,jobCenter,11,filler
+155,58,jobCenter-office,,teacher,,teacher,Graduated High-school,598529,1667311168406,1667310569877,female,English,46606,jobCenter,1,filler
+155,58,dutyFree-smokes,competitor,"No, sorry, but we have cigarettes.",,main,Graduated High-school,598529,1667311168406,1667310569877,female,English,40432,dutyFree,2,main
+155,58,plants-green,competitor,No not exactly but I do have an agave plant.,,main,Graduated High-school,598529,1667311168406,1667310569877,female,English,43346,plants,3,main
+155,58,zoo-xl,competitor,There isn't a tiger but there is a lion. Would you like to go and see that first?,,main,Graduated High-school,598529,1667311168406,1667310569877,female,English,47846,zoo,4,main
+155,58,bar-whiteWine,competitor,No I'm afraid we only have one type of wine and that's Chardonnay. Would you like a glass of that?,,main,Graduated High-school,598529,1667311168406,1667310569877,female,English,63136,bar,5,main
+155,58,waterSport-motor,other,No I'm afraid we don't but we do have a range of other water sports equipment. Is there anything else you might be interested in?,,main,Graduated High-school,598529,1667311168406,1667310569877,female,English,93038,waterSport,6,main
+155,58,carRental-fun,,motorcycle,,motorcycle,Graduated High-school,598529,1667311168406,1667310569877,female,English,24323,carRental,7,filler
+155,58,disney-action,other,Ah not today I'm afraid but you can see lots of other great characters.,,main,Graduated High-school,598529,1667311168406,1667310569877,female,English,40984,disney,8,main
+155,58,kidsActivities-crafts,competitor,No I'm afraid there isn't. Would you be interested in watercolor painting?,,main,Graduated High-school,598529,1667311168406,1667310569877,female,English,47115,kidsActivities,9,main
+155,58,cafe-pie,competitor,"Well not quite. We have raspberry pie, would that be ok?",,main,Graduated High-school,598529,1667311168406,1667310569877,female,English,57567,cafe,10,main
+155,58,airport-usa,,London,,London,Graduated High-school,598529,1667311168406,1667310569877,female,English,18799,airport,11,filler
+156,26,books-romance,sameCategory,"I don’t have love poems, but I have romance novels and French love letters if they would be of any interest to you.",The level of education tab doesn’t work,main,,615758,1667311184498,1667310568740,female,English ,53110,books,1,main
+156,26,kidsActivities-crafts,taciturn,No there is not a pottery class.,The level of education tab doesn’t work,main,,615758,1667311184498,1667310568740,female,English ,33427,kidsActivities,2,main
+156,26,carRental-fun,,Motorcycle,The level of education tab doesn’t work,motorcycle,,615758,1667311184498,1667310568740,female,English ,68743,carRental,3,filler
+156,26,zoo-xl,competitor,"There isn’t a tiger, why don’t we go and see the lion instead?",The level of education tab doesn’t work,main,,615758,1667311184498,1667310568740,female,English ,35650,zoo,4,main
+156,26,friendsActivities-boardGames,other,"No I don’t, did anyone bring it and we could play?",The level of education tab doesn’t work,main,,615758,1667311184498,1667310568740,female,English ,39074,friendsActivities,5,main
+156,26,airport-usa,,London,The level of education tab doesn’t work,London,,615758,1667311184498,1667310568740,female,English ,18116,airport,6,filler
+156,26,clothing-beach,competitor,You can have a look at the T-shirts we have and see if any of those are what you’re after?,The level of education tab doesn’t work,main,,615758,1667311184498,1667310568740,female,English ,42396,clothing,7,main
+156,26,plants-green,other,"I don’t I’m afraid, perhaps I could grow one for you.",The level of education tab doesn’t work,main,,615758,1667311184498,1667310568740,female,English ,71446,plants,8,main
+156,26,petAdoption-dogs,taciturn,"I’m afraid not, sorry.",The level of education tab doesn’t work,main,,615758,1667311184498,1667310568740,female,English ,37193,petAdoption,9,main
+156,26,electronics-laptop,competitor,No but I have a MacBook Air if that is if any interest?,The level of education tab doesn’t work,main,,615758,1667311184498,1667310568740,female,English ,80977,electronics,10,main
+156,26,music-hardrock,,Classic,The level of education tab doesn’t work,classic,,615758,1667311184498,1667310568740,female,English ,9997,music,11,filler
+157,37,dutyFree-smokes,yes,"Hello Sir, yes we sell cigars. Would you care to take a look at what we have on offer today?",,main,Graduated High-school,621972,1667311189768,1667310567796,female,english,55981,dutyFree,1,main
+157,37,bar-whiteWine,competitor,"Good evening Madame, unfortunately, we do not sell Sauvignon Blanc but might I interest you in our Chardonnay?",,main,Graduated High-school,621972,1667311189768,1667310567796,female,english,94883,bar,2,main
+157,37,bookingAgency-lowClassAccommodation,other,Hi Sir.  We don't currently have any youth hostels on our books but we do have a number of alternative accommodations that you might find suitable. Might you be interested? ,,main,Graduated High-school,621972,1667311189768,1667310567796,female,english,104912,bookingAgency,3,main
+157,37,furniture-indoors,sameCategory,"Hi, although we don't currently have armchairs available in store we do have a lovely rocking chair available or perhaps you might like to take a look at or bean bag chair instead?",,main,Graduated High-school,621972,1667311189768,1667310567796,female,english,74301,furniture,4,main
+157,37,plants-green,competitor/other,Hi there.  I don't have any aloe vera plants right now but I have a lovely orchid and a beautiful agave plant that you might like.,,main,Graduated High-school,621972,1667311189768,1667310567796,female,english,84975,plants,5,main
+157,37,disney-action,sameCategory,"Hi guys!  Superman is busy saving the planet at the moment but Spiderman, Hulk and Batman are here today",,main,Graduated High-school,621972,1667311189768,1667310567796,female,english,36057,disney,6,main
+157,37,kidsActivities-crafts,sameCategory,"HI, we aren't running a pottery class but what about a sewing, origami, or water color painting class instead?",,main,Graduated High-school,621972,1667311189768,1667310567796,female,english,58874,kidsActivities,7,main
+157,37,zoo-xl,other,This zoo doesn't have any tigers but shall we go and check out the other animals?  I bet you will find them just as interesting.,,main,Graduated High-school,621972,1667311189768,1667310567796,female,english,54610,zoo,8,main
+157,37,jobCenter-office,,teacher,,teacher,Graduated High-school,621972,1667311189768,1667310567796,female,english,21349,jobCenter,9,filler
+157,37,music-hardrock,,classic,,classic,Graduated High-school,621972,1667311189768,1667310567796,female,english,13212,music,10,filler
+157,37,art-painting,,sculpture,,sculpture,Graduated High-school,621972,1667311189768,1667310567796,female,english,10726,art,11,filler
+161,41,art-painting,,sculpture,,sculpture,Graduated High-school,701139,1667311267368,1667310566229,female,english,38947,art,1,filler
+161,41,movie-fantasy,taciturn,"No, not today",,main,Graduated High-school,701139,1667311267368,1667310566229,female,english,53655,movie,2,main
+161,41,carRental-fun,,motorcycle ,,motorcycle,Graduated High-school,701139,1667311267368,1667310566229,female,english,30656,carRental,3,filler
+161,41,touristInfo-childTheatre,competitor,"No, not today but there is a circus show ",,main,Graduated High-school,701139,1667311267368,1667310566229,female,english,56849,touristInfo,4,main
+161,41,plants-green,other,"no, sorry but I do have some other plants you could have. ",,main,Graduated High-school,701139,1667311267368,1667310566229,female,english,72503,plants,5,main
+161,41,friendsActivities-boardGames,competitor,"No, sorry but I have monopoly ",,main,Graduated High-school,701139,1667311267368,1667310566229,female,english,131160,friendsActivities,6,main
+161,41,books-romance,competitor,I have french love letters if that would be of interest?,,main,Graduated High-school,701139,1667311267368,1667310566229,female,english,96864,books,7,main
+161,41,jobCenter-office,,teacher,,teacher,Graduated High-school,701139,1667311267368,1667310566229,female,english,41119,jobCenter,8,filler
+161,41,gym-yoga,competitor,"No, however we do offer pilates which is similar ",,main,Graduated High-school,701139,1667311267368,1667310566229,female,english,41417,gymActivities,9,main
+161,41,bar-whiteWine,competitor,We have chardonnay which is very nice ,,main,Graduated High-school,701139,1667311267368,1667310566229,female,english,45280,bar,10,main
+161,41,disney-action,sameCategory,"No sorry guys but we have Batman, hulk and spiderman ",,main,Graduated High-school,701139,1667311267368,1667310566229,female,english,36311,disney,11,main
+164,63,friendsActivities-boardGames,yes,I have not come across that one but I do have Cluedo which may suit us to.play?,Quite an interesting task. ,main,Higher degree,803772,1667311385845,1667310582073,male,,65361,friendsActivities,1,main
+164,63,furniture-indoors,competitor/other,"Not specifically, but the rocking chair is very comfortable and you can imagine you are in such a chair. ",Quite an interesting task. ,main,Higher degree,803772,1667311385845,1667310582073,male,,96981,furniture,2,main
+164,63,gym-yoga,other,I am you have asked Ma'am as this is what we are definitely going to start asap. ,Quite an interesting task. ,main,Higher degree,803772,1667311385845,1667310582073,male,,77322,gymActivities,3,main
+164,63,music-hardrock,,'classic' ,Quite an interesting task. ,classic,Higher degree,803772,1667311385845,1667310582073,male,,50258,music,4,filler
+164,63,bookingAgency-lowClassAccommodation,competitor/other,Not at present but I could accommodate you in the budget hotel with a significant reduction in price?,Quite an interesting task. ,main,Higher degree,803772,1667311385845,1667310582073,male,,87905,bookingAgency,5,main
+164,63,touristInfo-childTheatre,competitor,I am sorry not specifically. Would they like a circus show?,Quite an interesting task. ,main,Higher degree,803772,1667311385845,1667310582073,male,,66832,touristInfo,6,main
+164,63,petAdoption-dogs,other,Not at present but if you leave me with contact details I will give you the first option on the next Dalmatian we get in. ,Quite an interesting task. ,main,Higher degree,803772,1667311385845,1667310582073,male,,90810,petAdoption,7,main
+164,63,clothing-beach,other,I am sorry but the store 100 yards up the street does have such a thing and in a good range.,Quite an interesting task. ,main,Higher degree,803772,1667311385845,1667310582073,male,,66458,clothing,8,main
+164,63,art-painting,,'sculpture' ,Quite an interesting task. ,sculpture,Higher degree,803772,1667311385845,1667310582073,male,,32789,art,9,filler
+164,63,books-romance,sameCategory,Not quite but would you be interested in looking at the romance novel section or perhaps the French love letters. ,Quite an interesting task. ,main,Higher degree,803772,1667311385845,1667310582073,male,,86569,books,10,main
+164,63,carRental-fun,,'motorcycle' ,Quite an interesting task. ,motorcycle,Higher degree,803772,1667311385845,1667310582073,male,,29244,carRental,11,filler
+165,35,waterSport-motor,competitor,"I’m sorry,  no we don’t rent jet skis. We do offer water ski equipment though if you are interested?",,main,Graduated College,838269,1667311416102,1667310577833,female,English,100241,waterSport,1,main
+165,35,clothing-beach,competitor,"Sorry, we do not stock Hawaiian shirts. We do however stock these T-shirts which are currently on offer.",,main,Graduated College,838269,1667311416102,1667310577833,female,English,88482,clothing,2,main
+165,35,jobCenter-office,,teacher,,teacher,Graduated College,838269,1667311416102,1667310577833,female,English,28197,jobCenter,3,filler
+165,35,plants-green,competitor,"Sorry, no I don’t have an aloe vera plant. If you’d like, you could have this agave plant instead?",,main,Graduated College,838269,1667311416102,1667310577833,female,English,101809,plants,4,main
+165,35,art-painting,,sculpture,,sculpture,Graduated College,838269,1667311416102,1667310577833,female,English,24733,art,5,filler
+165,35,disney-action,sameCategory,"Sorry, unfortunately Superman is attending some important business today and can’t be here. Would you like to see Spider-Man, Batman or the Hulk instead?",,main,Graduated College,838269,1667311416102,1667310577833,female,English,115023,disney,6,main
+165,35,bar-whiteWine,competitor,Unfortunately we don’t have that. However we do have this lovely Chardonnay if you’d like to try a glass?,,main,Graduated College,838269,1667311416102,1667310577833,female,English,67986,bar,7,main
+165,35,movie-fantasy,competitor/other,"There are no fantasy movies showing today unfortunately. However we are showing this amazing adventure movie, it’s very popular.",,main,Graduated College,838269,1667311416102,1667310577833,female,English,137572,movie,8,main
+165,35,cafe-pie,competitor,Not today unfortunately but we do have this amazing raspberry pie instead! Would you like to try a slice?,,main,Graduated College,838269,1667311416102,1667310577833,female,English,54038,cafe,9,main
+165,35,zoo-xl,competitor,There’s no tiger here today. Let’s see if we can find the lion! You love big cats!,,main,Graduated College,838269,1667311416102,1667310577833,female,English,67261,zoo,10,main
+165,35,airport-usa,,London,,London,Graduated College,838269,1667311416102,1667310577833,female,English,20940,airport,11,filler
