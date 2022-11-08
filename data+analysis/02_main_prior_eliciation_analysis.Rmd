@@ -87,15 +87,34 @@ cat("Numbrer of subjects who failed attention checks: ", length(subj_id_attentio
 cat("\nSubject exclusion rate: ", length(subj_id_attention_fails)/(unique(df$submission_id) %>% length()))
 ```
 
+To understand what is going on in the attention checks, plot the ratings in the attention checking trials only, selecting participants who failed. It seems that many participants simply ignored the instructions.
+```{r, fig.width = 8, fig.height = 15}
+df_attention %>%
+  filter(submission_id %in% subj_id_attention_fails) %>%
+  mutate(answerType = factor(answerType, levels=answerOrder)) %>%
+  group_by(itemName, answerType) %>%
+  summarize(mean_response = mean(response)) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = mean_response)) +
+  geom_col() +
+  facet_wrap(itemName~., ncol=4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Mean ratings") +
+  xlab("Alternative type")
+```
 
 ```{r, echo=FALSE}
-# get main clean data
+# get main clean data and center responses
 df_clean_main <- df %>% filter(!(submission_id %in% subj_id_attention_fails)) %>%
-  filter(trial_type == "main")
+  filter(trial_type == "main") 
 
 df_clean_main_long <- df_clean_main %>%
   select(itemName, submission_id, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2) %>%
-   pivot_longer(cols = c(competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2), names_to = 'answerType', values_to = "response") 
+   pivot_longer(cols = c(competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2), names_to = 'answerType', values_to = "response") %>%
+  mutate(
+    centered_response = response - 50
+  )
 ```
 
 We further exclude participants who provide the same responses on all trials (i.e. responses within the range of 5 points, basically just click trough the experiment).
@@ -141,7 +160,8 @@ df_clean_main_wItems_long <- df_clean_main_wItems %>%
   mutate(answerType_string = gsub("_string", "", answerType_string)) %>%
   pivot_longer(cols = c(competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2), names_to = 'answerType', values_to = "response") %>% 
   filter(answerType_string == answerType) %>%
-  mutate(answerType = factor(answerType, levels = answerOrder))
+  mutate(answerType = factor(answerType, levels = answerOrder),
+         centered_response = response - 50)
 
 df_clean_main_wItems_woExclusions_long <- df_clean_main_wItems_woExclusions %>%  
   select(itemName, submission_id, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2, itemQuestion, competitor_string, sameCategory1_string, sameCategory2_string, otherCategory1_string, otherCategory2_string) %>%
@@ -149,7 +169,8 @@ df_clean_main_wItems_woExclusions_long <- df_clean_main_wItems_woExclusions %>%
   mutate(answerType_string = gsub("_string", "", answerType_string)) %>%
   pivot_longer(cols = c(competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2), names_to = 'answerType', values_to = "response") %>% 
   filter(answerType_string == answerType) %>%
-  mutate(answerType = factor(answerType, levels = answerOrder))
+  mutate(answerType = factor(answerType, levels = answerOrder),
+         centered_response = response - 50)
 
 ```
 
@@ -157,41 +178,48 @@ The first plot below shows the raw prior ratings (y-axis) against the alternativ
 
 ```{r, echo=FALSE, fig.height=28, fig.width=12}
 # plot by vignette
-df_clean_main_summary <- df_clean_main %>% group_by(itemName) %>%
-  mutate(competitor = mean(competitor),
-         sameCategory1 = mean(sameCategory1),
-         sameCategory2 = mean(sameCategory2),
-         otherCategory1 = mean(otherCategory1),
-         otherCategory2 = mean(otherCategory2)) %>% ungroup()
+df_clean_main_centered <- df_clean_main %>%
+  mutate(competitor = competitor - 50,
+         sameCategory1 = sameCategory1 - 50,
+         sameCategory2 = sameCategory2 - 50,
+         otherCategory1 = otherCategory1 - 50,
+         otherCategory2 = otherCategory2 - 50) 
   
 
-df_clean_main_summary_unique <- df_clean_main_summary %>% ungroup() %>%
-  select(itemName, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2) %>% unique() %>%
-   pivot_longer(cols = -itemName, names_to = 'answerType', values_to = "count") 
+df_clean_main_summary_unique <- df_clean_main_centered %>%
+  select(itemName, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2) %>%
+   pivot_longer(cols = -itemName, names_to = 'answerType', values_to = "count") %>%
+  group_by(itemName, answerType) %>%
+  tidyboot_mean(column = count)
+
+
 
 df_clean_main_long  %>%
   mutate(answerType = factor(answerType, levels = c('competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2'))) %>%
-  ggplot(aes(x = answerType, color = answerType, y = response)) +
+  ggplot(aes(x = answerType, color = answerType, y = centered_response)) +
   geom_point() +
   facet_wrap( itemName ~ . , ncol = 4) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
   theme(panel.spacing = unit(2, "lines")) +
   ylab("Raw ratings") +
+  ylim(-50, 50) +
   xlab("Alternative type")
 
 df_clean_main_summary_unique  %>%
   mutate(answerType = factor(answerType, levels = c('competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2'))) %>%
-  ggplot(aes(x = answerType, fill = answerType, y = count)) +
+  ggplot(aes(x = answerType, fill = answerType, y = mean)) +
   geom_col() +
+  geom_errorbar(aes(ymin=ci_lower, ymax=ci_upper), width = 0.2) +
   facet_wrap( itemName ~ . , ncol = 4) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
   theme(panel.spacing = unit(2, "lines")) +
   ylab("Average rating") +
+  ylim(-50, 50) +
   xlab("Alternative type")
 
-#ggsave("viz/priorElicitation_byAnswerOption_80.pdf", width = 12, height = 28)
+#ggsave("viz/priorElicitation_byAnswerOption_80_wErrorBars.pdf", width = 12, height = 28)
 ```
 
 The global plot below shows by-category ratings averaging over vignettes:
@@ -215,13 +243,13 @@ The plot below shows the raw by-vignette by-alternative ratings (small points) w
 ```{r, fig.height=32, fig.width=12}
 df_clean_main_wItems_long_summary <- df_clean_main_wItems_long %>%
   group_by(answerOption_string, answerType, itemQuestion) %>% 
-  summarize(mean_response = mean(response)) 
+  summarize(mean_response = mean(centered_response)) 
 
 df_clean_main_wItems_long2 <- left_join(df_clean_main_wItems_long, df_clean_main_wItems_long_summary, by=c('answerOption_string', 'answerType', 'itemQuestion') )
 
 df_clean_main_wItems_long2  %>%
   mutate(answerOption_string = tidytext::reorder_within(answerOption_string, response, itemQuestion)) %>%
-  ggplot(aes(x = reorder(answerOption_string, response), color = answerType, y = response)) +
+  ggplot(aes(x = reorder(answerOption_string, response), color = answerType, y = centered_response)) +
   geom_point(size=2, alpha=0.5) +
   geom_point(aes(y = mean_response), size=3.5) +
  # aes(x = fct_inorder(answerType)) +
@@ -232,7 +260,7 @@ df_clean_main_wItems_long2  %>%
   theme(strip.text.x = element_text(size = 10)) +
   theme(panel.spacing = unit(2, "lines")) +
   ylab("Rating") +
-  ylim(0, 100) +
+  ylim(-50, 50) +
   xlab("Alternative") 
 
 #ggsave("viz/priorElicitation_byAnswerOption_wLabels_wMeans_woExclusions_80.pdf", width = 12, height = 32)
@@ -357,13 +385,97 @@ p5
 Below, the vignettes are sorted in terms of difference between mean difference sizes. The items with smaller differences are taken to be weaker items. 
 ```{r, echo=FALSE}
 df_weak_items <- df_clean_main_summary_unique %>% group_by(itemName) %>%
-  mutate(response_range = max(count) - min(count)) %>%
+  mutate(response_range = max(mean) - min(mean)) %>%
   arrange(response_range)
 
 df_weak_items %>% select(itemName, response_range) %>% unique()
 
 cat("Top 10 weakes items (worst to best): ", df_weak_items %>% pull(itemName) %>% unique() %>% .[1:10])
 ```
+
+Below, several further computations try to extract in a principled way which items did not work well based on free production + slider rating results. 
+
+For checking if the computed value is predictive of the proportion of taciturn responses (optionally, combined taciturn + other rate):
+
+Option 1: compute the difference between the mean (by-vignette) competitor rating and the highest alternative rating. A difference of 0 indicates that the competitor was rated highest, while a negative difference means that another option was rated higher.
+
+Option 2: compute the difference between the competitor rating and the mean over the same category alternatives. 
+
+Option 3: compute mean differences but add some uncertainty term
+
+For checking if vignette worked well -- focus should be the free production data (expected pattern)
+Goal: combine these computations with the results of free production. 
+Option 4: compute a distance between the idealized / prototype distribution and the observed distribution -- e g Wasserstein metric
+
+```{r}
+# option 1: compute differences between competitor and the most salient other option
+df_clean_main_summary_unique_wide <- df_clean_main_summary_unique %>%
+  group_by(itemName) %>%
+  mutate(max_rating = max(mean)) %>% ungroup() %>%
+  pivot_wider(id_cols = c("itemName", "answerType", "max_rating"), names_from = "answerType", values_from = "mean") %>%
+  rowwise() %>%
+  mutate(competitor_vs_maxAlternative = competitor - max_rating,
+         competitor_vs_sameCategory = competitor - mean(sameCategory1, sameCategory2), # option 2a
+         competitor_vs_otherCategory = competitor - mean(otherCategory1, otherCategory2)) # option 2b
+
+
+# compare the worst items returned by these three options
+cat("worst items according to option 1: ", df_clean_main_summary_unique_wide %>% arrange(competitor_vs_maxAlternative) %>% pull(itemName) %>% .[1:10])
+
+cat("\nworst items according to option 2a (difference to same category): ", df_clean_main_summary_unique_wide %>% arrange(competitor_vs_sameCategory) %>% pull(itemName) %>% .[1:10])
+
+cat("\nworst items according to option 2b (difference to other category): ", df_clean_main_summary_unique_wide %>% arrange(competitor_vs_otherCategory) %>% pull(itemName) %>% .[1:10])
+```
+Option 4:
+```{r}
+d_clean_main_collapsedCompetitor_summary_100_wBaseline <- d_clean_main_collapsedCompetitor_summary_100 %>%
+  mutate(expected_prop = case_when(
+    answerType == "competitor" ~ 0.7,
+    answerType == "sameCategory" ~ 0.3,
+    TRUE ~ 0
+  ))
+d_clean_main_collapsedCompetitor_summary_100_wBaseline <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% group_by(itemName) %>%
+  mutate(wasserstein_dist = sum(abs(responseCategory_proportion - expected_prop)))
+
+cat("items with the largest Wasserstein distance relative to expected free production distribution:  ", d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% arrange(desc(wasserstein_dist)) %>% pull(itemName) %>% unique() %>% .[1:10])
+```
+
+Checking if either measure derived from the prior elicitation correlates well with the Wasserstein results or the raw taciturn proportion:
+```{r}
+wasserstein_dist_alpha <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% select(itemName, wasserstein_dist) %>% unique() %>% arrange(itemName) %>% pull(wasserstein_dist)
+
+competitor_vs_maxAlternative_alpha <- df_clean_main_summary_unique_wide %>% arrange(itemName) %>% pull(competitor_vs_maxAlternative)
+
+competitor_vs_sameCategory_alpha <- df_clean_main_summary_unique_wide %>% arrange(itemName) %>% pull(competitor_vs_sameCategory)
+
+competitor_vs_sameCategory_alpha <- df_clean_main_summary_unique_wide %>% arrange(itemName) %>% pull(competitor_vs_sameCategory)
+
+competitor_vs_otherCategory_alpha <- df_clean_main_summary_unique_wide %>% arrange(itemName) %>% pull(competitor_vs_otherCategory)
+
+cat("correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and most salient alternative: ", cor(wasserstein_dist_alpha, competitor_vs_maxAlternative_alpha))
+cat("\ncorrelation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and same category alternatives: ", cor(wasserstein_dist_alpha, competitor_vs_sameCategory_alpha))
+cat("\ncorrelation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and other category alternatives: ", cor(wasserstein_dist_alpha, competitor_vs_otherCategory_alpha))
+
+# relating the results to raw taciturn response proportions
+
+taciturn_props <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% filter(answerType == "taciturn") %>% arrange(itemName) %>% pull(responseCategory_proportion)
+cat("correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and most salient alternative: ", cor(taciturn_props, competitor_vs_maxAlternative_alpha))
+cat("\ncorrelation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and same category alternatives: ", cor(taciturn_props, competitor_vs_sameCategory_alpha))
+cat("\ncorrelation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and other category alternatives: ", cor(taciturn_props, competitor_vs_otherCategory_alpha))
+
+```
+
+Combine all these results to see if they overlap:
+```{r}
+tibble(
+  saliencyDistance = df_clean_main_summary_unique_wide %>% arrange(competitor_vs_maxAlternative) %>% pull(itemName) %>% .[1:10],
+  sameCategoryDistance = df_clean_main_summary_unique_wide %>% arrange(competitor_vs_sameCategory) %>% pull(itemName) %>% .[1:10],
+  otherCategoryDistance = df_clean_main_summary_unique_wide %>% arrange(competitor_vs_otherCategory) %>% pull(itemName) %>% .[1:10],
+  wassersteinDistance = d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% arrange(desc(wasserstein_dist)) %>% pull(itemName) %>% unique() %>% .[1:10],
+  human_selection = c("bar-tea", "bookingAgency−lowClassAccommodation", "books-fantasy", "clothing-beach", "disney-princess", "electronics-console", "furniture-indoors", "kidsActivities-crafts", "kidsActivities-sports", "movie-fantasy") # polina's eyeballing with respect to salience of competitor + level of taciturn responses
+) %>% arrange(wassersteinDistance)
+```
+TODO: add some variance term as a predictor 
 
 ## Preprocessing for RSA model fitting
 ```{r}
