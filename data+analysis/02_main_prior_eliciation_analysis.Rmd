@@ -351,6 +351,18 @@ p5 <- d_clean_main_collapsedCompetitor_summary_100 %>%
 
 p5
 
+# TODO add error bars
+```
+
+Below, the vignettes are sorted in terms of difference between mean difference sizes. The items with smaller differences are taken to be weaker items. 
+```{r, echo=FALSE}
+df_weak_items <- df_clean_main_summary_unique %>% group_by(itemName) %>%
+  mutate(response_range = max(count) - min(count)) %>%
+  arrange(response_range)
+
+df_weak_items %>% select(itemName, response_range) %>% unique()
+
+cat("Top 10 weakes items (worst to best): ", df_weak_items %>% pull(itemName) %>% unique() %>% .[1:10])
 ```
 
 ## Preprocessing for RSA model fitting

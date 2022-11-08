@@ -196,6 +196,28 @@ non-cleaned results with 80 subjects. This does not seem to be the case.
 
 ![](02_main_prior_eliciation_analysis_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
+Below, the vignettes are sorted in terms of difference between mean
+difference sizes. The items with smaller differences are taken to be
+weaker items.
+
+    ## # A tibble: 36 x 2
+    ## # Groups:   itemName [36]
+    ##    itemName                             response_range
+    ##    <chr>                                         <dbl>
+    ##  1 electronics-console                            8.44
+    ##  2 plants-green                                  17.7 
+    ##  3 plants-flowers                                17.9 
+    ##  4 furniture-indoors                             21.1 
+    ##  5 friendsActivities-videoEntertainment          21.5 
+    ##  6 movie-fantasy                                 24.5 
+    ##  7 waterSport-motor                              27.4 
+    ##  8 cafe-pizza                                    29.7 
+    ##  9 disney-princess                               29.8 
+    ## 10 dutyFree-sweets                               30.3 
+    ## # … with 26 more rows
+
+    ## Top 10 weakes items (worst to best):  electronics-console plants-green plants-flowers furniture-indoors friendsActivities-videoEntertainment movie-fantasy waterSport-motor cafe-pizza disney-princess dutyFree-sweets
+
 ## Preprocessing for RSA model fitting
 
 ``` r
