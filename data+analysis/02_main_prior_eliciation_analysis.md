@@ -36,7 +36,8 @@ left or to the right.
 
 To understand what is going on in the attention checks, plot the ratings
 in the attention checking trials only, selecting participants who
-failed. It seems that many participants simply ignored the instructions.
+failed. It seems that many participants simply ignored the instructions
+and followed “anticipated” ratings.
 
 ``` r
 df_attention %>%
@@ -81,16 +82,10 @@ click trough the experiment).
     ## 
     ## number of subjects who provided the same responses within 5 points on all main trials: 1
 
-``` r
-cat("\nNumber of analysed vignette responses: ", nrow(df_clean_main))
-```
+Characteristics of the analysed clean dataset:
 
     ## 
     ## Number of analysed vignette responses:  480
-
-``` r
-df_clean_main %>% count(itemName) 
-```
 
     ## # A tibble: 36 x 2
     ##    itemName                                 n
@@ -107,23 +102,11 @@ df_clean_main %>% count(itemName)
     ## 10 clothing-winter                         10
     ## # … with 26 more rows
 
-``` r
-cat("\naverage number of responses per vignette:", mean(df_clean_main %>% count(itemName) %>% pull(n)))
-```
-
     ## 
     ## average number of responses per vignette: 13.33333
 
-``` r
-cat("\nvignette with most responses: ", df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$n)
-```
-
     ## 
     ## vignette with most responses:  bookingAgency-lowClassAccommodation 18
-
-``` r
-cat("\nvignette with least responses: ", df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$n)
-```
 
     ## 
     ## vignette with least responses:  bar-tea 7
@@ -131,7 +114,10 @@ cat("\nvignette with least responses: ", df_clean_main %>% count(itemName) %>% a
 The first plot below shows the raw prior ratings (y-axis) against the
 alternative category (i.e., competitor, sameCategory1, otherCategory1
 etc; x-axis). The second plot shows only by-vignette by-alternative
-average ratings across participants.
+average ratings across participants. The horizontal dashed line
+represents no change in beliefs of the participants about the
+alternative, given the context. The error bars represent 95%
+bootstrapped credible intervals.
 
     ## Warning: `as_data_frame()` is deprecated as of tibble 2.0.0.
     ## Please use `as_tibble()` instead.
@@ -145,21 +131,10 @@ average ratings across participants.
 ![](02_main_prior_eliciation_analysis_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->![](02_main_prior_eliciation_analysis_files/figure-gfm/unnamed-chunk-10-2.png)<!-- -->
 
 The global plot below shows by-category ratings averaging over
-vignettes:
+vignettes. The error bars represent 95% bootstrapped credible intervals.
 
-    ## Warning in mean.default(count): argument is not numeric or logical: returning NA
-
-    ## Warning in mean.default(count): argument is not numeric or logical: returning NA
-
-    ## Warning in mean.default(count): argument is not numeric or logical: returning NA
-
-    ## Warning in mean.default(count): argument is not numeric or logical: returning NA
-
-    ## Warning in mean.default(count): argument is not numeric or logical: returning NA
-
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
-    ## Warning: Removed 5 rows containing missing values (position_stack).
+    ## Warning: `cols` is now required when using unnest().
+    ## Please use `cols = c(strap)`
 
 ![](02_main_prior_eliciation_analysis_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
@@ -169,57 +144,12 @@ large points indicate the by-vignette by-alternative means. **Please
 note the varying order of the answer alternative categories on the
 x-axis (color).**
 
-``` r
-df_clean_main_wItems_long_summary <- df_clean_main_wItems_long %>%
-  group_by(answerOption_string, answerType, itemQuestion) %>% 
-  summarize(mean_response = mean(centered_response)) 
-```
-
     ## `summarise()` regrouping output by 'answerOption_string', 'answerType' (override
     ## with `.groups` argument)
 
-``` r
-df_clean_main_wItems_long2 <- left_join(df_clean_main_wItems_long, df_clean_main_wItems_long_summary, by=c('answerOption_string', 'answerType', 'itemQuestion') )
-
-df_clean_main_wItems_long2  %>%
-  mutate(answerOption_string = tidytext::reorder_within(answerOption_string, response, itemQuestion)) %>%
-  ggplot(aes(x = reorder(answerOption_string, response), color = answerType, y = centered_response)) +
-  geom_point(size=2, alpha=0.5) +
-  geom_point(aes(y = mean_response), size=3.5) +
- # aes(x = fct_inorder(answerType)) +
-  #scale_x_discrete(answerType) +
-  tidytext::scale_x_reordered() +
-  facet_wrap( itemQuestion ~ . , scales='free', ncol = 4) +
-  theme(axis.text.x = element_text(angle = 55, hjust = 1)) +
-  theme(strip.text.x = element_text(size = 10)) +
-  theme(panel.spacing = unit(2, "lines")) +
-  ylab("Rating") +
-  ylim(-50, 50) +
-  xlab("Alternative") 
-```
-
 ![](02_main_prior_eliciation_analysis_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
-``` r
-#ggsave("viz/priorElicitation_byAnswerOption_wLabels_wMeans_woExclusions_80.pdf", width = 12, height = 32)
-```
-
 ## Comparing prior ratings to free production
-
-Below, the prior ratings are aligned with the free production data. In
-this plot, the item free production responses and respective prior
-ratings can be seen side by side.
-
-    ## Parsed with column specification:
-    ## cols(
-    ##   itemName = col_character(),
-    ##   answerType = col_character(),
-    ##   responseCategory_proportion = col_double()
-    ## )
-
-    ## Warning: Removed 1293 rows containing missing values (geom_point).
-
-![](02_main_prior_eliciation_analysis_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 The plot below combines free production response rates with prior
 ratings. More specifically, the x axis shows the categorized free
@@ -230,11 +160,10 @@ elicitation raw responses were collapsed into the categories
 (collapsing ‘otherCategory1’ and ‘otherCategory2’ ratings). The raw
 responses (samller points) as well as by-item by-alternative means
 (larger points) are added in the respective answer categories for easier
-comparison.
+comparison. The horizontal dashed line represents no change in
+participants’ beliefs in the prior rating experiment.
 
-    ## Warning: Removed 1293 rows containing missing values (geom_point).
-
-![](02_main_prior_eliciation_analysis_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+![](02_main_prior_eliciation_analysis_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 ## Exploratory analysis without participant exclusions
 
@@ -243,38 +172,50 @@ attention check failure, the plot below explores whether there are
 qualitative differences between the cleaned results with 60 subjects and
 non-cleaned results with 80 subjects. This does not seem to be the case.
 
-    ## Warning: Removed 1730 rows containing missing values (geom_point).
+![](02_main_prior_eliciation_analysis_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
-![](02_main_prior_eliciation_analysis_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+## Extracting weakest items
 
 Below, the vignettes are sorted in terms of difference between mean
-difference sizes. The items with smaller differences are taken to be
-weaker items.
+sizes. The items with smaller differences are taken to be weaker items.
+
+``` r
+df_weak_items <- df_clean_main_summary_unique %>% group_by(itemName) %>%
+  mutate(response_range = max(mean) - min(mean)) %>%
+  arrange(response_range)
+
+df_weak_items %>% select(itemName, response_range) %>% unique()
+```
 
     ## # A tibble: 36 x 2
     ## # Groups:   itemName [36]
     ##    itemName                             response_range
     ##    <chr>                                         <dbl>
-    ##  1 electronics-console                            8.44
-    ##  2 plants-green                                  17.8 
-    ##  3 plants-flowers                                17.8 
-    ##  4 furniture-indoors                             21.1 
-    ##  5 friendsActivities-videoEntertainment          21.7 
-    ##  6 movie-fantasy                                 24.8 
-    ##  7 waterSport-motor                              27.1 
-    ##  8 cafe-pizza                                    29.7 
-    ##  9 disney-princess                               30.0 
+    ##  1 electronics-console                            8.32
+    ##  2 plants-flowers                                17.6 
+    ##  3 plants-green                                  17.8 
+    ##  4 furniture-indoors                             21.0 
+    ##  5 friendsActivities-videoEntertainment          21.4 
+    ##  6 movie-fantasy                                 24.6 
+    ##  7 waterSport-motor                              27.6 
+    ##  8 disney-princess                               29.9 
+    ##  9 cafe-pizza                                    30.1 
     ## 10 dutyFree-sweets                               30.6 
     ## # … with 26 more rows
 
-    ## Top 10 weakes items (worst to best):  electronics-console plants-green plants-flowers furniture-indoors friendsActivities-videoEntertainment movie-fantasy waterSport-motor cafe-pizza disney-princess dutyFree-sweets
+``` r
+cat("Top 10 weakes items (worst to best): ", df_weak_items %>% pull(itemName) %>% unique() %>% .[1:10])
+```
+
+    ## Top 10 weakes items (worst to best):  electronics-console plants-flowers plants-green furniture-indoors friendsActivities-videoEntertainment movie-fantasy waterSport-motor disney-princess cafe-pizza dutyFree-sweets
 
 Below, several further computations try to extract in a principled way
 which items did not work well based on free production + slider rating
 results.
 
-For checking if the computed value is predictive of the proportion of
-taciturn responses (optionally, combined taciturn + other rate):
+For checking if the prior elicitation values are predictive of the
+proportion of free production response patterns (specifically, taciturn
+rate), several metrics on prior elicitation results can be computed:
 
 Option 1: compute the difference between the mean (by-vignette)
 competitor rating and the highest alternative rating. A difference of 0
@@ -282,15 +223,25 @@ indicates that the competitor was rated highest, while a negative
 difference means that another option was rated higher.
 
 Option 2: compute the difference between the competitor rating and the
-mean over the same category alternatives.
+mean over the same category alternatives (a) or other category
+alternatives (b).
 
-Option 3: compute mean differences but add some uncertainty term
+Option 3: compute the average change in beliefs (i.e., the absolute
+difference to the rating 50 ) of the competitor (an approximation of the
+presence of an obvious alternative). Vignettes with smallest difference
+are assumed to be weakest.
 
-For checking if vignette worked well – focus should be the free
-production data (expected pattern) Goal: combine these computations with
-the results of free production. Option 4: compute a distance between the
-idealized / prototype distribution and the observed distribution – e g
-Wasserstein metric
+For checking if vignette worked well overall, we focus on the pattern of
+the free production data. More specifically, we assume that the
+prototype response pattern would put 0.7 of responses into the
+competitor category and 0.3 of responses into sameCategory responses,
+and 0 in other response categories.
+
+Option 4: compute a distance between the prototype distribution and the
+observed distribution – Wasserstein distance
+
+Option 5: TBD: compute mean differences on prior elicitation data but
+add some uncertainty term
 
 ``` r
 # option 1: compute differences between competitor and the most salient other option
@@ -301,28 +252,20 @@ df_clean_main_summary_unique_wide <- df_clean_main_summary_unique %>%
   rowwise() %>%
   mutate(competitor_vs_maxAlternative = competitor - max_rating,
          competitor_vs_sameCategory = competitor - mean(sameCategory1, sameCategory2), # option 2a
-         competitor_vs_otherCategory = competitor - mean(otherCategory1, otherCategory2)) # option 2b
-
-
-# compare the worst items returned by these three options
-cat("worst items according to option 1: ", df_clean_main_summary_unique_wide %>% arrange(competitor_vs_maxAlternative) %>% pull(itemName) %>% .[1:10])
+         competitor_vs_otherCategory = competitor - mean(otherCategory1, otherCategory2), # option 2b
+          sameCat_changeBeliefs = competitor-50) # option 3 
 ```
 
-    ## worst items according to option 1:  bookingAgency-lowClassAccommodation petAdoption-dogs clothing-beach movie-fantasy bookingAgency-highClassAccommodation kidsActivities-sports clothing-winter books-fantasy bar-tea friendsActivities-videoEntertainment
-
-``` r
-cat("\nworst items according to option 2a (difference to same category): ", df_clean_main_summary_unique_wide %>% arrange(competitor_vs_sameCategory) %>% pull(itemName) %>% .[1:10])
-```
+    ## worst items according to option 1:  bookingAgency-lowClassAccommodation petAdoption-dogs clothing-beach movie-fantasy bookingAgency-highClassAccommodation kidsActivities-sports clothing-winter books-fantasy friendsActivities-videoEntertainment bar-tea
 
     ## 
     ## worst items according to option 2a (difference to same category):  bookingAgency-lowClassAccommodation petAdoption-dogs clothing-beach bookingAgency-highClassAccommodation books-fantasy bar-tea gym-yoga electronics-console disney-princess clothing-winter
 
-``` r
-cat("\nworst items according to option 2b (difference to other category): ", df_clean_main_summary_unique_wide %>% arrange(competitor_vs_otherCategory) %>% pull(itemName) %>% .[1:10])
-```
+    ## 
+    ## worst items according to option 2b (difference to other category):  electronics-console plants-flowers movie-fantasy cafe-pizza plants-green friendsActivities-videoEntertainment clothing-beach furniture-indoors petAdoption-dogs waterSport-motor
 
     ## 
-    ## worst items according to option 2b (difference to other category):  electronics-console movie-fantasy plants-flowers cafe-pizza plants-green friendsActivities-videoEntertainment clothing-beach furniture-indoors petAdoption-dogs waterSport-motor
+    ## worst items according to option 3 (change in beliefs for competitor):  petAdoption-dogs electronics-console friendsActivities-videoEntertainment furniture-indoors clothing-beach bookingAgency-lowClassAccommodation movie-fantasy bar-tea plants-green plants-flowers
 
 Option 4:
 
@@ -344,87 +287,53 @@ cat("items with the largest Wasserstein distance relative to expected free produ
 Checking if either measure derived from the prior elicitation correlates
 well with the Wasserstein results or the raw taciturn proportion:
 
-``` r
-wasserstein_dist_alpha <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% select(itemName, wasserstein_dist) %>% unique() %>% arrange(itemName) %>% pull(wasserstein_dist)
-
-competitor_vs_maxAlternative_alpha <- df_clean_main_summary_unique_wide %>% arrange(itemName) %>% pull(competitor_vs_maxAlternative)
-
-competitor_vs_sameCategory_alpha <- df_clean_main_summary_unique_wide %>% arrange(itemName) %>% pull(competitor_vs_sameCategory)
-
-competitor_vs_sameCategory_alpha <- df_clean_main_summary_unique_wide %>% arrange(itemName) %>% pull(competitor_vs_sameCategory)
-
-competitor_vs_otherCategory_alpha <- df_clean_main_summary_unique_wide %>% arrange(itemName) %>% pull(competitor_vs_otherCategory)
-
-cat("correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and most salient alternative: ", cor(wasserstein_dist_alpha, competitor_vs_maxAlternative_alpha))
-```
-
-    ## correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and most salient alternative:  -0.2667231
-
-``` r
-cat("\ncorrelation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and same category alternatives: ", cor(wasserstein_dist_alpha, competitor_vs_sameCategory_alpha))
-```
+    ## correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and most salient alternative:  -0.2648129
 
     ## 
-    ## correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and same category alternatives:  -0.3648259
-
-``` r
-cat("\ncorrelation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and other category alternatives: ", cor(wasserstein_dist_alpha, competitor_vs_otherCategory_alpha))
-```
+    ## 
+    ## correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and same category alternatives:  -0.3749041
 
     ## 
-    ## correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and other category alternatives:  -0.4745696
-
-``` r
-# relating the results to raw taciturn response proportions
-
-taciturn_props <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% filter(answerType == "taciturn") %>% arrange(itemName) %>% pull(responseCategory_proportion)
-cat("correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and most salient alternative: ", cor(taciturn_props, competitor_vs_maxAlternative_alpha))
-```
-
-    ## correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and most salient alternative:  -0.4395201
-
-``` r
-cat("\ncorrelation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and same category alternatives: ", cor(taciturn_props, competitor_vs_sameCategory_alpha))
-```
+    ## 
+    ## correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and other category alternatives:  -0.4771583
 
     ## 
-    ## correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and same category alternatives:  -0.4187852
+    ## 
+    ## correlation of by-vignette free production Wasserstein distances and prior elicitation changes in beliefs for competitor:  -0.2577898
 
-``` r
-cat("\ncorrelation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and other category alternatives: ", cor(taciturn_props, competitor_vs_otherCategory_alpha))
-```
+    ## correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and most salient alternative:  -0.4435475
 
     ## 
-    ## correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and other category alternatives:  -0.4854417
+    ## 
+    ## correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and same category alternatives:  -0.4270535
 
-Combine all these results to see if they overlap:
+    ## 
+    ## 
+    ## correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and other category alternatives:  -0.4866898
 
-``` r
-tibble(
-  saliencyDistance = df_clean_main_summary_unique_wide %>% arrange(competitor_vs_maxAlternative) %>% pull(itemName) %>% .[1:10],
-  sameCategoryDistance = df_clean_main_summary_unique_wide %>% arrange(competitor_vs_sameCategory) %>% pull(itemName) %>% .[1:10],
-  otherCategoryDistance = df_clean_main_summary_unique_wide %>% arrange(competitor_vs_otherCategory) %>% pull(itemName) %>% .[1:10],
-  wassersteinDistance = d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% arrange(desc(wasserstein_dist)) %>% pull(itemName) %>% unique() %>% .[1:10],
-  human_selection = c("bar-tea", "bookingAgency−lowClassAccommodation", "books-fantasy", "clothing-beach", "disney-princess", "electronics-console", "furniture-indoors", "kidsActivities-crafts", "kidsActivities-sports", "movie-fantasy") # polina's eyeballing with respect to salience of competitor + level of taciturn responses
-) %>% arrange(wassersteinDistance)
-```
+    ## 
+    ## 
+    ## correlation of by-vignette free production taciturn response proportions and prior elicitation changes in beliefs for competitor:  -0.3978863
 
-    ## # A tibble: 10 x 5
-    ##    saliencyDistance sameCategoryDis… otherCategoryDi… wassersteinDist…
+Combine all these results to see if the selected vignettes overlap.
+Additionally, manually extracted (by Polina) weak items are added.
+
+    ## # A tibble: 10 x 6
+    ##    saliencyDistance sameCategoryDis… otherCategoryDi… changeBeliefsCo…
     ##    <chr>            <chr>            <chr>            <chr>           
-    ##  1 bar-tea          disney-princess  petAdoption-dogs clothing-winter 
-    ##  2 kidsActivities-… bar-tea          friendsActiviti… disney-action   
-    ##  3 books-fantasy    electronics-con… furniture-indoo… electronics-con…
-    ##  4 clothing-beach   clothing-beach   plants-flowers   friendsActiviti…
-    ##  5 clothing-winter  gym-yoga         clothing-beach   furniture-indoo…
-    ##  6 movie-fantasy    bookingAgency-h… cafe-pizza       furniture-outdo…
-    ##  7 bookingAgency-h… books-fantasy    plants-green     kidsActivities-…
-    ##  8 bookingAgency-l… bookingAgency-l… electronics-con… movie-fantasy   
-    ##  9 petAdoption-dogs petAdoption-dogs movie-fantasy    movie-western   
-    ## 10 friendsActiviti… clothing-winter  waterSport-motor plants-flowers  
-    ## # … with 1 more variable: human_selection <chr>
+    ##  1 friendsActiviti… disney-princess  petAdoption-dogs plants-green    
+    ##  2 kidsActivities-… bar-tea          friendsActiviti… bookingAgency-l…
+    ##  3 books-fantasy    electronics-con… furniture-indoo… bar-tea         
+    ##  4 clothing-beach   clothing-beach   movie-fantasy    friendsActiviti…
+    ##  5 clothing-winter  gym-yoga         clothing-beach   movie-fantasy   
+    ##  6 movie-fantasy    bookingAgency-h… cafe-pizza       furniture-indoo…
+    ##  7 bookingAgency-h… books-fantasy    plants-green     clothing-beach  
+    ##  8 bookingAgency-l… bookingAgency-l… electronics-con… petAdoption-dogs
+    ##  9 petAdoption-dogs petAdoption-dogs plants-flowers   electronics-con…
+    ## 10 bar-tea          clothing-winter  waterSport-motor plants-flowers  
+    ## # … with 2 more variables: wassersteinDistance <chr>, human_selection <chr>
 
-TODO: add some variance term as a predictor
+Option 5: optional
 
 ## Preprocessing for RSA model fitting
 
