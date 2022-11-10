@@ -42,16 +42,18 @@ The responses were manually classified by Polina into seven categories:
 
 * The "taciturn" category includes "No, we don't have XY" responses. It also subsumes the responses which include some kind of explanation (like "Moana isn’t here today, she is helping her islanders so can’t be with us."). 
 * The "competitor" category includes responses offering the competitor instead of the target object. It includes responses where the alternative is the anticipated competitor.
-* The "competitor/other" category includes responses where either additional information was included next to offering the competitor or the named competitor differed from our preclassification.
+* exploratory: The "competitor/other" category includes responses where either additional information was included next to offering the competitor or the named competitor differed from our preclassification.
 * The "sameCategory" option includes responses offering several alternatives (2-3) from the same category or offering one option which I did not consider a direct competitor.
 * The "otherCategory" option includes responses offering 1-2 alternatives from the different category.
 * The "fullList" option includes responses where all alternatives were presented.
 * The "other" category includes other unclassifiable responses as well as responses trying to offer some kind of vague solution to the request on top of saying "No" (like "We sell a selection of different types of books, I am sure you will find something in the adventure section.").
 
-An analysis making the distinction between the two competitor-containing categories is compared to an analysis collapsing the two competitor categories into one "competitor" category. Additionally, single responses were classified as incorrect with the "yes" category (e.g., "Yes let's go see it" for the zoo-xl vignette).
+The standard analysis with one "competitor" category is compared to an analysis making the distinction between the two competitor-containing categories. Additionally, single responses were classified as incorrect with the "yes" category (e.g., "Yes let's go see it" for the zoo-xl vignette).
+
+## Summary and exclusions
 
 ```{r, include=FALSE, warning=FALSE, message=FALSE}
-answerOrder <- c( 'competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn')
+answerOrder <- c( 'competitor', 'competitor/other', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn')
 #df100 <- read_csv("results_5_QA-overinfo-freeTyping-extendedExpt_100.csv")
 #df100 %>% filter(answer != "ptsv") %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>%  write_csv("results_QA-overinfo-freeTyping-extendedExpt_100_anonymized.csv")
 
@@ -92,9 +94,12 @@ cat("\naverage number of responses per vignette:", mean(df_clean_main %>% count(
 cat("\nvignette with most responses: ", df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$n)
 cat("\nvignette with least responses: ", df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$n)
 ```
+ 
+## Plots
+
+The first plot displays proportions of different response types (standard analysis) by-vignette. 
 
 ```{r, echo=FALSE, fig.height=28, fig.width=12}
-# plot by vignette
 df_clean_main <- df_clean_main %>% group_by(itemName) %>%
   mutate(response_count = n(), 
          answerType = factor(category, levels = answerOrder)) %>% ungroup()
@@ -105,18 +110,6 @@ df_clean_main_summary <- df_clean_main %>% group_by(itemName, answerType) %>%
          responseCategory_proportion = responseCategory_count / response_count
          ) %>% ungroup() %>%
   select(itemName, answerType, responseCategory_proportion) %>% unique()
-
-df_clean_main_summary  %>%
-  ggplot(aes(x = answerType, fill = answerType, y = responseCategory_proportion)) +
-  geom_col() +
-  facet_wrap( itemName ~ . , ncol = 4) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  theme(strip.text.x = element_text(size = 10)) +
-  theme(panel.spacing = unit(2, "lines")) +
-  ylab("Proportion of answer type") +
-  xlab("answer type")
-
-ggsave("viz/free_production_byAnswerOption_100.pdf", width = 12, height = 28)
 ```
 
 ```{r, echo=FALSE, fig.height=28, fig.width=12}
@@ -136,12 +129,12 @@ d_clean_main_collapsedCompetitor_summary <- d_clean_main_collapsedCompetitor %>%
          ) %>%
   select(itemName, answerType, responseCategory_proportion) %>% unique()
 
-#d_clean_main_collapsedCompetitor_summary %>% write_csv(., "d_clean_main_collapsedCompetitor_summary_100.csv")
+d_clean_main_collapsedCompetitor_summary %>% write_csv(., "d_clean_main_collapsedCompetitor_summary_100.csv")
 
 d_clean_main_collapsedCompetitor_summary %>% 
   ggplot(aes(x = answerType, fill = answerType, y = responseCategory_proportion)) +
   geom_col() +
-  facet_wrap( itemName ~ . , ncol = 1) +
+  facet_wrap( itemName ~ . , ncol = 4) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
   theme(panel.spacing = unit(2, "lines")) +
@@ -152,22 +145,34 @@ d_clean_main_collapsedCompetitor_summary %>%
 ggsave("viz/free_production_byAnswerOption_acrossCompetitor_100.pdf", width = 12, height = 28)
 ```
 
+The second plot explores whether there is a qualitative difference when adding the exploratory "competitor/other" category -- this does not seem to be the case. 
+
+```{r, echo=FALSE, fig.height=28, fig.width=12}
+# plot by vignette
+df_clean_main_summary  %>%
+  ggplot(aes(x = answerType, fill = answerType, y = responseCategory_proportion)) +
+  geom_col() +
+  facet_wrap( itemName ~ . , ncol = 4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Proportion of answer type") +
+  xlab("answer type")
+
+ggsave("viz/free_production_byAnswerOption_100.pdf", width = 12, height = 28)
+```
+
+The plot below shows response proportions by response category averaged across vignettes. Again, including one competitor category vs two exploratory categories is compared.
+
 ```{r, echo=FALSE, fig.height=6, fig.width=8}
 # plot answerTypes proportions averaged over items
-df_answerOptions_global_summary <- df_clean_main %>% group_by(answerType) %>% 
+df_answerOptions_global_summary <- df_clean_main %>% 
+  group_by(answerType) %>% 
   summarise(answerType_count = n(), 
             answerType_proportion = answerType_count / nrow(df_clean_main)
             )
-sum(df_answerOptions_global_summary$answerType_proportion)
-df_answerOptions_global_summary
-
-df_answerOptions_global_summary %>%
-  ggplot(aes(x = answerType, fill = answerType, y = answerType_proportion)) +
-  geom_col() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  ylab("Global proportion of answer type") +
-  xlab("answer type")
-ggsave("viz/free_production_global_answerTypes_100.pdf", width = 8, height = 6)
+#sum(df_answerOptions_global_summary$answerType_proportion)
+#df_answerOptions_global_summary
 
 # collapsed across different competitor response types
 df_answerOptions_acrossCompetitor_global_summary <- df_clean_main %>%
@@ -177,8 +182,8 @@ df_answerOptions_acrossCompetitor_global_summary <- df_clean_main %>%
   summarise(answerType_count = n(), 
             answerType_proportion = answerType_count / nrow(df_clean_main)
             )
-sum(df_answerOptions_acrossCompetitor_global_summary$answerType_proportion)
-df_answerOptions_acrossCompetitor_global_summary
+#sum(df_answerOptions_acrossCompetitor_global_summary$answerType_proportion)
+#df_answerOptions_acrossCompetitor_global_summary
 
 df_answerOptions_acrossCompetitor_global_summary %>%
   ggplot(aes(x = answerType, fill = answerType, y = answerType_proportion)) +
@@ -188,7 +193,18 @@ df_answerOptions_acrossCompetitor_global_summary %>%
   xlab("answer type")
 ggsave("viz/free_production_global_answerTypes_acrossCompetitor_100.pdf", width = 8, height = 6)
 
+df_answerOptions_global_summary %>%
+  ggplot(aes(x = answerType, fill = answerType, y = answerType_proportion)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Global proportion of answer type") +
+  xlab("answer type")
+ggsave("viz/free_production_global_answerTypes_100.pdf", width = 8, height = 6)
+
 ```
+
+## Exploring weak vignettes and weird participant behavior
+
 
 ```{r, echo=FALSE}
 # checking vignettes by number of competitor/other responses
@@ -224,15 +240,16 @@ cat("\nNumber of participants providing maximal number of distinct response type
 cat("\nAverage number of response types provided by a participant: ", bySubj_type_counts %>%select(-category) %>% pull(n_distinct_types) %>% mean())
 ```
 
-```{r}
-# explore global distribution if participants producing "No" responses only would be excluded
+Visualize global distribution if participants producing "No" responses only would be excluded.
+```{r, echo=FALSE}
 df_clean_main <- df_clean_main %>% rowwise() %>% mutate(
   bad_response = gsub("\n", "", gsub(" ", "", tolower(answer))) == "no"
 ) 
-df_clean_main %>% filter(bad_response == TRUE)
+#df_clean_main %>% filter(bad_response == TRUE)
 ## it seems that participants 307 and 347 only provded bad responses ('no')
 
 df_clean_main %>% filter(!(submission_id %in% c(307, 347))) %>% 
+  mutate(answerType = factor(answerType, levels = c('competitor', 'competitor/other', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn'))) %>%
   group_by(answerType) %>% 
   summarise(answerType_count = n(), 
             answerType_proportion = answerType_count / nrow(df_clean_main)

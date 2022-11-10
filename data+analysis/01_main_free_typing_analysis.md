@@ -17,9 +17,10 @@ The responses were manually classified by Polina into seven categories:
 - The “competitor” category includes responses offering the competitor
   instead of the target object. It includes responses where the
   alternative is the anticipated competitor.
-- The “competitor/other” category includes responses where either
-  additional information was included next to offering the competitor or
-  the named competitor differed from our preclassification.
+- exploratory: The “competitor/other” category includes responses where
+  either additional information was included next to offering the
+  competitor or the named competitor differed from our
+  preclassification.
 - The “sameCategory” option includes responses offering several
   alternatives (2-3) from the same category or offering one option which
   I did not consider a direct competitor.
@@ -33,29 +34,34 @@ The responses were manually classified by Polina into seven categories:
   types of books, I am sure you will find something in the adventure
   section.”).
 
-An analysis making the distinction between the two competitor-containing
-categories is compared to an analysis collapsing the two competitor
-categories into one “competitor” category. Additionally, single
-responses were classified as incorrect with the “yes” category (e.g.,
-“Yes let’s go see it” for the zoo-xl vignette).
+The standard analysis with one “competitor” category is compared to an
+analysis making the distinction between the two competitor-containing
+categories. Additionally, single responses were classified as incorrect
+with the “yes” category (e.g., “Yes let’s go see it” for the zoo-xl
+vignette).
+
+## Summary and exclusions
 
     ## Subjects who failed attention checks:  108 107 149
 
     ## 
     ## Subject exclusion rate:  0.03
 
-    ## Number of excluded inccorect ('yes') responses:  15
+    ## Number of excluded inccorect ('yes') responses:  14
+
+    ## 
+    ## Number of analysed responses:  762
 
     ## # A tibble: 7 x 2
     ##   category             n
     ##   <chr>            <int>
-    ## 1 competitor         233
-    ## 2 competitor/other    43
+    ## 1 competitor         234
+    ## 2 competitor/other    41
     ## 3 fullList            13
-    ## 4 other              116
-    ## 5 otherCategory        1
+    ## 4 other              118
+    ## 5 otherCategory        2
     ## 6 sameCategory       123
-    ## 7 taciturn           232
+    ## 7 taciturn           231
 
     ## # A tibble: 36 x 2
     ##    itemName                                 n
@@ -73,62 +79,49 @@ responses were classified as incorrect with the “yes” category (e.g.,
     ## # … with 26 more rows
 
     ## 
-    ## average number of responses per vignette: 21.13889
+    ## average number of responses per vignette: 21.16667
 
     ## 
-    ## vignette with most responses:  gym-yoga 28
+    ## vignette with most responses:  gym-yoga 27
 
     ## 
     ## vignette with least responses:  cafe-pizza 15
 
-![](01_main_free_typing_analysis_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+## Plots
+
+The first plot displays proportions of different response types
+(standard analysis) by-vignette.
 
 ![](01_main_free_typing_analysis_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
-    ## [1] 1
-
-    ## # A tibble: 7 x 3
-    ##   answerType       answerType_count answerType_proportion
-    ##   <fct>                       <int>                 <dbl>
-    ## 1 competitor                    233               0.306  
-    ## 2 competitor/other               43               0.0565 
-    ## 3 sameCategory                  123               0.162  
-    ## 4 otherCategory                   1               0.00131
-    ## 5 fullList                       13               0.0171 
-    ## 6 other                         116               0.152  
-    ## 7 taciturn                      232               0.305
+The second plot explores whether there is a qualitative difference when
+adding the exploratory “competitor/other” category – this does not seem
+to be the case.
 
 ![](01_main_free_typing_analysis_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
-    ## `summarise()` ungrouping output (override with `.groups` argument)
+The plot below shows response proportions by response category averaged
+across vignettes. Again, including one competitor category vs two
+exploratory categories is compared.
 
-    ## [1] 1
+    ## `summarise()` ungrouping output (override with `.groups` argument)`summarise()`
+    ## ungrouping output (override with `.groups` argument)
 
-    ## # A tibble: 6 x 3
-    ##   answerType    answerType_count answerType_proportion
-    ##   <fct>                    <int>                 <dbl>
-    ## 1 competitor                 276               0.363  
-    ## 2 sameCategory               123               0.162  
-    ## 3 otherCategory                1               0.00131
-    ## 4 fullList                    13               0.0171 
-    ## 5 other                      116               0.152  
-    ## 6 taciturn                   232               0.305
+![](01_main_free_typing_analysis_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->![](01_main_free_typing_analysis_files/figure-gfm/unnamed-chunk-9-2.png)<!-- -->
 
-![](01_main_free_typing_analysis_files/figure-gfm/unnamed-chunk-8-2.png)<!-- -->
+## Exploring weak vignettes and weird participant behavior
 
     ## Vignettes receiving the most 'other' responses (mostly 'no but we have other options which might interest you')
 
     ## # A tibble: 6 x 3
-    ##   itemName                     answerType responseCategory_proportion
-    ##   <chr>                        <fct>                            <dbl>
-    ## 1 plants-green                 other                            0.471
-    ## 2 furniture-indoors            other                            0.368
-    ## 3 movie-western                other                            0.368
-    ## 4 disney-princess              other                            0.364
-    ## 5 furniture-outdoors           other                            0.286
-    ## 6 friendsActivities-boardGames other                            0.25
+    ##   itemName           answerType responseCategory_proportion
+    ##   <chr>              <fct>                            <dbl>
+    ## 1 plants-green       other                            0.529
+    ## 2 furniture-indoors  other                            0.368
+    ## 3 movie-western      other                            0.368
+    ## 4 disney-princess    other                            0.364
+    ## 5 furniture-outdoors other                            0.286
+    ## 6 zoo-xl             other                            0.261
 
     ## 
     ## Vignettes with highest proportion of competitor responses where either additional information was included or the named competitor differed from our preclassification
@@ -171,4 +164,11 @@ responses were classified as incorrect with the “yes” category (e.g.,
     ## Number of participants providing maximal number of distinct response types:  1
 
     ## 
-    ## Average number of response types provided by a participant:  3.538961
+    ## Average number of response types provided by a participant:  3.521173
+
+Visualize global distribution if participants producing “No” responses
+only would be excluded.
+
+    ## `summarise()` ungrouping output (override with `.groups` argument)
+
+![](01_main_free_typing_analysis_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
