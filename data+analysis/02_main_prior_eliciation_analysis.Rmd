@@ -192,7 +192,18 @@ df_clean_main_summary_unique <- df_clean_main_centered %>%
   group_by(itemName, answerType) %>%
   tidyboot_mean(column = count)
 
-
+df_clean_main_summary_sd <- df_clean_main_centered %>%
+  select(itemName, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2) %>%
+   pivot_longer(cols = -itemName, names_to = 'answerType', values_to = "count") %>%
+  mutate(answerType = case_when(
+    answerType == "sameCategory1" ~ "sameCategory",
+    answerType == "sameCategory2" ~ "sameCategory",
+    answerType == "otherCategory1" ~ "otherCategory",
+    answerType == "otherCategory2" ~ "otherCategory",
+    TRUE ~ answerType
+  )) %>%
+  group_by(itemName, answerType) %>%
+  summarize(mean = mean(count), sd = sd(count))
 
 df_clean_main_long  %>%
   mutate(answerType = factor(answerType, levels = c('competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2'))) %>%
@@ -464,29 +475,49 @@ cat("items with the largest Wasserstein distance relative to expected free produ
 Checking if either measure derived from the prior elicitation correlates well with the Wasserstein results or the raw taciturn proportion:
 ```{r, echo=FALSE}
 wasserstein_dist_alpha <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% select(itemName, wasserstein_dist) %>% unique() %>% arrange(itemName) %>% pull(wasserstein_dist)
-
 competitor_vs_maxAlternative_alpha <- df_clean_main_summary_unique_wide %>% arrange(itemName) %>% pull(competitor_vs_maxAlternative)
-
 competitor_vs_sameCategory_alpha <- df_clean_main_summary_unique_wide %>% arrange(itemName) %>% pull(competitor_vs_sameCategory)
-
 competitor_vs_sameCategory_alpha <- df_clean_main_summary_unique_wide %>% arrange(itemName) %>% pull(competitor_vs_sameCategory)
-
 competitor_vs_otherCategory_alpha <- df_clean_main_summary_unique_wide %>% arrange(itemName) %>% pull(competitor_vs_otherCategory)
-
 competitor_vs_beliefsChange_alpha <- df_clean_main_summary_unique_wide %>% arrange(itemName) %>% pull(sameCat_changeBeliefs)
-
 cat("correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and most salient alternative: ", cor(wasserstein_dist_alpha, competitor_vs_maxAlternative_alpha))
 cat("\n\ncorrelation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and same category alternatives: ", cor(wasserstein_dist_alpha, competitor_vs_sameCategory_alpha))
 cat("\n\ncorrelation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and other category alternatives: ", cor(wasserstein_dist_alpha, competitor_vs_otherCategory_alpha))
 cat("\n\ncorrelation of by-vignette free production Wasserstein distances and prior elicitation changes in beliefs for competitor: ", cor(wasserstein_dist_alpha, competitor_vs_beliefsChange_alpha))
-
 # relating the results to raw taciturn response proportions
-
 taciturn_props <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% filter(answerType == "taciturn") %>% arrange(itemName) %>% pull(responseCategory_proportion)
 cat("correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and most salient alternative: ", cor(taciturn_props, competitor_vs_maxAlternative_alpha))
 cat("\n\ncorrelation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and same category alternatives: ", cor(taciturn_props, competitor_vs_sameCategory_alpha))
 cat("\n\ncorrelation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and other category alternatives: ", cor(taciturn_props, competitor_vs_otherCategory_alpha))
 cat("\n\ncorrelation of by-vignette free production taciturn response proportions and prior elicitation changes in beliefs for competitor: ", cor(taciturn_props, competitor_vs_beliefsChange_alpha))
+```
+
+Alternatively, fitting linear models:
+```{r, echo=FALSE}
+cat("predicting by-vignette free production Wasserstein distances as a function of prior elicitation differences between competitor and most salient alternative: ")
+summary(lm(wasserstein_dist_alpha ~ competitor_vs_maxAlternative_alpha))
+
+cat("\n\npredicting by-vignette free production Wasserstein distances as a function of prior elicitation differences between competitor and same category alternatives: ")
+summary(lm(wasserstein_dist_alpha ~ competitor_vs_sameCategory_alpha))
+
+cat("\n\npredicting by-vignette free production Wasserstein distances as a function of prior elicitation differences between competitor and other category alternatives: ")
+summary(lm(wasserstein_dist_alpha ~ competitor_vs_otherCategory_alpha))
+
+cat("\n\npredicting by-vignette free production Wasserstein distances as a function of prior elicitation changes in beliefs for competitor: ") 
+summary(lm(wasserstein_dist_alpha ~ competitor_vs_beliefsChange_alpha))
+
+# relating the results to raw taciturn response proportions
+
+taciturn_props <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% filter(answerType == "taciturn") %>% arrange(itemName) %>% pull(responseCategory_proportion)
+
+cat("predicting by-vignette free production taciturn response proportions as a function of prior elicitation differences between competitor and most salient alternative: ")
+summary(lm(taciturn_props ~ competitor_vs_maxAlternative_alpha))
+cat("\n\npredicting by-vignette free production taciturn response proportions as a function of prior elicitation differences between competitor and same category alternatives: ")
+summary(lm(taciturn_props ~ competitor_vs_sameCategory_alpha))
+cat("\n\npredicting by-vignette free production taciturn response proportions as a function of prior elicitation differences between competitor and other category alternatives: ")
+summary(lm(taciturn_props ~ competitor_vs_otherCategory_alpha))
+cat("\n\npredicting by-vignette free production taciturn response proportions as a function of prior elicitation changes in beliefs for competitor: ")
+summary(lm(taciturn_props ~ competitor_vs_beliefsChange_alpha))
 ```
 
 Combine all these results to see if the selected vignettes overlap. Additionally, manually extracted (by Polina) weak items are added.
@@ -503,9 +534,25 @@ df_weakestItems_results <- tibble(
 df_weakestItems_results
 ```
 
-Option 5: optional
+Option 5: explore influence of adding standard deviation on predicting wasserstein distance / taciturn response proportion
+```{r}
+# extract mean + SD by item
+sliderRating_competitor_mean_sd_sum <- df_clean_main_summary_sd %>% filter(answerType == "competitor") %>%
+  select(itemName, mean, sd) %>% unique() 
+sliderRating_sameCat_mean_sd_sum <- df_clean_main_summary_sd %>% filter(answerType == "sameCategory") %>%
+  select(itemName, mean, sd) %>% unique() 
+
+lm_comp_wSD <- lm(wasserstein_dist_alpha ~ sliderRating_competitor_mean_sd_sum$mean + sliderRating_competitor_mean_sd_sum$sd)
+summary(lm_comp_wSD)
+
+lm_sameCat_wSD <- lm(wasserstein_dist_alpha ~ sliderRating_sameCat_mean_sd_sum$mean + sliderRating_sameCat_mean_sd_sum$sd)
+summary(lm_sameCat_wSD)
+
+```
+
+Note of more analysis options: KL divergence? Bootstrapping idea? also compute Wasserstein distance (or thelike) on the slider rating results, and compare that value to the values from free production? 
 
 ## Preprocessing for RSA model fitting
 ```{r}
-# TODO: z-scoring
+# TODO: z-scoring?
 ```
