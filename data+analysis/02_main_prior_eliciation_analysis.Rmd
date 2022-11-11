@@ -185,7 +185,6 @@ df_clean_main_centered <- df_clean_main %>%
          otherCategory1 = otherCategory1 - 50,
          otherCategory2 = otherCategory2 - 50) 
   
-
 df_clean_main_summary_unique <- df_clean_main_centered %>%
   select(itemName, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2) %>%
    pivot_longer(cols = -itemName, names_to = 'answerType', values_to = "count") %>%
@@ -462,14 +461,9 @@ d_clean_main_collapsedCompetitor_summary_100_wBaseline <- d_clean_main_collapsed
     answerType == "sameCategory" ~ 0.3,
     TRUE ~ 0.00001
   ))
-library(philentropy)
+
 d_clean_main_collapsedCompetitor_summary_100_wBaseline <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% group_by(itemName) %>%
-  mutate(wasserstein_dist = sum(abs(responseCategory_proportion - expected_prop)),
-         kl_div = KL(expected_prop, responseCategory_proportion))
-
-x <- rbind(d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% filter(itemName == 'bar-tea') %>% arrange(answerType) %>% .$expected_prop, d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% filter(itemName == 'bar-tea') %>% arrange(answerType) %>% .$responseCategory_proportion )
-
-KL(x) 
+  mutate(wasserstein_dist = sum(abs(responseCategory_proportion - expected_prop)))
 
 cat("items with the largest Wasserstein distance relative to expected free production distribution:  ", d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% arrange(desc(wasserstein_dist)) %>% pull(itemName) %>% unique() %>% .[1:10])
 ```
@@ -482,23 +476,26 @@ kl_divs <- c()
 for (i in itemNames) {
   
   observed_dist <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% filter(itemName == i) %>% arrange(answerType) %>% .$responseCategory_proportion
-  print(observed_dist)
-  expected_dist <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% filter(itemName == 'bar-tea') %>% arrange(answerType) #%>% .$expected_prop
-  print(expected_dist)
-  print(sum(expected_dist$expected_prop) > 1)
+  expected_dist <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% filter(itemName == i) %>% arrange(answerType) #%>% .$expected_prop
   if (sum(expected_dist$expected_prop) > 1) {
-    print("overriding")
     expected_dist[expected_dist$answerType=='sameCategory', 'expected_prop'] <- 0.3 - 0.00001 * (length(observed_dist) - 2)
   }
   
   expected_dist <- expected_dist %>% .$expected_prop
-  print(expected_dist)
   
-  x <- rbind(expected_dist, observed_dist) 
+  x <- rbind(observed_dist, expected_dist) 
   kl <- KL(x)
-  kl_divs <- append(kl_divs, kl)
+  kl_divs <- append(kl_divs, as.numeric(kl))
 }
 ```
+
+```{r}
+kl_divs
+
+kl_df <- tibble('itemName' = itemNames, 'kl' = kl_divs) %>% arrange(desc(kl))
+kl_df
+```
+
 Checking if either measure derived from the prior elicitation correlates well with the Wasserstein results or the raw taciturn proportion:
 ```{r, echo=FALSE}
 wasserstein_dist_alpha <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% select(itemName, wasserstein_dist) %>% unique() %>% arrange(itemName) %>% pull(wasserstein_dist)
@@ -555,10 +552,11 @@ df_weakestItems_results <- tibble(
   otherCategoryDistance = df_clean_main_summary_unique_wide %>% arrange(competitor_vs_otherCategory) %>% pull(itemName) %>% .[1:10],
   changeBeliefsCompetitor = df_clean_main_summary_unique_wide %>% arrange(sameCat_changeBeliefs) %>% pull(itemName) %>% .[1:10],
   wassersteinDistance = d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% arrange(desc(wasserstein_dist)) %>% pull(itemName) %>% unique() %>% .[1:10],
+  KL = kl_df %>% pull(itemName) %>% .[1:10],
   human_selection = c("bar-tea", "bookingAgency−lowClassAccommodation", "books-fantasy", "clothing-beach", "disney-princess", "electronics-console", "furniture-indoors", "kidsActivities-crafts", "kidsActivities-sports", "movie-fantasy") # polina's eyeballing with respect to salience of competitor + level of taciturn responses
 ) %>% arrange(wassersteinDistance)
 
-df_weakestItems_results
+View(df_weakestItems_results)
 ```
 
 Option 5: explore influence of adding standard deviation on predicting wasserstein distance / taciturn response proportion
@@ -582,4 +580,16 @@ Note of more analysis options: KL divergence? Bootstrapping idea? also compute W
 ## Preprocessing for RSA model fitting
 ```{r}
 # TODO: z-scoring?
+df_clean_main_long_zScored <- df_clean_main_wItems_long %>% 
+  group_by(itemName, answerType) %>%
+  mutate(mean = mean(response),
+         sd = sd(response),
+         response_zscored = (response - mean) / sd,
+         response_zscored = ifelse(is.na(response_zscored), 0, response_zscored),
+         mean_zScored = mean(response_zscored)) 
+
+df_clean_main_long_zScored_unique <- df_clean_main_long_zScored %>% 
+  select(itemName, answerType, mean, mean_zScored) %>% unique()
+
+#df_clean_main_long_zScored_unique %>% write_csv("priorElicitation_byVignette_byCategory_means.csv")
 ```
