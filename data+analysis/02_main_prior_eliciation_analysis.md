@@ -193,23 +193,23 @@ df_weak_items %>% select(itemName, response_range) %>% unique()
     ## # Groups:   itemName [36]
     ##    itemName                             response_range
     ##    <chr>                                         <dbl>
-    ##  1 electronics-console                            8.18
-    ##  2 plants-green                                  17.4 
-    ##  3 plants-flowers                                17.6 
-    ##  4 furniture-indoors                             20.8 
-    ##  5 friendsActivities-videoEntertainment          21.6 
-    ##  6 movie-fantasy                                 23.7 
-    ##  7 waterSport-motor                              27.5 
-    ##  8 cafe-pizza                                    29.4 
-    ##  9 disney-princess                               29.9 
-    ## 10 dutyFree-sweets                               30.1 
+    ##  1 electronics-console                            8.37
+    ##  2 plants-green                                  17.7 
+    ##  3 plants-flowers                                17.9 
+    ##  4 friendsActivities-videoEntertainment          21.0 
+    ##  5 furniture-indoors                             21.3 
+    ##  6 movie-fantasy                                 24.1 
+    ##  7 waterSport-motor                              27.3 
+    ##  8 disney-princess                               29.8 
+    ##  9 dutyFree-sweets                               30.1 
+    ## 10 cafe-pizza                                    30.1 
     ## # … with 26 more rows
 
 ``` r
 cat("Top 10 weakes items (worst to best): ", df_weak_items %>% pull(itemName) %>% unique() %>% .[1:10])
 ```
 
-    ## Top 10 weakes items (worst to best):  electronics-console plants-green plants-flowers furniture-indoors friendsActivities-videoEntertainment movie-fantasy waterSport-motor cafe-pizza disney-princess dutyFree-sweets
+    ## Top 10 weakes items (worst to best):  electronics-console plants-green plants-flowers friendsActivities-videoEntertainment furniture-indoors movie-fantasy waterSport-motor disney-princess dutyFree-sweets cafe-pizza
 
 Below, several further computations try to extract in a principled way
 which items did not work well based on free production + slider rating
@@ -258,7 +258,7 @@ df_clean_main_summary_unique_wide <- df_clean_main_summary_unique %>%
           sameCat_changeBeliefs = competitor-50) # option 3 
 ```
 
-    ## worst items according to option 1:  bookingAgency-lowClassAccommodation petAdoption-dogs clothing-beach movie-fantasy kidsActivities-sports bookingAgency-highClassAccommodation clothing-winter books-fantasy bar-tea friendsActivities-videoEntertainment
+    ## worst items according to option 1:  bookingAgency-lowClassAccommodation petAdoption-dogs clothing-beach movie-fantasy kidsActivities-sports bookingAgency-highClassAccommodation books-fantasy clothing-winter bar-tea friendsActivities-videoEntertainment
 
     ## 
     ## worst items according to option 2a (difference to same category):  bookingAgency-lowClassAccommodation petAdoption-dogs clothing-beach bookingAgency-highClassAccommodation books-fantasy bar-tea gym-yoga electronics-console disney-princess clothing-winter
@@ -267,7 +267,7 @@ df_clean_main_summary_unique_wide <- df_clean_main_summary_unique %>%
     ## worst items according to option 2b (difference to other category):  electronics-console movie-fantasy plants-flowers cafe-pizza plants-green friendsActivities-videoEntertainment clothing-beach furniture-indoors petAdoption-dogs waterSport-motor
 
     ## 
-    ## worst items according to option 3 (change in beliefs for competitor):  petAdoption-dogs electronics-console friendsActivities-videoEntertainment furniture-indoors bookingAgency-lowClassAccommodation clothing-beach movie-fantasy bar-tea plants-green plants-flowers
+    ## worst items according to option 3 (change in beliefs for competitor):  petAdoption-dogs electronics-console friendsActivities-videoEntertainment furniture-indoors clothing-beach bookingAgency-lowClassAccommodation bar-tea movie-fantasy plants-green books-fantasy
 
 Option 4:
 
@@ -289,33 +289,33 @@ cat("items with the largest Wasserstein distance relative to expected free produ
 Checking if either measure derived from the prior elicitation correlates
 well with the Wasserstein results or the raw taciturn proportion:
 
-    ## correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and most salient alternative:  -0.2584272
+    ## correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and most salient alternative:  -0.2430015
 
     ## 
     ## 
-    ## correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and same category alternatives:  -0.3535944
+    ## correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and same category alternatives:  -0.355204
 
     ## 
     ## 
-    ## correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and other category alternatives:  -0.4761272
+    ## correlation of by-vignette free production Wasserstein distances and prior elicitation differences between competitor and other category alternatives:  -0.476675
 
     ## 
     ## 
-    ## correlation of by-vignette free production Wasserstein distances and prior elicitation changes in beliefs for competitor:  -0.2611487
+    ## correlation of by-vignette free production Wasserstein distances and prior elicitation changes in beliefs for competitor:  -0.2600998
 
-    ## correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and most salient alternative:  -0.4509832
-
-    ## 
-    ## 
-    ## correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and same category alternatives:  -0.4249176
+    ## correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and most salient alternative:  -0.4493714
 
     ## 
     ## 
-    ## correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and other category alternatives:  -0.4771875
+    ## correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and same category alternatives:  -0.4326804
 
     ## 
     ## 
-    ## correlation of by-vignette free production taciturn response proportions and prior elicitation changes in beliefs for competitor:  -0.4120726
+    ## correlation of by-vignette free production taciturn response proportions and prior elicitation differences between competitor and other category alternatives:  -0.4823134
+
+    ## 
+    ## 
+    ## correlation of by-vignette free production taciturn response proportions and prior elicitation changes in beliefs for competitor:  -0.4148041
 
 Alternatively, fitting linear models:
 
@@ -327,18 +327,18 @@ Alternatively, fitting linear models:
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -0.67649 -0.34013  0.03944  0.33365  0.62351 
+    ## -0.68048 -0.34412  0.03891  0.33024  0.61952 
     ## 
     ## Coefficients:
     ##                                    Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)                         0.87649    0.07242   12.10 7.11e-14 ***
-    ## competitor_vs_maxAlternative_alpha -0.01977    0.01268   -1.56    0.128    
+    ## (Intercept)                         0.88048    0.07248  12.148  6.4e-14 ***
+    ## competitor_vs_maxAlternative_alpha -0.01813    0.01241  -1.461    0.153    
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.3815 on 34 degrees of freedom
-    ## Multiple R-squared:  0.06678,    Adjusted R-squared:  0.03934 
-    ## F-statistic: 2.433 on 1 and 34 DF,  p-value: 0.1281
+    ## Residual standard error: 0.3831 on 34 degrees of freedom
+    ## Multiple R-squared:  0.05905,    Adjusted R-squared:  0.03137 
+    ## F-statistic: 2.134 on 1 and 34 DF,  p-value: 0.1533
 
     ## 
     ## 
@@ -350,18 +350,18 @@ Alternatively, fitting linear models:
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -0.64330 -0.32990  0.00757  0.25746  0.72886 
+    ## -0.64043 -0.33013  0.00707  0.25608  0.72957 
     ## 
     ## Coefficients:
     ##                                   Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)                       1.043437   0.080068  13.032 8.87e-15 ***
-    ## competitor_vs_sameCategory_alpha -0.009313   0.004225  -2.204   0.0344 *  
+    ## (Intercept)                       1.042063   0.079474  13.112 7.45e-15 ***
+    ## competitor_vs_sameCategory_alpha -0.009250   0.004175  -2.216   0.0335 *  
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.3694 on 34 degrees of freedom
-    ## Multiple R-squared:  0.125,  Adjusted R-squared:  0.09929 
-    ## F-statistic: 4.858 on 1 and 34 DF,  p-value: 0.03438
+    ## Residual standard error: 0.3691 on 34 degrees of freedom
+    ## Multiple R-squared:  0.1262, Adjusted R-squared:  0.1005 
+    ## F-statistic: 4.909 on 1 and 34 DF,  p-value: 0.03351
 
     ## 
     ## 
@@ -372,19 +372,19 @@ Alternatively, fitting linear models:
     ## lm(formula = wasserstein_dist_alpha ~ competitor_vs_otherCategory_alpha)
     ## 
     ## Residuals:
-    ##      Min       1Q   Median       3Q      Max 
-    ## -0.82385 -0.22867  0.01993  0.31552  0.60475 
+    ##     Min      1Q  Median      3Q     Max 
+    ## -0.8252 -0.2280  0.0207  0.3142  0.6055 
     ## 
     ## Coefficients:
-    ##                                   Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)                        1.39772    0.15888   8.798 2.79e-10 ***
-    ## competitor_vs_otherCategory_alpha -0.01414    0.00448  -3.157  0.00333 ** 
+    ##                                    Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)                        1.402205   0.159987   8.765 3.05e-10 ***
+    ## competitor_vs_otherCategory_alpha -0.014295   0.004521  -3.162  0.00329 ** 
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.3473 on 34 degrees of freedom
-    ## Multiple R-squared:  0.2267, Adjusted R-squared:  0.204 
-    ## F-statistic: 9.967 on 1 and 34 DF,  p-value: 0.003332
+    ## Residual standard error: 0.3471 on 34 degrees of freedom
+    ## Multiple R-squared:  0.2272, Adjusted R-squared:  0.2045 
+    ## F-statistic: 9.997 on 1 and 34 DF,  p-value: 0.003291
 
     ## 
     ## 
@@ -396,18 +396,18 @@ Alternatively, fitting linear models:
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -0.66413 -0.33091  0.09952  0.26889  0.67463 
+    ## -0.66093 -0.33080  0.09659  0.26873  0.67890 
     ## 
     ## Coefficients:
     ##                                    Estimate Std. Error t value Pr(>|t|)   
-    ## (Intercept)                        0.608690   0.213724   2.848  0.00741 **
-    ## competitor_vs_beliefsChange_alpha -0.009225   0.005848  -1.577  0.12394   
+    ## (Intercept)                        0.608484   0.214698   2.834  0.00768 **
+    ## competitor_vs_beliefsChange_alpha -0.009230   0.005877  -1.571  0.12552   
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.3812 on 34 degrees of freedom
-    ## Multiple R-squared:  0.0682, Adjusted R-squared:  0.04079 
-    ## F-statistic: 2.488 on 1 and 34 DF,  p-value: 0.1239
+    ## Residual standard error: 0.3813 on 34 degrees of freedom
+    ## Multiple R-squared:  0.06765,    Adjusted R-squared:  0.04023 
+    ## F-statistic: 2.467 on 1 and 34 DF,  p-value: 0.1255
 
     ## predicting by-vignette free production taciturn response proportions as a function of prior elicitation differences between competitor and most salient alternative:
 
@@ -416,19 +416,19 @@ Alternatively, fitting linear models:
     ## lm(formula = taciturn_props ~ competitor_vs_maxAlternative_alpha)
     ## 
     ## Residuals:
-    ##      Min       1Q   Median       3Q      Max 
-    ## -0.22000 -0.07192 -0.01130  0.06491  0.23000 
+    ##       Min        1Q    Median        3Q       Max 
+    ## -0.220578 -0.072501 -0.009519  0.064940  0.229599 
     ## 
     ## Coefficients:
     ##                                     Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)                         0.269996   0.022472  12.015  8.7e-14 ***
-    ## competitor_vs_maxAlternative_alpha -0.011589   0.003933  -2.946  0.00577 ** 
+    ## (Intercept)                         0.270578   0.022416  12.071 7.65e-14 ***
+    ## competitor_vs_maxAlternative_alpha -0.011261   0.003839  -2.933  0.00597 ** 
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.1184 on 34 degrees of freedom
-    ## Multiple R-squared:  0.2034, Adjusted R-squared:   0.18 
-    ## F-statistic: 8.681 on 1 and 34 DF,  p-value: 0.005771
+    ## Residual standard error: 0.1185 on 34 degrees of freedom
+    ## Multiple R-squared:  0.2019, Adjusted R-squared:  0.1785 
+    ## F-statistic: 8.603 on 1 and 34 DF,  p-value: 0.00597
 
     ## 
     ## 
@@ -440,18 +440,18 @@ Alternatively, fitting linear models:
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -0.21736 -0.07744 -0.01246  0.06911  0.32039 
+    ## -0.21633 -0.07681 -0.01194  0.06868  0.32064 
     ## 
     ## Coefficients:
     ##                                   Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)                       0.347241   0.026022  13.344 4.51e-15 ***
-    ## competitor_vs_sameCategory_alpha -0.003758   0.001373  -2.737  0.00979 ** 
+    ## (Intercept)                       0.347301   0.025740  13.492 3.28e-15 ***
+    ## competitor_vs_sameCategory_alpha -0.003784   0.001352  -2.798   0.0084 ** 
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.12 on 34 degrees of freedom
-    ## Multiple R-squared:  0.1806, Adjusted R-squared:  0.1565 
-    ## F-statistic: 7.491 on 1 and 34 DF,  p-value: 0.009787
+    ## Residual standard error: 0.1196 on 34 degrees of freedom
+    ## Multiple R-squared:  0.1872, Adjusted R-squared:  0.1633 
+    ## F-statistic: 7.831 on 1 and 34 DF,  p-value: 0.008398
 
     ## 
     ## 
@@ -463,18 +463,18 @@ Alternatively, fitting linear models:
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -0.25868 -0.07994  0.02242  0.07140  0.20851 
+    ## -0.25824 -0.08139  0.02115  0.07234  0.20730 
     ## 
     ## Coefficients:
     ##                                    Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)                        0.458923   0.053320   8.607 4.69e-10 ***
-    ## competitor_vs_otherCategory_alpha -0.004760   0.001503  -3.166  0.00325 ** 
+    ## (Intercept)                        0.461954   0.053540   8.628 4.42e-10 ***
+    ## competitor_vs_otherCategory_alpha -0.004857   0.001513  -3.210  0.00289 ** 
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.1165 on 34 degrees of freedom
-    ## Multiple R-squared:  0.2277, Adjusted R-squared:  0.205 
-    ## F-statistic: 10.02 on 1 and 34 DF,  p-value: 0.003253
+    ## Residual standard error: 0.1162 on 34 degrees of freedom
+    ## Multiple R-squared:  0.2326, Adjusted R-squared:  0.2101 
+    ## F-statistic: 10.31 on 1 and 34 DF,  p-value: 0.002892
 
     ## 
     ## 
@@ -486,18 +486,18 @@ Alternatively, fitting linear models:
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -0.21648 -0.08989  0.01011  0.06460  0.29074 
+    ## -0.21439 -0.09174  0.01020  0.06075  0.29268 
     ## 
     ## Coefficients:
     ##                                    Estimate Std. Error t value Pr(>|t|)  
-    ## (Intercept)                        0.131121   0.067748   1.935   0.0613 .
-    ## competitor_vs_beliefsChange_alpha -0.004888   0.001854  -2.637   0.0125 *
+    ## (Intercept)                        0.129187   0.067944   1.901   0.0658 .
+    ## competitor_vs_beliefsChange_alpha -0.004943   0.001860  -2.658   0.0119 *
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.1208 on 34 degrees of freedom
-    ## Multiple R-squared:  0.1698, Adjusted R-squared:  0.1454 
-    ## F-statistic: 6.954 on 1 and 34 DF,  p-value: 0.01252
+    ## Residual standard error: 0.1207 on 34 degrees of freedom
+    ## Multiple R-squared:  0.1721, Adjusted R-squared:  0.1477 
+    ## F-statistic: 7.066 on 1 and 34 DF,  p-value: 0.01189
 
 Combine all these results to see if the selected vignettes overlap.
 Additionally, manually extracted (by Polina) weak items are added.
@@ -505,16 +505,16 @@ Additionally, manually extracted (by Polina) weak items are added.
     ## # A tibble: 10 x 6
     ##    saliencyDistance sameCategoryDis… otherCategoryDi… changeBeliefsCo…
     ##    <chr>            <chr>            <chr>            <chr>           
-    ##  1 friendsActiviti… clothing-winter  waterSport-motor plants-flowers  
-    ##  2 bookingAgency-h… bar-tea          friendsActiviti… clothing-beach  
+    ##  1 friendsActiviti… clothing-winter  waterSport-motor books-fantasy   
+    ##  2 bookingAgency-h… bar-tea          friendsActiviti… bookingAgency-l…
     ##  3 bar-tea          disney-princess  petAdoption-dogs plants-green    
     ##  4 petAdoption-dogs petAdoption-dogs movie-fantasy    electronics-con…
-    ##  5 books-fantasy    electronics-con… furniture-indoo… bar-tea         
+    ##  5 clothing-winter  electronics-con… furniture-indoo… movie-fantasy   
     ##  6 movie-fantasy    bookingAgency-h… cafe-pizza       furniture-indoo…
-    ##  7 kidsActivities-… books-fantasy    plants-green     bookingAgency-l…
+    ##  7 kidsActivities-… books-fantasy    plants-green     clothing-beach  
     ##  8 bookingAgency-l… bookingAgency-l… electronics-con… petAdoption-dogs
     ##  9 clothing-beach   clothing-beach   plants-flowers   friendsActiviti…
-    ## 10 clothing-winter  gym-yoga         clothing-beach   movie-fantasy   
+    ## 10 books-fantasy    gym-yoga         clothing-beach   bar-tea         
     ## # … with 2 more variables: wassersteinDistance <chr>, human_selection <chr>
 
 Option 5: explore influence of adding standard deviation on predicting

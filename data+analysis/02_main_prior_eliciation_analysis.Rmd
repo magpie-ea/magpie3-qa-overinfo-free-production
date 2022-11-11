@@ -342,7 +342,7 @@ df_clean_main_wItems_long2_scaled <- df_clean_main_wItems_long2 %>%
          ),
          answerType = factor(answerType, levels = c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn')))
 
-p4 <- d_clean_main_collapsedCompetitor_summary_100 %>% 
+d_clean_main_collapsedCompetitor_summary_100 %>% 
   mutate(answerType = factor(answerType, levels=c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn'))) %>%
   ggplot(aes(x = answerType, 
              fill = answerType, 
@@ -359,8 +359,6 @@ p4 <- d_clean_main_collapsedCompetitor_summary_100 %>%
   ylab("Proportion of answer types") +
   ylim(0, 1) +
   xlab("Answer type free production and prior ratings")
-
-p4
 #ggsave("viz/freeProduction_100_and_priorElicitation_80.pdf", p4, width=10, height=35)
 ```
 
@@ -383,7 +381,7 @@ df_clean_main_wItems_woExclusion_long2_scaled <- df_clean_main_wItems_woExclusio
          ),
          answerType = factor(answerType, levels = c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn')))
 
-p5 <- d_clean_main_collapsedCompetitor_summary_100 %>% 
+d_clean_main_collapsedCompetitor_summary_100 %>% 
   mutate(answerType = factor(answerType, levels=c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn'))) %>%
   ggplot(aes(x = answerType, 
              fill = answerType, 
@@ -400,8 +398,6 @@ p5 <- d_clean_main_collapsedCompetitor_summary_100 %>%
   ylab("Proportion of answer types") +
   ylim(0, 1) +
   xlab("Answer type free production and prior ratings")
-
-p5
 
 ```
 
@@ -464,14 +460,45 @@ d_clean_main_collapsedCompetitor_summary_100_wBaseline <- d_clean_main_collapsed
   mutate(expected_prop = case_when(
     answerType == "competitor" ~ 0.7,
     answerType == "sameCategory" ~ 0.3,
-    TRUE ~ 0
+    TRUE ~ 0.00001
   ))
+library(philentropy)
 d_clean_main_collapsedCompetitor_summary_100_wBaseline <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% group_by(itemName) %>%
-  mutate(wasserstein_dist = sum(abs(responseCategory_proportion - expected_prop)))
+  mutate(wasserstein_dist = sum(abs(responseCategory_proportion - expected_prop)),
+         kl_div = KL(expected_prop, responseCategory_proportion))
+
+x <- rbind(d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% filter(itemName == 'bar-tea') %>% arrange(answerType) %>% .$expected_prop, d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% filter(itemName == 'bar-tea') %>% arrange(answerType) %>% .$responseCategory_proportion )
+
+KL(x) 
 
 cat("items with the largest Wasserstein distance relative to expected free production distribution:  ", d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% arrange(desc(wasserstein_dist)) %>% pull(itemName) %>% unique() %>% .[1:10])
 ```
+As an alternative which might be more appropriate for a discrete distribution, compute KL divergence between observed and expected distribution.
+```{r}
+itemNames <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% arrange(itemName) %>% pull(itemName) %>% unique()
 
+kl_divs <- c()
+
+for (i in itemNames) {
+  
+  observed_dist <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% filter(itemName == i) %>% arrange(answerType) %>% .$responseCategory_proportion
+  print(observed_dist)
+  expected_dist <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% filter(itemName == 'bar-tea') %>% arrange(answerType) #%>% .$expected_prop
+  print(expected_dist)
+  print(sum(expected_dist$expected_prop) > 1)
+  if (sum(expected_dist$expected_prop) > 1) {
+    print("overriding")
+    expected_dist[expected_dist$answerType=='sameCategory', 'expected_prop'] <- 0.3 - 0.00001 * (length(observed_dist) - 2)
+  }
+  
+  expected_dist <- expected_dist %>% .$expected_prop
+  print(expected_dist)
+  
+  x <- rbind(expected_dist, observed_dist) 
+  kl <- KL(x)
+  kl_divs <- append(kl_divs, kl)
+}
+```
 Checking if either measure derived from the prior elicitation correlates well with the Wasserstein results or the raw taciturn proportion:
 ```{r, echo=FALSE}
 wasserstein_dist_alpha <- d_clean_main_collapsedCompetitor_summary_100_wBaseline %>% select(itemName, wasserstein_dist) %>% unique() %>% arrange(itemName) %>% pull(wasserstein_dist)

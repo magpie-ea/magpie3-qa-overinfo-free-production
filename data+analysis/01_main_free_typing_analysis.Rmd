@@ -129,7 +129,7 @@ d_clean_main_collapsedCompetitor_summary <- d_clean_main_collapsedCompetitor %>%
          ) %>%
   select(itemName, answerType, responseCategory_proportion) %>% unique()
 
-d_clean_main_collapsedCompetitor_summary %>% write_csv(., "d_clean_main_collapsedCompetitor_summary_100.csv")
+# d_clean_main_collapsedCompetitor_summary %>% write_csv(., "d_clean_main_collapsedCompetitor_summary_100.csv")
 
 d_clean_main_collapsedCompetitor_summary %>% 
   ggplot(aes(x = answerType, fill = answerType, y = responseCategory_proportion)) +
@@ -142,7 +142,7 @@ d_clean_main_collapsedCompetitor_summary %>%
   xlab("answer type")
   
 
-ggsave("viz/free_production_byAnswerOption_acrossCompetitor_100.pdf", width = 12, height = 28)
+# ggsave("viz/free_production_byAnswerOption_acrossCompetitor_100.pdf", width = 12, height = 28)
 ```
 
 The second plot explores whether there is a qualitative difference when adding the exploratory "competitor/other" category -- this does not seem to be the case. 
@@ -159,7 +159,7 @@ df_clean_main_summary  %>%
   ylab("Proportion of answer type") +
   xlab("answer type")
 
-ggsave("viz/free_production_byAnswerOption_100.pdf", width = 12, height = 28)
+#ggsave("viz/free_production_byAnswerOption_100.pdf", width = 12, height = 28)
 ```
 
 The plot below shows response proportions by response category averaged across vignettes. Again, including one competitor category vs two exploratory categories is compared.
@@ -191,7 +191,7 @@ df_answerOptions_acrossCompetitor_global_summary %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ylab("Global proportion of answer type") +
   xlab("answer type")
-ggsave("viz/free_production_global_answerTypes_acrossCompetitor_100.pdf", width = 8, height = 6)
+#ggsave("viz/free_production_global_answerTypes_acrossCompetitor_100.pdf", width = 8, height = 6)
 
 df_answerOptions_global_summary %>%
   ggplot(aes(x = answerType, fill = answerType, y = answerType_proportion)) +
@@ -199,7 +199,7 @@ df_answerOptions_global_summary %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ylab("Global proportion of answer type") +
   xlab("answer type")
-ggsave("viz/free_production_global_answerTypes_100.pdf", width = 8, height = 6)
+#ggsave("viz/free_production_global_answerTypes_100.pdf", width = 8, height = 6)
 
 ```
 
@@ -249,7 +249,8 @@ df_clean_main <- df_clean_main %>% rowwise() %>% mutate(
 ## it seems that participants 307 and 347 only provded bad responses ('no')
 
 df_clean_main %>% filter(!(submission_id %in% c(307, 347))) %>% 
-  mutate(answerType = factor(answerType, levels = c('competitor', 'competitor/other', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn'))) %>%
+  mutate(answerType = ifelse(category == "competitor/other", "competitor", category),
+         answerType = factor(answerType, levels = c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn'))) %>%
   group_by(answerType) %>% 
   summarise(answerType_count = n(), 
             answerType_proportion = answerType_count / nrow(df_clean_main)
@@ -259,4 +260,60 @@ df_clean_main %>% filter(!(submission_id %in% c(307, 347))) %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ylab("Global proportion of answer type") +
   xlab("answer type")
+```
+
+## Follow-up analyses
+
+Below, analyses suggested during the meeting on Nov 10th are incorporated. 
+First, the length (in terms of characters) of the anticipated competitor as well as averaged together with the same category alternatives is extracred. We check whether participants tended to produce more taciturn responses when the alternatives were longer.
+```{r, echo=FALSE}
+df_vignettes <- read_csv("..//trials/trials_split.csv") %>% 
+  select(itemName, itemQuestion, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2)
+df_vignettes <- df_vignettes %>% 
+  rowwise() %>%
+  mutate(
+  comp_length = nchar(competitor),
+  sameCat_avg_length = (nchar(competitor) + nchar(sameCategory1) + nchar(sameCategory2) )/ 3
+)  %>% select(itemName, comp_length, sameCat_avg_length)
+
+# add to original df
+d_clean_main_wVignette <- df_clean_main %>%
+  left_join(., df_vignettes, by=c('itemName'))
+
+d_clean_main_collapsedCompetitor_summary_wVignette <- d_clean_main_collapsedCompetitor_summary %>%
+  left_join(., df_vignettes, by=c('itemName'))
+
+lm_nchar_comp_prop <- lm(responseCategory_proportion ~ comp_length, data = d_clean_main_collapsedCompetitor_summary_wVignette %>% filter(answerType == "taciturn"))
+summary(lm_nchar_comp_prop)
+
+lm_nchar_sameCat_prop <- lm(responseCategory_proportion ~ sameCat_avg_length, data = d_clean_main_collapsedCompetitor_summary_wVignette %>% filter(answerType == "taciturn"))
+summary(lm_nchar_sameCat_prop)
+```
+
+Further, order effects of the trials are investigated. We check if participants become lazy over the trials and are therefore more likely to produce taciturn responses towards the end of the experiment. This seems not to be the case. If anything, participants tended to produce slightly more taciturn responses in the beginning of the experiment.
+
+```{r, fig.width = 6, fig.height = 8}
+# collapse across items and participants, look at trial number
+df_trialNum <- df_clean_main %>% 
+  mutate(answerType = ifelse(category == "competitor/other", "competitor", category),
+         answerType = factor(answerType, levels = c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn'))) %>%
+  group_by(submission_id) %>%
+  mutate(trialNr_main = (1:n())) %>%
+  ungroup() %>%
+  group_by(answerType, trialNr_main) %>% 
+  summarise(answerType_count = n(), 
+            answerType_proportion = answerType_count / nrow(df_clean_main)
+            ) 
+df_trialNum %>%
+  ggplot(aes(x = trialNr_main, fill = answerType, y = answerType_proportion)) +
+  geom_col() +
+  facet_wrap(answerType ~ ., ncol = 2) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Global proportion of answer type") +
+  xlab("Trial number")
+```
+
+```{r}
+lm_orderEffect <- lm(answerType_proportion ~ trialNr_main, data = df_trialNum %>% filter(answerType == "taciturn"))
+summary(lm_orderEffect)
 ```
