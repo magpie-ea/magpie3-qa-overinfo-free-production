@@ -15,6 +15,7 @@ library(tidyboot)
 library(aida)
 library(forcats)
 library("gridExtra")
+library(philentropy)
 ```
 
 ```{r, include=FALSE}
@@ -359,6 +360,22 @@ d_clean_main_collapsedCompetitor_summary_100 %>%
   ylim(0, 1) +
   xlab("Answer type free production and prior ratings")
 #ggsave("viz/freeProduction_100_and_priorElicitation_80.pdf", p4, width=10, height=35)
+```
+Fit a linear model as a baseline, predicting the response type proportion from the respective prior rating:
+
+```{r}
+df_long_scaled4lm <- df_clean_main_wItems_long2_scaled %>% 
+  select(itemName, answerType, mean_response) %>%
+  unique() %>% 
+  pivot_wider(names_from = "answerType", values_from = "mean_response", values_fn = mean) %>%
+  pivot_longer(cols = -itemName, names_to = "answerType", values_to = "mean_rating")
+
+df_prior_freeProd <- d_clean_main_collapsedCompetitor_summary_100 %>% 
+  left_join(., df_long_scaled4lm, by=c('itemName', 'answerType')) %>%
+  filter(answerType %in% c("competitor", "sameCategory", "otherCategory"))
+
+lm_freeProd_prior <- lme4::lmer(responseCategory_proportion ~ mean_rating + (1 | itemName), data = df_prior_freeProd)
+summary(lm_freeProd_prior)
 ```
 
 ## Exploratory analysis without participant exclusions
