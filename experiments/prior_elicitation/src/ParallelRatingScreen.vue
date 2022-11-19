@@ -15,62 +15,41 @@
       
       <span v-html="createContext(trial)">
       </span>
-      <p>How much does that change your beliefs about whether they would also...</p>
+      <p>How happy do you think they would be if...</p>
       <br />
 
       <span v-html="createAnswerOption(trial, itemOrder[0])"></span>
       <SliderInput
-        left="makes it much less likely"
-        right="makes it much more likely"
+        left="much less happy"
+        right="much happier"
         initial="50"
         :response.sync=$magpie.measurements[itemOrder[0]]
       />
-      <p style="color:grey; margin-top: -25px;">no change at all</p>
+      <p style="color:grey; margin-top: -25px;">equally happy</p>
 
       <span v-html="createAnswerOption(trial, itemOrder[1])"></span>
       <SliderInput
-        left="makes it much less likely"
-        right="makes it much more likely"
+        left="much less happy"
+        right="much happier"
         initial="50"
         :response.sync=$magpie.measurements[itemOrder[1]]
       />
-      <p style="color:grey; margin-top: -25px;">no change at all</p>
+      <p style="color:grey; margin-top: -25px;">equally happy</p>
 
       <span v-html="createAnswerOption(trial, itemOrder[2])"></span>
       <SliderInput
-        left="makes it much less likely"
-        right="makes it much more likely"
+        left="much less happy"
+        right="much happier"
         initial="50"
         :response.sync=$magpie.measurements[itemOrder[2]]
       />
-      <p style="color:grey; margin-top: -25px;">no change at all</p>
-
-      <span v-html="createAnswerOption(trial, itemOrder[3])"></span>
-      <SliderInput
-        left="makes it much less likely"
-        right="makes it much more likely"
-        initial="50"
-        :response.sync=$magpie.measurements[itemOrder[3]]
-      />
-      <p style="color:grey; margin-top: -25px;">no change at all</p>
-
-      <span v-html="createAnswerOption(trial, itemOrder[4])"></span>
-      <SliderInput
-        left="makes it much less likely"
-        right="makes it much more likely"
-        initial="50"
-        :response.sync=$magpie.measurements[itemOrder[4]]
-      />
-      <p style="color:grey; margin-top: -25px;">no change at all</p>
-
+      <p style="color:grey; margin-top: -25px;">equally happy</p>
       
       <button
         v-if="checkResponses(
             $magpie.measurements[itemOrder[0]],
             $magpie.measurements[itemOrder[1]],
             $magpie.measurements[itemOrder[2]],
-            $magpie.measurements[itemOrder[3]],
-            $magpie.measurements[itemOrder[4]]
         )"
         @click="$magpie.saveAndNextScreen()"
       >
@@ -100,7 +79,7 @@ function createContext(trial) {
 function createAnswerOption(trial, option) {  
       var alternative = trial[option];
       
-      var slide_text = ["<br/>", trial["priorElicitation_question"], " <b>", alternative, "</b>?"].join("");
+      var slide_text = ["<br/>","...instead they ", trial["priorElicitation_question"], " <b>", alternative, "</b>?"].join("");
       return slide_text
 }
 export default {
@@ -131,8 +110,8 @@ export default {
         },
   },
   methods: {
-    checkResponses: function (a, b, c, d, e) {
-      return !(isNaN(a) | isNaN(b) | isNaN(c) | isNaN(d) | isNaN(e));
+    checkResponses: function (a, b, c) {
+      return !(isNaN(a) | isNaN(b) | isNaN(c));
     },
     createAnswerOption,
     createContext

@@ -2,22 +2,22 @@
   <Experiment title="question-answering-experiment">
 
     <InstructionScreen :title="'Welcome'">
-      Thanks for taking part in our experiment! It will take approximately 7-8 minutes.
+      Thanks for taking part in our experiment! It will take approximately 4-5 minutes.
       <br />
       <br />
       In this study we are interested in how you think about other people.
-      On each trial, you will be given some information about a person: 'Suppose you learn someone likes Italian food.'
+      On each trial, you will be given some information about a person: 'Suppose someone wants to have Italian food.'
       <br />
-      Then we'll ask whether this information changes your opinion about several other things. For instance, we might ask: 'How much does that change your beliefs about whether they like spaghetti?'
+      Then we'll ask how happy you think this person would be about other things, given this information. For instance, we might ask: 'How happy do you think they would be if instead they had French food?'
       You'll use sliders to answer the questions. 
       <br />
       <br />
-      Notice that there will also be simple attention checking trials. 
+      Notice that there will also be simple <b>attention checking trials</b>. 
       You will recognize them immediately when you read the important text on each trial carefully -- those trials contain instructions for you to move the sliders in a certain way. 
       Please follow these instructions on the respective trial. 
       <br />
       <br />
-      In some cases, you'll think the described events are now much less likely, given the information you learned about the person. In other cases you'll think the events are much more likely. Sometimes the information about the person won't tell you anything, in which case you should move the slider to the midpoint. <br />
+      In some cases, you'll think the person would be much less happy, given the information you learned about the person. In other cases you'll think they'll be much happier. Sometimes the information about the person won't tell you anything, in which case you should move the slider to the midpoint. <br />
       Please try to respond naturally and reasonably, do not overthink your ratings. <br />
     </InstructionScreen>
 
@@ -30,7 +30,7 @@
             :index=i 
             :trial_type="'main'" 
             :progress="i / trials.length" 
-            :itemOrder="_.shuffle(['competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2'])" 
+            :itemOrder="_.shuffle(['competitor', _.sample(['sameCategory1', 'sameCategory2']), _.sample(['otherCategory1', 'otherCategory2'])])" 
          />      
        
       </template>
@@ -41,37 +41,37 @@
             :index=i 
             :trial_type="'filler'" 
             :progress="i / trials.length" 
-            :itemOrder="_.shuffle(['competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2'])"
+            :itemOrder="_.shuffle(['competitor', _.sample(['sameCategory1', 'sameCategory2']), _.sample(['otherCategory1', 'otherCategory2'])])" 
         />   
       </template>
     </template>
 
     <PostTestScreen />
 
-    <SubmitResultsScreen />
+    <DebugResultsScreen />
 
   </Experiment>
 </template>
 
 <script>
 import _ from 'lodash';
-import trialsAll from '../trials/trials_split.csv';
-import fillersAll from '../trials/fillers_split.csv';
+import trialsAll from '../trials/trials_split_priorElicitation_pilot2.csv';
+import fillersAll from '../trials/fillers_split_priorElicitation_pilot2.csv';
 import ParallelRatingScreen from './ParallelRatingScreen';
 
 var group = _.sample(['odd', 'even']);
 
-const n_vignettes = 8;
-const n_fillers = 3;
+const n_vignettes = 4;
+const n_fillers = 1;
 
 const trials =
-  group == 'odd'
-    ? trialsAll.filter((element, index) => {
-        return index % 2 === 0;
-      })
-    : trialsAll.filter((element, index) => {
-        return index % 2 != 0;
+  // group == 'odd'
+     trialsAll.filter((element, index) => {
+        return _.includes(["plants-green", "cafe-pie", "petAdoption-hamster", "furniture-outdoors"], element["itemName"]);
       });
+  // : trialsAll.filter((element, index) => {
+  //      return index % 2 != 0;
+  //    });
 const fillers =
   group == 'odd'
     ? fillersAll.filter((element, index) => {
