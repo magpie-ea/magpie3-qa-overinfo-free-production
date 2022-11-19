@@ -67,7 +67,7 @@ const n_fillers = 1;
 const trials =
   // group == 'odd'
      trialsAll.filter((element, index) => {
-        return _.includes(["plants-green", "cafe-pie", "petAdoption-hamster", "furniture-outdoors"], element["itemName"]);
+        return _.includes(["plants-green", "cafe-pie", "electronics-laptop", "furniture-outdoors"], element["itemName"]);
       });
   // : trialsAll.filter((element, index) => {
   //      return index % 2 != 0;
