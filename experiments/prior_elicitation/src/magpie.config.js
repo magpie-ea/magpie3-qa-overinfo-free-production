@@ -6,6 +6,6 @@ export default {
   completionUrl: 'https://app.prolific.co/submissions/complete?cc=C15HJWQ2',
   contactEmail: 'polina.tsvilodub@gmail.com',
   // Either 'debug', 'directLink' or 'prolific'
-  mode: 'directLink',
+  mode: 'prolific',
   language: 'en'
 };
