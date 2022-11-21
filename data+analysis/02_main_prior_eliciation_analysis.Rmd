@@ -233,6 +233,7 @@ df_clean_main_summary_unique  %>%
   xlab("Alternative type")
 
 #ggsave("viz/priorElicitation_byAnswerOption_80_wErrorBars.pdf", width = 12, height = 28)
+# df_clean_main_long %>% write_csv("results_QA-overinfo-priorElicitation-magpie-80_anonymized_clean_long.csv")
 ```
 
 The global plot below shows by-category ratings averaging over vignettes. The error bars represent 95% bootstrapped credible intervals.
