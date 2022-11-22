@@ -16,7 +16,8 @@ the background and question formulations were updated to e.g. “Suppose
 someone wants to have raspberry pie” - “How happy do you think they
 would be if instead they got X?”. This framing might better tap into the
 similarity of the alternatives. Only the words “to have” in the context
-might vary across vignettes.
+might vary across vignettes. Participants responded on a slider ranging
+from “much less happy” to “much happier”, centered at “equally happy”.
 
 Furthermore, each participant only saw three sliders: competitor, a
 randomly sampled same-category option and a randomly sampled
@@ -72,6 +73,7 @@ ratings arounfd 50 and other ratings to be rather below 50.
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
     ## `summarise()` has grouped output by 'itemName', 'answerType'. You can override using the `.groups` argument.
+    ## `summarise()` has grouped output by 'itemName'. You can override using the `.groups` argument.
 
 ![](03_pilot2_prior_elicitation_analysis_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 

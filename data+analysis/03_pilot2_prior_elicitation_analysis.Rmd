@@ -42,7 +42,7 @@ scale_fill_discrete <- function(...) {
 
 This pilot follows up on the results from the [first prior elicitation pilot](https://github.com/magpie-ea/magpie3-qa-overinfo-free-production/blob/main/data%2Banalysis/02_main_prior_eliciation_analysis.md) (N=80).
 
-The goal of the follow up is to improve the interpretability of the signal we are eliciting for using the ratings as parameters of the RSA model. More specifically, the context of the vignettes was removed and the background and question formulations were updated to e.g. "Suppose someone wants to have raspberry pie" - "How happy do you think they would be if instead they got X?". This framing might better tap into the similarity of the alternatives. Only the words "to have" in the context might vary across vignettes.
+The goal of the follow up is to improve the interpretability of the signal we are eliciting for using the ratings as parameters of the RSA model. More specifically, the context of the vignettes was removed and the background and question formulations were updated to e.g. "Suppose someone wants to have raspberry pie" - "How happy do you think they would be if instead they got X?". This framing might better tap into the similarity of the alternatives. Only the words "to have" in the context might vary across vignettes. Participants responded on a slider ranging from "much less happy" to "much happier", centered at "equally happy".
 
 Furthermore, each participant only saw three sliders: competitor, a randomly sampled same-category option and a randomly sampled other-category option. 
 
@@ -137,23 +137,22 @@ Plot the raw ratings and by-vignette by-answerType means. Error bars are bootstr
 ```{r, fig.height = 7, fig.width=8, echo=FALSE, warning=FALSE, message=FALSE}
 df_clean_main_long_summary <- df_clean_main_long %>%
   group_by(answerType, itemName) %>%
-  tidyboot_mean(column = centered_response)
+  tidyboot_mean(column = response)
   #summarize(mean = mean(centered_response))
 
 df_clean_main_long %>% 
   mutate(answerType = factor(answerType, 
                              levels = c("competitor", "sameCategory", "otherCategory"))) %>%
-  ggplot(., aes(x = answerType, y = centered_response, color = answerType)) +
+  ggplot(., aes(x = answerType, y = response, color = answerType)) +
   geom_jitter(alpha = 0.7, width = 0.2) +
   geom_point(data = df_clean_main_long_summary, aes(x = answerType, y = mean), size = 3) +
   geom_errorbar(data = df_clean_main_long_summary,  aes(x = answerType, y = mean, ymin=ci_lower, ymax=ci_upper), width = 0.2) +
-  geom_hline(yintercept = 0, linetype="dashed") +
   facet_wrap(itemName ~ ., ncol = 2) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
   theme(panel.spacing = unit(2, "lines")) +
   ylab("Raw ratings") +
-  ylim(-50, 50) +
+  ylim(0, 100) +
   xlab("Alternative type")
 ```
 
@@ -186,7 +185,8 @@ df_pilot1_summary <- df_pilot1 %>%
   summarize(mean = mean(centered_response))
 
 # plot against each other
-df_clean_main_long_summary <- df_clean_main_long_summary %>% mutate(expt = "pilot 2")
+df_clean_main_long_summary <- df_clean_main_long %>% group_by(itemName, answerType) %>%
+  summarize(mean = mean(centered_response)) %>% unique() %>% mutate(expt = "pilot 2") 
 df_clean_main_long <- df_clean_main_long %>% mutate(expt = "pilot 2")
 
 df_bothPilots <- rbind(df_clean_main_long, df_pilot1)
@@ -199,8 +199,8 @@ df_bothPilots %>%
   ggplot(., aes(x = answerType, y = centered_response, color = expt, fill = expt)) +
   geom_point(alpha = 0.7, position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.2)) +
   geom_point(data = df_bothPilots_summaries, aes(x = answerType, y = mean, color = expt), size = 3, position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.2)) +
-  geom_hline(yintercept = 0, linetype="dashed") +
   facet_wrap(itemName ~ ., ncol = 2) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
   theme(panel.spacing = unit(2, "lines")) +
