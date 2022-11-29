@@ -6,6 +6,6 @@ export default {
   completionUrl: 'https://app.prolific.co/submissions/complete?cc=CT0J8WXX',
   contactEmail: 'polina.tsvilodub@uni-tuebingen.de',
   // Either 'debug', 'directLink' or 'prolific'
-  mode: 'prolific',
+  mode: 'debug',
   language: 'en'
 };

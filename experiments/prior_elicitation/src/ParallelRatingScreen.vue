@@ -9,47 +9,76 @@
           settingName: trial.settingName,
           trial_type: trial_type,
           itemOrder: itemOrder.join(','),
+          targetOption: targetOption,
         }"
       />
 
       
-      <span v-html="createContext(trial)">
+      <span v-html="createContext(trial, targetOption)">
       </span>
       <p>How happy do you think they would be if...</p>
       <br />
 
-      <span v-html="createAnswerOption(trial, itemOrder[0])"></span>
+      <span v-html="createAnswerOption(trial, itemOrder[0], targetOption)"></span>
       <SliderInput
-        left="much less happy"
-        right="much happier"
+        left="completely unhappy"
+        right="completely happy"
         initial="50"
         :response.sync=$magpie.measurements[itemOrder[0]]
       />
-      <p style="color:grey; margin-top: -25px;">equally happy</p>
+      
 
-      <span v-html="createAnswerOption(trial, itemOrder[1])"></span>
+      <span v-html="createAnswerOption(trial, itemOrder[1], targetOption)"></span>
       <SliderInput
-        left="much less happy"
-        right="much happier"
+        left="completely unhappy"
+        right="completely happy"
         initial="50"
         :response.sync=$magpie.measurements[itemOrder[1]]
       />
-      <p style="color:grey; margin-top: -25px;">equally happy</p>
+     
 
-      <span v-html="createAnswerOption(trial, itemOrder[2])"></span>
+      <span v-html="createAnswerOption(trial, itemOrder[2], targetOption)"></span>
       <SliderInput
-        left="much less happy"
-        right="much happier"
+        left="completely unhappy"
+        right="completely happy"
         initial="50"
         :response.sync=$magpie.measurements[itemOrder[2]]
       />
-      <p style="color:grey; margin-top: -25px;">equally happy</p>
+      
+
+      <span v-html="createAnswerOption(trial, itemOrder[3], targetOption)"></span>
+      <SliderInput
+        left="completely unhappy"
+        right="completely happy"
+        initial="50"
+        :response.sync=$magpie.measurements[itemOrder[3]]
+      />
+
+      <span v-html="createAnswerOption(trial, itemOrder[4], targetOption)"></span>
+      <SliderInput
+        left="completely unhappy"
+        right="completely happy"
+        initial="50"
+        :response.sync=$magpie.measurements[itemOrder[4]]
+      />
+
+      <span v-html="createAnswerOption(trial, itemOrder[5], targetOption)"></span>
+      <SliderInput
+        left="completely unhappy"
+        right="completely happy"
+        initial="50"
+        :response.sync=$magpie.measurements[itemOrder[5]]
+      />
+      
       
       <button
         v-if="checkResponses(
             $magpie.measurements[itemOrder[0]],
             $magpie.measurements[itemOrder[1]],
             $magpie.measurements[itemOrder[2]],
+            $magpie.measurements[itemOrder[3]],
+            $magpie.measurements[itemOrder[4]],
+            $magpie.measurements[itemOrder[5]],
         )"
         @click="$magpie.saveAndNextScreen()"
       >
@@ -70,16 +99,27 @@ function orderAlternativesByIndex(inds, trial, itemOrder) {
   return orderedAlternatives
 }
 
-function createContext(trial) {
-    var target = trial["itemQuestion"];
+function createContext(trial, targetOption) {
+    var target = trial[targetOption];
     var slide_text = [trial["priorElicitation_context"], " <b>", target, ".</b>"].join("");
     return slide_text
 }
 
-function createAnswerOption(trial, option) {  
-      var alternative = trial[option];
+function createAnswerOption(trial, option, targetOption) {  
+      if (targetOption == option) {
+        var alternative = trial[option];
+        var slide_text = ["<br/>","... they ", trial["priorElicitation_question"], " <b>", alternative, "</b>?"].join(""); // set to this to avoid incorrect formulation
+      } else {
+        var alternative = trial[option];
+        var slide_text = ["<br/>","... they ", trial["priorElicitation_question"], " <b>", alternative, "</b> instead?"].join("");
+      }
       
-      var slide_text = ["<br/>","...instead they ", trial["priorElicitation_question"], " <b>", alternative, "</b>?"].join("");
+      //if (option != "itemQuestion") {
+      //  var slide_text = ["<br/>","... they ", trial["priorElicitation_question"], " <b>", alternative, "</b> instead?"].join("");
+      //} else {
+      //  var slide_text = ["<br/>","... they ", trial["priorElicitation_question"], " <b>", alternative, "</b>?"].join("");
+      //}
+      
       return slide_text
 }
 export default {
@@ -108,10 +148,14 @@ export default {
             type: Array,
             required: true
         },
+        targetOption: {
+          type: String,
+          required: true
+        },
   },
   methods: {
-    checkResponses: function (a, b, c) {
-      return !(isNaN(a) | isNaN(b) | isNaN(c));
+    checkResponses: function (a, b, c, d, e, f) {
+      return !(isNaN(a) | isNaN(b) | isNaN(c) | isNaN(d) | isNaN(e) | isNaN(f));
     },
     createAnswerOption,
     createContext

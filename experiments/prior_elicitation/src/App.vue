@@ -8,7 +8,7 @@
       In this study we are interested in how you think about other people.
       On each trial, you will be given some information about a person: 'Suppose someone wants to have Italian food.'
       <br />
-      Then we'll ask how happy you think this person would be about other things, given this information. For instance, we might ask: 'How happy do you think they would be if instead they had French food?'
+      Then we'll ask how happy you think this person would be about other things, given this information. For instance, we might ask: 'How happy do you think they would be if they had French food instead?'
       You'll use sliders to answer the questions. 
       <br />
       <br />
@@ -22,33 +22,34 @@
     </InstructionScreen>
 
     <template v-for="(trial, i) in trials">
-      <template v-if="!trial.type">
-               
-         <ParallelRatingScreen 
-            :key=i 
-            :trial=trial 
-            :index=i 
-            :trial_type="'main'" 
-            :progress="i / trials.length" 
-            :itemOrder="_.shuffle(['competitor', _.sample(['sameCategory1', 'sameCategory2']), _.sample(['otherCategory1', 'otherCategory2'])])" 
-         />      
-       
-      </template>
-      <template v-else>
-        <ParallelRatingScreen 
-            :key=i 
-            :trial=trial 
-            :index=i 
-            :trial_type="'filler'" 
-            :progress="i / trials.length" 
-            :itemOrder="_.shuffle(['competitor', _.sample(['sameCategory1', 'sameCategory2']), _.sample(['otherCategory1', 'otherCategory2'])])" 
-        />   
-      </template>
+        <template v-if="trial.length == 2">       
+          <ParallelRatingScreen 
+              :key=i 
+              :trial=trial[0] 
+              :index=i 
+              :trial_type="'main'" 
+              :targetOption="trial[1]"
+              :progress="i / trials.length" 
+              :itemOrder="_.shuffle(['competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2', 'itemQuestion'])" 
+          />      
+        
+        </template>
+        <template v-else>
+          <ParallelRatingScreen 
+              :key=i 
+              :trial=trial 
+              :index=i 
+              :trial_type="'filler'" 
+              :targetOption="'itemQuestion'"
+              :progress="i / trials.length" 
+              :itemOrder="_.shuffle(['competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2', 'itemQuestion'])" 
+          />   
+        </template>
     </template>
 
     <PostTestScreen />
 
-    <SubmitResultsScreen />
+    <DebugResultsScreen />
 
   </Experiment>
 </template>
@@ -61,17 +62,25 @@ import ParallelRatingScreen from './ParallelRatingScreen';
 
 var group = _.sample(['odd', 'even']);
 
-const n_vignettes = 4;
+const n_vignettes = 2;
 const n_fillers = 1;
 
 const trials =
   // group == 'odd'
      trialsAll.filter((element, index) => {
-        return _.includes(["plants-green", "cafe-pie", "electronics-laptop", "furniture-outdoors"], element["itemName"]);
+        return _.includes([ _.sample(["cafe-pie", "electronics-laptop"]), _.sample(["plants-green", "furniture-outdoors"])], element["itemName"]);
       });
   // : trialsAll.filter((element, index) => {
   //      return index % 2 != 0;
   //    });
+const repeating_trials = _.sampleSize(trials, n_vignettes).map(x => _.fill(Array(6), x)).flat()
+const repeating_targets = Array(_.sampleSize(trials, n_vignettes).length).fill(['competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2', 'itemQuestion']).flat()
+const trials_w_target = _.zip(repeating_trials, repeating_targets)
+console.log("trails_w_target")
+console.log(repeating_trials)
+console.log("targets ", repeating_targets)
+console.log(trials_w_target)
+
 const fillers =
   group == 'odd'
     ? fillersAll.filter((element, index) => {
@@ -96,7 +105,7 @@ export default {
   components: { ParallelRatingScreen },
   data() {
     return {
-      trials: _.shuffle(_.concat( _.sampleSize(trials, n_vignettes), _.sampleSize(fillers, n_fillers)))
+      trials: _.shuffle(_.concat( trials_w_target, _.sampleSize(fillers, n_fillers)))
     };
   },
   computed: {
