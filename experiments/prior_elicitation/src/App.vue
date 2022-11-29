@@ -62,7 +62,7 @@ import ParallelRatingScreen from './ParallelRatingScreen';
 
 var group = _.sample(['odd', 'even']);
 
-const n_vignettes = 2;
+const n_vignettes = 1;
 const n_fillers = 1;
 
 const trials =
