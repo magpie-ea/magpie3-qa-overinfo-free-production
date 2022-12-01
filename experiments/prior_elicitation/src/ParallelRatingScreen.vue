@@ -108,7 +108,7 @@ function createContext(trial, targetOption) {
 function createAnswerOption(trial, option, targetOption) {  
       if (targetOption == option) {
         var alternative = trial[option];
-        var slide_text = ["<br/>","... they ", trial["priorElicitation_question"], " <b>", alternative, "</b>?"].join(""); // set to this to avoid incorrect formulation
+        var slide_text = ["<br/>","... they actually ", trial["priorElicitation_question"], " <b>", alternative, "</b>?"].join(""); // set to this to avoid incorrect formulation
       } else {
         var alternative = trial[option];
         var slide_text = ["<br/>","... they ", trial["priorElicitation_question"], " <b>", alternative, "</b> instead?"].join("");
