@@ -1,5 +1,5 @@
 export default {
-  experimentId: '99',
+  experimentId: '100',
   serverUrl: 'https://mcmpact.ikw.uni-osnabrueck.de/magpie/',
   socketUrl: 'wss://mcmpact.ikw.uni-osnabrueck.de/magpie/socket',
   // this will be used in prolific mode
