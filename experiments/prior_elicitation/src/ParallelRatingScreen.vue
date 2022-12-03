@@ -53,23 +53,6 @@
         initial="50"
         :response.sync=$magpie.measurements[itemOrder[3]]
       />
-
-      <span v-html="createAnswerOption(trial, itemOrder[4], targetOption)"></span>
-      <SliderInput
-        left="completely unhappy"
-        right="completely happy"
-        initial="50"
-        :response.sync=$magpie.measurements[itemOrder[4]]
-      />
-
-      <span v-html="createAnswerOption(trial, itemOrder[5], targetOption)"></span>
-      <SliderInput
-        left="completely unhappy"
-        right="completely happy"
-        initial="50"
-        :response.sync=$magpie.measurements[itemOrder[5]]
-      />
-      
       
       <button
         v-if="checkResponses(
@@ -77,8 +60,6 @@
             $magpie.measurements[itemOrder[1]],
             $magpie.measurements[itemOrder[2]],
             $magpie.measurements[itemOrder[3]],
-            $magpie.measurements[itemOrder[4]],
-            $magpie.measurements[itemOrder[5]],
         )"
         @click="$magpie.saveAndNextScreen()"
       >
@@ -154,8 +135,8 @@ export default {
         },
   },
   methods: {
-    checkResponses: function (a, b, c, d, e, f) {
-      return !(isNaN(a) | isNaN(b) | isNaN(c) | isNaN(d) | isNaN(e) | isNaN(f));
+    checkResponses: function (a, b, c, d) {
+      return !(isNaN(a) | isNaN(b) | isNaN(c) | isNaN(d));
     },
     createAnswerOption,
     createContext

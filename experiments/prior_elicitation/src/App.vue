@@ -12,12 +12,16 @@
       You'll use sliders to answer the questions. 
       <br />
       <br />
+      On some trials, you might think that the person will be very happy with the option they receive, in which case you should move the slider towards the option "completely happy". 
+      On other trials, you might think that they will not be very happy, in which case you should move the slider towards the option "completely unhappy". 
+      On trials where you think the person is neither happy nor unhappy, please adjust the slider around the middle. 
+      <br />
+      <br />
       Notice that there will also be simple <b>attention checking trials</b>. 
       You will recognize them immediately when you read the important text on each trial carefully -- those trials contain instructions for you to move the sliders in a certain way. 
       Please follow these instructions on the respective trial. 
       <br />
       <br />
-      In some cases, you'll think the person would be much less happy, given the information you learned about the person. In other cases you'll think they'll be much happier. Sometimes the information about the person won't tell you anything, in which case you should move the slider to the midpoint. <br />
       Please try to respond naturally and reasonably, do not overthink your ratings. <br />
     </InstructionScreen>
 
@@ -30,7 +34,7 @@
               :trial_type="'main'" 
               :targetOption="trial[1]"
               :progress="i / trials.length" 
-              :itemOrder="_.shuffle(['competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2', 'itemQuestion'])" 
+              :itemOrder="_.shuffle(['competitor', 'sameCategory', 'otherCategory', 'itemQuestion'])" 
           />      
         
         </template>
@@ -42,22 +46,22 @@
               :trial_type="'filler'" 
               :targetOption="'itemQuestion'"
               :progress="i / trials.length" 
-              :itemOrder="_.shuffle(['competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2', 'itemQuestion'])" 
+              :itemOrder="_.shuffle(['competitor', 'sameCategory', 'otherCategory', 'itemQuestion'])" 
           />   
         </template>
     </template>
 
     <PostTestScreen />
 
-    <DebugResultsScreen />
+    <SubmitResultsScreen />
 
   </Experiment>
 </template>
 
 <script>
 import _ from 'lodash';
-import trialsAll from '../trials/trials_split_priorElicitation_pilot2.csv';
-import fillersAll from '../trials/fillers_split_priorElicitation_pilot2.csv';
+import trialsAll from '../trials/trials_split_priorElicitation_pilot3.csv';
+import fillersAll from '../trials/fillers_split_priorElicitation_pilot3.csv';
 import ParallelRatingScreen from './ParallelRatingScreen';
 
 var group = _.sample(['odd', 'even']);
@@ -68,13 +72,13 @@ const n_fillers = 1;
 const trials =
   // group == 'odd'
      trialsAll.filter((element, index) => {
-        return _.includes([ _.sample(["cafe-pie", "electronics-laptop"]), _.sample(["plants-green", "furniture-outdoors"])], element["itemName"]);
+        return _.includes(["cafe-pie", "electronics-laptop", "plants-green", "furniture-outdoors"], element["itemName"]);
       });
   // : trialsAll.filter((element, index) => {
   //      return index % 2 != 0;
   //    });
-const repeating_trials = _.sampleSize(trials, n_vignettes).map(x => _.fill(Array(6), x)).flat()
-const repeating_targets = Array(_.sampleSize(trials, n_vignettes).length).fill(['competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2', 'itemQuestion']).flat()
+const repeating_trials = _.shuffle(trials); //_.sampleSize(trials, n_vignettes).map(x => _.fill(Array(6), x)).flat()
+const repeating_targets = _.shuffle(['competitor', 'sameCategory', 'otherCategory', 'itemQuestion']); 
 const trials_w_target = _.zip(repeating_trials, repeating_targets)
 console.log("trails_w_target")
 console.log(repeating_trials)
