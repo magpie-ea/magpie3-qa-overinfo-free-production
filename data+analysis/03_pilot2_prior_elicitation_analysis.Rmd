@@ -147,6 +147,7 @@ df_clean_main_long %>%
   geom_jitter(alpha = 0.7, width = 0.2) +
   geom_point(data = df_clean_main_long_summary, aes(x = answerType, y = mean), size = 3) +
   geom_errorbar(data = df_clean_main_long_summary,  aes(x = answerType, y = mean, ymin=ci_lower, ymax=ci_upper), width = 0.2) +
+  geom_path(inherit.aes = F, aes(x = answerType, y = response, group="submission_id"), alpha  = 0.6, position = position_jitter(width = 0.2)) + 
   facet_wrap(itemName ~ ., ncol = 2) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +

@@ -117,7 +117,7 @@ df_clean_main <- df %>% #filter(!(submission_id %in% subj_id_attention_fails)) %
   filter(trial_type == "main") 
 
 df_clean_main_long <- df_clean_main %>%
-  select(itemName, submission_id, targetOption, itemQuestion, competitor, sameCategory, otherCategory) %>%
+  select(itemName, trialNr, submission_id, targetOption, itemQuestion, competitor, sameCategory, otherCategory) %>%
    pivot_longer(cols = c(itemQuestion, competitor, sameCategory, otherCategory), names_to = 'answerType', values_to = "response") %>%
   mutate(
     categorized_response = case_when(
@@ -202,7 +202,7 @@ df_clean_main_long %>%
   ggplot(., aes(x = categorized_response, y = response, fill = categorized_response, color = categorized_response)) +
   geom_point(alpha = 0.8) +
   geom_point(data = df_clean_main_categorized_summary, aes(x = categorized_response, y = mean_response, fill = categorized_response, color = categorized_response), size = 4)+
-  # geom_path(aes(group = "submission_id"), alpha = 0.6) +
+  #geom_path(aes(group = "trialNr"), alpha = 0.6) +
   theme(strip.text.x = element_text(size = 10)) +
   theme(panel.spacing = unit(3, "lines")) +
   theme(legend.position="none") +
