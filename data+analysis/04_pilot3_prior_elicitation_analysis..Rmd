@@ -1,0 +1,208 @@
+---
+title: "QA Prior elicitation pilot for full matrix"
+author: "PT"
+date: "2022-12-04"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, include = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidyboot)
+library(aida)
+library(forcats)
+library("gridExtra")
+```
+
+```{r, include=FALSE}
+# these options help Stan run faster
+options(mc.cores = parallel::detectCores())
+
+# use the aida-theme for plotting
+theme_set(theme_aida())
+
+# global color scheme / non-optimized
+project_colors = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
+
+# setting theme colors globally
+scale_colour_discrete <- function(...) {
+  scale_colour_manual(..., values = project_colors)
+}
+scale_fill_discrete <- function(...) {
+  scale_fill_manual(..., values = project_colors)
+} 
+```
+
+## Pilot 3
+
+This pilot follows up on the prior elicitation [pilot 2](https://github.com/magpie-ea/magpie3-qa-overinfo-free-production/blob/main/data%2Banalysis/03_pilot2_prior_elicitation_analysis.md). The goal of this pilot is to gather ratings for the full matrix of relative utilities of alternatives when treating any of the options as the desired target. Furthermore, rating the utility of receiving the actual target was added. The task and the question were slightly updated and read: "Suppose someone wants X. How happy do you think they would be if ... they actually got X? ... they got Y instead?" The slider endpoints were adjusted to the options "completely unhappy" and "completely happy". Furthermore, for each vignette only one same category and one other category option were selected, resulting in a set of four ratings per trial (target, competitor, sameCat, otherCat). The experiment can be viewed [here](https://magpie3-qa-overinformative-priors.netlify.app/).
+
+Each participant saw one trial for each of the four vignettes selected in the previous pilot; additionally they saw one attention check, resulting in five trials / subject.
+
+## Analysis
+
+```{r, include = FALSE, message=FALSE, warning=FALSE}
+answerOrder <- c('target', 'competitor', 'sameCategory', 'otherCategory')
+#df <- read_csv("../../raw_data/results_100_QA-overinformative-priorElicitation-fullMatrix-pilot03_PT.csv") 
+#df %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>% write_csv("results_100_QA-overinformative-priorElicitation-magpie-pilot03_anonymized.csv")
+
+df <- read_csv("results_100_QA-overinformative-priorElicitation-magpie-pilot03_anonymized.csv")
+head(df)
+cat("Number of recruited subjects: ", df %>% pull(submission_id) %>% unique() %>% length())
+```
+
+```{r, include = FALSE, message=FALSE, warning=FALSE}
+# check attention check completion
+df <- df %>% mutate(
+  expected_attention = case_when(
+    itemName == 'jobCenter-office' ~ 0,
+    itemName == 'jobCenter-engineer' ~ 0,
+    itemName == 'art-painting' ~ 100,
+    itemName == 'art-drawing' ~ 100,
+    itemName == 'carRental-fun' ~ 0,
+    itemName == 'carRental-moving' ~ 0,
+    itemName == 'music-hardrock' ~ 100,
+    itemName == 'music-softrock' ~ 100,
+    itemName == 'airport-usa' ~ 0,
+    itemName == 'airport-europe' ~ 100,
+    TRUE ~ 50
+  )
+)
+
+df_attention <- df %>% filter(trial_type == "filler") %>% 
+  select(submission_id, itemQuestion, competitor, sameCategory, otherCategory, expected_attention, itemName) %>% 
+  pivot_longer(cols = c(itemQuestion, competitor, sameCategory, otherCategory), names_to = "answerType", values_to = "response") %>%
+  rowwise() %>%
+  mutate(passed_trial = abs(response - expected_attention) < 5 )
+
+df_attention_fail <- df_attention %>% group_by(submission_id) %>% 
+  mutate(passed_subj = sum(passed_trial) > 0)
+
+# participants who failed attention checks 
+subj_id_attention_fails <- df_attention_fail %>% filter(passed_subj == FALSE) %>% pull(submission_id) %>% unique()
+cat("Numbrer of subjects who failed attention checks: ", length(subj_id_attention_fails)  )
+cat("\nSubject exclusion rate: ", length(subj_id_attention_fails)/(unique(df$submission_id) %>% length()))
+```
+
+```{r, echo=FALSE, include = FALSE, message=FALSE, warning=FALSE}
+# get main clean data and center responses
+df_clean_main <- df %>% filter(!(submission_id %in% subj_id_attention_fails)) %>%
+  filter(trial_type == "main") 
+
+df_clean_main_long <- df_clean_main %>%
+  select(itemName, submission_id, targetOption, itemQuestion, competitor, sameCategory, otherCategory) %>%
+   pivot_longer(cols = c(itemQuestion, competitor, sameCategory, otherCategory), names_to = 'answerType', values_to = "response") %>%
+  mutate(
+    categorized_response = case_when(
+      targetOption == answerType ~ "target",
+      targetOption == "itemQuestion" ~ answerType,
+      (targetOption == "competitor") & (answerType == "itemQuestion") ~ "competitor",
+      (targetOption == "competitor") & (answerType == "sameCategory") ~ "sameCategory",
+      (targetOption == "competitor") & (answerType == "otherCategory") ~ "otherCategory",
+      (targetOption == "sameCategory") & (answerType == "itemQuestion") ~ "sameCategory",
+      (targetOption == "sameCategory") & (answerType == "competitor") ~ "sameCategory",
+      (targetOption == "sameCategory") & (answerType == "otherCategory") ~ "otherCategory",
+      targetOption == "otherCategory" ~ "otherCategory",
+      TRUE ~ answerType
+    ),
+    centered_response = response - 50
+  ) # %>%
+  filter(!is.na(response))
+```
+
+```{r, echo=FALSE}
+df_bad_subj <- df_clean_main_long %>% group_by(submission_id) %>%
+  mutate(bad_subj = (max(response) - min(response)) < 5)
+df_bad_subj %>% filter(bad_subj == TRUE)
+cat("\nnumber of subjects who provided the same responses within 5 points on all main trials:",  df_bad_subj %>% filter(bad_subj == TRUE) %>% pull(submission_id) %>% unique() %>% length())
+bad_subj_ids <- df_bad_subj %>% filter(bad_subj == TRUE) %>% pull(submission_id) %>% unique()
+
+df_clean_main <- df_clean_main %>% filter(!(submission_id %in% bad_subj_ids))
+df_clean_main_long <- df_clean_main_long %>% filter(!(submission_id %in% bad_subj_ids))
+
+```
+
+```{r, echo=FALSE}
+cat("\nNumber of analysed vignette trials: ", nrow(df_clean_main))
+
+df_clean_main %>% count(itemName, targetOption) 
+```
+
+Explore target ratings in order to check if there are any unexpected results:
+```{r}
+df_clean_main_long %>% filter(categorized_response == "target") %>% group_by(itemName) %>%
+  summarize(mean_response = mean(response))
+```
+
+## Means & CrIs
+
+In the dataset target option refers to the category of the item that is mentioned as the target in the context. The variable answer type refers to the item category of the option for a given rating. Whenever target option and answer type match, the rating is the one for the case when the received option is the actual target. 
+
+Below, means of the ratings by-target option by-answer type are computed.
+
+```{r}
+df_clean_main_long_summary <- df_clean_main_long %>% group_by(targetOption, answerType) %>%
+  summarize(mean_response = mean(response)) #tidyboot_mean(column = "response")
+
+df_clean_main_long_summary
+
+df_clean_main_long_byItem_summary <- df_clean_main_long %>% group_by(itemName, targetOption, answerType) %>%
+  summarize(mean_response = mean(response)) #tidyboot_mean(column = "response")
+
+df_clean_main_long_byItem_summary
+
+df_clean_main_categorized_summary <- df_clean_main_long %>% group_by(categorized_response) %>%
+  summarize(mean_response = mean(response)) %>% mutate(
+    categorized_response = factor(categorized_response, levels = answerOrder)
+  )
+
+df_clean_main_categorized_summary
+
+df_clean_main_categorized_byItem_summary <- df_clean_main_long %>% group_by(categorized_response, itemName) %>%
+  summarize(mean_response = mean(response)) %>% mutate(
+    categorized_response = factor(categorized_response, levels = answerOrder)
+  )
+
+df_clean_main_categorized_byItem_summary
+```
+
+The target option called "itemQuestion" is the option we defined as the original target in our vignettes. In order to understand whether varying the target results in intuitive responses, the target - answer type combinations were manually categorized into the following rating categories: "target" (target = answer type), "competitor" (when either the target or the answer type are competitor or itemQUestion), "sameCategory" (when either target or answer type were itemQuestion / competitor or sameCategory), "otherCategory" (any ratings involving otherCategory except the target case).  
+
+Below, the responses are plotted by category described above.
+
+```{r}
+df_clean_main_long %>% 
+  mutate(categorized_response = factor(categorized_response, levels = answerOrder)) %>% 
+  ggplot(., aes(x = categorized_response, y = response, fill = categorized_response, color = categorized_response)) +
+  geom_point(alpha = 0.8) +
+  geom_point(data = df_clean_main_categorized_summary, aes(x = categorized_response, y = mean_response, fill = categorized_response, color = categorized_response), size = 4)+
+  # geom_path(aes(group = "submission_id"), alpha = 0.6) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  theme(legend.position="none") +
+  ylab("Rating of alternative") +
+  ylim(0, 100) +
+  xlab("Category of target - alternative combination")
+```
+
+```{r}
+```{r}
+df_clean_main_long %>% 
+  mutate(categorized_response = factor(categorized_response, levels = answerOrder)) %>% 
+  ggplot(., aes(x = categorized_response, y = response, fill = categorized_response, color = categorized_response)) +
+  geom_point(alpha = 0.8) +
+  geom_point(data = df_clean_main_categorized_byItem_summary, aes(x = categorized_response, y = mean_response, fill = categorized_response, color = categorized_response), size = 4) +
+  facet_wrap(itemName~., ncol=2)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  theme(legend.position="none") +
+  ylab("Rating of alternative") +
+  ylim(0, 100) +
+  xlab("Category of target - alternative combination")
+```
+```

@@ -1,0 +1,26 @@
+submission_id,age,competitor,education,experiment_duration,experiment_end_time,experiment_start_time,gender,itemName,itemOrder,itemQuestion,languages,otherCategory,responseTime,sameCategory,settingName,targetOption,trialNr,trial_type
+4574,46,99,Graduated High-school,83921,1670162843704,1670162759783,male,furniture-outdoors,"otherCategory,competitor,itemQuestion,sameCategory",77,English,16,16773,40,furniture,competitor,1,main
+4574,46,58,Graduated High-school,83921,1670162843704,1670162759783,male,cafe-pie,"itemQuestion,otherCategory,sameCategory,competitor",59,English,3,13106,100,cafe,sameCategory,2,main
+4574,46,100,Graduated High-school,83921,1670162843704,1670162759783,male,music-softrock,"itemQuestion,otherCategory,competitor,sameCategory",100,English,100,9375,100,music,itemQuestion,3,filler
+4574,46,79,Graduated High-school,83921,1670162843704,1670162759783,male,electronics-laptop,"sameCategory,otherCategory,competitor,itemQuestion",100,English,8,11195,61,electronics,itemQuestion,4,main
+4574,46,43,Graduated High-school,83921,1670162843704,1670162759783,male,plants-green,"otherCategory,competitor,sameCategory,itemQuestion",44,English,99,11934,15,plants,otherCategory,5,main
+4575,58,46,Graduated High-school,164376,1670162928918,1670162764542,female,furniture-outdoors,"otherCategory,competitor,sameCategory,itemQuestion",100,English,4,33879,26,furniture,itemQuestion,1,main
+4575,58,100,Graduated High-school,164376,1670162928918,1670162764542,female,cafe-pie,"itemQuestion,otherCategory,sameCategory,competitor",85,English,0,18347,75,cafe,competitor,2,main
+4575,58,49,Graduated High-school,164376,1670162928918,1670162764542,female,plants-green,"competitor,otherCategory,sameCategory,itemQuestion",51,English,48,16608,100,plants,sameCategory,3,main
+4575,58,66,Graduated High-school,164376,1670162928918,1670162764542,female,electronics-laptop,"itemQuestion,competitor,otherCategory,sameCategory",79,English,100,22528,41,electronics,otherCategory,4,main
+4575,58,0,Graduated High-school,164376,1670162928918,1670162764542,female,carRental-fun,"otherCategory,sameCategory,competitor,itemQuestion",0,English,0,16544,0,carRental,itemQuestion,5,filler
+4576,28,37,Graduated College,92526,1670162940270,1670162847744,male,cafe-pie,"competitor,sameCategory,otherCategory,itemQuestion",71,English,14,15093,31,cafe,itemQuestion,1,main
+4576,28,23,Graduated College,92526,1670162940270,1670162847744,male,furniture-outdoors,"itemQuestion,sameCategory,otherCategory,competitor",19,English,77,12251,20,furniture,otherCategory,2,main
+4576,28,66,Graduated College,92526,1670162940270,1670162847744,male,carRental-fun,"itemQuestion,sameCategory,competitor,otherCategory",66,English,39,9625,62,carRental,itemQuestion,3,filler
+4576,28,79,Graduated College,92526,1670162940270,1670162847744,male,electronics-laptop,"sameCategory,itemQuestion,otherCategory,competitor",81,English,6,7745,26,electronics,competitor,4,main
+4576,28,31,Graduated College,92526,1670162940270,1670162847744,male,plants-green,"otherCategory,itemQuestion,competitor,sameCategory",31,English,32,7111,66,plants,sameCategory,5,main
+4577,43,66,Graduated High-school,155149,1670162995106,1670162839957,male,furniture-outdoors,"sameCategory,itemQuestion,otherCategory,competitor",96,english,40,41655,32,furniture,itemQuestion,1,main
+4577,43,25,Graduated High-school,155149,1670162995106,1670162839957,male,art-drawing,"itemQuestion,otherCategory,sameCategory,competitor",96,english,62,38807,7,art,itemQuestion,2,filler
+4577,43,23,Graduated High-school,155149,1670162995106,1670162839957,male,plants-green,"sameCategory,competitor,itemQuestion,otherCategory",3,english,12,19351,97,plants,sameCategory,3,main
+4577,43,95,Graduated High-school,155149,1670162995106,1670162839957,male,cafe-pie,"sameCategory,competitor,itemQuestion,otherCategory",73,english,4,19368,20,cafe,competitor,4,main
+4577,43,15,Graduated High-school,155149,1670162995106,1670162839957,male,electronics-laptop,"sameCategory,itemQuestion,otherCategory,competitor",14,english,96,13888,8,electronics,otherCategory,5,main
+4578,40,0,Graduated High-school,217122,1670163115376,1670162898254,female,furniture-outdoors,"itemQuestion,otherCategory,competitor,sameCategory",5,English,94,35949,3,furniture,otherCategory,1,main
+4578,40,48,Graduated High-school,217122,1670163115376,1670162898254,female,electronics-laptop,"otherCategory,competitor,itemQuestion,sameCategory",95,English,20,79120,28,electronics,itemQuestion,2,main
+4578,40,16,Graduated High-school,217122,1670163115376,1670162898254,female,cafe-pie,"itemQuestion,otherCategory,competitor,sameCategory",38,English,3,20597,96,cafe,sameCategory,3,main
+4578,40,97,Graduated High-school,217122,1670163115376,1670162898254,female,plants-green,"itemQuestion,otherCategory,sameCategory,competitor",5,English,6,20241,7,plants,competitor,4,main
+4578,40,0,Graduated High-school,217122,1670163115376,1670162898254,female,carRental-fun,"otherCategory,itemQuestion,competitor,sameCategory",0,English,0,29604,0,carRental,itemQuestion,5,filler
