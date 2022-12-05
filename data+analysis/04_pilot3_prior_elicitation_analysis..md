@@ -87,10 +87,10 @@ as expected.
     ## # A tibble: 4 × 6
     ##   itemName               n empirical_stat ci_lower  mean ci_upper
     ##   <chr>              <int>          <dbl>    <dbl> <dbl>    <dbl>
-    ## 1 cafe-pie              20           92.7     86.3  92.8     97.5
-    ## 2 electronics-laptop    20           94.5     90.2  94.5     98.0
-    ## 3 furniture-outdoors    20           95.6     91.9  95.6     98.7
-    ## 4 plants-green          20           94.6     89.2  94.6     98.8
+    ## 1 cafe-pie              20           92.7     86.7  92.8     97.6
+    ## 2 electronics-laptop    20           94.5     90.6  94.6     98.2
+    ## 3 furniture-outdoors    20           95.6     92.2  95.7     98.7
+    ## 4 plants-green          20           94.6     89.6  94.6     98.7
 
 ## Means
 
@@ -180,7 +180,7 @@ collaping the categories across vignettes.
 ![](04_pilot3_prior_elicitation_analysis._files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 Below, the responses are plotted by-category by-vignette. While the two
-“good” vignettes (cafe-pie and electronics-laptop) weok well, as
+“good” vignettes (cafe-pie and electronics-laptop) work well, as
 expected, the other two “bad” vignettes show less consistent results.
 ![](04_pilot3_prior_elicitation_analysis._files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
@@ -197,6 +197,7 @@ df_clean_main_long %>%
   ggplot(., aes(x = answerType, y = response, fill = answerType, color = answerType)) +
   geom_point() +
   geom_point(data = df_clean_main_long_byItem_summary, aes(x = answerType, y = mean_response), size = 4) +
+  geom_line(data = df_clean_main_long, inherit.aes=F, aes(x = answerType, y = response, group = by_trial_nr), alpha  = 0.4) +
   facet_wrap(itemName~targetOption) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
@@ -220,22 +221,22 @@ ratings to means across vignettes). For a better picture, bootstrapped
     ## # Groups:   targetOption [4]
     ##    targetOption  answerType        n empirical_stat ci_lower  mean ci_upper
     ##    <chr>         <chr>         <int>          <dbl>    <dbl> <dbl>    <dbl>
-    ##  1 competitor    competitor       20           96.7     93.5  96.7     99.4
-    ##  2 competitor    itemQuestion     20           56.7     42.9  56.9     69.0
-    ##  3 competitor    otherCategory    20           27.1     17.4  27.1     37.6
-    ##  4 competitor    sameCategory     20           40.0     28.9  40.1     50.9
-    ##  5 itemQuestion  competitor       20           62.4     52.2  62.5     72.5
-    ##  6 itemQuestion  itemQuestion     20           95.5     91.7  95.5     98.6
-    ##  7 itemQuestion  otherCategory    20           28.6     18.7  28.7     39.6
-    ##  8 itemQuestion  sameCategory     20           45.8     37.1  45.9     54.7
-    ##  9 otherCategory competitor       20           31.5     21.4  31.5     42.0
-    ## 10 otherCategory itemQuestion     20           32.3     21.4  32.2     43.3
-    ## 11 otherCategory otherCategory    20           92.8     88.4  92.9     97.2
-    ## 12 otherCategory sameCategory     20           30.6     21.8  30.7     41.2
-    ## 13 sameCategory  competitor       20           43.8     34.4  43.9     54.1
-    ## 14 sameCategory  itemQuestion     20           47.4     38.6  47.3     56  
-    ## 15 sameCategory  otherCategory    20           24.3     14.6  24.4     35.2
-    ## 16 sameCategory  sameCategory     20           92.5     85.9  92.4     97.5
+    ##  1 competitor    competitor       20           96.7     93.7  96.7     99.3
+    ##  2 competitor    itemQuestion     20           56.7     44.3  56.6     67.8
+    ##  3 competitor    otherCategory    20           27.1     17.4  27.3     38.4
+    ##  4 competitor    sameCategory     20           40.0     29.1  40.1     50.7
+    ##  5 itemQuestion  competitor       20           62.4     51.9  62.5     73.0
+    ##  6 itemQuestion  itemQuestion     20           95.5     91.5  95.5     98.8
+    ##  7 itemQuestion  otherCategory    20           28.6     17.9  28.3     39.3
+    ##  8 itemQuestion  sameCategory     20           45.8     37.3  45.8     54.7
+    ##  9 otherCategory competitor       20           31.5     21.6  31.9     42.3
+    ## 10 otherCategory itemQuestion     20           32.3     22.6  32.4     43.3
+    ## 11 otherCategory otherCategory    20           92.8     88.4  92.8     96.8
+    ## 12 otherCategory sameCategory     20           30.6     20.8  30.7     40.4
+    ## 13 sameCategory  competitor       20           43.8     34.3  43.9     53.7
+    ## 14 sameCategory  itemQuestion     20           47.4     38.7  47.2     55.4
+    ## 15 sameCategory  otherCategory    20           24.3     15.0  24.1     33.9
+    ## 16 sameCategory  sameCategory     20           92.5     86.2  92.5     97.3
 
     ## # A tibble: 16 × 6
     ##    targetOption  answerType    mean_response response_category target_…¹ respo…²

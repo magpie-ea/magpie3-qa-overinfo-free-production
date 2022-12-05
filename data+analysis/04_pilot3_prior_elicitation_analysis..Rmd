@@ -201,12 +201,17 @@ df_clean_main_categorized_byItem_summary
 Below, the responses are plotted by-category (as described above), collaping the categories across vignettes.
 
 ```{r, echo=FALSE}
+num_subj <- df_clean_main_long %>% pull(submission_id) %>% unique() %>% length()
+df_clean_main_long <- df_clean_main_long %>% 
+  mutate(categorized_response = factor(categorized_response, levels = answerOrder),
+         by_trial_nr = rep(1:(num_subj*4), each = 4),
+         by_trial_nr = factor(by_trial_nr)
+         ) 
+
 df_clean_main_long %>% 
-  mutate(categorized_response = factor(categorized_response, levels = answerOrder)) %>% 
   ggplot(., aes(x = categorized_response, y = response, fill = categorized_response, color = categorized_response)) +
   geom_point(alpha = 0.8) +
   geom_point(data = df_clean_main_categorized_summary, aes(x = categorized_response, y = mean_response, fill = categorized_response, color = categorized_response), size = 4)+
-  #geom_path(aes(group = "trialNr"), alpha = 0.6) +
   theme(strip.text.x = element_text(size = 10)) +
   theme(panel.spacing = unit(3, "lines")) +
   theme(legend.position="none") +
@@ -215,13 +220,14 @@ df_clean_main_long %>%
   xlab("Category of target - alternative combination")
 ```
 
-Below, the responses are plotted by-category by-vignette. While the two "good" vignettes (cafe-pie and electronics-laptop) weok well, as expected, the other two "bad" vignettes show less consistent results.
+Below, the responses are plotted by-category by-vignette. While the two "good" vignettes (cafe-pie and electronics-laptop) work well, as expected, the other two "bad" vignettes show less consistent results.
 ```{r, echo=FALSE}
 df_clean_main_long %>% 
   mutate(categorized_response = factor(categorized_response, levels = answerOrder)) %>% 
   ggplot(., aes(x = categorized_response, y = response, fill = categorized_response, color = categorized_response)) +
   geom_point(alpha = 0.8) +
   geom_point(data = df_clean_main_categorized_byItem_summary, aes(x = categorized_response, y = mean_response, fill = categorized_response, color = categorized_response), size = 4) +
+  geom_line(data = df_clean_main_long, inherit.aes=F, aes(x = categorized_response, y = response, group = by_trial_nr), alpha  = 0.4) +
   facet_wrap(itemName~., ncol=2)+
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
@@ -240,6 +246,7 @@ df_clean_main_long %>%
   ggplot(., aes(x = answerType, y = response, fill = answerType, color = answerType)) +
   geom_point(alpha = 0.7) +
   geom_point(data = df_clean_main_long_summary, aes(x = answerType, y = mean_response), size = 4) + 
+  geom_line(data = df_clean_main_long, inherit.aes=F, aes(x = answerType, y = response, group = by_trial_nr), alpha  = 0.4) +
   facet_wrap(targetOption~., ncol = 2) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
@@ -258,6 +265,7 @@ df_clean_main_long %>%
   ggplot(., aes(x = answerType, y = response, fill = answerType, color = answerType)) +
   geom_point() +
   geom_point(data = df_clean_main_long_byItem_summary, aes(x = answerType, y = mean_response), size = 4) +
+  geom_line(data = df_clean_main_long, inherit.aes=F, aes(x = answerType, y = response, group = by_trial_nr), alpha  = 0.4) +
   facet_wrap(itemName~targetOption) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
@@ -285,5 +293,5 @@ df_clean_main_long_ratios <- df_clean_main_long_summary %>% ungroup() %>%
          ) 
 
 df_clean_main_long_ratios
-#df_clean_main_long_summary %>% write_csv("priorElicitation_pilot3_fullMatrix_ratios.csv")
+#df_clean_main_long_ratios %>% write_csv("priorElicitation_pilot3_fullMatrix_ratios.csv")
 ```
