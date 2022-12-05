@@ -97,7 +97,7 @@ df_clean_main <- df %>% filter(!(submission_id %in% subj_id_attention_fails)) %>
   filter(trial_type == "main") 
 
 df_clean_main_long <- df_clean_main %>%
-  select(itemName, submission_id, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2) %>%
+  select(itemName, trialNr, submission_id, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2) %>%
    pivot_longer(cols = c(competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2), names_to = 'answerType', values_to = "response") %>%
   mutate(
     centered_response = response - 50,
@@ -140,14 +140,20 @@ df_clean_main_long_summary <- df_clean_main_long %>%
   tidyboot_mean(column = response)
   #summarize(mean = mean(centered_response))
 
+num_subj <- df_clean_main_long %>% pull(submission_id) %>% unique() %>% length()
+df_clean_main_long <- df_clean_main_long %>% ungroup() %>%
+  mutate(by_trial_nr = rep(1:(num_subj*4), each = 3),
+         by_trial_nr = factor(by_trial_nr)
+         )
+  
 df_clean_main_long %>% 
   mutate(answerType = factor(answerType, 
                              levels = c("competitor", "sameCategory", "otherCategory"))) %>%
-  ggplot(., aes(x = answerType, y = response, color = answerType)) +
-  geom_jitter(alpha = 0.7, width = 0.2) +
-  geom_point(data = df_clean_main_long_summary, aes(x = answerType, y = mean), size = 3) +
+  ggplot(., aes(x = answerType, y = response, color = answerType)) + 
+  geom_point(alpha = 0.85) +
+  geom_point(data = df_clean_main_long_summary, aes(x = answerType, y = mean), size = 4) +
   geom_errorbar(data = df_clean_main_long_summary,  aes(x = answerType, y = mean, ymin=ci_lower, ymax=ci_upper), width = 0.2) +
-  geom_path(inherit.aes = F, aes(x = answerType, y = response, group="submission_id"), alpha  = 0.6, position = position_jitter(width = 0.2)) + 
+  geom_line(data = df_clean_main_long, inherit.aes=F, aes(x = answerType, y = response, group=by_trial_nr), alpha  = 0.4) + 
   facet_wrap(itemName ~ ., ncol = 2) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
@@ -190,7 +196,7 @@ df_clean_main_long_summary <- df_clean_main_long %>% group_by(itemName, answerTy
   summarize(mean = mean(centered_response)) %>% unique() %>% mutate(expt = "pilot 2") 
 df_clean_main_long <- df_clean_main_long %>% mutate(expt = "pilot 2")
 
-df_bothPilots <- rbind(df_clean_main_long, df_pilot1)
+df_bothPilots <- rbind(df_clean_main_long %>% select(-by_trial_nr, -trialNr), df_pilot1)
 df_bothPilots_summaries <- rbind(df_clean_main_long_summary, df_pilot1_summary)
 
 df_bothPilots %>% 

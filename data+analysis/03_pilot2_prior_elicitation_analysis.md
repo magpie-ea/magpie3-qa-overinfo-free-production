@@ -30,10 +30,10 @@ free-production + prior elicitation performance) – cafe-pie and
 electronics-laptop – and two bad vignettes – furniture-outdoors and
 plants-green.
 
-    ## # A tibble: 0 × 6
+    ## # A tibble: 0 × 7
     ## # Groups:   submission_id [0]
-    ## # … with 6 variables: itemName <chr>, submission_id <dbl>, answerType <chr>,
-    ## #   response <dbl>, centered_response <dbl>, bad_subj <lgl>
+    ## # … with 7 variables: itemName <chr>, trialNr <dbl>, submission_id <dbl>,
+    ## #   answerType <chr>, response <dbl>, centered_response <dbl>, bad_subj <lgl>
 
     ## 
     ## number of subjects who provided the same responses within 5 points on all main trials: 0
