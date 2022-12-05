@@ -1,0 +1,17 @@
+targetOption,answerType,mean_response
+competitor,competitor,96.7
+competitor,itemQuestion,56.7
+competitor,otherCategory,27.100000000000005
+competitor,sameCategory,40.05
+itemQuestion,competitor,62.35
+itemQuestion,itemQuestion,95.5
+itemQuestion,otherCategory,28.6
+itemQuestion,sameCategory,45.75
+otherCategory,competitor,31.5
+otherCategory,itemQuestion,32.3
+otherCategory,otherCategory,92.8
+otherCategory,sameCategory,30.55
+sameCategory,competitor,43.8
+sameCategory,itemQuestion,47.4
+sameCategory,otherCategory,24.3
+sameCategory,sameCategory,92.5
