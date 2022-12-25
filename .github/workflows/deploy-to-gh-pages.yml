@@ -7,6 +7,12 @@ on:
       - master
 jobs:
   build-and-deploy:
+
+    strategy:
+      matrix:
+        folder:
+          - ./
+          
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
