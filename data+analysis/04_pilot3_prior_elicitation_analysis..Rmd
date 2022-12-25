@@ -257,16 +257,58 @@ df_clean_main_long %>%
   xlab("Category of alternative")
 ```
 
-Below, the ratings are plotted by-target option by-vignette. FOr some vignette-target option combinations, there is only one data point.
+Below, the ratings are plotted by-target option by-vignette. For some vignette-target option combinations, there is only one data point.
 
-```{r, fig.height=12, fig.width=12}
-df_clean_main_long %>%
+```{r, echo=FALSE, fig.height=12, fig.width=12}
+# add natural language alternative names
+df_vignettes <- read_delim("../experiments/prior_elicitation/trials/trials_split_priorElicitation_pilot3.csv", delim=";") %>% 
+  select(itemName, itemQuestion, competitor, sameCategory, otherCategory)
+
+df_clean_main_wItems <- df_clean_main %>% left_join(., df_vignettes, by="itemName", suffix=c("", "_string"))
+
+d_clean_main_long_wItems <- df_clean_main_wItems %>% 
+  select(itemName, trialNr, submission_id, targetOption, itemQuestion, competitor, sameCategory, otherCategory, itemQuestion_string, competitor_string, sameCategory_string, otherCategory_string) %>%
+  pivot_longer(cols = c(itemQuestion_string, competitor_string, sameCategory_string, otherCategory_string), names_to = 'answerType_string', values_to = "answerOption_string") %>%
+  mutate(answerType_string = gsub("_string", "", answerType_string)) %>%
+  pivot_longer(cols = c(itemQuestion, competitor, sameCategory, otherCategory), names_to = 'answerType', values_to = "response") %>%
+  filter((answerType_string == answerType)) %>%
+  mutate(
+    categorized_response = case_when(
+      targetOption == answerType ~ "target",
+      targetOption == "itemQuestion" ~ answerType,
+      (targetOption == "competitor") & (answerType == "itemQuestion") ~ "competitor",
+      (targetOption == "competitor") & (answerType == "sameCategory") ~ "sameCategory",
+      (targetOption == "competitor") & (answerType == "otherCategory") ~ "otherCategory",
+      (targetOption == "sameCategory") & (answerType == "itemQuestion") ~ "sameCategory",
+      (targetOption == "sameCategory") & (answerType == "competitor") ~ "sameCategory",
+      (targetOption == "sameCategory") & (answerType == "otherCategory") ~ "otherCategory",
+      targetOption == "otherCategory" ~ "otherCategory",
+      TRUE ~ answerType
+    ),
+    centered_response = response - 50
+  ) %>%
+   mutate(categorized_response = factor(categorized_response, levels = answerOrder),
+         by_trial_nr = rep(1:(num_subj*4), each = 4),
+         by_trial_nr = factor(by_trial_nr)
+         ) 
+d_clean_main_long_wItems_targetOptions <- d_clean_main_long_wItems %>% rowwise() %>% filter((targetOption == answerType_string)) %>% distinct(itemName, targetOption, answerOption_string) %>% mutate(targetOption_string = answerOption_string)
+  
+df_clean_main_wItems_long_summary <- d_clean_main_long_wItems %>%
+  left_join(., d_clean_main_long_wItems_targetOptions, by = c("itemName", "answerOption_string")) %>%
+  group_by(itemName, answerType, answerOption_string, targetOption_string) %>% 
+  summarize(mean_response = mean(response)) 
+
+df_clean_main_wItems_long2 <- left_join(d_clean_main_long_wItems, df_clean_main_wItems_long_summary, by=c('answerOption_string', 'answerType', 'itemName') ) %>% left_join(., d_clean_main_long_wItems_targetOptions, by = c("itemName", "answerOption_string", "targetOption_string", "targetOption"))
+
+df_clean_main_wItems_long2 %>%
   mutate(answerType = factor(answerType, levels = c("itemQuestion", "competitor", "sameCategory", "otherCategory"))) %>%
-  ggplot(., aes(x = answerType, y = response, fill = answerType, color = answerType)) +
+  mutate(answerOption_string = tidytext::reorder_within(answerOption_string, response, targetOption_string)) %>%
+  ggplot(., aes(x = reorder(answerOption_string, response), y = response, color = answerType)) + # , fill = answerType
   geom_point() +
-  geom_point(data = df_clean_main_long_byItem_summary, aes(x = answerType, y = mean_response), size = 4) +
-  geom_line(data = df_clean_main_long, inherit.aes=F, aes(x = answerType, y = response, group = by_trial_nr), alpha  = 0.4) +
-  facet_wrap(itemName~targetOption) +
+  geom_point(aes(x = answerOption_string, y = mean_response), size = 4) +
+  #geom_line( inherit.aes=F, aes(x = answerOption_string, y = response, group = by_trial_nr), alpha  = 0.4) +
+  tidytext::scale_x_reordered() +
+  facet_wrap(itemName~targetOption_string, scales='free') +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
   theme(panel.spacing = unit(3, "lines")) +

@@ -3,3 +3,5 @@
 /data+analysis/.Rhistory
 /node_modules/
 /experiments/prior_elicitation/node_modules/
+/experiments/free_production/node_modules/
+/experiments/contextSensitive_free_production/node_modules/
