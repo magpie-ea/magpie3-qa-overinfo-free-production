@@ -1,0 +1,390 @@
+cafe-pie
+You are a server in a café. Today the café has
+raspberry pie
+chocolate cookies
+cheese pizza
+\n\nA customer asks: 
+Do you have raspberry cake?
+I'm sorry, we don't have raspberry cake today.
+raspberry pie
+chocolate cookies
+cheese pizza
+
+
+cafe-pizza
+You are a server in a café. Today the café has 
+cheese pizza
+pepperoni pizza
+raspberry pie
+\n\nA customer asks: 
+Do you have veggie pizza?
+I'm sorry, we don't have veggie pizza today.
+cheese pizza
+pepperoni pizza
+raspberry pie
+
+
+bar-whiteWine
+You are a bartender in a hotel bar. The bar serves only 
+Chardonnay
+craft beer
+Iced coffee
+\n\nLate at night a woman walks in. She looks gloomy. She says:
+Do you have Sauvignon Blanc?
+I'm sorry, we don't have Sauvignon Blanc today.
+Chardonnay
+craft beer
+Iced coffee
+
+
+bar-tea
+You are a bartender in a hotel bar. The bar serves only
+iced coffee
+soda
+Chardonnay
+\n\nA woman walks in. She says:
+Do you have iced tea?
+I'm sorry, we don't have iced tea today.
+iced coffee
+soda
+Chardonnay
+
+
+touristInfo-childTheatre
+You are working in a tourist office in a medium-sized tourist town. Today the following events are happening: 
+a circus show
+a trade fare
+a club event with a hip hop DJ
+\n\nA young woman walks in and asks:
+Is there a theatre performance for children today?
+I'm sorry, there is no theatre performance for children today.
+a circus show
+a trade fare
+a club event with a hip hop DJ
+
+
+touristInfo-clubbing
+You are working in a tourist office in a medium-sized tourist town. Today the following events are happening: 
+a club event with a hip hop DJ
+live jazz music
+a circus show
+\n\nA young woman walks in and asks:
+Is there a club event with electronic music today?
+I'm sorry, there is no club event with electronic music today.
+a club event with a hip hop DJ
+live jazz music
+a circus show
+
+
+bookingAgency-lowClassAccommodation
+You work in a travel booking agency in a medium-sized tourist town. The following types of accommodation are still available for tomorrow night:
+a room in a cheap bed-and-breakfast
+a couchsurfing place
+a suite in a four-star hotel
+\n\nA young man walks in and asks:
+Is there a bed in the youth hostel available for tomorrow night?
+I'm sorry, there are no more beds available in the youth hostel available for tomorrow night.
+a room in a cheap bed-and-breakfast
+a couchsurfing place
+a suite in a four-star hotel
+
+
+bookingAgency-highClassAccommodation
+You work in a travel booking agency in a medium-sized tourist town. The following types of accommodation are still available for tomorrow night: 
+a suite in a four-star hotel
+an expensive apartment close to the city
+a room in a cheap bed-and-breakfast
+\n\nAn older man walks in and asks: 
+Is a single room in a five-star hotel available for tomorrow night?
+I'm sorry, there is no single room in a five-star hotel available for tomorrow night.
+a suite in a four-star hotel
+an expensive apartment close to the city
+a room in a cheap bed-and-breakfast
+
+
+waterSport-motor
+You work in a water sports rental agency in a popular tourist region with a large lake for different types of water sports. The agency offers 
+water ski equipment
+rubber dinghies
+kayaks
+\n\nA customer calls on the phone and asks:
+Do you rent jet skis?
+I'm sorry, we don’t rent jet skis.
+water ski equipment
+rubber dinghies
+kayaks
+
+
+waterSport-muscle
+You work in a water sports rental agency in a popular tourist region with a large lake for different types of water sports. The agency offers 
+kayaks
+pedal boats
+water ski equipment
+\n\nA customer calls on the phone and asks:
+Do you rent canoes?
+I'm sorry, we don’t rent canoes.
+kayaks
+pedal boats
+water ski equipment
+
+
+dutyFree-smokes
+You are a flight attendant on an old-fashioned international flight. You are selling duty-free items to passengers. You currently have the following items on offer:
+cigarettes
+gin
+gingerbread
+\n\nAs you walk by, a passenger asks:
+Do you sell cigars?
+I'm sorry, we don’t sell cigars.
+cigarettes
+gin
+gingerbread
+
+
+dutyFree-sweets
+You are a flight attendant on an old-fashioned international flight. You are selling duty free items to passengers. You currently have the following items on offer: 
+gingerbread
+waffles
+cigarettes
+\n\nAs you walk by, a passenger asks:
+Do you sell cookies?
+I'm sorry, we don’t sell cookies.
+gingerbread
+waffles
+cigarettes
+
+
+clothing-clothes
+You work at a small designer clothing store. You currently have the following items in stock: 
+shorts
+sweatshirts
+necklaces
+\n\nA customer comes in and asks:
+Do you have any Hawaiian shirts?
+I'm sorry, we don’t have any Hawaiian shirts.
+shorts
+sweatshirts
+necklaces
+
+
+clothing-acc
+You work at a small designer clothing store. You currently have the following items in stock: 
+necklaces
+sunglasses
+shorts
+\n\nA customer comes in and asks:
+Do you have any earrings?
+I'm sorry, we don’t have any earrings.
+necklaces
+sunglasses
+shorts
+
+
+petAdoption-dogs
+You work at an adoption center for rescued animals. You currently have the following animals at the center:
+golden retrievers
+chihuahuas
+gerbils
+\n\nA family comes in and asks:
+Do you have any Dalmatians?
+I'm sorry, we don’t have any Dalmatians.
+golden retrievers
+chihuahuas
+gerbils
+
+
+petAdoption-hamster
+You work at an adoption center for rescued animals. You currently have the following animals at the center:
+gerbils
+ferrets
+golden retrievers
+\n\nA family comes in and asks:
+Do you have any hamsters?
+I'm sorry, we don’t have any hamsters.
+gerbils
+ferrets
+golden retrievers
+
+
+books-romance
+You work at a bookshop in a small town. You currently have
+books of French love letters
+historical dramas
+mysteries
+\n\nA student walks in and asks:
+Do you have a book of love poems?
+I’m sorry, we don’t have love poems.
+books of French love letters
+historical dramas
+mysteries
+
+
+books-fantasy
+You work at a bookshop in a small town. You currently have
+mysteries
+adventure novels
+books of French love letters
+\n\nA student walks in and asks:
+Do you sell psychological thrillers?
+I’m sorry, we don’t sell psychological thrillers.
+mysteries
+adventure novels
+books of French love letters
+
+
+electronics-laptop
+You work at a second hand electronics store. You currently have
+a MacBook Air
+a desktop computer
+an Xbox
+\n\nA young man walks in and asks:
+Do you have a MacBook Pro?
+I’m sorry, we don’t have a MacBook Pro.
+a MacBook Air
+a desktop computer
+an Xbox
+
+
+electronics-console
+You work at a second hand electronics store. There are currently
+an Xbox
+a Gameboy
+a MacBook Air
+\n\nA young man walks in and asks:
+Do you have a PlayStation?
+I’m sorry, we don’t have a PlayStation.
+an Xbox
+a Gameboy
+a MacBook Air
+
+
+gym-yoga
+You work at the reception desk of a gym. The gym currently offers
+a pilates class
+zumba classes
+kickboxing
+\n\nA woman walks in and asks:
+Do you offer yoga classes?
+I’m sorry, we don’t have yoga.
+a pilates class
+zumba classes
+kickboxing
+
+
+gym-boxing
+You work at the reception desk of a gym. The gym currently offers
+kickboxing classes
+karate classes
+pilates
+\n\nA young guy walks in and asks:
+Do you offer boxing classes?
+I’m sorry, we don’t have boxing.
+kickboxing classes
+karate classes
+pilates
+
+
+kidsActivities-crafts
+You are a teacher at a summer camp. Today a new group of children arrived. They need to sign up for different activities. The camp offers 
+a watercolor painting class
+a carpentry workshop
+an acrobatics class
+\n\nA kid walks up to you and asks:
+Is there a pottery class?
+I'm sorry, there is no pottery class.
+a watercolor painting class
+a carpentry workshop
+an acrobatics class
+
+
+kidsActivities-sports
+You are a teacher at a summer camp. Today a new group of children arrived. They need to sign up for different activities. The camp offers 
+an acrobatics class
+a karate class
+a watercolor painting class
+\n\nA kid walks up to you and asks:
+Is there a gymnastics class?
+I'm sorry, there is no gymnastics class.
+an acrobatics class
+a karate class
+a watercolor painting class
+
+
+friendsActivities-boardGames
+You are hosting a casual Saturday night get together with your friends at your house. For activities, you prepared
+Monopoly
+checkers
+some movies
+\n\nYour friends arrive and ask you:
+Do you have Scrabble?
+I'm sorry, I don't have Scrabble.
+Monopoly
+checkers
+some movies
+
+
+friendsActivities-videoEntertainment
+You are hosting a casual Saturday night get together with your friends at your house. For activities, you prepared
+some movies
+Xbox games
+Monopoly
+\n\nYour friends arrive and ask you:
+Do you have Netflix?
+I'm sorry, I don't have Netflix.
+some movies
+Xbox games
+Monopoly
+
+
+plants-green
+You like to decorate the house and often craft decorations yourself. You often give away crafts and plants to friends and family. You currently have 
+an agave plant
+tulips
+an oil painting
+\n\nA friend just moved and wants to get something to decorate her new apartment. She visits you and asks:
+Do you have an aloe vera plant?
+I'm sorry, I don’t have an aloe vera.
+an agave plant
+tulips
+an oil painting
+
+
+plants-deco
+You like to decorate the house and often craft decorations yourself. You often give away crafts and plants to friends and family. You currently have 
+an oil painting
+some printed photographs
+an agave plant
+\n\nA friend just moved and wants to get something to decorate her new apartment. She visits you and asks:
+Do you have watercolour paintings?
+I'm sorry, I don’t have watercolour paintings.
+an oil painting
+some printed photographs
+an agave plant
+
+
+zoo-xl
+You took your kids to the zoo today. You carefully studied the map of the zoo and saw that there is
+a lion
+a giraffe
+iguanas
+\n\nYour eight-year-old is impatient and asks:
+Can we see the tiger?
+I’m sorry, they don’t have a tiger here.
+a lion
+a giraffe
+iguanas
+
+
+zoo-reptiles
+You took your kids to the zoo today. You carefully studied the map of the zoo and saw that there is
+iguanas
+turtles
+a lion
+\n\nYour eight-year-old is impatient and asks:
+Can we see the chameleon?
+I'm sorry, they don't have chameleons here.
+iguanas
+turtles
+a lion
+
+
