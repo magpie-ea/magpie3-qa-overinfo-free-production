@@ -26,7 +26,7 @@
           <button
             v-if="
               $magpie.measurements.answer &&
-              $magpie.measurements.answer.length > 4
+              $magpie.measurements.answer.length > 3
             "
             @click="$magpie.saveAndNextScreen()"
           >

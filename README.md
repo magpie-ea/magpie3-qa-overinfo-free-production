@@ -2,7 +2,7 @@
 
 This is an online experiment using [magpie](https://magpie-experiments.org/).
 
-You can inspect a live version of the free typing experiment [here](https://magpie-ea.github.io/magpie3-qa-overinfo-free-production/).
+You can inspect a live version of the free typing experiment [here](https://magpie-ea.github.io/magpie3-qa-overinfo-free-production/experiments/free_production/).
 
 You can inspect a live version of the prior elicitation experiment [here](https://magpie3-qa-overinformative-priors.netlify.app/).
 

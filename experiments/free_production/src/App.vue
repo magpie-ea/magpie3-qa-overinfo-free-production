@@ -58,8 +58,8 @@ import FreetypingScreen from './FreetypingScreen';
 
 var group = _.sample(['odd', 'even']);
 
-const n_vignettes = 8;
-const n_fillers = 3;
+const n_vignettes = 4;
+const n_fillers = 1;
 
 const trials =
   group == 'odd'
