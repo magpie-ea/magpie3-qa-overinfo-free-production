@@ -27,7 +27,7 @@
       Please spell the words exactly as stated in the instructions. 
       <br />
       <br />
-      Please answer like you would naturally do when you were in a situation
+      Please answer like you would naturally do if you were in a situation
       like the one described on each screen. <br />
       Please respond naturally and reasonably. <br />
       Please avoid jokes, insults or otherwise making the dialogues into
