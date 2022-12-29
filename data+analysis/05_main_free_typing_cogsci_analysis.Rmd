@@ -1,0 +1,345 @@
+---
+title: "QA free typing analysis"
+author: "Polina Tsvilodub"
+date: '2022-12-28'
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tidyboot)
+library(aida)
+library(brms)
+library(tidybayes)
+```
+
+```{r, include=FALSE}
+# these options help Stan run faster
+options(mc.cores = parallel::detectCores())
+
+# use the aida-theme for plotting
+theme_set(theme_aida())
+
+# global color scheme / non-optimized
+project_colors = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
+
+# setting theme colors globally
+scale_colour_discrete <- function(...) {
+  scale_colour_manual(..., values = project_colors)
+}
+scale_fill_discrete <- function(...) {
+  scale_fill_manual(..., values = project_colors)
+} 
+```
+
+## Intro
+
+Below, the analysis of the free production QA experiment 1 data can be found. In this experiment, the context is relatively uninformative regarding the goal of the questioner with respect to the target. The respondents may infer the questioners' goal based on the question itself.
+
+The responses were manually classified by Polina into the following categories: 
+
+* competitor: responses mentioning the anticipated competitor only
+* sameCategory: responses offering both same category alternatives or offering the option which we did not consider the direct competitor 
+* otherCategory: responses offering the alternative from the different category
+* fullList: responses where all alternatives were listed (also in two sentences, where one offered the competitor only)
+* taciturn: responses not offering any alternative options or further alternative solutions
+* other: responses where a same category + other category response are mixed, uncertain answers, unclassifiable responses, responses offering further teps towards solcing the problem, responses using basic level categories (e.g., "dogs" instead of offering specific alternatives)
+* yes responses (excluded from analyses when not mentioning one of the alternatives)
+
+
+In the experiment, each subject saw *four main trials* and *one attention checking trial*. Participants failing attention checks were excluded from analysis. They were reimbursed 0.60 pounds for their participation.
+
+## Summary and exclusions
+
+```{r, include=FALSE, warning=FALSE, message=FALSE}
+answerOrder <- c( 'competitor', 'sameCategory', 'otherCategory', 'fullList', 'taciturn', 'other')
+#df <- read_csv("../../raw_data/results_103_QA-overinfo-freeTyping-cogsci_PT_full.csv")
+#df %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>%  write_csv("data/results_QA-overinfo-freeTyping-cogsci_full_anonymized.csv")
+
+df <- read_csv("data/results_QA-overinfo-freeTyping-cogsci_full_anonymized_categorized.csv")
+head(df)
+cat("Number of recruited subjects: ", df %>% pull(submission_id) %>% unique() %>% length())
+```
+
+```{r, echo=FALSE}
+# check attention check completion
+df_attention <- df %>% filter(trial_type == "filler") %>% rowwise() %>%
+  mutate(passed_trial = grepl(tolower(correct_response), tolower(answer))) 
+
+df_attention_fail <- df_attention %>% group_by(submission_id) %>% 
+  mutate(passed_subj = sum(passed_trial) > 0)
+
+# participants who failed attention checks 
+subj_id_attention_fails <- df_attention_fail %>% filter(passed_subj == FALSE) %>% pull(submission_id) %>% unique()
+cat("Subjects who failed attention checks: ", subj_id_attention_fails)  
+cat("Number of subjects who failed attention checks: ", length(subj_id_attention_fails))
+cat("\nSubject exclusion rate: ", length(subj_id_attention_fails)/(unique(df$submission_id) %>% length()))
+```
+
+```{r, echo=FALSE}
+cat("Number of excluded inccorect ('yes') responses: ", nrow(df %>% filter(category == "yes")))
+cat("Proportion of excluded inccorect ('yes') responses: ", nrow(df %>% filter(category == "yes"))/nrow(df))
+
+# exclude failing participnats and incorrect ("yes") responses
+df_clean_main <- df %>% filter(!(submission_id %in% subj_id_attention_fails)) %>%
+  filter(trial_type == "main", category != "yes")
+
+cat("\nNumber of subjects post exclusions: ", df_clean_main %>% pull(submission_id) %>% unique() %>% length())
+cat("\nNumber of analysed responses: ", nrow(df_clean_main))
+
+df_clean_main %>% count(category)
+
+df_clean_main %>% count(itemName) 
+
+cat("\naverage number of responses per vignette:", mean(df_clean_main %>% count(itemName) %>% pull(n)))
+
+cat("\nvignette with most responses: ", df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$n)
+cat("\nvignette with least responses: ", df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$n)
+```
+
+Below, the response type patterns are reported.
+
+## Plots
+
+The first plot displays proportions of different response types by-vignette. 
+
+```{r, echo=FALSE, fig.height=28, fig.width=12}
+df_clean_main <- df_clean_main %>% group_by(itemName) %>%
+  mutate(response_count = n(), 
+         answerType = factor(category, levels = answerOrder)) %>% ungroup()
+  
+
+df_clean_main_summary <- df_clean_main %>% group_by(itemName, answerType) %>% 
+  mutate(responseCategory_count = n(),
+         responseCategory_proportion = responseCategory_count / response_count
+         ) %>% ungroup() %>%
+  select(itemName, answerType, responseCategory_proportion) %>% unique()
+
+# df_clean_main_summary %>% write_csv("data/results_QA-overinfo-freeTyping-cogsci_full_anonymized_categorized_byItem_summary.csv")
+```
+
+```{r, echo=FALSE, fig.height=28, fig.width=12}
+df_clean_main_summary %>% 
+  ggplot(aes(x = answerType, fill = answerType, y = responseCategory_proportion)) +
+  geom_col() +
+  facet_wrap( itemName ~ . , ncol = 4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  ylab("Proportion of answer types") +
+  xlab("Answer type")
+  
+
+# ggsave("viz/free_production_byAnswerOption_cogsci.pdf", width = 12, height = 28)
+```
+
+The plot below shows response proportions by response category averaged across vignettes. 
+
+```{r, echo=FALSE, fig.height=6, fig.width=8}
+# plot answerTypes proportions
+df_answerOptions_global_summary <- df_clean_main %>% 
+  group_by(answerType) %>% 
+  summarise(answerType_count = n(), 
+            answerType_proportion = answerType_count / nrow(df_clean_main)
+            )
+
+cat("Global response proportions: ")
+df_answerOptions_global_summary
+
+# df_answerOptions_global_summary %>% write_csv("data/results_QA-overinfo-freeTyping-cogsci_full_anonymized_categorized_global_summary.csv")
+
+df_answerOptions_global_summary %>%
+  ggplot(aes(x = answerType, fill = answerType, y = answerType_proportion)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Global proportion of answer type") +
+  xlab("Answer type")
+# ggsave("viz/free_production_global_answerTypes_cogsci.pdf", width = 8, height = 6)
+
+```
+
+## Exploring weak vignettes and weird participant behavior
+
+Below, vignettes particularly prone to other and taciturn responses are extracted. 
+
+```{r, echo=FALSE}
+# checking vignettes by number of competitor/other responses
+cat("Vignettes receiving the most 'other' responses (mostly 'no but we have other options which might interest you')")
+df_clean_main_summary %>% filter(answerType == "other") %>%
+  arrange(desc(responseCategory_proportion)) %>% head()
+
+cat("\nVignettes receiving the most 'taciturn' responses")
+df_clean_main_summary %>% filter(answerType == "taciturn") %>%
+  arrange(desc(responseCategory_proportion)) %>% head()
+
+```
+
+Below, the number of "lazy" participants providing taciturn responses only is identified.
+
+```{r, echo=FALSE}
+# by-subject exploration
+bySubj_type_counts <- df_clean_main %>% distinct(submission_id, category) %>% 
+  group_by(submission_id) %>%
+  mutate(n_distinct_types = n())
+
+cat("Number of participants providing taciturn responses only: ", bySubj_type_counts %>% arrange(n_distinct_types) %>% filter(category == "taciturn", n_distinct_types == 1) %>% nrow(.))
+
+cat("\nNumber of participants providing competitor responses only: ", bySubj_type_counts %>% arrange(n_distinct_types) %>% filter(category == "competitor", n_distinct_types == 1) %>% nrow(.))
+
+cat("\nNumber of participants providing 'other' responses only: ", bySubj_type_counts %>% arrange(n_distinct_types) %>% filter(category == "other", n_distinct_types == 1) %>% nrow(.))
+
+cat("\nMaximal number of distinct response types provided by a participant: ", bySubj_type_counts %>% arrange(desc(n_distinct_types)) %>% .[1,] %>% .$n_distinct_types)
+
+cat("\nNumber of participants providing maximal number of distinct response types (4): ", bySubj_type_counts %>% filter(n_distinct_types == 4) %>% pull(submission_id) %>% unique() %>% length())
+
+cat("\nAverage number of response types provided by a participant: ", bySubj_type_counts %>%select(-category) %>% pull(n_distinct_types) %>% mean())
+```
+
+Visualize global distribution if participants producing "No" responses only would be excluded.
+
+```{r, echo=FALSE}
+df_clean_main <- df_clean_main %>% rowwise() %>% mutate(
+  bad_response = gsub("\n", "", gsub(" ", "", tolower(answer))) == "no"
+) 
+# df_clean_main %>% filter(bad_response == TRUE)
+## it seems that participants 4622 and 4705 only provded bad responses ('no')
+
+df_clean_main %>% filter(!(submission_id %in% c(4622, 4705))) %>% 
+  mutate(answerType = factor(answerType, levels = c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'taciturn', 'other'))) %>%
+  group_by(answerType) %>% 
+  summarise(answerType_count = n(), 
+            answerType_proportion = answerType_count / nrow(df_clean_main)
+            ) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = answerType_proportion)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Global proportion of answer types\nexcluding lazy subjects") +
+  xlab("Answer type")
+```
+
+Below, the vignettes which do NOT fit the expected pattern are plotted (i.e., where the competitor is not the most popular response).
+
+```{r, echo=FALSE, fig.height=15, fig.width=12}
+df_bad_vignettes <- df_clean_main_summary %>% group_by(itemName) %>%
+  mutate(max_vignette = max(responseCategory_proportion)) %>% filter(responseCategory_proportion == max_vignette) %>%
+  filter(answerType != "competitor") %>% pull(itemName) %>% unique()
+
+df_clean_main_summary %>% filter(itemName %in% df_bad_vignettes) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = responseCategory_proportion)) +
+  geom_col() +
+  facet_wrap( itemName ~ . , ncol = 4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  ylab("Proportion of answer types") +
+  xlab("Answer type")
+```
+
+## Follow-up analyses
+
+Below, analyses suggested during the meeting on Nov 10th are incorporated. 
+First, the length (in terms of characters) of the anticipated competitor as well as averaged together with the same category alternative is extracted. We check whether participants tended to produce more taciturn responses when the alternatives were longer. 
+
+That is, first, the proportion of taciturn responses by-vignette is regressed against the length of the competitor category of each vignette. Then, the proportion of taciturn responses by-vignette is regressed against the averaged length of the competitor & same category alternatives by-vignette.
+No length effects are found with either predictor.
+
+```{r, message=FALSE, warning=FALSE}
+df_vignettes <- read_csv("../experiments/free_production/trials/trials_split_cogsci_final.csv") %>% 
+  select(itemName, itemQuestion, competitor, sameCategory, otherCategory)
+df_vignettes <- df_vignettes %>% 
+  rowwise() %>%
+  mutate(
+  comp_length = nchar(competitor),
+  sameCat_avg_length = (nchar(competitor) + nchar(sameCategory))/ 2
+)  %>% select(itemName, comp_length, sameCat_avg_length)
+
+# add to original df
+d_clean_main_wVignette <- df_clean_main_summary %>%
+  left_join(., df_vignettes, by=c('itemName'))
+
+lm_nchar_comp_prop <- lm(responseCategory_proportion ~ comp_length, data = d_clean_main_wVignette %>% filter(answerType == "taciturn"))
+summary(lm_nchar_comp_prop)
+
+lm_nchar_sameCat_prop <- lm(responseCategory_proportion ~ sameCat_avg_length, data = d_clean_main_wVignette %>% filter(answerType == "taciturn"))
+summary(lm_nchar_sameCat_prop)
+```
+
+Further, order effects of the trials are investigated. We check if participants become lazy over the trials and are more likely to produce taciturn responses towards the end of the experiment. This seems not to be the case. If anything, participants tended to produce slightly more taciturn responses in the beginning of the experiment.
+
+```{r, fig.width = 6, fig.height = 8}
+# collapse across items and participants, look at trial number
+df_trialNum <- df_clean_main %>% 
+  mutate(answerType = factor(answerType, levels = c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'taciturn', 'other'))) %>%
+  group_by(submission_id) %>%
+  mutate(trialNr_main = (1:n())) %>%
+  ungroup() %>%
+  group_by(answerType, trialNr_main) %>% 
+  summarise(answerType_count = n(), 
+            answerType_proportion = answerType_count / nrow(df_clean_main)
+            ) 
+
+df_trialNum %>%
+  ggplot(aes(x = trialNr_main, fill = answerType, y = answerType_proportion)) +
+  geom_col() +
+  facet_wrap(answerType ~ ., ncol = 2) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Global proportion of answer type") +
+  xlab("Trial number")
+```
+
+The proportion of taciturn responses by trial number (averaged across vignettes) is regressed against the trial number below.
+
+```{r}
+lm_orderEffect <- lm(answerType_proportion ~ trialNr_main, data = df_trialNum %>% filter(answerType == "taciturn"))
+summary(lm_orderEffect)
+```
+
+## Exploratory stats
+
+Below some exploratory statistical analyses are computed. The analyses investigate whether: 
+
+1. the competitor is the prevalent category  
+2. competitor is more prevalent than otherCategory
+3. competitor is more prevalent than fullList
+4. sameCategory is more prevalent than otherCategory
+5. sameCategory is more prevalent than fullList
+
+Check if the proportions of other response categories are credibly different from the competitor responses (competitor is coded as reference level in the dummy coding of the response categories). All intercepts are credible (all proportions are credibly smaller). That is, hypotheses 1-3 are supported by the data.
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+contrasts(df_clean_main$answerType)
+
+# multinomial regression with intercept only
+multinom_brm <- brm(answerType ~ 1, 
+    data = df_clean_main, 
+    family = "categorical",
+    iter = 3000
+    )
+summary(multinom_brm)
+```
+
+Check if the number of sameCategory responses is larger than the number of fullList / otherCategory responses. Both estimates are credible, so hypotheses 4-5 are supported by the data, as well.
+```{r}
+multinom_posteriors <- multinom_brm %>% spread_draws(b_musameCategory_Intercept, b_muotherCategory_Intercept, b_mufullList_Intercept) %>%
+  mutate(
+    sameCategory_vs_fullList = b_musameCategory_Intercept - b_mufullList_Intercept,
+    sameCategory_vs_otherCategory = b_musameCategory_Intercept - b_muotherCategory_Intercept
+  )
+
+multinom_posteriors %>% select(sameCategory_vs_fullList, sameCategory_vs_otherCategory) %>%
+  gather(key, val) %>%
+  group_by(key) %>%
+  summarize(
+    '|95%' = quantile(val, probs = c(0.025, 0.975))[[1]],
+    'mean'  = mean(val),
+    '95%|' = quantile(val, probs = c(0.025, 0.975))[[2]],
+    prob_gt_0 = mean(val > 0)*100,
+    prob_lt_0 = mean(val < 0)*100
+  ) -> multinom_posteriors_summary
+
+multinom_posteriors_summary
+```
