@@ -64,7 +64,7 @@ def predict_from_qa_model(model, stimuli, output_path, topk, max_length):
             return_tensors="pt"
         )
         inputs = encoding['input_ids']  # Token embeddings
-        segment_embedding = encoding['token_type_ids']  # Segment embeddings
+        # segment_embedding = encoding['token_type_ids']  # Segment embeddings
         tokens = tokenizer.convert_ids_to_tokens(inputs.squeeze(0)) # input tokens for later decoding
         out = model_qa(inputs)
         starts = softmax(out.start_logits).detach().numpy()
