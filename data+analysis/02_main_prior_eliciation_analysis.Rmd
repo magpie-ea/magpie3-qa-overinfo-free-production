@@ -46,7 +46,7 @@ answerOrder <- c( 'competitor', 'sameCategory1', 'sameCategory2', 'otherCategory
 #df <- read_csv("../../raw_data/results_97_QA-overinformative-priorElicitation-magpie_80.csv") 
 #df %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>% write_csv("results_QA-overinfo-priorElicitation-magpie-80_anonymized.csv")
 
-df <- read_csv("results_QA-overinfo-priorElicitation-magpie-80_anonymized.csv")
+df <- read_csv("data/results_QA-overinfo-priorElicitation-magpie-80_anonymized.csv")
 head(df)
 cat("Number of recruited subjects: ", df %>% pull(submission_id) %>% unique() %>% length())
 ```
@@ -289,7 +289,7 @@ df_clean_main_wItems_long2  %>%
 ## Comparing prior ratings to free production
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-d_clean_main_collapsedCompetitor_summary_100 <- read_csv("d_clean_main_collapsedCompetitor_summary_100.csv")
+d_clean_main_collapsedCompetitor_summary_100 <- read_csv("data/d_clean_main_collapsedCompetitor_summary_100.csv")
 df_clean_main_wItems_long2 <- df_clean_main_wItems_long2 %>%
   group_by(itemName, answerType) %>%
   mutate(uncentered_mean = mean(response)) %>% ungroup()
@@ -362,10 +362,12 @@ d_clean_main_collapsedCompetitor_summary_100 %>%
   xlab("Answer type free production and prior ratings")
 #ggsave("viz/freeProduction_100_and_priorElicitation_80.pdf", p4, width=10, height=35)
 ```
+
 Fit a linear model as a baseline, predicting the response type proportion from the respective prior rating:
 
-```{r}
+```{r, message=FALSE, error=FALSE, warning=FALSE}
 df_long_scaled4lm <- df_clean_main_wItems_long2_scaled %>% 
+  #filter(answerType_string == answerType) %>%
   select(itemName, answerType, mean_response) %>%
   unique() %>% 
   pivot_wider(names_from = "answerType", values_from = "mean_response", values_fn = mean) %>%
@@ -377,7 +379,42 @@ df_prior_freeProd <- d_clean_main_collapsedCompetitor_summary_100 %>%
 
 lm_freeProd_prior <- lme4::lmer(responseCategory_proportion ~ mean_rating + (1 | itemName), data = df_prior_freeProd)
 summary(lm_freeProd_prior)
+
+# regressing the proportion of the response category (competitor / same / other category) against the mean rating of the competitor / sameCategory / otherCategory option for the item linearly
+lm_freeProd_prior_brm <- brms::brm(responseCategory_proportion ~ mean_rating + (1 | itemName), 
+                                   data = df_prior_freeProd,
+                                   control = list(adapt_delta = 0.99),
+                                   iter = 4000
+                                   )
+summary(lm_freeProd_prior_brm)
 ```
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+df_long_scaled4lm_wide <- df_long_scaled4lm %>%
+  pivot_wider(names_from = "answerType", values_from = "mean_rating")
+
+df_prior_freeProd_raw <- read_delim("results_QA-overinfo-freeTyping-extendedExpt_100_anonymized_categorized.csv") %>% 
+  filter(trial_type == "main") %>%
+  filter(category != 'yes') %>%
+  left_join(., df_long_scaled4lm_wide, by=c('itemName')) %>%
+  mutate(
+    category = ifelse(category == 'competitor/other', 'competitor', category),
+    category = factor(category, levels = c('competitor', 'sameCategory', 'otherCategory', 'fullList', 'taciturn', 'other'))
+    )
+# df_prior_freeProd_raw %>% write_csv("data/results_QA-overinfo-freeTyping_priorElicitation01_pilots_summary.csv")
+
+contrasts(df_prior_freeProd_raw$category)
+
+# exploring multinomial regression, regressing the raw category of the response against the mean ratings for all options as numeric predictors, with by-item and by-subject effects
+multinom_freeProd_prior_brm <- brms::brm(category ~ competitor + sameCategory + otherCategory + (1 | itemName) + (1 | submission_id), 
+                                   data = df_prior_freeProd_raw,
+                                   family = "categorical",
+                                   control = list(adapt_delta = 0.99),
+                                   iter = 4000
+                                   )
+summary(multinom_freeProd_prior_brm)
+```
+
 
 ## Exploratory analysis without participant exclusions
 
@@ -450,9 +487,9 @@ Option 5: TBD: compute mean differences on prior elicitation data but add some u
 ```{r}
 # option 1: compute differences between competitor and the most salient other option
 df_clean_main_summary_unique_wide <- df_clean_main_summary_unique %>%
-  group_by(itemName) %>%
-  mutate(max_rating = max(mean)) %>% ungroup() %>%
-  pivot_wider(id_cols = c("itemName", "answerType", "max_rating"), names_from = "answerType", values_from = "mean") %>%
+  group_by(itemName) %>% select(-n, -empirical_stat, -ci_lower, -ci_upper) %>%
+  mutate(max_rating = max(mean), answerType = factor(answerType)) %>% ungroup() %>%
+  pivot_wider(names_from = "answerType", values_from = "mean") %>%
   rowwise() %>%
   mutate(competitor_vs_maxAlternative = competitor - max_rating,
          competitor_vs_sameCategory = competitor - mean(sameCategory1, sameCategory2), # option 2a
@@ -502,7 +539,7 @@ for (i in itemNames) {
   expected_dist <- expected_dist %>% .$expected_prop
   
   x <- rbind(observed_dist, expected_dist) 
-  kl <- KL(x)
+  kl <- philentropy::KL(x)
   kl_divs <- append(kl_divs, as.numeric(kl))
 }
 ```
