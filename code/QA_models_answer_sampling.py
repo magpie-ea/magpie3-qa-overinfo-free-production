@@ -105,7 +105,7 @@ def predict_from_qa_model(model, stimuli, output_path, topk, max_length):
     
     df.to_csv(output_path, index=False)    
 
-def sample_response_from_lm(model, path, output, **kwargs):
+def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_length=0, temperature=0, top_p=1.0, top_k=0, seed=1234):
     """
     Helper for sampling responses from huggingface pretrained QA language models.
 
@@ -118,36 +118,63 @@ def sample_response_from_lm(model, path, output, **kwargs):
     output: str
         Path for saving file with samples.
     """
-    torch.manual_seed(1234)
-    random.seed(1234)
+    torch.manual_seed(seed)
+    random.seed(seed)
     # read file with questions and answers
-    df = pd.read_csv(stimuli)
+    df = pd.read_csv(path)
     # assume there is a question and answer field and the file has long format
     assert ("question" in df.columns) and ("context_qa" in df.columns), "The stimuli file has to have a question and a context_qa column"
     
-    # load requested model
-    if model == "valhalla/t5-base-qa-qg-hl":
-        nlp = transformers.pipeline("multitask-qa-qg", model=model)
-        # for qa pass a dict with "question" and "context"
-        response = nlp({
-            "question": "What is 42 ?",
-            "context": "42 is the answer to life, the universe and everything."
-        })
+    assert topk <= num_beams, "Number of sequences to be returned has to be <= than the beam size when decoding"
+    # move to gpu for faster inference
+    if torch.backends.mps.is_available():
+        device = "mps"
+    elif torch.cuda.is_available():
+        device = "cuda"
     else:
-        model_qa = transformers.AutoModelWithLMHead.from_pretrained(model)
-        tokenizer = transformers.AutoTokenizer.from_pretrained(model)
-        question = "What is 42?"
-        context = "42 is the answer to life, the universe and everything"
-        input = f"question: {question} context: {context}"
-        encoded_input = tokenizer([input],
-                                    return_tensors='pt',
-                                    max_length=512,
-                                    truncation=True)
-        output = model.generate(input_ids = encoded_input.input_ids,
-                                    attention_mask = encoded_input.attention_mask)
-        output = tokenizer.decode(output[0], skip_special_tokens=True)
-        print(output)
+        device = "cpu"
 
+    print("DEVICE ", device)
+    # load requested model
+    model_qa = transformers.AutoModelWithLMHead.from_pretrained(model)
+    tokenizer = transformers.AutoTokenizer.from_pretrained(model)
+    model_qa.to(device)
+
+    model_name = []
+    predictions = []
+    for i, r in tqdm(df[["context_qa", "question"]].iterrows()):
+        question = r["question"] # "What is 42?"
+        context = r["context_qa"] # "42 is the answer to life, the universe and everything"
+        input = f"question: {question} context: {context}"
+        encoded_input = tokenizer(
+            [input],
+            return_tensors='pt',
+            max_length=512,
+            truncation=True
+        )
+        encoded_input.to(device)
+        output = model_qa.generate(
+            input_ids = encoded_input.input_ids,
+            attention_mask = encoded_input.attention_mask,
+            num_return_sequences = topk,
+            num_beams = num_beams,
+            max_length = max_length if max_length > 0 else 20,
+            temperature = temperature if temperature != 1 else 1.0,
+            top_p = top_p if top_p != 1 else top_p,
+            top_k = top_k if top_k != 0 else 50,
+        )
+        output = tokenizer.batch_decode(output, skip_special_tokens=True)
+        
+        # append predictions
+        model_name.append(model)
+        predictions.append(output)
+
+    df["model_name"] = model_name
+    df["predictions"] = predictions
+
+    df = df.explode(["predictions"])
+    
+    df.to_csv(output_path, index=False)  
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -161,13 +188,19 @@ if __name__ == "__main__":
     parser.add_argument("-o", "--output", help = "path to save processed output file to")
     parser.add_argument("-topk", "--topk", help = "top k candidate spans to decode", nargs="?", default=1, type=int)
     parser.add_argument("-ml", "--max_length", help = "max length of predicted response spans", nargs="?", default=0, type=int)
-    
-    
+    parser.add_argument("-nb", "--num_beams", help = "size of beam to search when doing LM sampling", nargs="?", default=1, type=int)
+    parser.add_argument("-tm", "--temperature", help = "sampling temperature when doing LM sampling", nargs="?", default=1, type=int)
+    parser.add_argument("-tp", "--top_p", help = "top p for nucleus sampling when doing LM sampling", nargs="?", default=1, type=float)
+    parser.add_argument("-tk", "--top_k", help = "top k number of tokens for sampling when doing LM sampling", nargs="?", default=0, type=int)
+    parser.add_argument("-s", "--seed", help = "random seed for drawing several samples", nargs="?", default=1234, type=int)
+
     args = parser.parse_args()
 
     if args.task == "qa":
         predict_from_qa_model(args.model, args.path, args.output, args.topk, args.max_length)
 
+    elif args.task == "lm_sampling":
+        sample_response_from_lm(args.model, args.path, args.output, args.topk, args.num_beams, args.max_length, args.temperature, args.top_p, args.top_k)
+
     else:
-        pass
-        # draw_samples_from_lm(args.model, args.stimuli)
+        raise ValueError("Unrecognized task type")
