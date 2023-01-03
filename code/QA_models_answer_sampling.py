@@ -105,7 +105,7 @@ def predict_from_qa_model(model, stimuli, output_path, topk, max_length):
     
     df.to_csv(output_path, index=False)    
 
-def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_length=0, temperature=0, top_p=1.0, top_k=0, seed=1234):
+def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_length=0, temperature=0, top_p=1.0, top_k=0, seed=1234, few_shot=False):
     """
     Helper for sampling responses from huggingface pretrained QA language models.
 
@@ -131,6 +131,8 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
         Number of tokens k to consider with top K sampling.
     seed: int
         Random seed to set.
+    few_shot: bool
+        Flag indicating whether to use the one-shot example context additionally to the story context.
     """
     torch.manual_seed(seed)
     random.seed(seed)
@@ -142,7 +144,7 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
     assert topk <= num_beams, "Number of sequences to be returned has to be <= than the beam size when decoding"
     # move to gpu for faster inference
     if torch.backends.mps.is_available():
-        device = "mps"
+        device = "cpu"#"mps"
     elif torch.cuda.is_available():
         device = "cuda"
     else:
@@ -151,15 +153,34 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
     print("DEVICE ", device)
     # load requested model
     model_qa = transformers.AutoModelWithLMHead.from_pretrained(model)
-    tokenizer = transformers.AutoTokenizer.from_pretrained(model)
+    if model == "danyaljj/gpt2_question_answering_squad2":
+        tokenizer = transformers.AutoTokenizer.from_pretrained("gpt2")
+    else:
+        tokenizer = transformers.AutoTokenizer.from_pretrained(model)
+
     model_qa.to(device)
 
+    few_shot_context = """
+    You are hosting a barbecue party. You are standing behind the barbecue. You have the following goods to offer: pork sausages, vegan burgers, grilled potatoes and beef burgers.
+    You reason about what that person most likely wanted to have. That they asked for grilled zucchini suggests that they might want vegetarian food. From the items you have pork sausages and beef burgers are least likely to satisfy the persons desires. Vegan burgers and grilled potatoes come much closer. Grilled potatoes are most similar to grilled zucchini.
+    """
+    few_shot_question = "Someone asks: Do you have grilled zucchini?"
+    few_shot_answer = "You reply: I'm sorry, I don't have any grilled zucchini. But I do have some grilled potatoes. Now consider a different situation."
     model_name = []
     predictions = []
     for i, r in tqdm(df[["context_qa", "question"]].iterrows()):
-        question = r["question"] # "What is 42?"
-        context = r["context_qa"] # "42 is the answer to life, the universe and everything"
-        input = f"question: {question} context: {context}"
+        question = r["question"] 
+        context = r["context_qa"] 
+        if few_shot:
+            context = few_shot_context + " " + few_shot_question + " " + few_shot_answer + " " + context
+
+        if model == "danyaljj/gpt2_question_answering_squad2":
+            input = f"{context} Q: {question} A:"
+        elif model == "gpt2":
+            input = context + " " + question + " You reply:" 
+        else:
+            input = f"question: {question} context: {context}"
+
         encoded_input = tokenizer(
             [input],
             return_tensors='pt',
@@ -167,18 +188,22 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
             truncation=True
         )
         encoded_input.to(device)
-        output = model_qa.generate(
-            input_ids = encoded_input.input_ids,
-            attention_mask = encoded_input.attention_mask,
-            num_return_sequences = topk,
-            num_beams = num_beams,
-            max_length = max_length if max_length > 0 else 20,
-            temperature = temperature if temperature != 1 else 1.0,
-            top_p = top_p if top_p != 1 else top_p,
-            top_k = top_k if top_k != 0 else 50,
-        )
-        output = tokenizer.batch_decode(output, skip_special_tokens=True)
-        
+        try:
+            output = model_qa.generate(
+                input_ids = encoded_input.input_ids,
+                attention_mask = encoded_input.attention_mask,
+                num_return_sequences = topk,
+                num_beams = num_beams,
+                max_length = max_length if max_length > 0 else 20,
+                temperature = temperature if temperature != 1 else 1.0,
+                top_p = top_p if top_p != 1 else top_p,
+                top_k = top_k if top_k != 0 else 50,
+            )
+            output = tokenizer.batch_decode(output, skip_special_tokens=True)
+        # catch some weird (probably version difference related) bugs arising with finetuned BART
+        except ValueError:
+            print("---- skipping vignette ----")
+            output = ""
         # append predictions
         model_name.append(model)
         predictions.append(output)
@@ -237,7 +262,12 @@ def score_answers_with_lm(model, path, output_path, reduction="mean", seed=1234)
         probs = []
         # iterate over the different response options
         for a in ["taciturn", "competitor", "sameCategory", "otherCategory", "fullList"]:
-            prompt = "question: " + r["question"] + " context: " + r["context_qa"]
+            if model == "danyaljj/gpt2_question_answering_squad2":
+                prompt = f"{r['context_qa']} Q: {r['question']} A: {r[a]}"
+            elif model == "gpt2":
+                prompt = r['context_qa'] + " " +r['question'] + " You reply: " + r[a]
+            else:
+                prompt = "question: " + r["question"] + " context: " + r["context_qa"]
             # tokenize
             encoded_input = tokenizer(
                 [prompt],
@@ -255,9 +285,19 @@ def score_answers_with_lm(model, path, output_path, reduction="mean", seed=1234)
             encoded_answer.to(device)
             # make forward step
             with torch.no_grad():
-                output = model_qa(input_ids = encoded_input.input_ids, labels = encoded_answer.input_ids)
+                # for decoder only models, the entire sequence including the context is passed as the label
+                if "gpt2" in model: 
+                    output = model_qa(**encoded_input, labels = encoded_input.input_ids)
+                # for encoder-decoder models, only the answer is passed as the labels since the input context is  only passed through the encoder
+                else:
+                    output = model_qa(input_ids = encoded_input.input_ids, labels = encoded_answer.input_ids)
             # manually retrieve NLL from CE computation (to allow flexibility with respect to the reduction strategy)
-            nll = criterion(output.logits.transpose(1,2), encoded_answer.input_ids)
+            if "gpt2" in model:
+                # only take the scores of the answer sequence
+                start_ind = encoded_input.input_ids[0].tolist().index(encoded_answer.input_ids[0, 1].item()) # remove sos token
+                nll = criterion(output.logits[:, start_ind:, :].transpose(1,2), encoded_answer.input_ids[:, 1:])
+            else:
+                nll = criterion(output.logits.transpose(1,2), encoded_answer.input_ids)
             # store results (probs)
             probs.append(torch.exp(-nll).item())
             model_name.append(model)
@@ -291,6 +331,7 @@ if __name__ == "__main__":
     parser.add_argument("-tk", "--top_k", help = "top k number of tokens for sampling when doing LM sampling", nargs="?", default=0, type=int)
     parser.add_argument("-s", "--seed", help = "random seed for drawing several samples", nargs="?", default=1234, type=int)
     parser.add_argument("-r", "--reduction", help = "cross entropy calculation reduction strategy for scoring answer options with LMs", nargs="?", default="mean", type=str, choices=["mean", "sum"])
+    parser.add_argument("-fs", "--few_shot", help = "should the few-shot example context be used for LMs?", action="store_true")
 
     args = parser.parse_args()
 
@@ -298,7 +339,7 @@ if __name__ == "__main__":
         predict_from_qa_model(args.model, args.path, args.output, args.topk, args.max_length)
 
     elif args.task == "lm_sampling":
-        sample_response_from_lm(args.model, args.path, args.output, args.topk, args.num_beams, args.max_length, args.temperature, args.top_p, args.top_k, args.seed)
+        sample_response_from_lm(args.model, args.path, args.output, args.topk, args.num_beams, args.max_length, args.temperature, args.top_p, args.top_k, args.seed, args.few_shot)
 
     elif args.task == "lm_prob":
         score_answers_with_lm(args.model, args.path, args.output, args.reduction, args.seed)

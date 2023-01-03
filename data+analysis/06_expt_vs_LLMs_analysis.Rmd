@@ -1,0 +1,564 @@
+---
+title: "QA free typing analysis"
+author: "Polina Tsvilodub"
+date: '2023-01-02'
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tidyboot)
+library(aida)
+library(brms)
+library(tidybayes)
+# remotes::install_github("coolbutuseless/ggpattern")
+library(ggpattern)
+```
+
+```{r, include=FALSE}
+# these options help Stan run faster
+options(mc.cores = parallel::detectCores())
+
+# use the aida-theme for plotting
+theme_set(theme_aida())
+
+# global color scheme / non-optimized
+project_colors = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
+
+# setting theme colors globally
+scale_colour_discrete <- function(...) {
+  scale_colour_manual(..., values = project_colors)
+}
+scale_fill_discrete <- function(...) {
+  scale_fill_manual(..., values = project_colors)
+} 
+```
+
+## Intro
+
+The following script compares the results from the [free production human experiment](https://github.com/magpie-ea/magpie3-qa-overinfo-free-production/blob/main/data%2Banalysis/05_main_free_typing_cogsci_analysis.md) run on the final 30 items for CogSci to samples and scores retrieved from Language Models (LMs) and neural models fine-tuned for question answering on various datasets. For each model, the top 5 predictions were retrieved. For LMs, the results are compared when using the one-shot example also used for GPT-3, vs results without any additional context prompting. Example model queries looked like this:
+
+* extractive QA models: [CLS] Do you have raspberry cake? [SEP] You are a server in a café. Today the café has raspberry pie, chocolate cookies, and cheese pizza. A customer asks:[SEP]
+* LM: You are a server in a café. Today the café has raspberry pie, chocolate cookies, and cheese pizza. A customer asks: Q: Do you have raspberry cake? A:
+* LM with one shot example: You are hosting a barbecue party. You are standing behind the barbecue. You have the following goods to offer: pork sausages, vegan burgers, grilled potatoes and beef burgers. You reason about what that person most likely wanted to have. That they asked for grilled zucchini suggests that they might want vegetarian food. From the items you have pork sausages and beef burgers are least likely to satisfy the persons desires. Vegan burgers and grilled potatoes come much closer. Grilled potatoes are most similar to grilled zucchini. You reply: I'm sorry, I don't have any grilled zucchini. But I do have some grilled potatoes. Now consider a different situation. Someone asks: Do you have grilled zucchini? You are a server in a café. Today the café has raspberry pie, chocolate cookies, and cheese pizza. A customer asks: Q: Do you have raspberry cake? A:
+
+The samples from the neural models were hand-categorized into the same categories as the human data. That is, they were categorized according to the following criteria. Note that responses consisting of incomplete / ungrammatical / repetitive sentences (especially in case of GPT-2 based or one-shot models, the predictions sometimes repeated parts of the context)  were also classified as long as they contained mentions of critical alternatives. When the alternative was mentioned incompletely (e.g., 'kickboxing' instead of 'kickboxing class'), it was only taken into account in the classification of it was judged to be a phrase hat could be naturally produced by human participants (mostly, kickboxing item). 
+
+* 'competitor': responses mentioning the anticipated competitor only. Responses which started with yes but then only mentioned the competitor were also considered competitor category responses. 
+* 'sameCategory': responses offering both same category alternatives or offering the option which we did not consider the direct competitor. Responses which started with yes but then mentioned relevant alternatives were also considered same category responses. 
+* 'otherCategory': responses offering the alternative from the different category. Responses which started with yes but then mentioned relevant alternatives were also considered other category responses.
+* 'fullList': responses where all alternatives were listed (also across several sentences). Responses which started with yes or repeated parts of the context / question but then mentioned all alternatives were also considered fullList responses.
+* 'taciturn': responses not offering any alternative options or further alternative solutions. Responses repeating the question and saying 'no' or saying 'no' followed by some (generated) explanation or repetition were also considered taciturn responses.
+* 'other': where a same category + other category response are mixed, uncertain answers, unclassifiable responses, responses offering further steps towards solcing the problem, responses using basic level categories (e.g., "dogs" instead of offering specific alternatives). Also nonsense responses, contradictory responses, responses mentioning parts of the one-shot context, completely ungrammatical responses, responses including insufficient formulations of some alternative were classified as 'other'.
+* 'yes': plain 'yes' responses, responses mentioning that the target item was present, responses mentioning the presense of the target otem even if it was followed by correctly mentioning alternative items (e.g., as additional options).
+* The additional 'none' category was introduced due to extractive QA models which sometime predict an empty span consisting of a special token only. These were marked as being silent, i.e., 'none' (since such an option did not exist for human participants).
+
+First, the script provides some descriptive information about the neural model samples and probs, before presenting visual comparisons to human data followed by some exploratory stats.
+
+## Load processed experimental results and neural model data, display descriptions
+
+Read in by-vignette response category proportions.
+
+```{r, include=FALSE, warning=FALSE, message=FALSE}
+answerOrder <- c( 'competitor', 'sameCategory', 'otherCategory', 'fullList', 'taciturn', 'other')
+#df <- read_csv("../../raw_data/results_103_QA-overinfo-freeTyping-cogsci_PT_full.csv")
+#df %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>%  write_csv("data/results_QA-overinfo-freeTyping-cogsci_full_anonymized.csv")
+
+df_human <- read_csv("data/results_QA-overinfo-freeTyping-cogsci_full_anonymized_categorized_byItem_summary.csv") %>% 
+  mutate(model_name = "human") %>%
+  rename(., c('prop' = 'responseCategory_proportion'))
+df_human_global <- read_csv("data/results_QA-overinfo-freeTyping-cogsci_full_anonymized_categorized_global_summary.csv") %>% 
+  mutate(model_name = "human") %>% 
+  rename(., c('prop' = 'answerType_proportion')) %>%
+  select(-answerType_count)
+
+head(df_human)
+head(df_human_global)
+```
+
+Read in categorized sample data from (generative) LMs and extractive QA models.
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# iterate over all classified sample csvs
+nm_samples_categorized <- data.frame()
+all_sample_files <- list.files("../code/results/categorized_responses", pattern="*.csv", full.names = TRUE)
+
+for (f in all_sample_files) {
+  df <- read_csv(f)
+  if (grepl("fewShot", f)) {
+    df <- df %>%
+      mutate(is_few_shot = TRUE)
+  } else {
+    df <- df %>%
+      mutate(is_few_shot = FALSE)
+  }
+  # rename QA cols
+  if ("predicted_spans" %in% colnames(df)) {
+    df <- df %>%
+      rename(., c('predictions' = 'predicted_spans'))
+  } else if ("predictions_cleaned" %in% colnames(df)) {
+    df <- df %>% select(-predictions) %>%
+      rename(., c('predictions' = 'predictions_cleaned'))      
+  } 
+  nm_samples_categorized <- rbind(nm_samples_categorized, df)
+}
+head(nm_samples_categorized)
+```
+
+Load all files with probabilities of different kinds of (human) responses under pretrained LMs. All probabilities were computed *without* one-shot exmples in the context.
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+lm_scores <- data.frame()
+all_score_files <- list.files("../code/results/lm_probs", pattern="*.csv", full.names = TRUE)
+
+for (f in all_score_files) {
+  df <- read_csv(f)
+  # rename GPT cols
+  if ("predictions_cleaned" %in% colnames(df)) {
+    df <- df %>% select(-predictions) %>%
+      rename(., c('predictions' = 'predictions_cleaned'))      
+  } 
+  lm_scores <- rbind(lm_scores, df)
+}
+head(lm_scores)
+```
+
+Look at the distributions of response types in the sampled responses, globally and by-model. 'None' and 'yes' responses are excluded from global, by-model, by-item and by-model-by-item proportion summaries for further analyses.
+
+```{r, echo=FALSE}
+nm_samples_categorized <- nm_samples_categorized %>%
+  mutate(
+    dataset = case_when(
+      model_name == 'aware-ai/bart-squadv2' ~ 'SQuADv2',
+      model_name == 'danyaljj/gpt2_question_answering_squad2' ~ 'SQuADv2',
+      model_name == 'deepset/bert-base-cased-squad2' ~ 'SQuADv2',
+      model_name == 'deepset/deberta-v3-base-squad2' ~ 'SQuADv2',
+      model_name == 'deepset/electra-base-squad2' ~ 'SQuADv2',
+      model_name == 'deepset/roberta-base-squad2' ~ 'SQuADv2',
+      model_name == 'deepset/tinyroberta-squad2' ~ 'SQuADv2',
+      model_name == 'yjernite/bart_eli5' ~ 'eli5',
+      model_name == 'bert-large-uncased-whole-word-masking-finetuned-squad' ~ 'SQuADv1',
+      model_name == 'distilbert-base-cased-distilled-squad' ~ 'SQuADv1',
+      model_name == 'distilbert-base-uncased-distilled-squad' ~ 'SQuADv1',
+      model_name == 'bigscience/T0_3B' ~ 'MC QA, EQA, CBQA, D2T, sentiment, summary, topic, paraphrase',
+      model_name == 'gpt2' ~ 'WebText',
+      model_name == 'MaRiOrOsSi/t5-base-finetuned-question-answering' ~ 'DuoRC',
+      model_name == 'valhalla/t5-base-qa-qg-hl' ~ 'SQuADv1',
+      TRUE ~ 'unknown'
+    )
+  )
+```
+
+```{r, echo=FALSE}
+cat("Models that were used: ", nm_samples_categorized %>% pull(model_name) %>% unique())
+cat("Number of models that were used: ", nm_samples_categorized %>% pull(model_name) %>% unique() %>% length())
+
+cat("Overall response category counts:")
+nm_samples_categorized %>% count(category)
+
+cat("By model response category counts: ")
+nm_samples_categorized %>% count(model_name, category) 
+
+cat("By dataset response category proportions: ")
+nm_samples_categorized %>% group_by(dataset, category) %>%
+  summarize(n = n()) %>%
+  mutate(prop = n / sum(n)) %>%
+  arrange(desc(prop))
+
+cat("Compare response category proportions of models trained on SQuADv1 vs SQuADv2: ")
+nm_samples_categorized %>% group_by(dataset, category) %>%
+  summarize(n = n()) %>%
+  mutate(prop = n / sum(n)) %>%
+  select(-n) %>%
+  filter((dataset == "SQuADv1") | (dataset == "SQuADv2")) %>%
+  pivot_wider(names_from = "dataset", values_from = "prop")
+
+cat("Compare response category proportions of cased vs uncased DistilBERT models: ")
+nm_samples_categorized %>% group_by(model_name, category) %>%
+  summarize(n = n()) %>%
+  mutate(prop = n / sum(n)) %>%
+  select(-n) %>%
+  filter((model_name == "distilbert-base-cased-distilled-squad") | (model_name == "distilbert-base-uncased-distilled-squad")) %>%
+  pivot_wider(names_from = "model_name", values_from = "prop")
+
+df_samples_byModel_byContext_summary <- nm_samples_categorized %>% group_by(model_name, is_few_shot, category) %>%
+  summarize(n = n()) %>%
+  mutate(prop = n / sum(n))
+cat("Proportion of response categories by model: ")
+df_samples_byModel_byContext_summary
+
+cat("Proportion of 'yes' response categories by model (sorted from worst model to best): ")
+df_samples_byModel_byContext_summary %>% filter(category == 'yes') %>% arrange(desc(prop))
+
+cat("Proportion of 'none' response categories by QA model (sorted from worst model to best): ")
+df_samples_byModel_byContext_summary %>% filter(category == 'none') %>% arrange(desc(prop))
+
+df_samples_byModel_byContext_summary <- nm_samples_categorized %>% 
+  filter((category != 'yes') & (category != 'none')) %>%
+  group_by(model_name, is_few_shot, category) %>%
+  summarize(n = n()) %>%
+  mutate(prop = n / sum(n)) %>%
+  mutate(answerType = factor(category, levels=answerOrder))
+
+df_samples_byModel_summary <- nm_samples_categorized %>% 
+  filter((category != 'yes') & (category != 'none')) %>%
+  group_by(model_name, category) %>%
+  summarize(n = n()) %>%
+  mutate(prop = n / sum(n)) %>%
+  mutate(answerType = factor(category, levels=answerOrder))
+
+df_samples_byModel_byItem_summary <- nm_samples_categorized %>%
+  filter((category != 'yes') & (category != 'none')) %>%
+  group_by(model_name, is_few_shot, itemName, category) %>%
+  summarize(n = n()) %>%
+  mutate(prop = n / sum(n)) %>%
+  mutate(answerType = factor(category, levels=answerOrder))
+
+df_samples_byItem_summary <- nm_samples_categorized %>%
+  filter((category != 'yes') & (category != 'none')) %>%
+  group_by(itemName, category) %>%
+  summarize(n = n()) %>%
+  mutate(prop = n / sum(n)) %>%
+  mutate(answerType = factor(category, levels=answerOrder))
+cat("Proportion of response categories by vignette:")
+df_samples_byItem_summary
+
+df_samples_global_summary <- nm_samples_categorized %>%
+  filter((category != 'yes') & (category != 'none')) %>%
+  group_by(category) %>%
+  summarize(n = n()) %>%
+  mutate(prop = n / sum(n)) %>%
+  mutate(answerType = factor(category, levels=answerOrder))
+cat("Global response category proportions:")
+df_samples_global_summary
+```
+
+## Plots
+
+The first plot shows global response proportions, averaged across models and vignettes.
+
+```{r, echo=FALSE, fig.height=4, fig.width=6}
+df_samples_global_summary %>%
+  ggplot(aes(x = answerType, fill = answerType, y = prop)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Global proportion of answer type") +
+  xlab("Answer type")
+```
+
+The next plot displays proportions of different responses from different models, averaging across one-shot and zero-shot LMs.
+
+```{r, echo=FALSE, fig.height=15, fig.width=12}
+bar.width <- 0.8
+df_samples_byModel_summary %>% ungroup() %>%
+  ggplot(aes(x = answerType, fill = answerType, y = prop)) +
+  geom_col() +
+  facet_wrap( model_name ~ . , ncol = 4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  xlab("Answer type") +
+  ylab("Response type proportion")
+```
+
+The next plot displays proportions of different responses from different models, differentiating between one-shot and zero-shot LMs.
+
+```{r, echo=FALSE, fig.height=15, fig.width=12}
+bar.width <- 0.8
+df_samples_byModel_byContext_summary %>% ungroup() %>%
+  ggplot(aes(x = answerType, fill = answerType, y = prop, pattern = is_few_shot)) +
+  geom_col_pattern(alpha = 0.7, position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+                   ) +
+  scale_pattern_manual(values = c(`TRUE` = "stripe", `FALSE` = "none")) +
+  labs(x = "Answer type", y = "Response type proportion", pattern = "One shot context?") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  facet_wrap( model_name ~ . , ncol = 4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) 
+```
+
+The next plot displays proportions of different responses from models by-vignette. 
+
+```{r, echo=FALSE, fig.height=28, fig.width=12}
+df_samples_byItem_summary %>% 
+  ggplot(aes(x = answerType, fill = answerType, y = prop)) +
+  geom_col() +
+  facet_wrap( itemName ~ . , ncol = 4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  ylab("Proportion of answer types") +
+  xlab("Answer type") 
+  
+```
+
+
+### Comparing neural and human responses
+
+Below, the response type categories sampled from models and collected in the free production human experiment are plotted against each other.
+
+First, the global proportions are compared.
+
+```{r, echo=FALSE, fig.height=4, fig.width=6}
+df_samples_human_global_summary <- df_samples_global_summary %>% 
+  mutate(model_name = "neural_models") %>%
+  select(-n, -category) %>%
+  rbind(., df_human_global)
+
+df_samples_human_global_summary %>% 
+  mutate(model_name = factor(model_name, levels = c("human", "neural_models"))) %>%
+  ggplot(., aes(x = answerType, y = prop, fill = answerType, pattern = model_name)) +
+  geom_col_pattern(alpha = 0.7, position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+                   ) +
+  scale_pattern_manual(values = c(human = "stripe", neural_models = "none")) +
+  labs(x = "Answer type", y = "Response type proportion", pattern = "Human data?") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Global proportion of answer type") +
+  xlab("Answer type") +
+  ggtitle("Response type proportions of human data vs\nneural model samples")
+```
+
+Next, by-vignette results can be found below.
+
+```{r, echo=FALSE, fig.height=28, fig.width=12}
+df_samples_human_byItem_summary <- df_samples_byItem_summary %>% 
+  select(-n, -category) %>%
+  mutate(model_name = "neural_models") %>%
+  rbind(., df_human)
+
+bar.width <- 0.9
+
+df_samples_human_byItem_summary %>% 
+  mutate(model_name = factor(model_name, levels = c("human", "neural_models"))) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = prop, pattern = model_name)) +
+  geom_col_pattern(position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+           ) +
+  scale_pattern_manual(values = c(human = "stripe", neural_models = "none")) +
+  facet_wrap( itemName ~ . , ncol = 4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  labs(x = "Answer type", y = "Response type proportion", pattern = "Human data?") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  ggtitle("Response type proportions of human data vs neural model samples by-vignette")
+```
+
+### Model probabilities
+
+Below, the scores assigned to provided answer types are compared to the proportions of those answer types generated by the language models during sampling. Whenever the responses sampled from the model were difficult to classify due to half-generated phrases (like "kick" instead of kickboxing), they were categorized as "other" responses. 
+The comparison is by model type. 
+
+```{r, echo=FALSE, fig.height=6, fig.width=6}
+lm_scores_byModel <- lm_scores %>% select(answer_type, answer_type_prob, model_name) %>%
+  mutate(answerType = factor(answer_type, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn"))) %>%
+  group_by(answerType, model_name) %>%
+  summarize(answer_type_prob = mean(answer_type_prob)) 
+
+lm_scores_byModel %>%
+  ggplot(aes(x = answerType, fill = answerType, y = answer_type_prob)) +
+  geom_col() +
+  facet_wrap( model_name ~ . , ncol = 3) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  ylab("Probability of answer types") +
+  xlab("Answer type") +
+  ggtitle("Propabilities of answer types under different LMs")
+
+```
+
+Compare the samples and the probabilities assigned by the models to human data (across models and vignettes).
+
+```{r, echo=FALSE, fig.height=4, fig.width=6}
+lm_scores_global <- lm_scores %>% select(answer_type, answer_type_prob, model_name) %>%
+  mutate(answerType = factor(answer_type, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn"))) %>%
+  group_by(answerType) %>%
+  summarize(answer_type_prob = mean(answer_type_prob)) 
+  
+df_human_lm_scores <- lm_scores_global %>%
+  mutate(model_name = "neural_models") %>% 
+  select(answerType, answer_type_prob, model_name) %>%
+  rbind(., df_human_global %>% rename("answer_type_prob" = "prop"))
+
+df_human_lm_scores %>%
+  mutate(model_name = factor(model_name, levels = c("human", "neural_models"))) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = answer_type_prob, pattern = model_name)) +
+  geom_col_pattern(position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+           ) +
+  scale_pattern_manual(values = c(human = "stripe", neural_models = "none")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  labs(x = "Answer type", y = "Response type proportion / P under LM", pattern = "Human data?") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  ggtitle("Response type proportions of human data vs neural model scores of human response types")
+
+```
+
+Below, scores by-vignette are compared (across models).
+
+```{r, echo=FALSE, fig.height=28, fig.width=12}
+lm_scores_byItem <- lm_scores %>% select(answer_type, answer_type_prob, itemName, model_name) %>%
+  mutate(answerType = factor(answer_type, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn"))) %>%
+  group_by(answerType, itemName) %>%
+  summarize(answer_type_prob = mean(answer_type_prob)) 
+  
+df_human_lm_scores_byItem <- lm_scores_byItem %>%
+  mutate(model_name = "neural_models") %>% 
+  select(answerType, answer_type_prob, model_name, itemName) %>%
+  rbind(., df_human %>% rename("answer_type_prob" = "prop"))
+
+df_human_lm_scores_byItem %>%
+  mutate(model_name = factor(model_name, levels = c("human", "neural_models"))) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = answer_type_prob, pattern = model_name)) +
+  geom_col_pattern(position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+           ) +
+  scale_pattern_manual(values = c(human = "stripe", neural_models = "none")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  facet_wrap(itemName ~ ., ncol = 4) +
+  labs(x = "Answer type", y = "Response type proportion / P under LM", pattern = "Human data?") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  ggtitle("Response type proportions of human data vs neural model scores of human response types by item")
+
+```
+
+Compare the scores of different models to their proportion predictions:
+
+```{r, echo=FALSE, fig.height=8, fig.width=6, warning=FALSE, message=FALSE}
+df_models_scores_samples <- df_samples_byModel_byItem_summary %>% ungroup() %>%
+  filter(is_few_shot == FALSE) %>% select(model_name, itemName, answerType, prop, -is_few_shot) %>%
+  inner_join(., lm_scores %>% select(itemName, model_name, answer_type_prob, answer_type) %>%
+  mutate(answerType = factor(answer_type, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn", "other"))) %>% select(-answer_type))
+
+df_models_scores_samples %>%
+  ggplot(aes(x = answer_type_prob, fill = answerType, color = answerType, y = prop)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  labs(x = "Answer type probability under LM", y = "Sampled response type proportion") +
+  facet_wrap(answerType ~ ., ncol = 2)
+```
+
+## Stats
+
+Below, the KL-divergence of between global human response type proportions (renormalized after excluding 'other' responses) and probabilities assigned by the models are compared. Note the implicit assumption that the proportions of different response types produced by humans are the probabilities of producing that particular type given the context.
+
+```{r}
+df_human_global_renorm <- df_human_global %>% filter(answerType != "other") %>%
+  mutate(answer_type_prob = prop / (df_human_global %>% filter(answerType != "other") %>% pull(prop) %>% sum()))
+
+model_human_dists <- rbind(lm_scores_global %>% pull(answer_type_prob), df_human_global_renorm %>% pull(answer_type_prob)) 
+kl <- philentropy::KL(model_human_dists)
+cat("KL divergence : ", kl)
+```
+
+Compute a multinomial regression with a main effect of human vs model data, regressing the response category against an intercept and a main effect of data source, and random by-item intercepts. Competitor responses are coded as the reference level.
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+df_human_raw <- read_csv("data/results_QA-overinfo-freeTyping-cogsci_full_anonymized_categorized.csv") %>% 
+  filter(category != 'yes', !(submission_id %in% c(4608, 4690, 4687, 4733, 4763))) %>% 
+  mutate(answerType = factor(category, levels = answerOrder),
+         model_name = "human"
+         ) %>% 
+  select(itemName, answerType, model_name)
+
+df_samples_human_raw <- nm_samples_categorized %>% 
+  filter((category != "yes") & (category != "none")) %>%
+  mutate(
+    answerType = factor(category, levels = answerOrder),
+    model_name = "neural"
+  ) %>%
+  select(itemName, answerType, model_name) %>%
+  rbind(., df_human_raw) %>%
+  mutate(
+    model_name = factor(model_name, levels = c("human", "neural"))
+  )
+
+contrasts(df_samples_human_raw$answerType)
+contrasts(df_samples_human_raw$model_name)
+
+model <- brm(answerType ~ 1 + model_name + (1 | itemName), 
+             data = df_samples_human_raw,
+             family = "categorical",
+             iter = 4000
+             )
+summary(model)
+```
+
+Extract contrasts by response type between human data and neural model data (i.e., probability that proportion of given response type is larger in human than in neural model data):
+
+```{r}
+model_posteriors <- model %>% spread_draws(b_musameCategory_Intercept, b_muotherCategory_Intercept, b_mufullList_Intercept, b_mutaciturn_Intercept, b_muother_Intercept, b_musameCategory_model_nameneural, b_muotherCategory_model_nameneural, b_mufullList_model_nameneural, b_mutaciturn_model_nameneural, b_muother_model_nameneural) %>%
+  mutate(
+    sameCategory = b_musameCategory_Intercept - b_musameCategory_model_nameneural,
+    otherCategory = b_musameCategory_Intercept - b_muotherCategory_model_nameneural,
+    fullList = b_mufullList_Intercept - b_mufullList_model_nameneural,
+    taciturn = b_mutaciturn_Intercept - b_mutaciturn_model_nameneural,
+    other = b_muother_Intercept - b_muother_model_nameneural
+  )
+
+model_posteriors %>% select(sameCategory, otherCategory, fullList, taciturn, other) %>%
+  gather(key, val) %>%
+  group_by(key) %>%
+  summarize(
+    '|95%' = quantile(val, probs = c(0.025, 0.975))[[1]],
+    'mean'  = mean(val),
+    '95%|' = quantile(val, probs = c(0.025, 0.975))[[2]],
+    prob_gt_0 = mean(val > 0)*100,
+    prob_lt_0 = mean(val < 0)*100
+  ) -> model_posteriors_summary
+
+model_posteriors_summary
+
+# TODO: determine the prob that competitor proportion in human data larger than in neural data
+```
