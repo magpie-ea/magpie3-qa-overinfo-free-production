@@ -83,7 +83,7 @@ head(df_human_global)
 Read in categorized sample data from (generative) LMs and extractive QA models.
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # iterate over all classified sample csvs
-nm_samples_categorized <- data.frame()
+nm_samples_categorized <-  data.frame()
 all_sample_files <- list.files("../code/results/categorized_responses", pattern="*.csv", full.names = TRUE)
 
 for (f in all_sample_files) {
@@ -103,6 +103,11 @@ for (f in all_sample_files) {
     df <- df %>% select(-predictions) %>%
       rename(., c('predictions' = 'predictions_cleaned'))      
   } 
+  if ('prediction_probs' %in% colnames(df)) {
+    df <- df %>% 
+      rename(., c('probs' = 'prediction_probs')) 
+  }
+  df <- df %>% select(model_name, itemName, predictions, category, probs, is_few_shot)
   nm_samples_categorized <- rbind(nm_samples_categorized, df)
 }
 head(nm_samples_categorized)
@@ -146,6 +151,28 @@ nm_samples_categorized <- nm_samples_categorized %>%
       model_name == 'gpt2' ~ 'WebText',
       model_name == 'MaRiOrOsSi/t5-base-finetuned-question-answering' ~ 'DuoRC',
       model_name == 'valhalla/t5-base-qa-qg-hl' ~ 'SQuADv1',
+      model_name == 'chatGPT' ~ 'CC, WebText, Books, Wikipedia, human data',
+      model_name == 'gpt3' ~ 'CC, WebText, Books, Wikipedia',
+      TRUE ~ 'unknown'
+    ),
+    model_type = case_when(
+      model_name == 'aware-ai/bart-squadv2' ~ 'extractive',
+      model_name == 'danyaljj/gpt2_question_answering_squad2' ~ 'generative',
+      model_name == 'deepset/bert-base-cased-squad2' ~ 'extractive',
+      model_name == 'deepset/deberta-v3-base-squad2' ~ 'extractive',
+      model_name == 'deepset/electra-base-squad2' ~ 'extractive',
+      model_name == 'deepset/roberta-base-squad2' ~ 'extractive',
+      model_name == 'deepset/tinyroberta-squad2' ~ 'extractive',
+      model_name == 'yjernite/bart_eli5' ~ 'generative',
+      model_name == 'bert-large-uncased-whole-word-masking-finetuned-squad' ~ 'extractive',
+      model_name == 'distilbert-base-cased-distilled-squad' ~ 'extractive',
+      model_name == 'distilbert-base-uncased-distilled-squad' ~ 'extractive',
+      model_name == 'bigscience/T0_3B' ~ 'generative',
+      model_name == 'gpt2' ~ 'generative',
+      model_name == 'MaRiOrOsSi/t5-base-finetuned-question-answering' ~ 'generative',
+      model_name == 'valhalla/t5-base-qa-qg-hl' ~ 'generative',
+      model_name == 'gpt3' ~ 'generative',
+      model_name == 'chatGPT' ~ 'generative',
       TRUE ~ 'unknown'
     )
   )
@@ -205,7 +232,7 @@ df_samples_byModel_byContext_summary <- nm_samples_categorized %>%
 df_samples_byModel_summary <- nm_samples_categorized %>% 
   filter((category != 'yes') & (category != 'none')) %>%
   group_by(model_name, category) %>%
-  summarize(n = n()) %>%
+  summarize(n = n(), mean_probs = mean(probs)) %>%
   mutate(prop = n / sum(n)) %>%
   mutate(answerType = factor(category, levels=answerOrder))
 
@@ -261,6 +288,49 @@ df_samples_byModel_summary %>% ungroup() %>%
   theme(panel.spacing = unit(3, "lines")) +
   xlab("Answer type") +
   ylab("Response type proportion")
+```
+
+
+Below, we explore the idea of **weighting the proportions** of different response types sampled deterministically from the different models by the probability of the respective samples under the given model. Since the samples taken were the top 5 predictions, this is to account for potential differences in the model's propensity to generate a given response type (as, e.g., top 1 vs top 5 response).
+
+```{r, fig.height=15, fig.width=12}
+df_samples_byModel_summary_weighted <- df_samples_byModel_summary %>% ungroup() %>%
+  mutate(
+    prop_weighted = prop * mean_probs
+  ) %>% group_by(model_name) %>%
+  mutate(
+    sum_props = sum(prop_weighted),
+    prop_weighted_renormalized = prop_weighted / sum_props
+  )
+
+df_samples_byModel_weighting_comparison <- df_samples_byModel_summary_weighted %>% 
+  select(model_name, answerType, prop_weighted_renormalized) %>%
+  rename("prop" = "prop_weighted_renormalized") %>%
+  mutate(weighted = TRUE) %>%
+  rbind(., df_samples_byModel_summary %>% select(model_name, answerType, prop) %>% mutate(weighted = FALSE))
+
+bar.width <- 0.8
+df_samples_byModel_weighting_comparison %>% ungroup() %>%
+  mutate(weighted = factor(weighted, levels = c(TRUE, FALSE))) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = prop, pattern = weighted)) +
+  geom_col_pattern(alpha = 0.7, position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+                   ) +
+  scale_pattern_manual(values = c(`TRUE` = "stripe", `FALSE` = "none")) +
+  labs(x = "Answer type", y = "Response type proportion", pattern = "Proportions weighted by probs?") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  facet_wrap( model_name ~ . , ncol = 4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  ggtitle("Response type proportions weighted by response probability and renormalized")
 ```
 
 The next plot displays proportions of different responses from different models, differentiating between one-shot and zero-shot LMs.
@@ -373,16 +443,108 @@ df_samples_human_byItem_summary %>%
   ggtitle("Response type proportions of human data vs neural model samples by-vignette")
 ```
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4, fig.width=5, eval=FALSE}
+# Finally, compare responses manually retrieved from ChatGPT, with and without one-shot prompting.
+chatGPT_oneshot <- read_csv("../code/results/categorized_responses/chatGPT-samples-oneShotLearer-cogsci_categorized.csv") %>%
+  mutate(is_one_shot = TRUE)
+chatGPT_zeroshot <- read_csv("../code/results/categorized_responses/chatGPT-samples-zeroShotLearer-cogsci_categorized.csv") %>%
+  mutate(is_one_shot = FALSE)
+
+chatGPT <- rbind(chatGPT_oneshot, chatGPT_zeroshot) %>%
+  mutate(answerType = factor(category, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn", "other")))
+
+chatGPR_summary <- chatGPT %>% group_by(answerType, is_one_shot) %>%
+  summarize(n = n()) %>%
+  mutate(prop = n / 30)
+
+chatGPR_summary %>% 
+  mutate(is_one_shot = factor(is_one_shot, levels = c(TRUE, FALSE))) %>%
+  ggplot(., aes(x = answerType, y = prop, fill = answerType, pattern = is_one_shot)) +
+  geom_col_pattern(alpha = 0.7, position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+                   ) +
+  scale_pattern_manual(values = c(`TRUE` = "stripe", `FALSE` = "none")) +
+  labs(x = "Answer type", y = "Response type proportion", pattern = "One shot context?") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Global proportion of answer type") +
+  xlab("Answer type") +
+  ggtitle("Response type proportions of ChatGPT with vs without one-shot prompting")
+```
+
 ### Model probabilities
 
 Below, the scores assigned to provided answer types are compared to the proportions of those answer types generated by the language models during sampling. Whenever the responses sampled from the model were difficult to classify due to half-generated phrases (like "kick" instead of kickboxing), they were categorized as "other" responses. 
 The comparison is by model type. 
 
-```{r, echo=FALSE, fig.height=6, fig.width=6}
+First, GPT-3 results are compared.
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=3, fig.width=4 }
+# add gpt-3 results
+gpt3_oneshot <- read_csv("../code/results/GPT3-davinci-003-predictions-overinfo-oneShotLearer-cogsci.csv")
+gpt3_oneshot_long <- gpt3_oneshot %>%
+  pivot_longer(cols = c('taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'), names_to = 'answerType', values_to = 'answer_type_prob') %>%
+  mutate(answerType = factor(answerType, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn") ),
+         model_name = "gpt3_oneShot")
+
+gpt3_oneshot_summary <- gpt3_oneshot_long %>% group_by(answerType, model_name) %>%
+  summarize(answer_type_prob = mean(answer_type_prob))
+
+gpt3_zeroshot <- read_csv("../code/results/GPT3-davinci-003-predictions-overinfo-zeroShotLearer-cogsci.csv")
+gpt3_zeroshot_long <- gpt3_zeroshot %>%
+  pivot_longer(cols = c('taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'), names_to = 'answerType', values_to = 'answer_type_prob') %>%
+  mutate(answerType = factor(answerType, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn") ),
+         model_name = "gpt3_zeroShot")
+
+gpt3_zeroshot_summary <- gpt3_zeroshot_long %>% group_by(answerType, model_name) %>%
+  summarize(answer_type_prob = mean(answer_type_prob))
+
+gpt3_summary <- rbind(gpt3_zeroshot_summary, gpt3_oneshot_summary)
+gpt3_summary %>%
+  mutate(model_name = factor(model_name, levels = c("gpt3_zeroShot", "gpt3_oneShot"))) %>%
+  ggplot(., aes(x = answerType, y = answer_type_prob, fill = answerType, pattern = model_name)) +
+  geom_col_pattern(alpha = 0.7, position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+                   ) +
+  scale_pattern_manual(values = c(gpt3_oneShot = "stripe", gpt3_zeroShot = "none")) +
+  labs(x = "Answer type", y = "Response type proportion", pattern = "One shot context?") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Global proportion of answer type") +
+  xlab("Answer type") +
+  ggtitle("Response type probabilities of GPT-3 davinci-003 with vs without one-shot prompting")
+
+```
+
+Next, scores are plotted by-model.
+
+```{r, echo=FALSE, fig.height=15, fig.width=12}
 lm_scores_byModel <- lm_scores %>% select(answer_type, answer_type_prob, model_name) %>%
   mutate(answerType = factor(answer_type, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn"))) %>%
   group_by(answerType, model_name) %>%
   summarize(answer_type_prob = mean(answer_type_prob)) 
+
+# append gpt-3 results
+lm_scores_byModel <- lm_scores_byModel %>% 
+  rbind(., gpt3_oneshot_summary) %>%
+  rbind(., gpt3_zeroshot_summary)
 
 lm_scores_byModel %>%
   ggplot(aes(x = answerType, fill = answerType, y = answer_type_prob)) +
@@ -493,13 +655,86 @@ df_models_scores_samples %>%
 
 Below, the KL-divergence of between global human response type proportions (renormalized after excluding 'other' responses) and probabilities assigned by the models are compared. Note the implicit assumption that the proportions of different response types produced by humans are the probabilities of producing that particular type given the context.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
+compute_kl <- function(P, Q) {
+  tryCatch(
+    expr = {
+      df <- rbind(P, Q)
+      kl <- philentropy::KL(df)
+      return(kl)
+    },
+    error = function(e){
+      print("Numerical precision error")
+      print(e)
+    }
+  )
+}
+
 df_human_global_renorm <- df_human_global %>% filter(answerType != "other") %>%
   mutate(answer_type_prob = prop / (df_human_global %>% filter(answerType != "other") %>% pull(prop) %>% sum()))
-
+# second is the reference dist
 model_human_dists <- rbind(lm_scores_global %>% pull(answer_type_prob), df_human_global_renorm %>% pull(answer_type_prob)) 
 kl <- philentropy::KL(model_human_dists)
-cat("KL divergence : ", kl)
+cat("KL divergence between human data and probs of responses averaged over models: ", kl)
+```
+
+Compute KLs between response proportions, probabilities by model and by vignette (for some cases numerical precision errors don't allow for computation of the KL, in that case respective / model vigntte are skipped).
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+cat("KL between GPT-3 one shot probs and human data ")
+compute_kl(gpt3_oneshot_summary %>% pull(answer_type_prob), df_human_global_renorm %>% pull(answer_type_prob))[[1]]
+cat("KL between GPT-3 zero shot probs and human data ")
+compute_kl(gpt3_zeroshot_summary %>% pull(answer_type_prob), df_human_global_renorm %>% pull(answer_type_prob))[[1]]
+
+
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+all_score_models <- lm_scores_byModel %>% pull(model_name) %>% unique()
+# compare model probs to human data
+df_kls_probs_vs_human_byModel <- data.frame(model_name=character(), KL=double())
+
+for (m in all_score_models) {
+  df_model_renorm <- lm_scores_byModel %>% filter(model_name == m)
+  kl <- compute_kl(df_model_renorm %>% pull(answer_type_prob), df_human_global_renorm %>% pull(answer_type_prob))
+  df_kls_probs_vs_human_byModel <- df_kls_probs_vs_human_byModel %>% add_row(model_name = m, KL = kl[[1]])
+}
+cat("KLs between probabilities of different responses computed under different models and human response proportions ")
+df_kls_probs_vs_human_byModel
+
+# compare model sample proportions to human data
+df_kls_props_vs_human_byModel <- data.frame(model_name=character(), KL=double())
+all_sample_models <- df_samples_byModel_summary %>% pull(model_name) %>% unique()
+
+for (m in all_sample_models) {
+  print(m)
+  df_model_renorm <- df_samples_byModel_summary %>% filter(model_name == m)
+  #print(df_model_renorm %>% pull(prop) %>% sum())
+  #print(df_human_global_renorm %>% pull(answer_type_prob) %>% sum())
+  kl <- compute_kl(df_model_renorm %>% .$prop/sum(df_model_renorm %>% pull(prop)), df_human_global_renorm %>% .$answer_type_prob/sum(df_human_global_renorm %>% pull(answer_type_prob)))
+  if (is.numeric(kl[[1]])) {
+      df_kls_props_vs_human_byModel <- df_kls_props_vs_human_byModel %>% add_row(model_name = m, KL = kl[[1]])
+  }
+} 
+cat("KLs between different response type proportions of different models and human response proportions ")
+df_kls_props_vs_human_byModel
+
+df_kls_props_vs_human_byItem <- data.frame(itemName=character(), KL=double())
+all_items <- df_samples_byItem_summary %>% pull(itemName) %>% unique()
+
+for (m in all_items) {
+  print(m)
+  df_model_renorm <- df_samples_byItem_summary %>% filter(itemName == m)
+  df_human_item <- df_human %>% filter(itemName == m)
+  #print(df_model_renorm %>% pull(prop) %>% sum())
+  #print(df_human_item %>% pull(prop) %>% sum())
+  kl <- compute_kl(df_model_renorm %>% pull(prop), df_human_item %>% pull(prop))
+  if (is.numeric(kl[[1]])) {
+    df_kls_props_vs_human_byItem <- df_kls_props_vs_human_byItem %>% add_row(itemName = m, KL = kl[[1]])
+  }
+}
+cat("KLs between different response type proportions by item between neural model and human response proportions ")
+df_kls_props_vs_human_byItem
 ```
 
 Compute a multinomial regression with a main effect of human vs model data, regressing the response category against an intercept and a main effect of data source, and random by-item intercepts. Competitor responses are coded as the reference level.
@@ -562,3 +797,26 @@ model_posteriors_summary
 
 # TODO: determine the prob that competitor proportion in human data larger than in neural data
 ```
+
+Fit a multinomial model on model data and compute a posterior predictive probability on *human* data.
+```{r, warning=FALSE, message=FALSE, error=FALSE, eval=FALSE}
+model_neural <- brm(answerType ~ 1 + (1 | itemName), 
+             data = nm_samples_categorized %>% 
+               filter((category != "yes") & (category != "none")) %>%
+               mutate(
+                 answerType = factor(category, levels = answerOrder),
+                 model_name = "neural"
+              ) %>%
+              select(itemName, answerType, model_name),
+             family = "categorical",
+             iter = 4000
+             )
+summary(model_neural)
+
+pp <- posterior_predict(model_neural, newdata=df_human_raw, allow_new_levels=TRUE)
+
+# TODO: eval
+```
+
+
+TODO: Compute p-value of human data under model data.
