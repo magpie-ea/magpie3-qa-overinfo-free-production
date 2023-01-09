@@ -12,6 +12,7 @@ jobs:
       matrix:
         folder:
           - ./experiments/free_production/
+          - ./experiments/contextSensitive_free_production/
 
     runs-on: ubuntu-latest
     steps:
