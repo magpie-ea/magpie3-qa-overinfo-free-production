@@ -196,8 +196,9 @@ df_vignettes <- df_vignettes %>%
   rowwise() %>%
   mutate(
   comp_length = nchar(competitor),
-  sameCat_avg_length = (nchar(competitor) + nchar(sameCategory))/ 2
-)  %>% select(itemName, comp_length, sameCat_avg_length)
+  sameCat_avg_length = (nchar(competitor) + nchar(sameCategory))/ 2,
+  fullList_length = nchar(competitor) + nchar(sameCategory) + nchar(otherCategory)
+)  %>% select(itemName, comp_length, sameCat_avg_length, fullList_length)
 
 # add to original df
 d_clean_main_wVignette <- df_clean_main_summary %>%
@@ -251,6 +252,31 @@ summary(lm_nchar_sameCat_prop)
     ## Residual standard error: 0.1009 on 26 degrees of freedom
     ## Multiple R-squared:  0.01925,    Adjusted R-squared:  -0.01848 
     ## F-statistic: 0.5102 on 1 and 26 DF,  p-value: 0.4814
+
+``` r
+lm_nchar_fullList_prop <- lm(responseCategory_proportion ~ fullList_length, data = d_clean_main_wVignette %>% filter(answerType == "fullList"))
+summary(lm_nchar_fullList_prop)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = responseCategory_proportion ~ fullList_length, data = d_clean_main_wVignette %>% 
+    ##     filter(answerType == "fullList"))
+    ## 
+    ## Residuals:
+    ##      Min       1Q   Median       3Q      Max 
+    ## -0.07747 -0.04776 -0.01632  0.01574  0.16179 
+    ## 
+    ## Coefficients:
+    ##                  Estimate Std. Error t value Pr(>|t|)  
+    ## (Intercept)     0.0800403  0.0321509   2.490   0.0205 *
+    ## fullList_length 0.0007053  0.0006996   1.008   0.3239  
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 0.06947 on 23 degrees of freedom
+    ## Multiple R-squared:  0.04232,    Adjusted R-squared:  0.0006789 
+    ## F-statistic: 1.016 on 1 and 23 DF,  p-value: 0.3239
 
 Further, order effects of the trials are investigated. We check if
 participants become lazy over the trials and are more likely to produce
@@ -387,17 +413,17 @@ summary(multinom_brm)
     ## 
     ## Population-Level Effects: 
     ##                           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
-    ## musameCategory_Intercept     -1.06      0.12    -1.30    -0.82 1.00     6514
-    ## muotherCategory_Intercept    -4.92      0.73    -6.65    -3.72 1.00     5936
-    ## mufullList_Intercept         -1.65      0.15    -1.95    -1.36 1.00     6082
-    ## mutaciturn_Intercept         -0.94      0.12    -1.17    -0.71 1.00     6703
-    ## muother_Intercept            -1.38      0.14    -1.65    -1.12 1.00     6562
+    ## musameCategory_Intercept     -1.06      0.12    -1.29    -0.83 1.00     5726
+    ## muotherCategory_Intercept    -4.93      0.72    -6.57    -3.73 1.00     6620
+    ## mufullList_Intercept         -1.65      0.15    -1.95    -1.36 1.00     6670
+    ## mutaciturn_Intercept         -0.94      0.11    -1.17    -0.72 1.00     6329
+    ## muother_Intercept            -1.38      0.13    -1.65    -1.13 1.00     6690
     ##                           Tail_ESS
-    ## musameCategory_Intercept      4810
-    ## muotherCategory_Intercept     3266
-    ## mufullList_Intercept          4536
-    ## mutaciturn_Intercept          4309
-    ## muother_Intercept             4075
+    ## musameCategory_Intercept      4259
+    ## muotherCategory_Intercept     3533
+    ## mufullList_Intercept          4570
+    ## mutaciturn_Intercept          4712
+    ## muother_Intercept             4810
     ## 
     ## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
     ## and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -431,5 +457,5 @@ multinom_posteriors_summary
     ## # A tibble: 2 × 6
     ##   key                           `|95%`  mean `95%|` prob_gt_0 prob_lt_0
     ##   <chr>                          <dbl> <dbl>  <dbl>     <dbl>     <dbl>
-    ## 1 sameCategory_vs_fullList       0.250 0.594  0.934      100.      0.05
-    ## 2 sameCategory_vs_otherCategory  2.64  3.87   5.61       100       0
+    ## 1 sameCategory_vs_fullList       0.261 0.593  0.926      100.    0.0333
+    ## 2 sameCategory_vs_otherCategory  2.67  3.87   5.52       100     0

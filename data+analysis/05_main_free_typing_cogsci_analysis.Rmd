@@ -254,8 +254,9 @@ df_vignettes <- df_vignettes %>%
   rowwise() %>%
   mutate(
   comp_length = nchar(competitor),
-  sameCat_avg_length = (nchar(competitor) + nchar(sameCategory))/ 2
-)  %>% select(itemName, comp_length, sameCat_avg_length)
+  sameCat_avg_length = (nchar(competitor) + nchar(sameCategory))/ 2,
+  fullList_length = nchar(competitor) + nchar(sameCategory) + nchar(otherCategory)
+)  %>% select(itemName, comp_length, sameCat_avg_length, fullList_length)
 
 # add to original df
 d_clean_main_wVignette <- df_clean_main_summary %>%
@@ -266,6 +267,9 @@ summary(lm_nchar_comp_prop)
 
 lm_nchar_sameCat_prop <- lm(responseCategory_proportion ~ sameCat_avg_length, data = d_clean_main_wVignette %>% filter(answerType == "taciturn"))
 summary(lm_nchar_sameCat_prop)
+
+lm_nchar_fullList_prop <- lm(responseCategory_proportion ~ fullList_length, data = d_clean_main_wVignette %>% filter(answerType == "fullList"))
+summary(lm_nchar_fullList_prop)
 ```
 
 Further, order effects of the trials are investigated. We check if participants become lazy over the trials and are more likely to produce taciturn responses towards the end of the experiment. This seems not to be the case. If anything, participants tended to produce slightly more taciturn responses in the beginning of the experiment.
