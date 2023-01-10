@@ -42,9 +42,7 @@
       <FreetypingScreen :key=i :trial=trial :trial_type="'filler'" :index=i :progress="i / trials.length" />     
      </template>
     </template>
-
-    <DebugResultsScreen />
-    
+  
     <PostTestScreen />
 
     <SubmitResultsScreen />

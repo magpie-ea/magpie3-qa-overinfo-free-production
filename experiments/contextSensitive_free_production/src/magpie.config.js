@@ -3,9 +3,9 @@ export default {
   serverUrl: 'https://mcmpact.ikw.uni-osnabrueck.de/magpie/',
   socketUrl: 'wss://mcmpact.ikw.uni-osnabrueck.de/magpie/socket',
   // this will be used in prolific mode
-  completionUrl: 'https://app.prolific.co/submissions/complete?cc=CT0J8WXX',
+  completionUrl: 'https://app.prolific.co/submissions/complete?cc=C1J3ETN9',
   contactEmail: 'polina.tsvilodub@uni-tuebingen.de',
   // Either 'debug', 'directLink' or 'prolific'
-  mode: 'direktLink',
+  mode: 'prolific',
   language: 'en'
 };
