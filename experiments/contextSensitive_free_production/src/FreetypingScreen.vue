@@ -41,7 +41,7 @@ import _ from 'lodash';
 
 function createText(trial){
       // shuffle the order of the alternatives
-      var itemOrder = _.shuffle(['competitor', 'sameCategory1', 'sameCategory2', 'otherCategory1', 'otherCategory2'])
+      var itemOrder = _.shuffle(['competitor', 'mostSimilar', 'sameCategory', 'otherCategory'])
       console.log(itemOrder)
       var vignette_start = trial.vignette_start
       var vignette_continuation = trial.vignette_continuation
