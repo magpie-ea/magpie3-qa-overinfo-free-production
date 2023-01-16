@@ -113,12 +113,13 @@ for (f in all_sample_files) {
 head(nm_samples_categorized)
 ```
 
-Load all files with probabilities of different kinds of (human) responses under pretrained LMs. All probabilities were computed *without* one-shot exmples in the context.
+Load all files with probabilities of different kinds of (human) responses under pretrained LMs. All probabilities were computed *without* one-shot examples in the context (except for GPT3).
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 lm_scores <- data.frame()
 all_score_files <- list.files("../code/results/lm_probs", pattern="*.csv", full.names = TRUE)
 
 for (f in all_score_files) {
+  print(f)
   df <- read_csv(f)
   # rename GPT cols
   if ("predictions_cleaned" %in% colnames(df)) {
@@ -172,6 +173,7 @@ nm_samples_categorized <- nm_samples_categorized %>%
       model_name == 'MaRiOrOsSi/t5-base-finetuned-question-answering' ~ 'generative',
       model_name == 'valhalla/t5-base-qa-qg-hl' ~ 'generative',
       model_name == 'gpt3' ~ 'generative',
+      model_name == 'gpt3-davinci-003' ~ 'generative',
       model_name == 'chatGPT' ~ 'generative',
       TRUE ~ 'unknown'
     )
@@ -236,6 +238,13 @@ df_samples_byModel_summary <- nm_samples_categorized %>%
   mutate(prop = n / sum(n)) %>%
   mutate(answerType = factor(category, levels=answerOrder))
 
+df_samples_byModelType_summary <- nm_samples_categorized %>% 
+  filter((category != 'yes') & (category != 'none')) %>%
+  group_by(model_type, category) %>%
+  summarize(n = n(), mean_probs = mean(probs)) %>%
+  mutate(prop = n / sum(n)) %>%
+  mutate(answerType = factor(category, levels=answerOrder))
+
 df_samples_byModel_byItem_summary <- nm_samples_categorized %>%
   filter((category != 'yes') & (category != 'none')) %>%
   group_by(model_name, is_few_shot, itemName, category) %>%
@@ -273,6 +282,31 @@ df_samples_global_summary %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ylab("Global proportion of answer type") +
   xlab("Answer type")
+```
+
+The next plot displays proportions of different responses in generative models (LMs) vs. extractive QA models:
+```{r, echo=FALSE, fig.height=4, fig.width=6}
+bar.width <- 0.8
+df_samples_byModelType_summary %>% ungroup() %>%
+  mutate(model_type = factor(model_type, levels = c("extractive", "generative"))) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = prop, pattern = model_type)) +
+  geom_col_pattern(alpha = 0.7, position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+                   ) +
+  scale_pattern_manual(values = c(extractive = "stripe", generative = "none")) +
+  labs(x = "Answer type", y = "Response type proportion", pattern = "Model type") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  ggtitle("Response type proportions by model type (extractive vs generative)")
 ```
 
 The next plot displays proportions of different responses from different models, averaging across one-shot and zero-shot LMs.
@@ -443,6 +477,7 @@ df_samples_human_byItem_summary %>%
   ggtitle("Response type proportions of human data vs neural model samples by-vignette")
 ```
 
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4, fig.width=5, eval=FALSE}
 # Finally, compare responses manually retrieved from ChatGPT, with and without one-shot prompting.
 chatGPT_oneshot <- read_csv("../code/results/categorized_responses/chatGPT-samples-oneShotLearer-cogsci_categorized.csv") %>%
@@ -490,22 +525,45 @@ First, GPT-3 results are compared.
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=3, fig.width=4 }
 # add gpt-3 results
 gpt3_oneshot <- read_csv("../code/results/GPT3-davinci-003-predictions-overinfo-oneShotLearer-cogsci.csv")
+gpt3_oneshot_ppl <- read_csv("../code/results/GPT3-davinci-003-predictions-overinfo-oneShotLearer-cogsci-long-prob.csv") %>% 
+  mutate(answerType = rep(c('taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'), 30),
+         answerType = factor(answerType, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn") ),
+         model_name = "gpt3_oneShot"
+         ) %>%
+  select(itemName, answerType, answer_type_prob_avg, answer_type_ppl, answer_type_length_norm_prob)
 gpt3_oneshot_long <- gpt3_oneshot %>%
   pivot_longer(cols = c('taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'), names_to = 'answerType', values_to = 'answer_type_prob') %>%
   mutate(answerType = factor(answerType, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn") ),
-         model_name = "gpt3_oneShot")
+         model_name = "gpt3_oneShot") %>%
+  left_join(., gpt3_oneshot_ppl, by=c("itemName", "answerType"))
 
 gpt3_oneshot_summary <- gpt3_oneshot_long %>% group_by(answerType, model_name) %>%
-  summarize(answer_type_prob = mean(answer_type_prob))
+  summarize(answer_type_prob = mean(answer_type_prob),
+            answer_type_prob_avg = mean(answer_type_prob_avg),
+            #answer_type_length_norm_prob = mean(answer_type_length_norm_prob),
+            answer_type_ppl = mean(answer_type_ppl)
+            )
 
 gpt3_zeroshot <- read_csv("../code/results/GPT3-davinci-003-predictions-overinfo-zeroShotLearer-cogsci.csv")
+gpt3_zeroshot_ppl <- read_csv("../code/results/trials_LLMs_GPT3-davinci-003-predictions-overinfo-zeroShotLearer-cogsci-long_prob.csv") %>% 
+  mutate(answerType = rep(c('taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'), 30),
+         answerType = factor(answerType, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn") ),
+         model_name = "gpt3_zeroShot"
+         ) %>%
+  select(itemName, answerType, answer_type_prob_avg, answer_type_ppl, answer_type_length_norm_prob)
+
 gpt3_zeroshot_long <- gpt3_zeroshot %>%
   pivot_longer(cols = c('taciturn', 'competitor', 'sameCategory', 'otherCategory', 'fullList'), names_to = 'answerType', values_to = 'answer_type_prob') %>%
   mutate(answerType = factor(answerType, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn") ),
-         model_name = "gpt3_zeroShot")
+         model_name = "gpt3_zeroShot") %>%
+  left_join(., gpt3_zeroshot_ppl, by = c("itemName", "answerType"))
 
 gpt3_zeroshot_summary <- gpt3_zeroshot_long %>% group_by(answerType, model_name) %>%
-  summarize(answer_type_prob = mean(answer_type_prob))
+  summarize(answer_type_prob = mean(answer_type_prob),
+            answer_type_prob_avg = mean(answer_type_prob_avg),
+            #answer_type_length_norm_prob = mean(answer_type_length_norm_prob),
+            answer_type_ppl = mean(answer_type_ppl)
+            )
 
 gpt3_summary <- rbind(gpt3_zeroshot_summary, gpt3_oneshot_summary)
 gpt3_summary %>%
@@ -536,15 +594,17 @@ gpt3_summary %>%
 Next, scores are plotted by-model.
 
 ```{r, echo=FALSE, fig.height=15, fig.width=12}
-lm_scores_byModel <- lm_scores %>% select(answer_type, answer_type_prob, model_name) %>%
+lm_scores_byModel <- lm_scores %>% select(answer_type, answer_type_prob, answer_type_prob_avg, answer_type_ppl, model_name) %>%
   mutate(answerType = factor(answer_type, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn"))) %>%
   group_by(answerType, model_name) %>%
-  summarize(answer_type_prob = mean(answer_type_prob)) 
+  summarize(answer_type_prob = mean(answer_type_prob),
+            answer_type_prob_avg = mean(answer_type_prob_avg),
+            answer_type_ppl = mean(answer_type_ppl)
+            ) 
 
 # append gpt-3 results
-lm_scores_byModel <- lm_scores_byModel %>% 
-  rbind(., gpt3_oneshot_summary) %>%
-  rbind(., gpt3_zeroshot_summary)
+lm_scores_byModel <- lm_scores_byModel %>%
+  rbind(., gpt3_summary) 
 
 lm_scores_byModel %>%
   ggplot(aes(x = answerType, fill = answerType, y = answer_type_prob)) +
@@ -557,6 +617,241 @@ lm_scores_byModel %>%
   xlab("Answer type") +
   ggtitle("Propabilities of answer types under different LMs")
 
+```
+
+Next, probabilities computed for single response options are compared to average probabilities computed over all permutations of alternatives in the response sentences and generation proportions.
+
+```{r, echo=FALSE}
+df_samples_byModel_byContext_gpt3 <- df_samples_byModel_byContext_summary %>% filter(model_name == "gpt3-davinci-003") %>% 
+  mutate(model_name = ifelse(is_few_shot == TRUE, "gpt3_oneShot", "gpt3_zeroShot"))
+
+df_samples_byModel_summary_forComp <- df_samples_byModel_summary %>% ungroup() %>%
+  filter(model_name != "gpt3-davinci-003") %>%
+           #   mutate(model_name = ifelse(model_name == "gpt3-davinci-003", "gpt3_oneShot", model_name)) %>%
+              select(model_name, answerType, prop) %>% filter(answerType != "other") %>%
+  rbind(., df_samples_byModel_byContext_gpt3 %>% ungroup() %>% select(model_name, answerType, prop))
+
+df_samples_byModel_summary_forComp <- df_samples_byModel_summary_forComp %>% group_by(model_name) %>%
+  mutate(propSum = sum(prop),
+         prop = prop / propSum
+         ) %>% ungroup()
+
+lm_scores_byModel_wProduction <- lm_scores_byModel %>%
+  left_join(., df_samples_byModel_summary_forComp,
+            by = c("model_name", "answerType")
+            ) %>%
+  mutate(prop = ifelse(is.na(prop), 0, prop)) %>%
+  left_join(., df_human_global %>% mutate(human_prop = prop) %>% select(-model_name, -prop), by = "answerType")
+
+```
+
+```{r, echo=FALSE, fig.height=15, fig.width=16}
+lm_scores_byModel_wProduction %>%
+  filter(!(is.na(answer_type_prob_avg))) %>%
+  pivot_longer(cols = c("answer_type_prob", "answer_type_prob_avg", "prop", "human_prop"), names_to = "computation", values_to = "probs") %>%
+  mutate(computation = factor(computation, levels = c("human_prop", "answer_type_prob", "answer_type_prob_avg", "prop"), labels = c("human", "singleOption", "allPermutations", "productionProp"))) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = probs, pattern = computation)) +
+  geom_col_pattern(alpha = 0.7, position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+                   ) +
+  scale_pattern_manual(values = c(human = "none", singleOption = "stripe",  allPermutations = "crosshatch", productionProp = "circle")) +
+  facet_wrap( model_name ~ . , ncol = 3) +
+  labs(x = "Answer type", y = "Response type proportion", pattern = "Number of scored sentences / production") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  ggtitle("Propabilities of answer types / sampling proportions under different LMs and different probability computations")
+
+```
+
+
+Compare scores assigned to original response types and short responses without the taciturn prefix.
+
+```{r, echo=FALSE, fig.height=15, fig.width=16}
+lm_scores_short <- data.frame()
+all_short_score_files <- list.files("../code/results/lm_probs/short_responses/", pattern="*.csv", full.names = TRUE)
+
+for (f in all_short_score_files) {
+  print(f)
+  df <- read_csv(f)
+  # rename GPT cols
+  if ("predictions_cleaned" %in% colnames(df)) {
+    df <- df %>% select(-predictions) %>%
+      rename(., c('predictions' = 'predictions_cleaned'))      
+  } 
+  if ("answer_type" %in% colnames(df)) {
+    df <- df %>% 
+      rename(., c('answerType' = 'answer_type'))      
+  } 
+  df <- df %>% 
+    select(itemName, answerType, model_name, answer_type_prob_avg, answer_type_ppl, answer_type_length_norm_prob) %>%
+    rename(., c('answer_type_prob_avg_short' = 'answer_type_prob_avg', 'answer_type_ppl_short' = 'answer_type_ppl', 'answer_type_length_norm_prob_short' = 'answer_type_length_norm_prob')
+                      ) 
+    
+  lm_scores_short <- rbind(lm_scores_short, df)
+}
+head(lm_scores_short)
+
+lm_scores_short_summary <- lm_scores_short %>% 
+  mutate(answer_type_length_norm_prob_short = ifelse(is.na(answer_type_length_norm_prob_short), 0, answer_type_length_norm_prob_short)) %>%
+  group_by(model_name, answerType) %>%
+  summarize(answer_type_prob_avg_short = mean(answer_type_prob_avg_short),
+            answer_type_length_norm_prob_short = mean(answer_type_length_norm_prob_short),
+            answer_type_ppl_short = mean(answer_type_ppl_short)
+            ) 
+
+lm_scores_byModel_wProduction_wShort <- lm_scores_byModel_wProduction %>%
+  left_join(., lm_scores_short_summary, by = c("model_name", "answerType"))
+
+
+lm_scores_byModel_wProduction_wShort %>% 
+  filter(!(is.na(answer_type_prob_avg))) %>%
+  pivot_longer(cols = c("answer_type_prob", "answer_type_prob_avg", "answer_type_prob_avg_short", "prop", "human_prop"), names_to = "computation", values_to = "probs") %>%
+  mutate(computation = factor(computation, levels = c("human_prop", "answer_type_prob", "answer_type_prob_avg", "answer_type_prob_avg_short", "prop"), labels = c("human", "singleOption", "allPermutations", "shortResps", "productionProp"))) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = probs, pattern = computation)) +
+  geom_col_pattern(alpha = 0.7, position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+                   ) +
+ scale_pattern_manual(values = c(human = "none", singleOption = "stripe",  allPermutations = "crosshatch", shortResps = "polygon_tiling", productionProp = "circle")) +
+  facet_wrap( model_name ~ . , ncol = 3) +
+  labs(x = "Answer type", y = "Response type proportion", pattern = "Number of scored sentences / production") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  ggtitle("Propabilities of answer types / sampling proportions under different LMs and different probability computations")
+
+```
+
+For comparison, look at qualitative pattern of perplexities.
+
+```{r, echo=FALSE, fig.height=15, fig.width=12}
+lm_scores_byModel_wProduction_wShort %>%
+  filter(!(is.na(answer_type_ppl) & is.na(answer_type_ppl_short))) %>%
+  pivot_longer(cols = c("answer_type_ppl", "answer_type_ppl_short"), names_to = "computation", values_to = "probs") %>%
+  mutate(computation = factor(computation, levels = c("answer_type_ppl_short", "answer_type_ppl"), labels = c("PPL_short", "PPL"))) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = probs, pattern = computation)) +
+  geom_col_pattern(alpha = 0.7, position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+                   ) +
+  scale_pattern_manual(values = c(PPL = "none", PPL_short = "stripe")) +
+  facet_wrap( model_name ~ . , ncol = 3, scales = "free") +
+  labs(x = "Answer type", y = "Response type proportion", pattern = "Number of scored sentences / production") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  ggtitle("Perplexities of answer types under different LMs")
+
+```
+
+For the paper, we average the results from short and long response probs and compare them to the models' sample proportions and human performance:
+```{r, echo=FALSE, fig.width=16, fig.height=15}
+lm_scores_byModel_wProduction_avg <- lm_scores_byModel_wProduction_wShort %>% 
+  filter(!(is.na(answer_type_prob_avg))) %>%
+  mutate(answer_type_avg = (answer_type_prob_avg + answer_type_prob_avg_short)/2,
+         answerType = factor(answerType, levels=c("competitor","sameCategory", "otherCategory", "fullList", "taciturn"))
+         ) 
+
+lm_scores_byModel_wProduction_avg %>%
+  pivot_longer(cols = c("answer_type_avg", "prop", "human_prop"), names_to = "computation", values_to = "probs") %>%
+  mutate(computation = factor(computation, levels = c("human_prop", "answer_type_avg", "prop"), labels = c("human", "answerTypeProbLM", "samplePropLM"))) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = probs, pattern = computation)) +
+  geom_col_pattern(alpha = 0.7, position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+                   ) +
+ scale_pattern_manual(values = c(human = "none", answerTypeProbLM = "stripe", samplePropLM = "circle")) +
+  facet_wrap( model_name ~ . , ncol = 3) +
+  labs(x = "Answer type", y = "Response type proportion", pattern = "Type of data") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 14)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  ggtitle("Propabilities of answer types / sampling proportions under different LMs")
+
+
+```
+
+For comparison, plot the length normalized probabilities retrieved from the models. The expectation is that the qualitative pattern matches the pattern of the PPLs by model.
+```{r, echo=FALSE, fig.height=15, fig.width=12}
+gpt3_long <- gpt3_zeroshot_long %>% rbind(., gpt3_oneshot_long)
+
+p1 <- gpt3_long %>% group_by(answerType, model_name) %>%
+  summarize(answer_type_length_norm_prob = mean(answer_type_length_norm_prob)) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = answer_type_length_norm_prob)) +
+  geom_col() +
+  facet_wrap( model_name ~ . , ncol = 1) +
+  labs(x = "Answer type", y = "Response type probability") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) 
+
+p2 <- gpt3_long %>%
+  group_by(answerType, model_name) %>%
+  summarize(answer_type_ppl = mean(answer_type_ppl)) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = answer_type_ppl)) +
+  geom_col() +
+  facet_wrap( model_name ~ . , ncol = 1) +
+  labs(x = "Answer type", y = "Response type perplexity") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines"))
+
+gridExtra::grid.arrange(p1, p2, ncol=2 )
+```
+```{r, echo=FALSE, fig.height=25, fig.width=12}
+# same for short response scoring
+p1 <- lm_scores_byModel_wProduction_wShort %>%
+  filter(!(is.na(answer_type_ppl) & is.na(answer_type_ppl_short))) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = answer_type_ppl_short)) +
+  geom_col() +
+  facet_wrap( model_name ~ . , ncol = 1, scales = "free") +
+  labs(x = "Answer type", y = "Response type perplexity") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) 
+
+p2 <- lm_scores_byModel_wProduction_wShort %>%
+  filter(!(is.na(answer_type_ppl) & is.na(answer_type_ppl_short))) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = answer_type_prob_avg_short)) +
+  geom_col() +
+  facet_wrap( model_name ~ . , ncol = 1, scales = "free") +
+  labs(x = "Answer type", y = "Response type probability") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) 
+
+
+gridExtra::grid.arrange(p2, p1, ncol=2 )
 ```
 
 Compare the samples and the probabilities assigned by the models to human data (across models and vignettes).
@@ -649,6 +944,133 @@ df_models_scores_samples %>%
   theme(panel.spacing = unit(3, "lines")) +
   labs(x = "Answer type probability under LM", y = "Sampled response type proportion") +
   facet_wrap(answerType ~ ., ncol = 2)
+```
+
+A comparison of human data against average probabilities / samples proportions of the models across models is shown below:
+```{r, echo=FALSE, fig.height=4, fig.width=6}
+lm_scores_byModel_wProduction_avg_summary <- lm_scores_byModel_wProduction_avg %>% 
+  mutate(model_name = "model_prob") %>%
+  group_by(answerType, model_name) %>%
+  summarize(prop = mean(answer_type_avg))
+
+
+df_samples_human_global_summary %>% 
+  rbind(., lm_scores_byModel_wProduction_avg_summary) %>%
+  mutate(model_name = factor(model_name, levels = c("human", "neural_models", "model_prob"), labels = c("human", "neural_sample_props", "neural_probs"))) %>%
+  ggplot(., aes(x = answerType, y = prop, fill = answerType, pattern = model_name)) +
+  geom_col_pattern(alpha = 0.7, position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+                   ) +
+  scale_pattern_manual(values = c(human = "none", neural_sample_props = "stripe", neural_probs = "circle")) +
+  labs(x = "Answer type", y = "Response type proportion", pattern = "Data type") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(2, "lines")) +
+  ylab("Global proportion of answer type") +
+  xlab("Answer type") +
+  ggtitle("Response type proportions of human data vs\nneural model samples and probs")
+
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=8, fig.width=6, eval=FALSE}
+### Experiment 2 pilot
+
+e2_pilot <- read_csv("data/results_QA-overinfo-contextDependent-freeTyping-pilot2_categorized.csv") %>% #read_csv("data/results_QA-overinfo-contextDependent-freeTyping-pilot1_categorized.csv") %>% filter(category != "yes") %>%
+  mutate(category = factor(category, levels = c("taciturn", "competitor", "sameCategory", "mostSimilar", "otherCompetitor", "other"))) %>% filter(trial_type=="main")
+e2_pilot %>% count(category)
+e2_pilot_vignettes <- read_csv("../experiments/contextSensitive_free_production/trials/trials_split_cogsci_pilot1.csv") %>% 
+  select(itemName, settingName, itemQuestion, competitor, sameCategory1, sameCategory2, otherCategory1, otherCategory2)
+e2_pilot %>% count(itemName) %>% pull(n) %>% mean()
+e2_pilot_wVignette <- left_join(e2_pilot, e2_pilot_vignettes, by = c("itemName", "settingName")) %>% filter(trial_type=="main")
+
+e2_summary <- e2_pilot %>% group_by(itemName) %>%
+  mutate(response_count = n())
+e2_summary <- e2_summary %>% group_by(itemName, category) %>% 
+  mutate(responseCategory_count = n(),
+         responseCategory_proportion = responseCategory_count / response_count
+         ) %>% ungroup() %>%
+  select(itemName, category, responseCategory_proportion) %>% unique() 
+
+e2_summary %>% 
+  ggplot(aes(x = category, fill = category, y = responseCategory_proportion)) +
+  geom_col() +
+  facet_wrap( itemName ~ . , ncol = 2) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  ylab("Proportion of answer types") +
+  xlab("Answer type")
+
+```
+
+Try plotting the raw responses against each other:
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=13, fig.width=4, eval=FALSE}
+e2_pilot_wVignette_filtered <- e2_pilot_wVignette %>% filter((response_option != "yes") & (response_option != "no") & (response_option != "other")) %>%
+  separate_rows(response_option, sep=",") %>%
+  mutate(response_option = gsub(" ", "", response_option)) %>%
+  count(settingName, itemName, response_option) %>%
+  mutate(context_nr = case_when(
+    itemName == 'sugar-coffee' ~ 'context1',
+    itemName == 'sugar-baking' ~ 'context2',
+    itemName == 'blanket-sleepover' ~ 'context1',
+    itemName == 'blanket-transportation' ~ 'context2',
+    itemName == 'chair-repair' ~ 'context1',
+    itemName == 'chair-party' ~ 'context2',
+    itemName == 'box-muffins' ~ 'context1',
+    itemName == 'box-bbq' ~ 'context2',
+    TRUE ~ itemName
+  )) %>%
+  pivot_wider(values_from = n, names_from = context_nr) %>%
+  mutate(context1 = ifelse(is.na(context1), 0, context1),
+         context2 = ifelse(is.na(context2), 0, context2),
+         ) 
+
+e2_pilot_wVignette_filtered %>%
+  ggplot(., aes(x = response_option)) +
+  geom_col(aes(y = context1)) +
+  geom_col(aes(y=-context2)) +
+  facet_wrap(settingName ~., ncol= 1, scales = "free_y", 
+             strip.position = "bottom", 
+                labeller = as_labeller(c(blanket = "Transport | Sleepover", box = "BBQ | muffins", chair = "party | window", sugar = "baking | coffee"))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  geom_hline(yintercept = 0) +
+  theme(panel.spacing = unit(3, "lines")) +
+  coord_flip() +
+  ylab("")
+
+# same Cat, comp. most similar item, other cat
+```
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=13, fig.width=4,eval=FALSE}
+e2_pilot_wVignette_raw <- e2_pilot_wVignette %>% filter((response_option != "yes") & (response_option != "no") & (response_option != "other")) %>%
+  separate_rows(response_option, sep=",") %>%
+  mutate(response_option = gsub(" ", "", response_option)) %>%
+  mutate(context_nr = case_when(
+    itemName == 'sugar-coffee' ~ 'context1',
+    itemName == 'sugar-baking' ~ 'context2',
+    itemName == 'blanket-sleepover' ~ 'context1',
+    itemName == 'blanket-transportation' ~ 'context2',
+    itemName == 'chair-repair' ~ 'context1',
+    itemName == 'chair-party' ~ 'context2',
+    itemName == 'box-muffins' ~ 'context1',
+    itemName == 'box-bbq' ~ 'context2',
+    TRUE ~ itemName
+  )) 
+  
+e2_pilot_wVignette_raw %>%
+  ggplot(., aes(fill = category)) +
+  geom_bar(data = e2_pilot_wVignette_raw %>% filter(context_nr == "context1"), aes(x = response_option)) +
+  geom_bar(data = e2_pilot_wVignette_raw %>% filter(context_nr == "context2"), aes(x = response_option)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  facet_wrap(settingName ~itemName, ncol= 2, scales = "free_x")
 ```
 
 ## Stats
@@ -798,25 +1220,59 @@ model_posteriors_summary
 # TODO: determine the prob that competitor proportion in human data larger than in neural data
 ```
 
-Fit a multinomial model on model data and compute a posterior predictive probability on *human* data.
-```{r, warning=FALSE, message=FALSE, error=FALSE, eval=FALSE}
-model_neural <- brm(answerType ~ 1 + (1 | itemName), 
-             data = nm_samples_categorized %>% 
-               filter((category != "yes") & (category != "none")) %>%
-               mutate(
-                 answerType = factor(category, levels = answerOrder),
-                 model_name = "neural"
-              ) %>%
-              select(itemName, answerType, model_name),
-             family = "categorical",
-             iter = 4000
-             )
-summary(model_neural)
+Compute p-value of human data under model data: Chi-square tests of human response proportions vs model probabilities and response proportions (assumed to be ground truth).
 
-pp <- posterior_predict(model_neural, newdata=df_human_raw, allow_new_levels=TRUE)
+```{r, warning=FALSE, message=FALSE}
+# assumed order of counts / proportions: comp, sameCat, otherCat, fullList, taciturn (excluding other)
+human_counts <- df_human_raw %>% filter(answerType != "other") %>% group_by(answerType) %>%
+  summarize(count = n()) 
 
-# TODO: eval
+compute_p <- function(human_counts, name, models_df, type) {
+  cats <- c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn")
+  
+  if (type == "samples") {
+    df <- models_df %>% filter(model_name == name) %>% select(answerType, prop) %>% filter(answerType != "other")
+  } else {
+    df <- models_df %>% filter(model_name == name) %>% select(answerType, answer_type_prob) %>%
+      rename("prop" = "answer_type_prob") %>% filter(answerType != "other")
+  }
+  answer_types <- df$answerType
+  # pad missing category with epsilon and renormalize
+  if (answer_types %>% length() < 5) {
+    for (a in setdiff(cats, answer_types)) {
+      df <- df %>% ungroup() %>%
+      add_row(answerType = a, prop = 0.01)
+    }
+  }
+  df <- df %>% ungroup() %>% mutate(
+        answerType = factor(answerType, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "taciturn")),
+        sum_prop = sum(prop),
+        prop = prop / sum_prop
+      ) 
+  res <- chisq.test(x = human_counts, p = df %>% pull(prop))
+  return(res$p.value)
+}
+
+compute_p(human_counts %>% pull(count), "chatGPT", df_samples_byModel_summary, "samples")
+
+# define df 
+df_pvals_models_vs_humans <- data.frame(model_name=character(), type=character(), p=double())
+# iterate over model samples
+for (m in all_sample_models) {
+  p <- compute_p(human_counts %>% pull(count), m, df_samples_byModel_summary, "samples")
+  df_pvals_models_vs_humans <- df_pvals_models_vs_humans %>%
+    add_row(model_name=m, type="samples", p=p)
+}
+# iterate over scores
+for (m in all_score_models) {
+  p <- compute_p(human_counts %>% pull(count), m, lm_scores_byModel, "prob")
+  df_pvals_models_vs_humans <- df_pvals_models_vs_humans %>%
+    add_row(model_name=m, type="prob", p=p)
+}
+cat("P values under Chi square tests of human data against probabilities / sample proportions of neural models ")
+df_pvals_models_vs_humans
 ```
 
-
-TODO: Compute p-value of human data under model data.
+```{r}
+all(df_pvals_models_vs_humans %>% pull(p) < 0.05)
+```

@@ -1,0 +1,314 @@
+---
+title: "QA free typing with varying context pilot analysis"
+author: "Polina Tsvilodub"
+date: '2023-01-14'
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tidyboot)
+library(aida)
+library(brms)
+library(tidybayes)
+```
+
+```{r, include=FALSE}
+# these options help Stan run faster
+options(mc.cores = parallel::detectCores())
+
+# use the aida-theme for plotting
+theme_set(theme_aida())
+
+# global color scheme / non-optimized
+project_colors = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
+
+# setting theme colors globally
+scale_colour_discrete <- function(...) {
+  scale_colour_manual(..., values = project_colors)
+}
+scale_fill_discrete <- function(...) {
+  scale_fill_manual(..., values = project_colors)
+} 
+```
+
+## Intro
+
+The vignettes presented pairs of different contexts. However, the list of alternatives was the same for both contexts. The hypothesis is that the suggested competitors will differ across contexts.
+
+The responses were manually classified by Polina into the following categories: 
+
+* competitor: responses mentioning the anticipated competitor only (vary across contexts, sometimes several options were categorized as competitors)
+* mostSimilar: one of the sameCategory alternatives is an items that can be considered most similar to the target _out of context_ (i.e., same for both contexts), so this category comprises responses offering that alternative
+* sameCategory: responses offering both same category alternatives or offering the option which we did not consider the direct competitor (options categorised as competitors in one context usually are sameCategory items in the second context)
+* otherCategory: responses offering the alternative from the different category (distractors; usually same in both contexts. In some vignettes, there are two, in some there is only one other category alternative)
+* fullList: responses where all alternatives were listed (also in two sentences, where one offered the competitor only etc)
+* taciturn: responses not offering any alternative options or further alternative solutions
+* other: responses where a same category + other category response are mixed, uncertain answers, unclassifiable responses, responses offering further teps towards solcing the problem, responses using basic level categories (e.g., "dogs" instead of offering specific alternatives)
+* yes responses (excluded from analyses when not mentioning one of the alternatives)
+
+
+In the experiment, each subject saw *four main trials* and *one attention checking trial*. Participants failing attention checks were excluded from analysis. They were reimbursed 0.60 pounds for their participation.
+
+## Summary and exclusions
+
+```{r, include=FALSE, warning=FALSE, message=FALSE}
+answerOrder <- c( 'competitor', 'mostSimilar', 'sameCategory', 'otherCategory', 'fullList', 'taciturn', 'other')
+#df <- read_csv("../../raw_data/results_103_QA-overinfo-freeTyping-cogsci_PT_full.csv")
+#df %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>%  write_csv("data/results_QA-overinfo-freeTyping-cogsci_full_anonymized.csv")
+
+df <- read_csv("data/results_105_QA-overinfo-contextDependent-freeTyping-pilot4_38_categorized.csv")
+head(df)
+cat("Number of recruited subjects: ", df %>% pull(submission_id) %>% unique() %>% length())
+```
+
+```{r, echo=FALSE}
+# check attention check completion
+df_attention <- df %>% filter(trial_type == "filler") %>% rowwise() %>%
+  mutate(passed_trial = grepl(tolower(correct_response), tolower(answer))) 
+
+df_attention_fail <- df_attention %>% group_by(submission_id) %>% 
+  mutate(passed_subj = sum(passed_trial) > 0)
+
+# participants who failed attention checks 
+subj_id_attention_fails <- df_attention_fail %>% filter(passed_subj == FALSE) %>% pull(submission_id) %>% unique()
+cat("Subjects who failed attention checks: ", subj_id_attention_fails)  
+cat("\nNumber of subjects who failed attention checks: ", length(subj_id_attention_fails))
+cat("\nSubject exclusion rate: ", length(subj_id_attention_fails)/(unique(df$submission_id) %>% length()))
+```
+
+```{r, echo=FALSE}
+cat("Number of excluded inccorect ('yes') responses: ", nrow(df %>% filter(category == "yes")))
+cat("Proportion of excluded inccorect ('yes') responses: ", nrow(df %>% filter(category == "yes"))/nrow(df))
+
+# exclude failing participants and incorrect ("yes") responses
+df_clean_main <- df %>% filter(!(submission_id %in% subj_id_attention_fails)) %>%
+  filter(trial_type == "main", category != "yes") %>%
+  mutate(category = factor(category))
+
+cat("\nNumber of subjects post exclusions: ", df_clean_main %>% pull(submission_id) %>% unique() %>% length())
+cat("\nNumber of analysed responses: ", nrow(df_clean_main))
+
+df_clean_main %>% count(category)
+
+df_clean_main %>% count(itemName) 
+
+cat("\naverage number of responses per vignette:", mean(df_clean_main %>% count(itemName) %>% pull(n)))
+
+cat("\nvignette with most responses: ", df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$n)
+cat("\nvignette with least responses: ", df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$n)
+```
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+e3_pilot_vignettes <- read_csv("../experiments/contextSensitive_free_production/trials/trials_split_cogsci_pilot4.csv") %>% 
+  select(itemName, settingName, itemQuestion, competitor, mostSimilar, sameCategory,otherCategory)
+df_clean_main %>% count(itemName) %>% pull(n) %>% mean()
+e3_pilot_wVignette <- left_join(df_clean_main, e3_pilot_vignettes, by = c("itemName", "settingName")) 
+
+e3_summary_byItem <- df_clean_main %>% group_by(itemName) %>%
+  mutate(response_count = n())
+
+e3_summary_byItem <- e3_summary_byItem %>% group_by(itemName, category) %>% 
+  mutate(responseCategory_count = n(),
+         responseCategory_proportion = responseCategory_count / response_count
+         ) %>% ungroup() %>%
+  select(itemName, category, responseCategory_proportion) %>% unique() 
+
+e3_summary <- df_clean_main %>% ungroup() %>% group_by(category) %>% 
+  mutate(responseCategory_count = n(),
+         responseCategory_proportion = responseCategory_count / nrow(df_clean_main)
+         ) %>% ungroup() %>%
+  select(category, responseCategory_proportion) %>% unique() 
+```
+
+Below, the response type patterns are reported. The types are classified akin to Experiment 1, with the addition of the mostSimilar category.
+First, the response category distribution across vignettes is reported.
+```{r}
+e3_summary %>% 
+  mutate(category = factor(category, levels = c("competitor", "mostSimilar", "sameCategory", "otherCategory", "fullList", "taciturn", "other"))) %>%
+  ggplot(., aes(x = category, y = responseCategory_proportion, fill = category)) +
+  geom_col()
+```
+
+```{r,  fig.height=25, fig.width=4, echo=FALSE, eval=FALSE}
+#  Pilot 4 with all items, plot by-vignette.
+e3_pilot_wVignette_filtered <- e3_pilot_wVignette %>% filter((response_option != "yes") & (response_option != "no") & (response_option != "other")) %>%
+  separate_rows(response_option, sep=",") %>%
+  mutate(response_option = gsub(" ", "", response_option)) %>%
+  count(settingName, itemName, response_option) %>%
+  mutate(context_nr = case_when(
+    itemName == 'sugar-coffee' ~ 'context1',
+    itemName == 'sugar-baking' ~ 'context2',
+    itemName == 'blanket-sleepover' ~ 'context1',
+    itemName == 'blanket-transportation' ~ 'context2',
+    itemName == 'chair-repair' ~ 'context1',
+    itemName == 'chair-party' ~ 'context2',
+    itemName == 'box-muffins' ~ 'context1',
+    itemName == 'box-bbq' ~ 'context2',
+    itemName == 'handkerchief-injury' ~ 'context1',
+    itemName == 'handkerchief-sauce' ~ 'context2',
+    itemName == 'broom-renovation' ~ 'context1',
+    itemName == 'broom-snow' ~ 'context2',
+    itemName == 'sweatpants-sleepover' ~ 'context1',
+    itemName == 'sweatpants-spill' ~ 'context2',
+    itemName == 'umbrella-summer' ~ 'context1',
+    itemName == 'umbrella-rain' ~ 'context2',
+    itemName == 'postit-board' ~ 'context1',
+    itemName == 'postit-reading' ~ 'context2',
+    itemName == 'pot-garden' ~ 'context1',
+    itemName == 'pot-jam' ~ 'context2',
+    itemName == 'towel-hair' ~ 'context1',
+    itemName == 'towel-clothes' ~ 'context2',
+    itemName == 'paper-bbq' ~ 'context1',
+    itemName == 'paper-hamster' ~ 'context2',
+    itemName == 'candy-halloween' ~ 'context1',
+    itemName == 'candy-dessert' ~ 'context2',
+    itemName == 'bottle-plants' ~ 'context1',
+    itemName == 'bottle-water' ~ 'context2',
+    TRUE ~ itemName
+  )) %>%
+  pivot_wider(values_from = n, names_from = context_nr) %>%
+  mutate(context1 = ifelse(is.na(context1), 0, context1),
+         context2 = ifelse(is.na(context2), 0, context2),
+         ) 
+e3_pilot_wVignette_filtered %>%
+  ggplot(., aes(x = response_option)) +
+  geom_col(aes(y = context1)) +
+  geom_col(aes(y=-context2)) +
+  facet_wrap(settingName ~., ncol= 1, scales = "free_y") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  geom_hline(yintercept = 0) +
+  theme(panel.spacing = unit(3, "lines")) +
+  coord_flip() +
+  ylab("")
+```
+
+Below, context 1 vs context 2 are compared in terms of numbers of mentions of the different option types in the respective context (comp_c1, comp_c2, mostSimilar, otherCategory; mostSimilar and otherCategory match for both contexts ). The mapping of alternatives to these option types depending on context can be found in the experiment folder file. To this end, the responses which do not mention any alternatives are excluded (i.e., other category, yes, and no are excluded).
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+e3_pilot_items_cats <- read_csv("../experiments/contextSensitive_free_production/trials/trials_split_cogsci_pilot4_ItemCategorization.csv") %>%
+  select(-itemName, -itemQuestion)  
+  #mutate(global_category = c("competitor_c1", "competitor_c2", "sameCategory", "mostSimilar", "otherCategory", "competitor_c1", "mostSimilar","sameCategory","competitor_c2", "sameCategory","competitor_c1", "mostSimilar", "otherCategory", "competitor_c2","otherCategory","competitor_c1","competitor_c2","mostSimilar","otherCategory", "otherCategory","competitor_c1","mostSimilar","competitor_c2", "sameCategory","otherCategory", "competitor_c1", "sameCategory", "mostSimilar", "competitor_c2", "sameCategory", "competitor_c1", "mostSimilar", "competitor_c2", "otherCategory", "otherCategory", "competitor_c1", "sameCategory","mostSimilar","sameCategory","competitor_c2", "competitor_c1","mostSimilar", "competitor_c2","sameCategory","otherCategory","competitor_c1","sameCategory", "sameCategory", "mostSimilar","competitor_c2","competitor_c1","mostSimilar","otherCategory","sameCategory", "competitor_c2", "competitor_c1","mostSimilar","sameCategory","competitor_c2","otherCategory","competitor_c1", "sameCategory","mostSimilar", "sameCategory","competitor_c2","competitor_c1","sameCategory","mostSimilar","competitor_c2", "otherCategory"))
+
+e3_pilot_wVignette_raw <- e3_pilot_wVignette %>% filter((response_option != "yes") & (response_option != "no") & (response_option != "other")) %>%
+  separate_rows(response_option, sep=",") %>%
+  mutate(response_option = gsub(" ", "", response_option)) %>%
+  mutate(context_nr = case_when(
+    itemName == 'sugar-coffee' ~ 'context1',
+    itemName == 'sugar-baking' ~ 'context2',
+    itemName == 'blanket-sleepover' ~ 'context1',
+    itemName == 'blanket-transportation' ~ 'context2',
+    itemName == 'chair-repair' ~ 'context1',
+    itemName == 'chair-party' ~ 'context2',
+    itemName == 'box-muffins' ~ 'context1',
+    itemName == 'box-bbq' ~ 'context2',
+    itemName == 'handkerchief-injury' ~ 'context1',
+    itemName == 'handkerchief-sauce' ~ 'context2',
+    itemName == 'broom-renovation' ~ 'context1',
+    itemName == 'broom-snow' ~ 'context2',
+    itemName == 'sweatpants-sleepover' ~ 'context1',
+    itemName == 'sweatpants-spill' ~ 'context2',
+    itemName == 'umbrella-summer' ~ 'context1',
+    itemName == 'umbrella-rain' ~ 'context2',
+    itemName == 'postit-board' ~ 'context1',
+    itemName == 'postit-reading' ~ 'context2',
+    itemName == 'pot-garden' ~ 'context1',
+    itemName == 'pot-jam' ~ 'context2',
+    itemName == 'towel-hair' ~ 'context1',
+    itemName == 'towel-clothes' ~ 'context2',
+    itemName == 'paper-bbq' ~ 'context1',
+    itemName == 'paper-hamster' ~ 'context2',
+    itemName == 'candy-halloween' ~ 'context1',
+    itemName == 'candy-dessert' ~ 'context2',
+    itemName == 'bottle-plants' ~ 'context1',
+    itemName == 'bottle-water' ~ 'context2',
+    TRUE ~ itemName
+  )) %>%
+  #pivot_wider(values_from = category, names_from = context_nr) 
+  left_join(., e3_pilot_items_cats, by = c("settingName", "response_option")) %>%
+  mutate(category_comparison = ifelse(context_nr == "context1", context1_category, context2_category))
+```
+
+Below, a plot of *absolute differences* in production proportions of the different response options are shown. This is so as to not to cancel out the plotted proportions with what is categorized as context 1 vs context 2 when comparing the categorization.
+```{r, echo=FALSE}
+e3_pilot_wVignette_raw_summary <- e3_pilot_wVignette_raw %>% group_by(settingName, context_nr, global_category) %>%
+  mutate(responseCat_count = n()) %>% ungroup() %>% group_by(settingName, context_nr) %>%
+  mutate(response_count = n()) %>% ungroup() %>%
+  mutate(response_prop = responseCat_count / response_count
+         ) %>% select(settingName, context_nr, global_category, response_prop) %>%
+  unique() %>%
+  pivot_wider(values_from = response_prop, names_from = context_nr) %>%
+  mutate(context1 = ifelse(is.na(context1), 0, context1),
+         context2 = ifelse(is.na(context2), 0, context2),
+         abs_diff = abs(context1 - context2)
+         ) %>% group_by(global_category) %>%
+  summarize(mean_abs_diff = mean(abs_diff))
+```
+
+```{r, echo=FALSE}
+e3_pilot_wVignette_raw_summary %>%
+  ggplot(., aes(fill = global_category, x = global_category)) +
+  geom_col(aes(y = mean_abs_diff)) +
+  #geom_col(aes(y = -context2)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  #geom_hline(yintercept =0) +
+  #coord_flip() +
+  ylab("Absolute difference in\n mentioning proportions") +
+  xlab("Alternative category")
+```
+
+Below, the distribution comparison of response proportions mirrored by context is displayed. 
+
+```{r, echo=FALSE, fig.width = 6, fig.height = 3}
+e3_pilot_wVignette_raw_byContext <- e3_pilot_wVignette_raw %>% group_by(settingName, context_nr, global_category) %>%
+  mutate(responseCat_count = n()) %>% ungroup() %>% group_by(settingName, context_nr) %>%
+  mutate(response_count = n()) %>% ungroup() %>%
+  mutate(response_prop = responseCat_count / response_count
+         ) %>% select(settingName, context_nr, category, global_category, response_prop) %>%
+  unique() %>%
+  pivot_wider(values_from = response_prop, names_from = context_nr) %>%
+  mutate(context1 = ifelse(is.na(context1), 0, context1),
+         context2 = ifelse(is.na(context2), 0, context2)
+         ) %>% group_by(global_category) %>%
+  mutate(mean_context1 = mean(context1),
+         mean_context2 = mean(context2)) %>% select(-settingName, -context1, -context2, -category) %>% unique()
+
+e3_pilot_wVignette_raw_byContext %>%
+  ggplot(., aes(fill = global_category, x = global_category)) +
+  geom_col(aes(y = mean_context1)) +
+  geom_col(aes(y = -mean_context2)) +
+ theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(), legend.position = "right") +
+  scale_y_continuous( limits = c(-0.6, 0.6)) +
+  geom_hline(yintercept =0) +
+  coord_flip() +
+  ylab("context 2 <--> context 1") +
+  xlab("Alternative category")
+```
+
+Look at alternative mentioning proportions by-item:
+```{r, echo=FALSE, fig.height=22, fig.width=7}
+e3_pilot_wVignette_raw %>%
+  group_by(settingName, itemName, response_option) %>%
+  mutate(responseCat_count = n()) %>% ungroup() %>% group_by(settingName, context_nr) %>%
+  mutate(response_count = n()) %>% ungroup() %>%
+  mutate(response_prop = responseCat_count / response_count
+         ) %>% select(settingName, context_nr, global_category, response_option, response_prop) %>% unique() %>%
+#  mutate(n = n()) %>%
+  pivot_wider(values_from = response_prop, names_from = context_nr) %>%
+  mutate(context1 = ifelse(is.na(context1), 0, context1),
+         context2 = ifelse(is.na(context2), 0, context2),
+         ) %>%
+  ggplot(., aes(x = response_option, fill = global_category)) +
+  geom_col(aes(y = context1)) +
+  geom_col(aes(y=-context2)) +
+  facet_wrap(settingName ~., ncol= 2, scales = "free_y") +
+  scale_y_continuous( limits = c(-1, 1)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  geom_hline(yintercept = 0) +
+  theme(panel.spacing = unit(3, "lines")) +
+  coord_flip() +
+  ylab("context 2 <--> context 1")
+```
