@@ -91,11 +91,21 @@ output: github_document
   - the models' sample proportions and mean log probabilities assigned to different response types were compared to human response type proportions with $X^2$-tests (by-model) and the $p$-values were retrieved. All $p$-values are well below 0.05.
 
 - Experiment 2:
-  - human responses, averages  over response types (over both extractive and generative model), and probabilities computed under LMs across models
+  - alternatives mentioned in samples from LMs across models by context (only GPT-3 zero shot so far)
+  ![gpt3 slternative mentioning proportions in E2](viz/e2_gpt3_samples.png)
+  - response type proportions in GPT3 zero shot samples
+  ![gpt3 response type proportions in E2](viz/e2_gpt3_categories.png)
+  - human responses and probabilities computed under LMs across models (only GPT-3 zero shot so far)
+  ![gpt3 response type probabilities vs human proportions in E2](viz/e2_scores.png)
+  
+  TBD
   - by-model plot of sampled response types (extractive + generative)
   - by-model retrieved probabilities (generative models)
   - generative model sample type proportions under one-shot vs. zero-shot prompting
   
 ## conclusions
 
-- 
+- as anticipated, humans mostly produce competitor responses, and are less likely to produce full list responses. 
+- human suggestions are action-relevance dependent
+- neural models have a much higher propensity of full list responses
+- probabilities of different response types assigned by neural models do not mirror human preferences, suggesting that they lack the necessary representational and reasoning capacities
