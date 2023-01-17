@@ -145,21 +145,12 @@ E1](05_main_free_typing_cogsci_analysis_files/figure-gfm/unnamed-chunk-8-1.png)
   - human responses, averages over response types (over both extractive
     and generative model), and probabilities computed under LMs across
     models from E1 ![global neural response type proportions,
-    probabilities and human data in
-    E1](06_expt_vs_LLMs_analysis_files/figure-gfm/unnamed-chunk-29-1.png)
+    probabilities and human data in E1](viz/e1_model_summary.png)
 
-  - by-model plot of sampled response types (extractive + generative)
-    ![neural response type proportionsby model in
-    E1](06_expt_vs_LLMs_analysis_files/figure-gfm/unnamed-chunk-10-1.png)
-
-  - by-model retrieved probabilities (generative models) ![neural
+  - by-model retrieved probabilities vs. human generation proportions
+    and neural model sample proportions (generative models) ![neural
     responseprobabilitie in
     E1](06_expt_vs_LLMs_analysis_files/figure-gfm/unnamed-chunk-23-1.png)
-
-  - generative model sample type proportions under one-shot
-    vs. zero-shot prompting ![neural response type proportions on zero
-    shot vs one shot prompts in
-    E1](06_expt_vs_LLMs_analysis_files/figure-gfm/unnamed-chunk-12-1.png)
 
   - the models’ sample proportions and mean log probabilities assigned
     to different response types were compared to human response type
