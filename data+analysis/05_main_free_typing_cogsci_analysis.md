@@ -305,6 +305,7 @@ df_trialNum %>%
   ggplot(aes(x = trialNr_main, fill = answerType, y = answerType_proportion)) +
   geom_col() +
   facet_wrap(answerType ~ ., ncol = 2) + 
+  theme_csp() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ylab("Global proportion of answer type") +
   xlab("Trial number")
@@ -413,17 +414,17 @@ summary(multinom_brm)
     ## 
     ## Population-Level Effects: 
     ##                           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
-    ## musameCategory_Intercept     -1.06      0.12    -1.29    -0.83 1.00     5726
-    ## muotherCategory_Intercept    -4.93      0.72    -6.57    -3.73 1.00     6620
-    ## mufullList_Intercept         -1.65      0.15    -1.95    -1.36 1.00     6670
-    ## mutaciturn_Intercept         -0.94      0.11    -1.17    -0.72 1.00     6329
-    ## muother_Intercept            -1.38      0.13    -1.65    -1.13 1.00     6690
+    ## musameCategory_Intercept     -1.06      0.12    -1.29    -0.83 1.00     6007
+    ## muotherCategory_Intercept    -4.93      0.73    -6.60    -3.73 1.00     5970
+    ## mufullList_Intercept         -1.65      0.15    -1.96    -1.36 1.00     5922
+    ## mutaciturn_Intercept         -0.94      0.11    -1.17    -0.72 1.00     5341
+    ## muother_Intercept            -1.39      0.13    -1.65    -1.13 1.00     5474
     ##                           Tail_ESS
-    ## musameCategory_Intercept      4259
-    ## muotherCategory_Intercept     3533
-    ## mufullList_Intercept          4570
-    ## mutaciturn_Intercept          4712
-    ## muother_Intercept             4810
+    ## musameCategory_Intercept      4846
+    ## muotherCategory_Intercept     3738
+    ## mufullList_Intercept          4447
+    ## mutaciturn_Intercept          4533
+    ## muother_Intercept             4169
     ## 
     ## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
     ## and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -457,5 +458,134 @@ multinom_posteriors_summary
     ## # A tibble: 2 × 6
     ##   key                           `|95%`  mean `95%|` prob_gt_0 prob_lt_0
     ##   <chr>                          <dbl> <dbl>  <dbl>     <dbl>     <dbl>
-    ## 1 sameCategory_vs_fullList       0.261 0.593  0.926      100.    0.0333
-    ## 2 sameCategory_vs_otherCategory  2.67  3.87   5.52       100     0
+    ## 1 sameCategory_vs_fullList       0.256 0.591  0.939       100         0
+    ## 2 sameCategory_vs_otherCategory  2.61  3.87   5.55        100         0
+
+Additionally, we fit a model regressing the response type against an
+intercept, treating all response types as one vs taciturn responses, in
+order to check that generally, participants are less likely to produce
+taciturn responses than anything else. The same analysis is conducted
+for full list vs everything else.
+
+``` r
+df_clean_main_binary <- df_clean_main %>% mutate(
+  answerType_taciturn = ifelse(answerType == "taciturn", "taciturn", "all"),
+  answerType_taciturn = factor(answerType_taciturn),
+  answerType_fullList = ifelse(answerType == "fullList", "fullList", "all"),
+  answerType_fullList = factor(answerType_fullList)
+)
+contrasts(df_clean_main_binary$answerType_taciturn)
+```
+
+    ##          all
+    ## taciturn   0
+    ## all        1
+
+``` r
+contrasts(df_clean_main_binary$answerType_fullList)
+```
+
+    ##          fullList
+    ## all             0
+    ## fullList        1
+
+``` r
+# multinomial regression with intercept only
+taciturn_brm <- brm(answerType_taciturn ~ 1, 
+    data = df_clean_main_binary, 
+    family = "categorical",
+    iter = 3000
+    )
+```
+
+    ## Running /Library/Frameworks/R.framework/Resources/bin/R CMD SHLIB foo.c
+    ## clang -arch arm64 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG   -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/Rcpp/include/"  -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/"  -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/unsupported"  -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/BH/include" -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/StanHeaders/include/src/"  -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/StanHeaders/include/"  -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppParallel/include/"  -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rstan/include" -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DBOOST_NO_AUTO_PTR  -include '/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp'  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1   -I/opt/R/arm64/include   -fPIC  -falign-functions=64 -Wall -g -O2  -c foo.c -o foo.o
+    ## In file included from <built-in>:1:
+    ## In file included from /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13:
+    ## In file included from /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/Eigen/Dense:1:
+    ## In file included from /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/Eigen/Core:88:
+    ## /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name 'namespace'
+    ## namespace Eigen {
+    ## ^
+    ## /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:16: error: expected ';' after top level declarator
+    ## namespace Eigen {
+    ##                ^
+    ##                ;
+    ## In file included from <built-in>:1:
+    ## In file included from /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13:
+    ## In file included from /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/Eigen/Dense:1:
+    ## /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/Eigen/Core:96:10: fatal error: 'complex' file not found
+    ## #include <complex>
+    ##          ^~~~~~~~~
+    ## 3 errors generated.
+    ## make: *** [foo.o] Error 1
+
+``` r
+summary(taciturn_brm)
+```
+
+    ##  Family: categorical 
+    ##   Links: muall = logit 
+    ## Formula: answerType_taciturn ~ 1 
+    ##    Data: df_clean_main_binary (Number of observations: 594) 
+    ##   Draws: 4 chains, each with iter = 3000; warmup = 1500; thin = 1;
+    ##          total post-warmup draws = 6000
+    ## 
+    ## Population-Level Effects: 
+    ##                 Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+    ## muall_Intercept     1.53      0.11     1.32     1.74 1.00     2374     2774
+    ## 
+    ## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+    ## and Tail_ESS are effective sample size measures, and Rhat is the potential
+    ## scale reduction factor on split chains (at convergence, Rhat = 1).
+
+``` r
+fullList_brm <- brm(answerType_fullList ~ 1, 
+    data = df_clean_main_binary, 
+    family = "categorical",
+    iter = 3000
+    )
+```
+
+    ## Running /Library/Frameworks/R.framework/Resources/bin/R CMD SHLIB foo.c
+    ## clang -arch arm64 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG   -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/Rcpp/include/"  -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/"  -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/unsupported"  -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/BH/include" -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/StanHeaders/include/src/"  -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/StanHeaders/include/"  -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppParallel/include/"  -I"/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rstan/include" -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DBOOST_NO_AUTO_PTR  -include '/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp'  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1   -I/opt/R/arm64/include   -fPIC  -falign-functions=64 -Wall -g -O2  -c foo.c -o foo.o
+    ## In file included from <built-in>:1:
+    ## In file included from /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13:
+    ## In file included from /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/Eigen/Dense:1:
+    ## In file included from /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/Eigen/Core:88:
+    ## /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name 'namespace'
+    ## namespace Eigen {
+    ## ^
+    ## /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:16: error: expected ';' after top level declarator
+    ## namespace Eigen {
+    ##                ^
+    ##                ;
+    ## In file included from <built-in>:1:
+    ## In file included from /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13:
+    ## In file included from /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/Eigen/Dense:1:
+    ## /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/RcppEigen/include/Eigen/Core:96:10: fatal error: 'complex' file not found
+    ## #include <complex>
+    ##          ^~~~~~~~~
+    ## 3 errors generated.
+    ## make: *** [foo.o] Error 1
+
+``` r
+summary(fullList_brm)
+```
+
+    ##  Family: categorical 
+    ##   Links: mufullList = logit 
+    ## Formula: answerType_fullList ~ 1 
+    ##    Data: df_clean_main_binary (Number of observations: 594) 
+    ##   Draws: 4 chains, each with iter = 3000; warmup = 1500; thin = 1;
+    ##          total post-warmup draws = 6000
+    ## 
+    ## Population-Level Effects: 
+    ##                      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
+    ## mufullList_Intercept    -2.35      0.14    -2.63    -2.07 1.00     2326
+    ##                      Tail_ESS
+    ## mufullList_Intercept     3313
+    ## 
+    ## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+    ## and Tail_ESS are effective sample size measures, and Rhat is the potential
+    ## scale reduction factor on split chains (at convergence, Rhat = 1).

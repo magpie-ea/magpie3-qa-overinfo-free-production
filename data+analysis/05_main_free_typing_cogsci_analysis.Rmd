@@ -15,25 +15,12 @@ library(tidyboot)
 library(aida)
 library(brms)
 library(tidybayes)
+library(cspplot)
 ```
 
 ```{r, include=FALSE}
 # these options help Stan run faster
 options(mc.cores = parallel::detectCores())
-
-# use the aida-theme for plotting
-theme_set(theme_aida())
-
-# global color scheme / non-optimized
-project_colors = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
-
-# setting theme colors globally
-scale_colour_discrete <- function(...) {
-  scale_colour_manual(..., values = project_colors)
-}
-scale_fill_discrete <- function(...) {
-  scale_fill_manual(..., values = project_colors)
-} 
 ```
 
 ## Intro
@@ -99,6 +86,8 @@ cat("\naverage number of responses per vignette:", mean(df_clean_main %>% count(
 
 cat("\nvignette with most responses: ", df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$n)
 cat("\nvignette with least responses: ", df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$n)
+
+#df_clean_main %>% write_csv("results_QA-overinfo-freeTyping-cogsci_full_anonymized_categorized_cleaned.csv")
 ```
 
 Below, the response type patterns are reported.
@@ -127,6 +116,7 @@ df_clean_main_summary %>%
   ggplot(aes(x = answerType, fill = answerType, y = responseCategory_proportion)) +
   geom_col() +
   facet_wrap( itemName ~ . , ncol = 4) +
+  theme_csp() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
   theme(panel.spacing = unit(3, "lines")) +
@@ -153,12 +143,15 @@ df_answerOptions_global_summary
 # df_answerOptions_global_summary %>% write_csv("data/results_QA-overinfo-freeTyping-cogsci_full_anonymized_categorized_global_summary.csv")
 
 df_answerOptions_global_summary %>%
+  mutate(answerType = factor(answerType, levels = answerOrder, labels = c("competitor (iced coffee)", "similar option (soda)", "unrelated option (Chardonnay)", "all options", "no option", "other"))) %>%
   ggplot(aes(x = answerType, fill = answerType, y = answerType_proportion)) +
-  geom_col() +
+  geom_col(color = "#575463") +
+  theme_csp() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ylab("Global proportion of answer type") +
-  xlab("Answer type")
-# ggsave("viz/free_production_global_answerTypes_cogsci.pdf", width = 8, height = 6)
+  xlab("Answer type") +
+  labs(fill = "Answer type")
+#ggsave("viz/e1_free_production_global_answerTypes_cogsci.pdf", width = 8, height = 6)
 
 ```
 
@@ -216,6 +209,7 @@ df_clean_main %>% filter(!(submission_id %in% c(4622, 4705))) %>%
             ) %>%
   ggplot(aes(x = answerType, fill = answerType, y = answerType_proportion)) +
   geom_col() +
+  theme_csp() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ylab("Global proportion of answer types\nexcluding lazy subjects") +
   xlab("Answer type")
@@ -232,6 +226,7 @@ df_clean_main_summary %>% filter(itemName %in% df_bad_vignettes) %>%
   ggplot(aes(x = answerType, fill = answerType, y = responseCategory_proportion)) +
   geom_col() +
   facet_wrap( itemName ~ . , ncol = 4) +
+  theme_csp() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(strip.text.x = element_text(size = 10)) +
   theme(panel.spacing = unit(3, "lines")) +
@@ -290,6 +285,7 @@ df_trialNum %>%
   ggplot(aes(x = trialNr_main, fill = answerType, y = answerType_proportion)) +
   geom_col() +
   facet_wrap(answerType ~ ., ncol = 2) + 
+  theme_csp() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ylab("Global proportion of answer type") +
   xlab("Trial number")
@@ -346,4 +342,34 @@ multinom_posteriors %>% select(sameCategory_vs_fullList, sameCategory_vs_otherCa
   ) -> multinom_posteriors_summary
 
 multinom_posteriors_summary
+```
+
+Additionally, we fit a model regressing the response type against an intercept, treating all response types as one vs taciturn responses, in order to check that generally, participants are less likely to produce taciturn responses than anything else. The same analysis is conducted for full list vs everything else. 
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+df_clean_main_binary <- df_clean_main %>% mutate(
+  answerType_taciturn = ifelse(answerType == "taciturn", "taciturn", "all"),
+  answerType_taciturn = factor(answerType_taciturn),
+  answerType_fullList = ifelse(answerType == "fullList", "fullList", "all"),
+  answerType_fullList = factor(answerType_fullList)
+)
+contrasts(df_clean_main_binary$answerType_taciturn)
+contrasts(df_clean_main_binary$answerType_fullList)
+
+# multinomial regression with intercept only
+taciturn_brm <- brm(answerType_taciturn ~ 1, 
+    data = df_clean_main_binary, 
+    family = "categorical",
+    iter = 3000
+    )
+summary(taciturn_brm)
+```
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+fullList_brm <- brm(answerType_fullList ~ 1, 
+    data = df_clean_main_binary, 
+    family = "categorical",
+    iter = 3000
+    )
+summary(fullList_brm)
 ```
