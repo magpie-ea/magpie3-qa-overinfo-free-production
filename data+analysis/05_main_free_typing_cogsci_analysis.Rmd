@@ -43,7 +43,8 @@ In the experiment, each subject saw *four main trials* and *one attention checki
 ## Summary and exclusions
 
 ```{r, include=FALSE, warning=FALSE, message=FALSE}
-answerOrder <- c( 'competitor', 'sameCategory', 'otherCategory', 'fullList', 'taciturn', 'other')
+answerOrder <- c( 'competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn')
+answerOrder_rev <- c('taciturn','other', 'fullList', 'otherCategory', 'sameCategory', 'competitor')
 #df <- read_csv("../../raw_data/results_103_QA-overinfo-freeTyping-cogsci_PT_full.csv")
 #df %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>%  write_csv("data/results_QA-overinfo-freeTyping-cogsci_full_anonymized.csv")
 
@@ -143,15 +144,17 @@ df_answerOptions_global_summary
 # df_answerOptions_global_summary %>% write_csv("data/results_QA-overinfo-freeTyping-cogsci_full_anonymized_categorized_global_summary.csv")
 
 df_answerOptions_global_summary %>%
-  mutate(answerType = factor(answerType, levels = answerOrder, labels = c("competitor (iced coffee)", "similar option (soda)", "unrelated option (Chardonnay)", "all options", "no option", "other"))) %>%
-  ggplot(aes(x = answerType, fill = answerType, y = answerType_proportion)) +
-  geom_col(color = "#575463") +
+  mutate(answerType = factor(answerType, levels = answerOrder_rev, labels = c("no option", "other", "all options", "unrelated option\n(Chardonnay)", "similar option\n(soda)", "competitor\n(iced coffee)"))) %>%
+  ggplot(aes(x = answerType, y = answerType_proportion)) +
+  geom_col(color = "#575463", fill = "#FFFFFF") +
   theme_csp() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  ylab("Global proportion of answer type") +
-  xlab("Answer type") +
-  labs(fill = "Answer type")
-#ggsave("viz/e1_free_production_global_answerTypes_cogsci.pdf", width = 8, height = 6)
+  theme(legend.position = "none", plot.title = element_text(hjust = 0.5)) +
+  #theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Proportion of answer type") +
+  xlab("") +
+  labs(fill = "Answer type") + coord_flip() +
+  ggtitle("Do you have iced tea?")
+#ggsave("viz/e1_free_production_global_answerTypes_cogsci_vertical.pdf", width = 5, height = 4)
 
 ```
 
