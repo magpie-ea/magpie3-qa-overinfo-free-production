@@ -1,0 +1,558 @@
+answer,response_option,category,itemName,settingName,context_nr,global_category
+"No, but I have a sleeping bag",sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+"No, but I have a whiteboard marker",marker,competitor,postit-board,postit,context1,competitor_c1
+"No, but we have trail mix packages",trailmix,competitor,candy-halloween,candy,context1,competitor_c1
+"No, but I have pyjamas or shorts",pyjamas,sameCategory,sweatpants-sleepover,sweatpants,context1,competitor_c1
+"No, but I have pyjamas or shorts",shorts,sameCategory,sweatpants-sleepover,sweatpants,context1,competitor_c2
+"I can do one better, I have some wet wipes and paper napkins",napkins,sameCategory,handkerchief-sauce,handkerchief,context2,mostSimilar
+"I can do one better, I have some wet wipes and paper napkins",wetwipes,sameCategory,handkerchief-sauce,handkerchief,context2,competitor_c2
+"Nah sorry, I have a sleeping bag and pillow though?",sleepingbag,sameCategory,blanket-transportation,blanket,context2,competitor_c1
+"Nah sorry, I have a sleeping bag and pillow though?",pillow,sameCategory,blanket-transportation,blanket,context2,mostSimilar
+"Hi, I don't think so - I've got a sleeping bag though if that's of any use?",sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+We've got some trail mix packets you can give them if you like?,trailmix,competitor,candy-halloween,candy,context1,competitor_c1
+No but I have sticky bookmarks,bookmarks,sameCategory,postit-board,postit,context1,competitor_c2
+I have paper napkins,napkins,mostSimilar,handkerchief-injury,handkerchief,context1,mostSimilar
+No but I have a sunscreen,sunscreen,competitor,umbrella-summer,umbrella,context1,competitor_c1
+No but I have a cake container or a ziplock bag,cakecontainer,sameCategory,box-muffins,box,context1,competitor_c1
+"Yes, we have a chocolate bar.",chocolate,mostSimilar,candy-dessert,candy,context2,mostSimilar
+No but I have a blanket and a hairdryer you can use,blanket,other,towel-clothes,towel,context2,otherCategory
+No but I have a blanket and a hairdryer you can use,hairdryer,other,towel-clothes,towel,context2,competitor_c1
+I have some pans you can use,pans,competitor,pot-jam,pot,context2,competitor_c2
+"I don't have post-its, sorry, but I've got sticky bookmarks and a notebook if they'd be of any use?",bookmarks,sameCategory,postit-board,postit,context1,competitor_c2
+"I don't have post-its, sorry, but I've got sticky bookmarks and a notebook if they'd be of any use?",notebook,sameCategory,postit-board,postit,context1,mostSimilar
+Yes of course. I'll give you some spare clothes if you want and can put your wet ones in the dryer. I'll get you a hair dryer too,dryer,sameCategory,towel-hair,towel,context1,competitor_c2
+Yes of course. I'll give you some spare clothes if you want and can put your wet ones in the dryer. I'll get you a hair dryer too,hairdryer,sameCategory,towel-hair,towel,context1,competitor_c1
+I’m afraid I don’t but I have natural and artificial sweeteners if you would like those,sweetener,competitor,sugar-coffee,sugar,context1,competitor_c1
+Im afraid I don’t but I have a sleeping bag if that’s any use,sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+"No, but I have a hair dryer you could use.",hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+"No, but I have some PJs you can borrow",pyjamas,competitor,sweatpants-sleepover,sweatpants,context1,competitor_c1
+"Yes, I also have a vacuum if you'd like that.",vacuum,competitor,broom-renovation,broom,context1,competitor_c1
+No but I have some cans that would work!,cans,competitor,pot-garden,pot,context1,competitor_c1
+I have some old cans and pans that might work?,cans,sameCategory,pot-garden,pot,context1,competitor_c1
+I have some old cans and pans that might work?,pans,sameCategory,pot-garden,pot,context1,competitor_c2
+"Sorry, no sugar. I have some sweeteners or syrup if that will do?",sweetener,sameCategory,sugar-coffee,sugar,context1,competitor_c1
+"Sorry, no sugar. I have some sweeteners or syrup if that will do?",syrup,sameCategory,sugar-coffee,sugar,context1,competitor_c2
+"No, but I have a sleeping bag",sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+You can use the watering can,wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+"Yeah have a look in the basement, theres a hairdryer you can use too",hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+No but I have some ziplock bags you can use,ziplock,sameCategory,box-muffins,box,context1,competitor_c2
+"no, sorry, I have a tent but thats not much good!",tent,otherCategory,umbrella-summer,umbrella,context1,otherCategory
+I have a rain jacket you can use,rainjacket,competitor,umbrella-rain,umbrella,context2,competitor_c2
+I have paper napkins or wet wipes?,napkins,sameCategory,handkerchief-sauce,handkerchief,context2,mostSimilar
+I have paper napkins or wet wipes?,wetwipes,sameCategory,handkerchief-sauce,handkerchief,context2,competitor_c2
+no i do not have a handerchief but i have some wet wipes and napkins if you need them for the child i also have a band aid too if needed,napkins,sameCategory,handkerchief-injury,handkerchief,context1,mostSimilar
+no i do not have a handerchief but i have some wet wipes and napkins if you need them for the child i also have a band aid too if needed,wetwipes,sameCategory,handkerchief-injury,handkerchief,context1,competitor_c2
+no i do not have a handerchief but i have some wet wipes and napkins if you need them for the child i also have a band aid too if needed,bandaids,sameCategory,handkerchief-injury,handkerchief,context1,competitor_c1
+no i dont have a blanket but i have a sleeping bag and a pillow if you need them,sleepingbag,sameCategory,blanket-sleepover,blanket,context1,competitor_c1
+no i dont have a blanket but i have a sleeping bag and a pillow if you need them,pillow,sameCategory,blanket-sleepover,blanket,context1,mostSimilar
+no but i have some sunscreen you can use,sunscreen,competitor,umbrella-summer,umbrella,context1,competitor_c1
+no but you can borrow my vacuum cleaner and brush i f you want,vacuum,sameCategory,broom-renovation,broom,context1,competitor_c1
+no but you can borrow my vacuum cleaner and brush i f you want,handbrush,sameCategory,broom-renovation,broom,context1,mostSimilar
+"No i don't have a box, I've got a cake container?",cakecontainer,competitor,box-muffins,box,context1,competitor_c1
+"No, you can use the watering can?",wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+"I've got a hand brush you can use, or hoover?",handbrush,mostSimilar,broom-renovation,broom,context1,mostSimilar
+no but i have a carton or a cake container,carton,sameCategory,box-muffins,box,context1,mostSimilar
+no but i have a carton or a cake container,cakecontainer,sameCategory,box-muffins,box,context1,competitor_c1
+no but i have some sweeteners,sweetener,competitor,sugar-coffee,sugar,context1,competitor_c1
+no but i have a sleeping bag and a pillow,sleepingbag,sameCategory,blanket-sleepover,blanket,context1,competitor_c1
+no but i have a sleeping bag and a pillow,pillow,sameCategory,blanket-sleepover,blanket,context1,mostSimilar
+"We have sticky book marks, yes.",bookmarks,sameCategory,postit-board,postit,context1,competitor_c2
+"No, but I have a sleeping bag.",sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+No but I have some napkins and wet wipes. Would you like a band aid as well?,napkins,sameCategory,handkerchief-injury,handkerchief,context1,mostSimilar
+No but I have some napkins and wet wipes. Would you like a band aid as well?,wetwipes,sameCategory,handkerchief-injury,handkerchief,context1,competitor_c2
+No but I have some napkins and wet wipes. Would you like a band aid as well?,bandaids,sameCategory,handkerchief-injury,handkerchief,context1,competitor_c1
+I don't have a towel I'm sorry but I have paper towels or you could use the dryer or hair dryer.,papertowels,sameCategory,towel-clothes,towel,context2,mostSimilar
+I don't have a towel I'm sorry but I have paper towels or you could use the dryer or hair dryer.,dryer,sameCategory,towel-clothes,towel,context2,competitor_c2
+I don't have a towel I'm sorry but I have paper towels or you could use the dryer or hair dryer.,hairdryer,sameCategory,towel-clothes,towel,context2,competitor_c1
+No I'm sorry but I have some bubble wrap you could use to pack your mirror.,bubblewrap,competitor,blanket-transportation,blanket,context2,competitor_c2
+No I'm sorry I don't but I do have a shovel or hand brunch you can use if you like.,shovel,sameCategory,broom-snow,broom,context2,competitor_c2
+No I'm sorry I don't but I do have a shovel or hand brunch you can use if you like.,handbrush,sameCategory,broom-snow,broom,context2,mostSimilar
+"Not a broom, I have a brush and a vacuum cleaner that you could use",handbrush,sameCategory,broom-renovation,broom,context1,mostSimilar
+"Not a broom, I have a brush and a vacuum cleaner that you could use",vacuum,sameCategory,broom-renovation,broom,context1,competitor_c1
+"No, but I have a notebook, and whiteboard marker and eraser if this helps.",marker,other,postit-board,postit,context1,competitor_c1
+"No, but I have a notebook, and whiteboard marker and eraser if this helps.",eraser,other,postit-board,postit,context1,otherCategory
+"No, but I have a watering can.",wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+"No, but I have several pans and old cans if this helps.",pans,sameCategory,pot-garden,pot,context1,competitor_c2
+"No, but I have several pans and old cans if this helps.",cans,sameCategory,pot-garden,pot,context1,competitor_c1
+"No, but I have sweetener tablets or honey",sweetener,sameCategory,sugar-baking,sugar,context2,competitor_c1
+"No, but I have sweetener tablets or honey",honey,sameCategory,sugar-baking,sugar,context2,mostSimilar
+No but I have a to go mug,mug,competitor,bottle-water,bottle,context2,competitor_c2
+"No but I have shorts, leggings or pyjamas",shorts,sameCategory,sweatpants-spill,sweatpants,context2,competitor_c2
+"No but I have shorts, leggings or pyjamas",leggings,sameCategory,sweatpants-spill,sweatpants,context2,mostSimilar
+"No but I have shorts, leggings or pyjamas",pyjamas,sameCategory,sweatpants-spill,sweatpants,context2,competitor_c1
+I have paper towels or a hairdryer you could use,papertowels,sameCategory,towel-clothes,towel,context2,mostSimilar
+I have paper towels or a hairdryer you could use,hairdryer,sameCategory,towel-clothes,towel,context2,competitor_c1
+I have these little Sticky Bookmarks if thats of any use,bookmarks,sameCategory,postit-board,postit,context1,competitor_c2
+"No sorry, I do have a sleeping bag though",sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+Here's a pair of Pyjamas,pyjamas,competitor,sweatpants-sleepover,sweatpants,context1,competitor_c1
+"no, i have sweetener",sweetener,sameCategory,sugar-baking,sugar,context2,competitor_c1
+"no, i have a notebook",notebook,sameCategory,postit-reading,postit,context2,mostSimilar
+"no, paper towels",papertowels,mostSimilar,towel-clothes,towel,context2,mostSimilar
+No sorry - only leggings,leggings,mostSimilar,sweatpants-sleepover,sweatpants,context1,mostSimilar
+No but I do have some wipes and band aids if that helps?,wetwipes,sameCategory,handkerchief-injury,handkerchief,context1,competitor_c2
+No but I do have some wipes and band aids if that helps?,bandaids,sameCategory,handkerchief-injury,handkerchief,context1,competitor_c1
+"No but I do have honey, syrup and sweetener tablets if any of those would be suitable?",sweetener,sameCategory,sugar-coffee,sugar,context1,competitor_c1
+"No but I do have honey, syrup and sweetener tablets if any of those would be suitable?",syrup,sameCategory,sugar-coffee,sugar,context1,competitor_c2
+"No but I do have honey, syrup and sweetener tablets if any of those would be suitable?",honey,sameCategory,sugar-coffee,sugar,context1,mostSimilar
+"No, but I do have a watering can you can use if you like.",wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+I don't have a broom but you're more than welcome to borrow my brush and vacuum cleaner.,vacuum,sameCategory,broom-renovation,broom,context1,competitor_c1
+I don't have a broom but you're more than welcome to borrow my brush and vacuum cleaner.,handbrush,sameCategory,broom-renovation,broom,context1,mostSimilar
+"No, but you can use my pyjamas if you like.",pyjamas,competitor,sweatpants-sleepover,sweatpants,context1,competitor_c1
+"No, but I do have sweetener, honey or agave syrup.",sweetener,sameCategory,sugar-coffee,sugar,context1,competitor_c1
+"No, but I do have sweetener, honey or agave syrup.",syrup,sameCategory,sugar-coffee,sugar,context1,competitor_c2
+"No, but I do have sweetener, honey or agave syrup.",honey,sameCategory,sugar-coffee,sugar,context1,mostSimilar
+Unfortunately I don't have a blanket but I do have a sleeping bag if that helps?,sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+I dont have a bottle but I have a watering can if you would like to use that to water the plants,wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+I dont have a towel im afraid but you can use my hair dryer?,hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+I dont have a box but I have a cake container and some ziplock bags you can use,cakecontainer,sameCategory,box-muffins,box,context1,competitor_c1
+I dont have a box but I have a cake container and some ziplock bags you can use,ziplock,sameCategory,box-muffins,box,context1,competitor_c2
+No I don't but can offer you a glass.,glass,mostSimilar,bottle-water,bottle,context2,mostSimilar
+No but can offer you a napkin,napkins,mostSimilar,handkerchief-sauce,handkerchief,context2,mostSimilar
+I've got a cake box or a ziplock bag if you want to use them,cakecontainer,sameCategory,box-bbq,box,context2,competitor_c1
+I've got a cake box or a ziplock bag if you want to use them,ziplock,sameCategory,box-bbq,box,context2,competitor_c2
+"Yeah, I've got sticky bookmarks",bookmarks,competitor,postit-reading,postit,context2,competitor_c2
+"no, but I've got some shorts or leggings if you want them",shorts,sameCategory,sweatpants-spill,sweatpants,context2,competitor_c2
+"no, but I've got some shorts or leggings if you want them",leggings,sameCategory,sweatpants-spill,sweatpants,context2,mostSimilar
+I have chocolate,chocolate,mostSimilar,candy-dessert,candy,context2,mostSimilar
+No but you can use hair the dryer in the basement?,dryer,sameCategory,towel-hair,towel,context1,competitor_c2
+No but you are welcome to use the hand brush,handbrush,mostSimilar,broom-renovation,broom,context1,mostSimilar
+No sorry but you can use the watering can,wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+No but I have sunscreen and you can use the tent for shade,sunscreen,other,umbrella-summer,umbrella,context1,competitor_c1
+No but I have sunscreen and you can use the tent for shade,tent,other,umbrella-summer,umbrella,context1,otherCategory
+Does chocolate bar count as candy?,chocolate,mostSimilar,candy-dessert,candy,context2,mostSimilar
+"I've only got a hand brush, will that be enough?",handbrush,mostSimilar,broom-snow,broom,context2,mostSimilar
+"Yes, I have sticky bookmarks.",bookmarks,sameCategory,postit-board,postit,context1,competitor_c2
+"No, I only have Pyjamas or leggings. 
+",pyjamas,sameCategory,sweatpants-sleepover,sweatpants,context1,competitor_c1
+"No, I only have Pyjamas or leggings. 
+",leggings,sameCategory,sweatpants-sleepover,sweatpants,context1,mostSimilar
+No but I have a hair dryer,hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+No but I have a watering can or my to-go mug.,wateringcan,sameCategory,bottle-plants,bottle,context1,competitor_c1
+No but I have a watering can or my to-go mug.,mug,sameCategory,bottle-plants,bottle,context1,competitor_c2
+We have chocolate,chocolate,mostSimilar,candy-dessert,candy,context2,mostSimilar
+No sorry but I’ve got a shovel and a hand brush.,shovel,sameCategory,broom-snow,broom,context2,competitor_c2
+No sorry but I’ve got a shovel and a hand brush.,handbrush,sameCategory,broom-snow,broom,context2,mostSimilar
+"No sorry, I do have a sleeping bag you could borrow. That would help to protect it.",sleepingbag,sameCategory,blanket-transportation,blanket,context2,competitor_c1
+"No sorry, I’ve got a rain jacket you could borrow, although only one I’m afraid.",rainjacket,competitor,umbrella-rain,umbrella,context2,competitor_c2
+"I do yeah, I've got wet wipes or tissues, which would you like?",wetwipes,sameCategory,handkerchief-sauce,handkerchief,context2,competitor_c2
+"I do yeah, I've got wet wipes or tissues, which would you like?",napkins,sameCategory,handkerchief-sauce,handkerchief,context2,mostSimilar
+"Kind of, would these sticky bookmarks do? I've got a notebook if that'd be better.",bookmarks,sameCategory,postit-reading,postit,context2,competitor_c2
+"Kind of, would these sticky bookmarks do? I've got a notebook if that'd be better.",notebook,sameCategory,postit-reading,postit,context2,mostSimilar
+"Sorry I don't, would leggings work? Come have a look, you can choose something.",leggings,mostSimilar,sweatpants-spill,sweatpants,context2,mostSimilar
+"I've got a sleeping bag, that'll be more padded than a blanket anyways, I think.",sleepingbag,sameCategory,blanket-transportation,blanket,context2,competitor_c1
+no sorry but i have loads of bags and cake containers.,cakecontainer,sameCategory,box-bbq,box,context2,competitor_c1
+"dude, you knoow i  havnt done my washing yet, b i  have towelsr u can u the dryers",dryer,competitor,towel-clothes,towel,context2,competitor_c2
+"no but i have a shovel, lets do this together shall we",shovel,competitor,broom-snow,broom,context2,competitor_c2
+"sorry no, but you can lend these shorts or pat dry with a towel 
+",shorts,other,sweatpants-spill,sweatpants,context2,competitor_c2
+"sorry no, but you can lend these shorts or pat dry with a towel 
+",towel,other,sweatpants-spill,sweatpants,context2,otherCategory
+No but there is a dryer in the basement that they could use,dryer,competitor,towel-clothes,towel,context2,competitor_c2
+I have ice cream or chocolate,icecream,sameCategory,candy-dessert,candy,context2,competitor_c2
+I have ice cream or chocolate,chocolate,sameCategory,candy-dessert,candy,context2,mostSimilar
+I do - I have camping cookware and pans that I can lend you,campingcookware,sameCategory,pot-jam,pot,context2,mostSimilar
+I do - I have camping cookware and pans that I can lend you,pans,sameCategory,pot-jam,pot,context2,competitor_c2
+"No, but I have agave sugar",syrup,competitor,sugar-baking,sugar,context2,competitor_c2
+No but do you want to use this to-go mug?,mug,competitor,bottle-water,bottle,context2,competitor_c2
+I'll give you a cake container,cakecontainer,sameCategory,box-bbq,box,context2,competitor_c1
+"Sorry, no, but I do have a hair dryer that you could use instead.",hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+"Yeah, there's some candy and chocolate in the kitchen - give them that!",chocolate,mostSimilar,candy-halloween,candy,context1,mostSimilar
+I've got some leggings and pyjamas - would either of those be ok?,leggings,sameCategory,sweatpants-sleepover,sweatpants,context1,mostSimilar
+I've got some leggings and pyjamas - would either of those be ok?,pyjamas,sameCategory,sweatpants-sleepover,sweatpants,context1,competitor_c1
+No sorry. I have a to-go mug if that helps at all?,mug,competitor,bottle-water,bottle,context2,competitor_c2
+"Yeah, we have chocolate and ice cream!",icecream,sameCategory,candy-dessert,candy,context2,competitor_c2
+"Yeah, we have chocolate and ice cream!",chocolate,sameCategory,candy-dessert,candy,context2,mostSimilar
+I can offer you some leggings?,leggings,mostSimilar,sweatpants-spill,sweatpants,context2,mostSimilar
+"No, but You could make a sunshade from the bike cover or set up the tent?",bikecover,other,umbrella-summer,umbrella,context1,mostSimilar
+"No, but You could make a sunshade from the bike cover or set up the tent?",tent,other,umbrella-summer,umbrella,context1,otherCategory
+"No, but I've got a sleeping bag, if that helps?",sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+"No, but I've got a notebook and some sticky bookmarks you can have?",bookmarks,sameCategory,postit-board,postit,context1,competitor_c2
+"No, but I've got a notebook and some sticky bookmarks you can have?",notebook,sameCategory,postit-board,postit,context1,mostSimilar
+"No, but I've got some paper towels?",papertowels,mostSimilar,towel-hair,towel,context1,mostSimilar
+"No, but I do have a sleeping bag.",sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+"No, but I dohave a hair dryer if you want to use that.",hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+"No, but I have pyjamas or shorts if you'd like any of those.",pyjamas,sameCategory,sweatpants-sleepover,sweatpants,context1,competitor_c1
+"No, but I have pyjamas or shorts if you'd like any of those.",shorts,sameCategory,sweatpants-sleepover,sweatpants,context1,competitor_c2
+"No, but I have a hand brush and a shovel, or a vacuum cleaner if you could use those.",shovel,sameCategory,broom-renovation,broom,context1,competitor_c2
+"No, but I have a hand brush and a shovel, or a vacuum cleaner if you could use those.",handbrush,sameCategory,broom-renovation,broom,context1,mostSimilar
+"No, but I have a hand brush and a shovel, or a vacuum cleaner if you could use those.",vacuum,sameCategory,broom-renovation,broom,context1,competitor_c1
+"No, but I have a hair dryer, if that helps.",hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+No. I have some ziplock bags though.,ziplock,sameCategory,box-muffins,box,context1,competitor_c2
+No. I have some sunscreen if you're interested.,sunscreen,competitor,umbrella-summer,umbrella,context1,competitor_c1
+I have chocolate,chocolate,mostSimilar,candy-dessert,candy,context2,mostSimilar
+"No, but you can use my hairdryer?",hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+I don’t. I have a marker for the whiteboard we could use?,marker,competitor,postit-board,postit,context1,competitor_c1
+I have paper towels in the basement,papertowels,mostSimilar,towel-clothes,towel,context2,mostSimilar
+no sorry but I have a shovel,shovel,competitor,broom-snow,broom,context2,competitor_c2
+No sorry but I have some cans and pans,cans,sameCategory,pot-jam,pot,context2,competitor_c1
+No sorry but I have some cans and pans,pans,sameCategory,pot-jam,pot,context2,competitor_c2
+I have sticky bookmarks if that helps,bookmarks,competitor,postit-reading,postit,context2,competitor_c2
+"No, sorry. I don't have a broom but I do have a shovel or a hand brush. Could they help you at all?",shovel,sameCategory,broom-snow,broom,context2,competitor_c2
+"No, sorry. I don't have a broom but I do have a shovel or a hand brush. Could they help you at all?",handbrush,sameCategory,broom-snow,broom,context2,mostSimilar
+"No, sorry - I have used all mine in my baking. What are yo making? Will honey or agave syrup do?",syrup,sameCategory,sugar-baking,sugar,context2,competitor_c2
+"No, sorry - I have used all mine in my baking. What are yo making? Will honey or agave syrup do?",honey,sameCategory,sugar-baking,sugar,context2,mostSimilar
+"No, but a wet wipe might clear that up better - I have some of those of you like?",wetwipes,competitor,handkerchief-sauce,handkerchief,context2,competitor_c2
+"I have a blanket to warm you up and I can put your clothes in the drier if you like? 
+",blanket,other,towel-clothes,towel,context2,otherCategory
+"I have a blanket to warm you up and I can put your clothes in the drier if you like? 
+",dryer,other,towel-clothes,towel,context2,competitor_c2
+"No I don’t have a box but I have a carton, a tote bag, a cake container and a zip lock bag if you’d like any of those instead?",carton,fullList,box-bbq,box,context2,mostSimilar
+"No I don’t have a box but I have a carton, a tote bag, a cake container and a zip lock bag if you’d like any of those instead?",cakecontainer,fullList,box-bbq,box,context2,competitor_c1
+"No I don’t have a box but I have a carton, a tote bag, a cake container and a zip lock bag if you’d like any of those instead?",ziplock,fullList,box-bbq,box,context2,competitor_c2
+"No I don’t have a box but I have a carton, a tote bag, a cake container and a zip lock bag if you’d like any of those instead?",tote,fullList,box-bbq,box,context2,otherCategory
+No I haven’t got a broom but I do have a hand brush if that would be any help?,handbrush,mostSimilar,broom-snow,broom,context2,mostSimilar
+"No I don’t have a towel but you could try using my blanket, if you wanted?",blanket,otherCategory,towel-clothes,towel,context2,otherCategory
+I don’t have a blanket but I do have a sleeping bag if that would be helpful?,sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+"No, I don’t have a bottle, do you want the watering can?",wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+"I have a hair dryer you can use, it will be better than a towel.",hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+"No sorry, I have a hand brush but I don't have a broom I'm afraid.",handbrush,mostSimilar,broom-renovation,broom,context1,mostSimilar
+No sorry I don't have any pots but I have some old cans and ceramic plates that you could maybe use instead of a pot if you would like to try them?,cans,other,pot-garden,pot,context1,competitor_c1
+No sorry I don't have any pots but I have some old cans and ceramic plates that you could maybe use instead of a pot if you would like to try them?,ceramicplates,other,pot-garden,pot,context1,otherCategory
+No sorry but you can borrow my sleeping bag which could be used instead of a blanket.,sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+No sorry I don't have a bottle but you can use my watering can or my glass to water the plants if you like?,wateringcan,sameCategory,bottle-plants,bottle,context1,competitor_c1
+No sorry I don't have a bottle but you can use my watering can or my glass to water the plants if you like?,glass,sameCategory,bottle-plants,bottle,context1,mostSimilar
+"I have a vacuum cleaner if that helps, you are welcome to borrow it",vacuum,competitor,broom-renovation,broom,context1,competitor_c1
+I have some chocolate,chocolate,mostSimilar,candy-halloween,candy,context1,mostSimilar
+I have some old cans,cans,competitor,pot-garden,pot,context1,competitor_c1
+No but I have a watering can,wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+I have a watering can you can use,wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+I have some pyjamas you could wear,pyjamas,competitor,sweatpants-sleepover,sweatpants,context1,competitor_c1
+I have a vacuum,vacuum,competitor,broom-renovation,broom,context1,competitor_c1
+"Not exactly, would you like to borrow a hairdryer?",hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+"No, but I have sunscreen.",sunscreen,competitor,umbrella-summer,umbrella,context1,competitor_c1
+"I've got sticky bookmarks, will that do?",bookmarks,sameCategory,postit-board,postit,context1,competitor_c2
+sorry i do not have a broom. I do have a hand brush though.,handbrush,mostSimilar,broom-snow,broom,context2,mostSimilar
+I have a sleeping bag and a pillow if that helps?,sleepingbag,sameCategory,blanket-transportation,blanket,context2,competitor_c1
+I have a sleeping bag and a pillow if that helps?,pillow,sameCategory,blanket-transportation,blanket,context2,mostSimilar
+I have some pans.,pans,competitor,pot-jam,pot,context2,competitor_c2
+I don't have a pot sorry but I have a few things that may be suitable such as old cans,cans,competitor,pot-garden,pot,context1,competitor_c1
+No I don't but I have sweetener tablets,sweetener,competitor,sugar-coffee,sugar,context1,competitor_c1
+No but i have a watering can you can use,wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+"""I don't have any sweatpants I'm afraid, but I do have a pair of leggings or some pyjama bottoms you could borrow.""",leggings,sameCategory,sweatpants-spill,sweatpants,context2,mostSimilar
+"""I don't have any sweatpants I'm afraid, but I do have a pair of leggings or some pyjama bottoms you could borrow.""",pyjamas,sameCategory,sweatpants-spill,sweatpants,context2,competitor_c1
+"""I've got a big chocolate bar. Otherwise it's ice cream.""",chocolate,sameCategory,candy-dessert,candy,context2,mostSimilar
+"""I've got a big chocolate bar. Otherwise it's ice cream.""",icecream,sameCategory,candy-dessert,candy,context2,competitor_c2
+"""I don't have an umbrella but you could wear my rain jacket.""",rainjacket,competitor,umbrella-rain,umbrella,context2,competitor_c2
+"""I've got plenty of pans in the basement.""",pans,competitor,pot-jam,pot,context2,competitor_c2
+"Yes we have chocolate , trail mix and soda",chocolate,other,candy-halloween,candy,context1,mostSimilar
+"Yes we have chocolate , trail mix and soda",trailmix,other,candy-halloween,candy,context1,competitor_c1
+"Yes we have chocolate , trail mix and soda",soda,other,candy-halloween,candy,context1,otherCategory
+No but I have a sleeping bag,sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+I have a cake container or a zip lock bag?,cakecontainer,sameCategory,box-muffins,box,context1,competitor_c1
+I have a cake container or a zip lock bag?,ziplock,sameCategory,box-muffins,box,context1,competitor_c2
+I have a shovel which will be much more useful,shovel,competitor,broom-snow,broom,context2,competitor_c2
+I have a to-go mug which you can use instead.,mug,competitor,bottle-water,bottle,context2,competitor_c2
+I have some chocolate which you might enjoy,chocolate,mostSimilar,candy-dessert,candy,context2,mostSimilar
+I have some wet wipes that you can use to clean your sweater.,wetwipes,competitor,handkerchief-sauce,handkerchief,context2,competitor_c2
+"I don't, but you could borrow a cake container.",cakecontainer,sameCategory,box-bbq,box,context2,competitor_c1
+"I don't, but would bubble wrap be helpful as I have that?",bubblewrap,competitor,blanket-transportation,blanket,context2,competitor_c2
+"No, but we have chocolate or ice-cream.",chocolate,sameCategory,candy-dessert,candy,context2,mostSimilar
+"No, but we have chocolate or ice-cream.",icecream,sameCategory,candy-dessert,candy,context2,competitor_c2
+I would reply. Yes I have some paper napkins. You are more than welcome to have some.,napkins,mostSimilar,handkerchief-sauce,handkerchief,context2,mostSimilar
+No unfortunately I do not one but I can lend you my use rain coat if that helps.,rainjacket,competitor,umbrella-rain,umbrella,context2,competitor_c2
+I have got some camping cookware and several pans you can use if that is helpful to you.,campingcookware,sameCategory,pot-jam,pot,context2,mostSimilar
+I have got some camping cookware and several pans you can use if that is helpful to you.,pans,sameCategory,pot-jam,pot,context2,competitor_c2
+"I have no sugar , but I do have some honey, sweetener tablets and syrup if that helps.",sweetener,sameCategory,sugar-baking,sugar,context2,competitor_c1
+"I have no sugar , but I do have some honey, sweetener tablets and syrup if that helps.",syrup,sameCategory,sugar-baking,sugar,context2,competitor_c2
+"I have no sugar , but I do have some honey, sweetener tablets and syrup if that helps.",honey,sameCategory,sugar-baking,sugar,context2,mostSimilar
+No sorry but I have some bubble wrap,bubblewrap,competitor,blanket-transportation,blanket,context2,competitor_c2
+No but I have some sticky bookmarks,bookmarks,sameCategory,postit-reading,postit,context2,competitor_c2
+What sort of pot? I have some pans,pans,competitor,pot-jam,pot,context2,competitor_c2
+No sorry but I have a shovel or hand brush you could use,shovel,sameCategory,broom-snow,broom,context2,competitor_c2
+No sorry but I have a shovel or hand brush you could use,handbrush,sameCategory,broom-snow,broom,context2,mostSimilar
+"No, I don't have a bottle, but I have a watering can.",wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+"No, I don't have any sugar, but I have sweetener if that helps.",sweetener,competitor,sugar-coffee,sugar,context1,competitor_c1
+"Sorry, no, I do t have an umbrella, but I have sunscreen, and you could try to sit in the shade.",sunscreen,competitor,umbrella-summer,umbrella,context1,competitor_c1
+"No, sorry, I do t have a pit. Bit I have some old cans and some plates and could make you a pot for your plants from rhat.",cans,sameCategory,pot-garden,pot,context1,competitor_c1
+"No, sorry, I do t have a pit. Bit I have some old cans and some plates and could make you a pot for your plants from rhat.",ceramicplates,sameCategory,pot-garden,pot,context1,otherCategory
+"I'm sorry, I don't have sugar, but I do have honey, sweetener tablets, salt, and agave syrup if those would work for your coffee.",sweetener,fullList,sugar-coffee,sugar,context1,competitor_c1
+"I'm sorry, I don't have sugar, but I do have honey, sweetener tablets, salt, and agave syrup if those would work for your coffee.",syrup,fullList,sugar-coffee,sugar,context1,competitor_c2
+"I'm sorry, I don't have sugar, but I do have honey, sweetener tablets, salt, and agave syrup if those would work for your coffee.",honey,fullList,sugar-coffee,sugar,context1,mostSimilar
+"I'm sorry, I don't have sugar, but I do have honey, sweetener tablets, salt, and agave syrup if those would work for your coffee.",salt,fullList,sugar-coffee,sugar,context1,otherCategory
+"Yes, I have a towel for you to use. I also have a hair dryer, a dryer in the basement, a blanket, and paper towels if those would work for drying your hair.",papertowels,fullList,towel-hair,towel,context1,mostSimilar
+"Yes, I have a towel for you to use. I also have a hair dryer, a dryer in the basement, a blanket, and paper towels if those would work for drying your hair.",dryer,fullList,towel-hair,towel,context1,competitor_c2
+"Yes, I have a towel for you to use. I also have a hair dryer, a dryer in the basement, a blanket, and paper towels if those would work for drying your hair.",hairdryer,fullList,towel-hair,towel,context1,competitor_c1
+"Yes, I have a towel for you to use. I also have a hair dryer, a dryer in the basement, a blanket, and paper towels if those would work for drying your hair.",blanket,fullList,towel-hair,towel,context1,otherCategory
+I don't have a blanket sorry however I have a sleeping bag that will do the job.,sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+"No, just soda, trail mix, chocolate and ice cream.",trailmix,fullList,candy-dessert,candy,context2,competitor_c1
+"No, just soda, trail mix, chocolate and ice cream.",chocolate,fullList,candy-dessert,candy,context2,mostSimilar
+"No, just soda, trail mix, chocolate and ice cream.",icecream,fullList,candy-dessert,candy,context2,competitor_c2
+"No, just soda, trail mix, chocolate and ice cream.",soda,fullList,candy-dessert,candy,context2,otherCategory
+"No, just a glass.",glass,mostSimilar,bottle-water,bottle,context2,mostSimilar
+"No, just a shovel.",shovel,competitor,broom-snow,broom,context2,competitor_c2
+"No, but I do have some shorts.",shorts,competitor,sweatpants-spill,sweatpants,context2,competitor_c2
+Yes. I have some sticky bookmarks you can use as post-it notes.,bookmarks,sameCategory,postit-board,postit,context1,competitor_c2
+No. But I have trail mix bags we can use instead. Its healthier.,trailmix,competitor,candy-halloween,candy,context1,competitor_c1
+No but i have a hair dryer,hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+"I'm sorry I don't have one - use this watering can. 
+",wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+Use this hairdryer instead.,hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+"Sorry, but you can use this sleeping bag if you open it out.",sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+Why don't you give people paper out of this notebook of mine and then use my whiteboard pen to collate ideas.,notebook,sameCategory,postit-board,postit,context1,mostSimilar
+Why don't you give people paper out of this notebook of mine and then use my whiteboard pen to collate ideas.,marker,sameCategory,postit-board,postit,context1,competitor_c1
+"I don't have a box but I have a cake container, a ziplock bag, a carton it a tote bag. What would you lik",cakecontainer,fullList,box-bbq,box,context2,competitor_c1
+"I don't have a box but I have a cake container, a ziplock bag, a carton it a tote bag. What would you lik",ziplock,fullList,box-bbq,box,context2,competitor_c2
+"I don't have a box but I have a cake container, a ziplock bag, a carton it a tote bag. What would you lik",carton,fullList,box-bbq,box,context2,mostSimilar
+"I don't have a box but I have a cake container, a ziplock bag, a carton it a tote bag. What would you lik",tote,fullList,box-bbq,box,context2,otherCategory
+"Hi, No I don't have a broom but I have a shovel which may work?",shovel,competitor,broom-snow,broom,context2,competitor_c2
+"Hi,I don't have sugar but would honey or agave syrup work?",honey,sameCategory,sugar-baking,sugar,context2,mostSimilar
+"Hi,I don't have sugar but would honey or agave syrup work?",syrup,sameCategory,sugar-baking,sugar,context2,competitor_c2
+No bottle but I have a to-go mug,mug,competitor,bottle-water,bottle,context2,competitor_c2
+"I do not, but I do have a sleeping bag you can use.",sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+Yes I have sticky bookmarks that are the same. You can have those.,bookmarks,sameCategory,postit-board,postit,context1,competitor_c2
+"I do not, I do have shorts or pyjamas if you want those.",shorts,sameCategory,sweatpants-sleepover,sweatpants,context1,competitor_c2
+"I do not, I do have shorts or pyjamas if you want those.",pyjamas,sameCategory,sweatpants-sleepover,sweatpants,context1,competitor_c1
+"No sorry, I do have sweetener tablets though?",sweetener,competitor,sugar-coffee,sugar,context1,competitor_c1
+"No, i do have paper napkins and some wet wipes if they are of any use?",napkins,sameCategory,handkerchief-injury,handkerchief,context1,mostSimilar
+"No, i do have paper napkins and some wet wipes if they are of any use?",wetwipes,sameCategory,handkerchief-injury,handkerchief,context1,competitor_c2
+I have some pans and cookware if you need them,pans,sameCategory,pot-garden,pot,context1,competitor_c2
+I dont have a bottle but i have a glass or travel cup you could use?,glass,sameCategory,bottle-water,bottle,context2,mostSimilar
+I dont have a bottle but i have a glass or travel cup you could use?,mug,sameCategory,bottle-water,bottle,context2,competitor_c2
+I have some small bookmark notes or you can use this notebook i've got if thats any help to you?,bookmarks,sameCategory,postit-reading,postit,context2,competitor_c2
+I have some small bookmark notes or you can use this notebook i've got if thats any help to you?,notebook,sameCategory,postit-reading,postit,context2,mostSimilar
+"No i dont, but you can use the dryer",dryer,competitor,towel-clothes,towel,context2,competitor_c2
+"Sorry, no - I only have paper towels.",papertowels,mostSimilar,towel-clothes,towel,context2,mostSimilar
+I've only got chocolate and trail mix.,trailmix,sameCategory,candy-dessert,candy,context2,competitor_c1
+I've only got chocolate and trail mix.,chocolate,sameCategory,candy-dessert,candy,context2,mostSimilar
+No but you're welcome to have a wet wipe.,wetwipes,competitor,handkerchief-sauce,handkerchief,context2,competitor_c2
+"I'm so sorry but I've just run out myself!  I've got honey or agave syrup, if that's of any use?",honey,sameCategory,sugar-baking,sugar,context2,mostSimilar
+"I'm so sorry but I've just run out myself!  I've got honey or agave syrup, if that's of any use?",syrup,sameCategory,sugar-baking,sugar,context2,competitor_c2
+We have a little bit (if we break up a chocolate bar).,chocolate,mostSimilar,candy-halloween,candy,context1,mostSimilar
+"No, but I can craft something similar from some old pots and pans.",pans,sameCategory,pot-garden,pot,context1,competitor_c2
+I could offer you a pair of shorts to wear? I also have a towel so you can dry yourself.,shorts,other,sweatpants-spill,sweatpants,context2,competitor_c2
+I could offer you a pair of shorts to wear? I also have a towel so you can dry yourself.,towel,other,sweatpants-spill,sweatpants,context2,otherCategory
+I have a mug you can use no problem.,mug,competitor,bottle-water,bottle,context2,competitor_c2
+"I don't have any sugar, but I do have sweeteners or honey and agave syrup. What are you making?",sweetener,sameCategory,sugar-baking,sugar,context2,competitor_c1
+"I don't have any sugar, but I do have sweeteners or honey and agave syrup. What are you making?",syrup,sameCategory,sugar-baking,sugar,context2,competitor_c2
+"I don't have any sugar, but I do have sweeteners or honey and agave syrup. What are you making?",honey,sameCategory,sugar-baking,sugar,context2,mostSimilar
+There is a big chocolate bar if you want to open that.,chocolate,mostSimilar,candy-dessert,candy,context2,mostSimilar
+"Yes, we have a big chocolate bar.",chocolate,mostSimilar,candy-dessert,candy,context2,mostSimilar
+No but I have a shovel if that helps.,shovel,competitor,broom-snow,broom,context2,competitor_c2
+No sorry I don’t but I have sweetener,sweetener,competitor,sugar-coffee,sugar,context1,competitor_c1
+I don’t have a towel but I have a hair dryer you can use,hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+I don’t have post it’s but I have a whiteboard and sticky bookmarks,marker,sameCategory,postit-board,postit,context1,competitor_c1
+I don’t have post it’s but I have a whiteboard and sticky bookmarks,bookmarks,sameCategory,postit-board,postit,context1,competitor_c2
+No but I have some sticky bookmarks if that will help?,bookmarks,competitor,postit-reading,postit,context2,competitor_c2
+"Sorry, I don't. I have sweetener tablets if that's of any help?",sweetener,sameCategory,sugar-baking,sugar,context2,competitor_c1
+Afraid not. I've got some cans and pans if that will help,cans,sameCategory,pot-jam,pot,context2,competitor_c1
+Afraid not. I've got some cans and pans if that will help,pans,sameCategory,pot-jam,pot,context2,competitor_c2
+Are leggings ok?,leggings,mostSimilar,sweatpants-spill,sweatpants,context2,mostSimilar
+"No, but I have a glass and a mug.",glass,sameCategory,bottle-water,bottle,context2,mostSimilar
+"No, but I have a glass and a mug.",mug,sameCategory,bottle-water,bottle,context2,competitor_c2
+"No, but I have a watering can, glass and mug.",wateringcan,sameCategory,bottle-plants,bottle,context1,competitor_c1
+"No, but I have a watering can, glass and mug.",glass,sameCategory,bottle-plants,bottle,context1,mostSimilar
+"No, but I have a watering can, glass and mug.",mug,sameCategory,bottle-plants,bottle,context1,competitor_c2
+We don't but we do have a big bar of chocolate you could split into portions?,chocolate,mostSimilar,candy-halloween,candy,context1,mostSimilar
+I dont but I do have a sleeping bag and pillows if they're of any use?,sleepingbag,sameCategory,blanket-sleepover,blanket,context1,competitor_c1
+I dont but I do have a sleeping bag and pillows if they're of any use?,pillow,sameCategory,blanket-sleepover,blanket,context1,mostSimilar
+"No, but you can use my sleeping bag",sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+"I don't, but I do have some sweetener tablets, agave syrup or honey if that would help?",sweetener,sameCategory,sugar-baking,sugar,context2,competitor_c1
+"I don't, but I do have some sweetener tablets, agave syrup or honey if that would help?",honey,sameCategory,sugar-baking,sugar,context2,mostSimilar
+"I don't, but I do have some sweetener tablets, agave syrup or honey if that would help?",syrup,sameCategory,sugar-baking,sugar,context2,competitor_c2
+I have some pans if that's ok?,pans,competitor,pot-jam,pot,context2,competitor_c2
+"I have some carpet, or a sleeping bag?",carpet,other,blanket-transportation,blanket,context2,otherCategory
+"I have some carpet, or a sleeping bag?",sleepingbag,other,blanket-transportation,blanket,context2,competitor_c1
+I have a to-go mug if that helps?,mug,competitor,bottle-water,bottle,context2,competitor_c2
+"I don't, but I do have some napkins or wet wipes if you would like them.",napkins,sameCategory,handkerchief-sauce,handkerchief,context2,mostSimilar
+"I don't, but I do have some napkins or wet wipes if you would like them.",wetwipes,sameCategory,handkerchief-sauce,handkerchief,context2,competitor_c2
+"I have a mug, or a glass you can use.",glass,sameCategory,bottle-water,bottle,context2,mostSimilar
+"I have a mug, or a glass you can use.",mug,sameCategory,bottle-water,bottle,context2,competitor_c2
+"No I used it all baking cookies. Would honey, agave syrup or sweetener tablets work?",sweetener,sameCategory,sugar-baking,sugar,context2,competitor_c1
+"No I used it all baking cookies. Would honey, agave syrup or sweetener tablets work?",honey,sameCategory,sugar-baking,sugar,context2,mostSimilar
+"No I used it all baking cookies. Would honey, agave syrup or sweetener tablets work?",syrup,sameCategory,sugar-baking,sugar,context2,competitor_c2
+We have ice cream and chocolate that’s all,icecream,sameCategory,candy-dessert,candy,context2,competitor_c2
+We have ice cream and chocolate that’s all,chocolate,sameCategory,candy-dessert,candy,context2,mostSimilar
+I have some pans and camping stuff to store them in.,pans,sameCategory,pot-jam,pot,context2,competitor_c2
+I have some pans and camping stuff to store them in.,campingcookware,sameCategory,pot-jam,pot,context2,mostSimilar
+i have some wet wipes i can give you.,wetwipes,competitor,handkerchief-sauce,handkerchief,context2,competitor_c2
+i have some sticky bookmarks,bookmarks,competitor,postit-reading,postit,context2,competitor_c2
+i have a dryer in the basement if you would like to use that.,dryer,competitor,towel-clothes,towel,context2,competitor_c2
+I am sorry I don't. I have some sticky bookmarks though - would they be suitable?,bookmarks,competitor,postit-reading,postit,context2,competitor_c2
+"I've got some shorts, leggings or pyjama bottoms you could wear.",leggings,sameCategory,sweatpants-spill,sweatpants,context2,mostSimilar
+"I've got some shorts, leggings or pyjama bottoms you could wear.",pyjamas,sameCategory,sweatpants-spill,sweatpants,context2,competitor_c1
+"I've got some shorts, leggings or pyjama bottoms you could wear.",shorts,sameCategory,sweatpants-spill,sweatpants,context2,competitor_c2
+I am sorry I don't. But I have a rain jacket one of you could borrow and a plastic bike cover you could hold over yourselves! Please don't forget to bring them back!,rainjacket,sameCategory,umbrella-rain,umbrella,context2,competitor_c2
+I am sorry I don't. But I have a rain jacket one of you could borrow and a plastic bike cover you could hold over yourselves! Please don't forget to bring them back!,bikecover,sameCategory,umbrella-rain,umbrella,context2,mostSimilar
+Yes I have paper ones - I've also got some other things you could use to dry your costumes.,papertowels,mostSimilar,towel-clothes,towel,context2,mostSimilar
+"Hi, yes sure. I’ll lend you my broom and I’ll come out and do part of the driveway with my shovel.",shovel,other,broom-snow,broom,context2,competitor_c2
+I have these sticky bookmarks you can use if you like.,bookmarks,competitor,postit-reading,postit,context2,competitor_c2
+I have a to-go mug. I’ll give you half my bottle of water and you can carry it in my Togo mug.,mug,competitor,bottle-water,bottle,context2,competitor_c2
+"Well, I have paper towels and a blow dryer. You can use those. But we have a dryer in the basement, might be quicker to use that if you like.",papertowels,sameCategory,towel-clothes,towel,context2,mostSimilar
+"Well, I have paper towels and a blow dryer. You can use those. But we have a dryer in the basement, might be quicker to use that if you like.",dryer,sameCategory,towel-clothes,towel,context2,competitor_c2
+"Well, I have paper towels and a blow dryer. You can use those. But we have a dryer in the basement, might be quicker to use that if you like.",hairdryer,sameCategory,towel-clothes,towel,context2,competitor_c1
+"no, ive left you some leggins or shorts",leggings,sameCategory,sweatpants-sleepover,sweatpants,context1,mostSimilar
+"no, ive left you some leggins or shorts",shorts,sameCategory,sweatpants-sleepover,sweatpants,context1,competitor_c2
+no but we could make something with the tent or here is some sunscreen,sunscreen,other,umbrella-summer,umbrella,context1,competitor_c1
+no but we could make something with the tent or here is some sunscreen,tent,other,umbrella-summer,umbrella,context1,otherCategory
+here is some trail mix,trailmix,competitor,candy-halloween,candy,context1,competitor_c1
+I have tissues and wet wipes. Would you like one?,napkins,sameCategory,handkerchief-sauce,handkerchief,context2,mostSimilar
+I have tissues and wet wipes. Would you like one?,wetwipes,sameCategory,handkerchief-sauce,handkerchief,context2,competitor_c2
+I have a plastic bag you could use.,ziplock,competitor,box-bbq,box,context2,competitor_c2
+Yes we have chocolate and trail mix.,chocolate,sameCategory,candy-dessert,candy,context2,mostSimilar
+Yes we have chocolate and trail mix.,trailmix,sameCategory,candy-dessert,candy,context2,competitor_c1
+Yes we have a chocolate bar or some trail mix.,trailmix,sameCategory,candy-dessert,candy,context2,competitor_c1
+Yes we have a chocolate bar or some trail mix.,chocolate,sameCategory,candy-dessert,candy,context2,mostSimilar
+"Yeah I do. You can use a cake container, a carton or a ziplock bag.",cakecontainer,sameCategory,box-bbq,box,context2,competitor_c1
+"Yeah I do. You can use a cake container, a carton or a ziplock bag.",ziplock,sameCategory,box-bbq,box,context2,competitor_c2
+"Yeah I do. You can use a cake container, a carton or a ziplock bag.",carton,sameCategory,box-bbq,box,context2,mostSimilar
+Yeah I've got a to-go mug if that's ok?,mug,competitor,bottle-water,bottle,context2,competitor_c2
+"No, but I've got a hair dryer.",hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+"No, but I've got a watering can.",wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+"No sorry, will pyjamas or leggings do?",leggings,sameCategory,sweatpants-sleepover,sweatpants,context1,mostSimilar
+"No sorry, will pyjamas or leggings do?",pyjamas,sameCategory,sweatpants-sleepover,sweatpants,context1,competitor_c1
+"No, but i have sticky bookmarks - whatever those are.",bookmarks,sameCategory,postit-board,postit,context1,competitor_c2
+I have napkins but would you like a wet wipe?,napkins,sameCategory,handkerchief-injury,handkerchief,context1,mostSimilar
+I have napkins but would you like a wet wipe?,wetwipes,sameCategory,handkerchief-injury,handkerchief,context1,competitor_c2
+"I have a pair of leggings or shorts, which would you prefer?",leggings,sameCategory,sweatpants-spill,sweatpants,context2,mostSimilar
+"I have a pair of leggings or shorts, which would you prefer?",shorts,sameCategory,sweatpants-spill,sweatpants,context2,competitor_c2
+"I only have a shovel and a hand brush, are these any good?",shovel,sameCategory,broom-snow,broom,context2,competitor_c2
+"I only have a shovel and a hand brush, are these any good?",handbrush,sameCategory,broom-snow,broom,context2,mostSimilar
+I have a rain jacket or a tent if they are of any use?,rainjacket,other,umbrella-rain,umbrella,context2,competitor_c2
+I have a rain jacket or a tent if they are of any use?,tent,other,umbrella-rain,umbrella,context2,otherCategory
+"I only have a glass, a to-go mug or a watering can if these can be of any use?",wateringcan,sameCategory,bottle-water,bottle,context2,competitor_c1
+"I only have a glass, a to-go mug or a watering can if these can be of any use?",glass,sameCategory,bottle-water,bottle,context2,mostSimilar
+"I only have a glass, a to-go mug or a watering can if these can be of any use?",mug,sameCategory,bottle-water,bottle,context2,competitor_c2
+"No, but I have a hair dryer if you would like to use that.",hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+"No, but we could give them trail mix instead.",trailmix,competitor,candy-halloween,candy,context1,competitor_c1
+"No, but I have some paper napkins.  I also have wet wipes and band aids, if they would be useful.",napkins,sameCategory,handkerchief-injury,handkerchief,context1,mostSimilar
+"No, but I have some paper napkins.  I also have wet wipes and band aids, if they would be useful.",wetwipes,sameCategory,handkerchief-injury,handkerchief,context1,competitor_c2
+"No, but I have some paper napkins.  I also have wet wipes and band aids, if they would be useful.",bandaids,sameCategory,handkerchief-injury,handkerchief,context1,competitor_c1
+"I do not have a box. However, I do have a cake container, ziplock bag, tote bag, and carton. Would any of these be suitable",cakecontainer,fullList,box-bbq,box,context2,competitor_c1
+"I do not have a box. However, I do have a cake container, ziplock bag, tote bag, and carton. Would any of these be suitable",ziplock,fullList,box-bbq,box,context2,competitor_c2
+"I do not have a box. However, I do have a cake container, ziplock bag, tote bag, and carton. Would any of these be suitable",carton,fullList,box-bbq,box,context2,mostSimilar
+"I do not have a box. However, I do have a cake container, ziplock bag, tote bag, and carton. Would any of these be suitable",tote,fullList,box-bbq,box,context2,otherCategory
+"No, I do not have a blanket, but do have a sleeping bag. Will this work?",sleepingbag,sameCategory,blanket-transportation,blanket,context2,competitor_c1
+"No sorry, I do not have a towel, would paper towels work?",papertowels,mostSimilar,towel-clothes,towel,context2,mostSimilar
+"No but go to the basement and there's a dryer, hair dryer and all that.",dryer,sameCategory,towel-clothes,towel,context2,competitor_c2
+"No but go to the basement and there's a dryer, hair dryer and all that.",hairdryer,sameCategory,towel-clothes,towel,context2,competitor_c1
+Nope. You want some shorts or leggings?,leggings,sameCategory,sweatpants-spill,sweatpants,context2,mostSimilar
+Nope. You want some shorts or leggings?,shorts,sameCategory,sweatpants-spill,sweatpants,context2,competitor_c2
+"Nope, you want a shovel?",shovel,competitor,broom-snow,broom,context2,competitor_c2
+"No, I'm sorry, but I do have agave syrup and honey, if that could work as a substitute.",honey,sameCategory,sugar-baking,sugar,context2,mostSimilar
+"No, I'm sorry, but I do have agave syrup and honey, if that could work as a substitute.",syrup,sameCategory,sugar-baking,sugar,context2,competitor_c2
+"No, but I have pajamas which are kind of close.",pyjamas,sameCategory,sweatpants-spill,sweatpants,context2,competitor_c1
+"No, but I have some napkins.",napkins,mostSimilar,handkerchief-sauce,handkerchief,context2,mostSimilar
+"No, but I have some pans and camping cookware.",pans,sameCategory,pot-jam,pot,context2,competitor_c2
+"No, but I have some pans and camping cookware.",campingcookware,sameCategory,pot-jam,pot,context2,mostSimilar
+"No, but I have honey, syrup and sweeteners",honey,sameCategory,sugar-baking,sugar,context2,mostSimilar
+"No, but I have honey, syrup and sweeteners",syrup,sameCategory,sugar-baking,sugar,context2,competitor_c2
+"No, but I have honey, syrup and sweeteners",sweetener,sameCategory,sugar-baking,sugar,context2,competitor_c1
+"Yes, we have a chocolate bar",chocolate,mostSimilar,candy-dessert,candy,context2,mostSimilar
+Yes I have a cake container,cakecontainer,competitor,box-muffins,box,context1,competitor_c1
+Yes I have a watering can,wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+I have a sleeping bag,sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+I have some leggings,leggings,mostSimilar,sweatpants-sleepover,sweatpants,context1,mostSimilar
+"No but I have a shovel, a hand brush and vacuum cleaner. Would they be of use of you?",vacuum,sameCategory,broom-renovation,broom,context1,competitor_c1
+"No but I have a shovel, a hand brush and vacuum cleaner. Would they be of use of you?",handbrush,sameCategory,broom-renovation,broom,context1,mostSimilar
+"No but I have a shovel, a hand brush and vacuum cleaner. Would they be of use of you?",shovel,sameCategory,broom-renovation,broom,context1,competitor_c2
+No but I have some sunscreen that you can use.,sunscreen,competitor,umbrella-summer,umbrella,context1,competitor_c1
+"No sorry, but I have some sweeteners that you can use.",sweetener,competitor,sugar-coffee,sugar,context1,competitor_c1
+"I have asome paer napkins, wet wipes and some band aids if you want to make use of those.",napkins,sameCategory,handkerchief-injury,handkerchief,context1,mostSimilar
+"I have asome paer napkins, wet wipes and some band aids if you want to make use of those.",wetwipes,sameCategory,handkerchief-injury,handkerchief,context1,competitor_c2
+"I have asome paer napkins, wet wipes and some band aids if you want to make use of those.",bandaids,sameCategory,handkerchief-injury,handkerchief,context1,competitor_c1
+I am afraid i do not have a blanket but I do have a sleeping bag that can be opened up as a blanket.,sleepingbag,competitor,blanket-sleepover,blanket,context1,competitor_c1
+"No, I have no towel but you can dry your hair with the hair dryer.",hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+"No, but I do have a variety of cans you could use as pots.",cans,competitor,pot-garden,pot,context1,competitor_c1
+Not as such but I do have a ziplock bag and a cake container that I think would be able to hold all the leftovers for taking home,ziplock,sameCategory,box-bbq,box,context2,competitor_c2
+Not as such but I do have a ziplock bag and a cake container that I think would be able to hold all the leftovers for taking home,cakecontainer,sameCategory,box-bbq,box,context2,competitor_c1
+"
+Sorry I do not have a bottle I do have a to go mug that we can fill with water if we pass a water station or spring",mug,competitor,bottle-water,bottle,context2,competitor_c2
+I do not have sweatpants but I do have leggings or a pair of shorts you could wear,leggings,sameCategory,sweatpants-spill,sweatpants,context2,mostSimilar
+I do not have sweatpants but I do have leggings or a pair of shorts you could wear,shorts,sameCategory,sweatpants-spill,sweatpants,context2,competitor_c2
+"
+Sorry I have no sugar but I do have sweetener tablets if they are any help?",sweetener,sameCategory,sugar-baking,sugar,context2,competitor_c1
+No but i've got a hand brush if that will do.,handbrush,mostSimilar,broom-renovation,broom,context1,mostSimilar
+"No, but there's a watering can.",wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+Only paper towels.,papertowels,mostSimilar,towel-hair,towel,context1,mostSimilar
+"No, but I've a vacuum cleaner that you can borrow.",vacuum,competitor,broom-renovation,broom,context1,competitor_c1
+"I don't, just use this watering can.",wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+Only some paper towels. I do have a hair dryer if that helps.,papertowels,sameCategory,towel-hair,towel,context1,mostSimilar
+Only some paper towels. I do have a hair dryer if that helps.,hairdryer,sameCategory,towel-hair,towel,context1,competitor_c1
+No sweatpants though I've got some pyjamas that you can use instead.,pyjamas,competitor,sweatpants-sleepover,sweatpants,context1,competitor_c1
+NO BUT I HAVE A SHOVEL IF THATS ANY HELP,shovel,competitor,broom-snow,broom,context2,competitor_c2
+NO BUT I HAVE SOME PAPER NAPKINS,napkins,mostSimilar,handkerchief-sauce,handkerchief,context2,mostSimilar
+"Sorry no, I do have a vacuum cleaner and hand brush though if they would be any use to you?",vacuum,sameCategory,broom-renovation,broom,context1,competitor_c1
+"Sorry no, I do have a vacuum cleaner and hand brush though if they would be any use to you?",handbrush,sameCategory,broom-renovation,broom,context1,mostSimilar
+No I don’t have a bottle but I do have a watering can!,wateringcan,competitor,bottle-plants,bottle,context1,competitor_c1
+"Yes I have this carton or cake tin, either of which you are welcome to use",carton,sameCategory,box-muffins,box,context1,mostSimilar
+"Yes I have this carton or cake tin, either of which you are welcome to use",cakecontainer,sameCategory,box-muffins,box,context1,competitor_c1
+"Sorry no I don’t! I have sweetener, agave or honey if you would like one of those?",sweetener,sameCategory,sugar-coffee,sugar,context1,competitor_c1
+"Sorry no I don’t! I have sweetener, agave or honey if you would like one of those?",honey,sameCategory,sugar-coffee,sugar,context1,mostSimilar
+"Sorry no I don’t! I have sweetener, agave or honey if you would like one of those?",syrup,sameCategory,sugar-coffee,sugar,context1,competitor_c2
+"No, we have leggings, shorts, pyjamas and towels",leggings,fullList,sweatpants-sleepover,sweatpants,context1,mostSimilar
+"No, we have leggings, shorts, pyjamas and towels",shorts,fullList,sweatpants-sleepover,sweatpants,context1,competitor_c2
+"No, we have leggings, shorts, pyjamas and towels",pyjamas,fullList,sweatpants-sleepover,sweatpants,context1,competitor_c1
+"No, we have leggings, shorts, pyjamas and towels",towel,fullList,sweatpants-sleepover,sweatpants,context1,otherCategory
+"We have a ziplock bag, a cake container, a tote bag, and a carton",cakecontainer,fullList,box-muffins,box,context1,competitor_c1
+"We have a ziplock bag, a cake container, a tote bag, and a carton",ziplock,fullList,box-muffins,box,context1,competitor_c2
+"We have a ziplock bag, a cake container, a tote bag, and a carton",carton,fullList,box-muffins,box,context1,mostSimilar
+"We have a ziplock bag, a cake container, a tote bag, and a carton",tote,fullList,box-muffins,box,context1,otherCategory
+you can use these wet wipes and paper napkins,napkins,sameCategory,handkerchief-injury,handkerchief,context1,mostSimilar
+you can use these wet wipes and paper napkins,wetwipes,sameCategory,handkerchief-injury,handkerchief,context1,competitor_c2
+no but i do have a hair dryer,hairdryer,competitor,towel-hair,towel,context1,competitor_c1
+"I don’t have a blanket but you could always borrow my sleeping bag, it’s really good quality and made for winter camping! I’ve also got a pillow if you need one!",sleepingbag,sameCategory,blanket-transportation,blanket,context2,competitor_c1
+"I don’t have a blanket but you could always borrow my sleeping bag, it’s really good quality and made for winter camping! I’ve also got a pillow if you need one!",pillow,sameCategory,blanket-transportation,blanket,context2,mostSimilar
+"I have a shovel and a handbrush! You can borrow my shovel for the main parts of the snow and use the hand brush to break up any ice chunks, let me know if you need help!",shovel,sameCategory,broom-snow,broom,context2,competitor_c2
+"I have a shovel and a handbrush! You can borrow my shovel for the main parts of the snow and use the hand brush to break up any ice chunks, let me know if you need help!",handbrush,sameCategory,broom-snow,broom,context2,mostSimilar
+"I don’t have sugar but I have agave syrup and honey, sweetener tablets crushed up could also replace sugar, you could try making batches with all three, I’d be curious to see how they turn out!",sweetener,sameCategory,sugar-baking,sugar,context2,competitor_c1
+"I don’t have sugar but I have agave syrup and honey, sweetener tablets crushed up could also replace sugar, you could try making batches with all three, I’d be curious to see how they turn out!",honey,sameCategory,sugar-baking,sugar,context2,mostSimilar
+"I don’t have sugar but I have agave syrup and honey, sweetener tablets crushed up could also replace sugar, you could try making batches with all three, I’d be curious to see how they turn out!",syrup,sameCategory,sugar-baking,sugar,context2,competitor_c2
+"Sorry, no but I do have some bubble wrap that you are welcome to use. I also have a spare pillow and a sleeping bag if they could be of any use to protect your mirror?",bubblewrap,sameCategory,blanket-transportation,blanket,context2,competitor_c2
+"Sorry, no but I do have some bubble wrap that you are welcome to use. I also have a spare pillow and a sleeping bag if they could be of any use to protect your mirror?",sleepingbag,sameCategory,blanket-transportation,blanket,context2,competitor_c1
+"Sorry, no but I do have some bubble wrap that you are welcome to use. I also have a spare pillow and a sleeping bag if they could be of any use to protect your mirror?",pillow,sameCategory,blanket-transportation,blanket,context2,mostSimilar
+"Sure, what do you need? Have a look in the pantry. I’ve got a cake container but depending on what you need, I also have a carton, a ziplock bag, and a tote bag.",cakecontainer,fullList,box-bbq,box,context2,competitor_c1
+"Sure, what do you need? Have a look in the pantry. I’ve got a cake container but depending on what you need, I also have a carton, a ziplock bag, and a tote bag.",ziplock,fullList,box-bbq,box,context2,competitor_c2
+"Sure, what do you need? Have a look in the pantry. I’ve got a cake container but depending on what you need, I also have a carton, a ziplock bag, and a tote bag.",carton,fullList,box-bbq,box,context2,mostSimilar
+"Sure, what do you need? Have a look in the pantry. I’ve got a cake container but depending on what you need, I also have a carton, a ziplock bag, and a tote bag.",tote,fullList,box-bbq,box,context2,otherCategory
+"Sure, there is a large chocolate bar but we’ve also got ice cream if you would prefer that.",chocolate,sameCategory,candy-dessert,candy,context2,mostSimilar
+"Sure, there is a large chocolate bar but we’ve also got ice cream if you would prefer that.",icecream,sameCategory,candy-dessert,candy,context2,competitor_c2
+"Sorry, no. I’ve got these sticky bookmarks though and you are welcome to this notebook if that would be any good?",bookmarks,sameCategory,postit-reading,postit,context2,competitor_c2
+"Sorry, no. I’ve got these sticky bookmarks though and you are welcome to this notebook if that would be any good?",notebook,sameCategory,postit-reading,postit,context2,mostSimilar
+"I'm sorry, I don't have one. Would you like to borrow my rain jacket?",rainjacket,competitor,umbrella-rain,umbrella,context2,competitor_c2
+"No, but I have some wet wipes here.",wetwipes,competitor,handkerchief-sauce,handkerchief,context2,competitor_c2
+I have these sticky bookmarks which are much the same thing.,bookmarks,competitor,postit-reading,postit,context2,competitor_c2
+"I'm afraid not, but I can offer you some shorts, and since it is so hot today they would be more comfortable.",shorts,competitor,sweatpants-spill,sweatpants,context2,competitor_c2
+"Yes, I have plenty of paper towels but feel free to also use the hair dryer, blanket and there’s a dryer in the basement too",papertowels,fullList,towel-clothes,towel,context2,mostSimilar
+"Yes, I have plenty of paper towels but feel free to also use the hair dryer, blanket and there’s a dryer in the basement too",dryer,fullList,towel-clothes,towel,context2,competitor_c2
+"Yes, I have plenty of paper towels but feel free to also use the hair dryer, blanket and there’s a dryer in the basement too",hairdryer,fullList,towel-clothes,towel,context2,competitor_c1
+"Yes, I have plenty of paper towels but feel free to also use the hair dryer, blanket and there’s a dryer in the basement too",blanket,fullList,towel-clothes,towel,context2,otherCategory
+I’ve got some chocolate if that’s any good. There’s also some ice cream and soda. Or how about these little trail mix packages?,chocolate,fullList,candy-dessert,candy,context2,mostSimilar
+I’ve got some chocolate if that’s any good. There’s also some ice cream and soda. Or how about these little trail mix packages?,icecream,fullList,candy-dessert,candy,context2,competitor_c2
+I’ve got some chocolate if that’s any good. There’s also some ice cream and soda. Or how about these little trail mix packages?,trailmix,fullList,candy-dessert,candy,context2,competitor_c1
+I’ve got some chocolate if that’s any good. There’s also some ice cream and soda. Or how about these little trail mix packages?,soda,fullList,candy-dessert,candy,context2,otherCategory
+"No, I’m sorry I don’t have any of those. Feel free to try using these sticky bookmarks though.",bookmarks,competitor,postit-reading,postit,context2,competitor_c2
+"Oh I’m really sorry, I don’t have an umbrella. You can borrow my rain jacket but I’m afraid I only have one.",rainjacket,competitor,umbrella-rain,umbrella,context2,competitor_c2
+"No, sorry but I do have sweetener tablets,  honey and agave syrup if you would like any of those?",sweetener,sameCategory,sugar-coffee,sugar,context1,competitor_c1
+"No, sorry but I do have sweetener tablets,  honey and agave syrup if you would like any of those?",honey,sameCategory,sugar-coffee,sugar,context1,mostSimilar
+"No, sorry but I do have sweetener tablets,  honey and agave syrup if you would like any of those?",syrup,sameCategory,sugar-coffee,sugar,context1,competitor_c2
+"No, I have a mug if you would like to use that?",mug,sameCategory,bottle-plants,bottle,context1,competitor_c2
+"No, I have a pan if that’s any good?",pans,sameCategory,pot-garden,pot,context1,competitor_c2
+"Only paper towels, would you like some?",papertowels,mostSimilar,towel-hair,towel,context1,mostSimilar
+"no, sorry i do not, but i do have a rain coat if that helps?",rainjacket,competitor,umbrella-rain,umbrella,context2,competitor_c2
+i'm afraid i don't but i do have several pans you can use if that helps,pans,competitor,pot-jam,pot,context2,competitor_c2
+"we have a big chocolate bar, and we also have ice cream",chocolate,sameCategory,candy-dessert,candy,context2,mostSimilar
+"we have a big chocolate bar, and we also have ice cream",icecream,sameCategory,candy-dessert,candy,context2,competitor_c2
+"i don't, but i have a glass, if there is somewhere we can fill it up",glass,mostSimilar,bottle-water,bottle,context2,mostSimilar
+I don't but I do have some paper napkins and some wet wipes,napkins,sameCategory,handkerchief-sauce,handkerchief,context2,mostSimilar
+I don't but I do have some paper napkins and some wet wipes,wetwipes,sameCategory,handkerchief-sauce,handkerchief,context2,competitor_c2
+"No I don't, but I do have honey,agave syrup and sweetener tablets if they are any good",sweetener,sameCategory,sugar-baking,sugar,context2,competitor_c1
+"No I don't, but I do have honey,agave syrup and sweetener tablets if they are any good",honey,sameCategory,sugar-baking,sugar,context2,mostSimilar
+"No I don't, but I do have honey,agave syrup and sweetener tablets if they are any good",syrup,sameCategory,sugar-baking,sugar,context2,competitor_c2
+I have a cake container and carton if they would help. I also have a tote bad and ziplock bag which might be useful,cakecontainer,fullList,box-bbq,box,context2,competitor_c1
+I have a cake container and carton if they would help. I also have a tote bad and ziplock bag which might be useful,ziplock,fullList,box-bbq,box,context2,competitor_c2
+I have a cake container and carton if they would help. I also have a tote bad and ziplock bag which might be useful,carton,fullList,box-bbq,box,context2,mostSimilar
+I have a cake container and carton if they would help. I also have a tote bad and ziplock bag which might be useful,tote,fullList,box-bbq,box,context2,otherCategory
+"No, but we do have a vacuum or a hand brush if they are of any use to you?",vacuum,sameCategory,broom-renovation,broom,context1,competitor_c1
+"No, but we do have a vacuum or a hand brush if they are of any use to you?",handbrush,sameCategory,broom-renovation,broom,context1,mostSimilar
+"No, but I can lend you some pyjamas, leggings or a pair of shorts.",leggings,sameCategory,sweatpants-sleepover,sweatpants,context1,mostSimilar
+"No, but I can lend you some pyjamas, leggings or a pair of shorts.",pyjamas,sameCategory,sweatpants-sleepover,sweatpants,context1,competitor_c1
+"No, but I can lend you some pyjamas, leggings or a pair of shorts.",shorts,sameCategory,sweatpants-sleepover,sweatpants,context1,competitor_c2
+We have a big chocolate bar?,chocolate,mostSimilar,candy-dessert,candy,context2,mostSimilar
+"No, but we have paper towels. You can dry your hair using the hair dryer and we can dry your costumes in the dryer",papertowels,sameCategory,towel-clothes,towel,context2,mostSimilar
+"No, but we have paper towels. You can dry your hair using the hair dryer and we can dry your costumes in the dryer",hairdryer,sameCategory,towel-clothes,towel,context2,competitor_c1
+"No, but we have paper towels. You can dry your hair using the hair dryer and we can dry your costumes in the dryer",dryer,sameCategory,towel-clothes,towel,context2,competitor_c2
+"No, but you can make notes in this notebook and use the sticky bookmarks to mark which pages are helpful",bookmarks,sameCategory,postit-reading,postit,context2,competitor_c2
+"No, but you can make notes in this notebook and use the sticky bookmarks to mark which pages are helpful",notebook,sameCategory,postit-reading,postit,context2,mostSimilar
+No but you can wear this rain jacket and put this plastic bike cover on your head.,rainjacket,sameCategory,umbrella-rain,umbrella,context2,competitor_c2
+No but you can wear this rain jacket and put this plastic bike cover on your head.,bikecover,sameCategory,umbrella-rain,umbrella,context2,mostSimilar
+No but i have a hair dryer,hairdryer,competitor,towel-hair,towel,context1,competitor_c1

@@ -1,0 +1,30 @@
+category,prop,prompt
+competitor,0.4482758620689655,one-shot CoT
+fullList,0.09482758620689655,one-shot CoT
+mostSimilar,0.13793103448275862,one-shot CoT
+other,0.04310344827586207,one-shot CoT
+otherCategory,0.05172413793103448,one-shot CoT
+sameCategory,0.22413793103448276,one-shot CoT
+competitor,0.2807017543859649,one-shot Explanation
+fullList,0.39473684210526316,one-shot Explanation
+mostSimilar,0.043859649122807015,one-shot Explanation
+other,0.043859649122807015,one-shot Explanation
+otherCategory,0.02631578947368421,one-shot Explanation
+sameCategory,0.21052631578947367,one-shot Explanation
+competitor,0.5416666666666666,one-shot QA
+mostSimilar,0.175,one-shot QA
+other,0.05,one-shot QA
+otherCategory,0.08333333333333333,one-shot QA
+sameCategory,0.15,one-shot QA
+competitor,0.058333333333333334,zero-shot
+fullList,0.38333333333333336,zero-shot
+mostSimilar,0.08333333333333333,zero-shot
+other,0.1,zero-shot
+sameCategory,0.2833333333333333,zero-shot
+competitor,0.3294930875576037,human E2
+fullList,0.027649769585253458,human E2
+mostSimilar,0.0967741935483871,human E2
+other,0.1313364055299539,human E2
+otherCategory,0.004608294930875576,human E2
+sameCategory,0.3317972350230415,human E2
+taciturn,0.07834101382488479,human E2

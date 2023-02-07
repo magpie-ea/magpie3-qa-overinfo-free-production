@@ -1,0 +1,53 @@
+settingName,itemQuestion,response_option,global_category
+chair,a chair,ladder,competitor_c1
+chair,a chair,stool,competitor_c2
+chair,a chair,leatherrecliner,mostSimilar
+chair,a chair,broom,otherCategory
+blanket,a blanket,sleepingbag,competitor_c1
+blanket,a blanket,pillow,mostSimilar
+blanket,a blanket,carpet,otherCategory
+blanket,a blanket,bubblewrap,competitor_c2
+box,a box,cakecontainer,competitor_c1
+box,a box,carton,mostSimilar
+box,a box,ziplock,competitor_c2
+box,a box,tote,otherCategory
+sugar,sugar,sweetener,competitor_c1
+sugar,sugar,syrup,competitor_c2
+sugar,sugar,honey,mostSimilar
+sugar,sugar,salt,otherCategory
+handkerchief,a handkerchief,bandaids,competitor_c1
+handkerchief,a handkerchief,napkins,mostSimilar
+handkerchief,a handkerchief,wetwipes,competitor_c2
+handkerchief,a handkerchief,cell,otherCategory
+broom,a broom,vacuum,competitor_c1
+broom,a broom,handbrush,mostSimilar
+broom,a broom,shovel,competitor_c2
+broom,a broom,lamp,otherCategory
+sweatpants,sweatpants,pyjamas,competitor_c1
+sweatpants,sweatpants,leggings,mostSimilar
+sweatpants,sweatpants,shorts,competitor_c2
+sweatpants,sweatpants,towel,otherCategory
+umbrella,an umbrella,sunscreen,competitor_c1
+umbrella,an umbrella,tent,otherCategory
+umbrella,an umbrella,bikecover,mostSimilar
+umbrella,an umbrella,rainjacket,competitor_c2
+postit,post-its,marker,competitor_c1
+postit,post-its,notebook,mostSimilar
+postit,post-its,bookmarks,competitor_c2
+postit,post-its,eraser,otherCategory
+pot,a pot,cans,competitor_c1
+pot,a pot,ceramicplates,otherCategory
+pot,a pot,campingcookware,mostSimilar
+pot,a pot,pans,competitor_c2
+towel,a towel,hairdryer,competitor_c1
+towel,a towel,papertowels,mostSimilar
+towel,a towel,blanket,otherCategory
+towel,a towel,dryer,competitor_c2
+candy,candy,trailmix,competitor_c1
+candy,candy,soda,otherCategory
+candy,candy,chocolate,mostSimilar
+candy,candy,icecream,competitor_c2
+bottle,a bottle,wateringcan,competitor_c1
+bottle,a bottle,glass,mostSimilar
+bottle,a bottle,mug,competitor_c2
+bottle,a bottle,spoon,otherCategory

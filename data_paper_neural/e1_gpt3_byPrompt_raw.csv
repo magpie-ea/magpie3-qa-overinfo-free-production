@@ -1,0 +1,1158 @@
+itemName,predictions,category,prompt
+cafe-pie,"I'm sorry, I don't have any raspberry cake. But I do have raspberry pie.",competitor,one-shot QA
+cafe-pie,"I'm sorry, I don't have any raspberry cake. But I do have some raspberry pie.",competitor,one-shot QA
+cafe-pie,"I'm sorry, I don't have any raspberry cake. But I do have some raspberry pie.",competitor,one-shot QA
+cafe-pie,"I'm sorry, I don't have raspberry cake. But I do have some raspberry pie.",competitor,one-shot QA
+cafe-pie,"I'm sorry, I don't have any raspberry cake. But I do have some raspberry pie.",competitor,one-shot QA
+cafe-pizza,"I'm sorry, I don't have any veggie pizza. But I do have cheese pizza.",competitor,one-shot QA
+bar-whiteWine,"I'm sorry, I don't have any Sauvignon Blanc. But I do have some Chardonnay.",competitor,one-shot QA
+bar-whiteWine,"I'm sorry, I don't have any Sauvignon Blanc. But I do have some Chardonnay.",competitor,one-shot QA
+bar-whiteWine,"I'm sorry, I don't have any Sauvignon Blanc. But I do have some Chardonnay.",competitor,one-shot QA
+bar-whiteWine,"I'm sorry, I don't have any Sauvignon Blanc. But I do have some Chardonnay.",competitor,one-shot QA
+bar-whiteWine,"I'm sorry, I don't have any Sauvignon Blanc. But I do have some Chardonnay.",competitor,one-shot QA
+bar-tea,"I'm sorry, I don't have any iced tea. But I do have some iced coffee.",competitor,one-shot QA
+bar-tea,"I'm sorry, I don't have any iced tea. But I do have some iced coffee.",competitor,one-shot QA
+bar-tea,"I'm sorry, I don't have any iced tea. But I do have some iced coffee.",competitor,one-shot QA
+bar-tea,"I'm sorry, I don't have any iced tea. But I do have some iced coffee.",competitor,one-shot QA
+touristInfo-childTheatre,"I'm sorry, there is no theatre performance for children today. However, the circus show is a great option for children, and the club event is family friendly.",other,one-shot QA
+touristInfo-childTheatre,"I'm sorry, there isn't a theatre performance for children today. But there is a circus show and a club event with a hip hop DJ.",other,one-shot QA
+touristInfo-childTheatre,"I'm sorry, I don't know of any theatre performances for children today. However, there is a circus show, a trade fair, and a club event with a hip hop DJ.",fullList,one-shot QA
+touristInfo-childTheatre,"I'm sorry, there isn't a theatre performance for children today. But there is a circus show, a trade fare, and a club event with a hip hop DJ.",fullList,one-shot QA
+touristInfo-clubbing,"I'm sorry, I don't have any club events with electronic music today. But we do have a club event with a hip hop DJ and live jazz music, as well as a circus show.",fullList,one-shot QA
+touristInfo-clubbing,"I'm sorry, I don't have any club events with electronic music today. But we do have a hip hop DJ and a live jazz performance.",sameCategory,one-shot QA
+touristInfo-clubbing,"I'm sorry, I don't have any club event with electronic music today. But we do have a club event with a hip hop DJ and live jazz music. Would either of those be of interest to you?",sameCategory,one-shot QA
+touristInfo-clubbing,"I'm sorry, there isn't a club event with electronic music today. However, we are hosting a club event with a hip hop DJ as well as live jazz music and a circus show.",fullList,one-shot QA
+bookingAgency-lowClassAccommodation,"I'm sorry, there are no beds available in the youth hostel for tomorrow night. We do have a room in a cheap bed-and-breakfast, a room in a budget hotel, and a suite in a four-star hotel, though.",fullList,one-shot QA
+bookingAgency-lowClassAccommodation,"I'm sorry, I don't have any beds available in the youth hostel for tomorrow night. However, I do have a room available in a cheap bed-and-breakfast or a room in a budget hotel. Would either of those be suitable for you?",sameCategory,one-shot QA
+bookingAgency-lowClassAccommodation,"I'm sorry, we don't have availability in the youth hostel for tomorrow night. However, we do have a room in a cheap bed-and-breakfast, a room in a budget hotel, and a suite in a four-star hotel available for tomorrow night.",fullList,one-shot QA
+bookingAgency-highClassAccommodation,"I'm sorry, I don't have a single room in a five-star hotel available for tomorrow night. However, I do have a suite in a four-star hotel, an expensive apartment close to the city, and a room in a cheap bed-and-breakfast available.",fullList,one-shot QA
+bookingAgency-highClassAccommodation,"I'm sorry, we don't have any single rooms in a five-star hotel available for tomorrow night. However, we do have a suite in a four-star hotel and an expensive apartment close to the city. The bed-and-breakfast also offers rooms for a more economical option.",fullList,one-shot QA
+bookingAgency-highClassAccommodation,"I'm sorry, I don't have any single rooms in a five-star hotel available for tomorrow night. However, I do have a suite in a four-star hotel or an expensive apartment close to the city available.",sameCategory,one-shot QA
+bookingAgency-highClassAccommodation,"I'm sorry, there isn't a single room in a five-star hotel available for tomorrow night. However, we do have a suite in a four-star hotel, an expensive apartment close to the city, and a room in a cheap bed-and-breakfast.",fullList,one-shot QA
+waterSport-motor,"I'm sorry, we don't offer jet skis. However, we do have water ski equipment and rubber dinghies available for rent.",sameCategory,one-shot QA
+waterSport-motor,"I'm sorry, I don't rent jet skis. But I do have water ski equipment, rubber dinghies, and kayaks available.",fullList,one-shot QA
+waterSport-muscle,"I'm sorry, we don't offer canoes. We focus on kayaks, pedal boats, and water ski equipment.",fullList,one-shot QA
+waterSport-muscle,"I'm sorry, we don't have canoes but we do have kayaks which are similar.",competitor,one-shot QA
+waterSport-muscle,"I'm sorry, we don't have any canoes. However, we do have kayaks, pedal boats, and water ski equipment.",fullList,one-shot QA
+waterSport-muscle,"I'm sorry, we don't rent canoes. However, we do offer kayaks and pedal boats for rent.",sameCategory,one-shot QA
+dutyFree-smokes,"I'm sorry, I don't have any cigars. But I do have cigarettes if you're interested.",competitor,one-shot QA
+dutyFree-smokes,"I'm sorry, I don't have any cigars. But I do have cigarettes.",competitor,one-shot QA
+dutyFree-smokes,"I'm sorry, I don't have any cigars. But I do have cigarettes.",competitor,one-shot QA
+dutyFree-smokes,"I'm sorry, I don't have any cigars. But I do have cigarettes.",competitor,one-shot QA
+dutyFree-sweets,"I'm sorry, I don't have any cookies. But I do have some gingerbread.",competitor,one-shot QA
+clothing-clothes,"I'm sorry, we don't have any Hawaiian shirts right now. However, we do have a great selection of shorts and sweatshirts.",sameCategory,one-shot QA
+clothing-clothes,"I'm sorry, I don't have any Hawaiian shirts. But I do have some shorts.",competitor,one-shot QA
+clothing-clothes,"I'm sorry, I don't have any Hawaiian shirts. But I do have some shorts and sweatshirts.",sameCategory,one-shot QA
+clothing-clothes,"I'm sorry, I don't have any Hawaiian shirts. But I do have some really nice shorts and sweatshirts.",sameCategory,one-shot QA
+clothing-acc,"I'm sorry, I don't have any earrings. But I do have some necklaces.",competitor,one-shot QA
+clothing-acc,"I'm sorry, I don't have any earrings. But I do have some necklaces that would make a great addition to any outfit.",competitor,one-shot QA
+clothing-acc,"I'm sorry, I don't have any earrings. But I do have some necklaces.",competitor,one-shot QA
+clothing-acc,"I'm sorry, I don't have any earrings. But I do have some necklaces.",competitor,one-shot QA
+petAdoption-dogs,"I'm sorry, we don't have any Dalmatians. However, we do have some golden retrievers and chihuahuas available for adoption.",sameCategory,one-shot QA
+petAdoption-dogs,"I'm sorry, we don't have any Dalmatians at the moment. However, we do have some lovely golden retrievers!",competitor,one-shot QA
+petAdoption-dogs,"I'm sorry, we don't have any Dalmatians right now. We do have some golden retrievers and chihuahuas though!",sameCategory,one-shot QA
+petAdoption-dogs,"I'm sorry, we don't have any Dalmatians at the moment. However, we do have some beautiful golden retrievers that would make a great addition to your family.",competitor,one-shot QA
+petAdoption-hamster,"I'm sorry, we don't have any hamsters at the moment. However, we do have some gerbils that would make wonderful pets.",competitor,one-shot QA
+petAdoption-hamster,"I'm sorry, I don't have any hamsters. But I do have some gerbils!",competitor,one-shot QA
+petAdoption-hamster,"I'm sorry, we don't have any hamsters. However, we do have some gerbils available for adoption.",competitor,one-shot QA
+petAdoption-hamster,"I'm sorry, we don't have any hamsters. But we do have some gerbils if you're interested.",competitor,one-shot QA
+petAdoption-hamster,"I'm sorry, I don't have any hamsters. However, I do have some gerbils that might make great pets.",competitor,one-shot QA
+books-romance,"I'm sorry, I don't have a book of love poems. But I do have a book of French love letters.",competitor,one-shot QA
+books-romance,"I'm sorry, I don't have any books of love poems. But I do have some books of French love letters if you're interested!",competitor,one-shot QA
+books-romance,"I'm sorry, I don't have a book of love poems. But I do have a collection of French love letters.",competitor,one-shot QA
+books-romance,"I'm sorry, I don't have any books of love poems. However, I do have books of French love letters if you're interested.",competitor,one-shot QA
+books-fantasy,"I'm sorry, we don't sell psychological thrillers. However, we do have a selection of mystery and adventure novels.",sameCategory,one-shot QA
+books-fantasy,"I'm sorry, I don't sell psychological thrillers. But I do have some mystery novels that are quite thrilling.",competitor,one-shot QA
+books-fantasy,"I'm sorry, I don't have any psychological thrillers. But I do have some mystery novels.",competitor,one-shot QA
+books-fantasy,"I'm sorry, I don't sell psychological thrillers. But I do have some mystery novels and adventure novels.",sameCategory,one-shot QA
+books-fantasy,"I'm sorry, I don't have any psychological thrillers. But I do have some mystery novels and adventure novels.",sameCategory,one-shot QA
+electronics-laptop,"I'm sorry, I don't have any MacBook Pros. But I do have a MacBook Air and a desktop computer.",sameCategory,one-shot QA
+electronics-laptop,"I'm sorry, I don't have a MacBook Pro. But I do have a MacBook Air.",competitor,one-shot QA
+electronics-laptop,"I'm sorry, I don't have a MacBook Pro. But I do have a MacBook Air.",competitor,one-shot QA
+electronics-laptop,"I'm sorry, I don't have a MacBook Pro. But I do have a MacBook Air and a desktop computer.",sameCategory,one-shot QA
+electronics-laptop,"I'm sorry, I don't have a MacBook Pro. But I do have a MacBook Air if you're interested.",competitor,one-shot QA
+electronics-console,"I'm sorry, I don't have a PlayStation. But I do have an Xbox and a Gameboy.",sameCategory,one-shot QA
+gym-yoga,"I'm sorry, we don't offer yoga classes. But we do have pilates, zumba and kickboxing classes.",fullList,one-shot QA
+gym-yoga,"I'm sorry, we don't offer yoga classes at this time. We do offer pilates, zumba, and kickboxing. Would you like to try one of those classes instead?",fullList,one-shot QA
+gym-yoga,"I'm sorry, we don't offer yoga classes at the moment. However, we do have pilates and zumba classes available.",sameCategory,one-shot QA
+gym-yoga,"I'm sorry, we don't offer yoga classes. But we do have pilates and zumba classes if you're interested.",sameCategory,one-shot QA
+gym-yoga,"I'm sorry, we don't currently offer yoga classes. But we do offer pilates, zumba and kickboxing classes.",fullList,one-shot QA
+gym-boxing,"I'm sorry, we do not offer boxing classes here. However, we do offer kickboxing classes.",competitor,one-shot QA
+gym-boxing,"I'm sorry, we don't offer boxing classes. We have kickboxing classes, karate classes, and pilates.",fullList,one-shot QA
+kidsActivities-crafts,"I'm sorry, there isn't a pottery class. But we do offer the watercolor painting and carpentry workshop. They are a lot of fun!",sameCategory,one-shot QA
+kidsActivities-crafts,"I'm sorry, I don't have a pottery class. But I do have a watercolor painting class and a carpentry workshop.",sameCategory,one-shot QA
+kidsActivities-crafts,"I'm sorry, we don't offer a pottery class. However, we do have a watercolor painting class, a carpentry workshop, and an acrobatics class.",fullList,one-shot QA
+kidsActivities-crafts,"I'm sorry, there is no pottery class. However, we do offer watercolor painting, carpentry and acrobatics.",fullList,one-shot QA
+kidsActivities-sports,"I'm sorry, we don't have a gymnastics class. But we do have an acrobatics class if you're interested.",competitor,one-shot QA
+kidsActivities-sports,"I'm sorry, there isn't a gymnastics class. But we do have an acrobatics class if you're interested!",competitor,one-shot QA
+kidsActivities-sports,"I'm sorry, we don't have a gymnastics class. However, we do have an acrobatics class which includes both ground and aerial activities. Would you like to sign up for that?",competitor,one-shot QA
+kidsActivities-sports,"I'm sorry, there isn't a gymnastics class. But we do offer an acrobatics class.",competitor,one-shot QA
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble. But I do have Monopoly and checkers if you'd like to play those instead.",sameCategory,one-shot QA
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble, but I do have Monopoly and checkers.",sameCategory,one-shot QA
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble. But I do have Monopoly and checkers if you'd like to play!",sameCategory,one-shot QA
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble. But I do have Monopoly and checkers.",sameCategory,one-shot QA
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble. But I do have Monopoly and checkers.",sameCategory,one-shot QA
+friendsActivities-videoEntertainment,"I'm sorry, we don't have Netflix. But we do have some movies and some Xbox games to watch and play.",sameCategory,one-shot QA
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But I do have some movies and Xbox games we can play.",sameCategory,one-shot QA
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But I do have some movies, Xbox games, and Monopoly that we can enjoy.",fullList,one-shot QA
+friendsActivities-videoEntertainment,"I'm sorry, I don't have any Netflix. But I do have some movies, Xbox games, and Monopoly.",fullList,one-shot QA
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But I do have some Xbox games and a Monopoly set.",other,one-shot QA
+interior-green,"I'm sorry, I don't have an aloe vera plant. But I do have an agave plant you could have.",competitor,one-shot QA
+interior-green,"I'm sorry, I don't have an aloe vera plant. But I do have an agave plant.",competitor,one-shot QA
+interior-green,"I'm sorry, I don't have an aloe vera plant. But I do have an agave plant that you could take with you.",competitor,one-shot QA
+interior-green,"I'm sorry, I don't have any aloe vera plants. But I do have an agave plant that would look lovely in your new apartment.",competitor,one-shot QA
+interior-green,"I'm sorry, I don't have an aloe vera plant. But I do have an agave plant that would look great for your new apartment.",competitor,one-shot QA
+interior-deco,"I'm sorry, I don't have any watercolour paintings. But I do have an oil painting and some printed photographs. And I also have an agave plant that you could take home.",fullList,one-shot QA
+interior-deco,"I'm sorry, I don't have any watercolour paintings. But I do have an oil painting and some printed photographs that would look lovely in your new apartment.",sameCategory,one-shot QA
+interior-deco,"I'm sorry, I don't have any watercolour paintings. But I do have an oil painting and some printed photographs that you might find useful.",sameCategory,one-shot QA
+interior-deco,"I'm sorry, I don't have any watercolour paintings. But I do have an oil painting and printed photographs.",sameCategory,one-shot QA
+zoo-xl,"I'm sorry, there are no tigers here. But you can look at the lion or the giraffe!",sameCategory,one-shot QA
+zoo-xl,"I'm sorry, there is no tiger here. However, we can go and see the lion.",competitor,one-shot QA
+zoo-xl,"I'm sorry, I don't see the tiger on this map. But we can go and see the lion.",competitor,one-shot QA
+zoo-xl,"I'm sorry, there isn't a tiger here at this zoo. But we can go see the lion if you like!",competitor,one-shot QA
+zoo-reptiles,"I'm sorry, there are no chameleons here. But you can see the iguanas, turtles, and a lion!",fullList,one-shot QA
+zoo-reptiles,"I'm sorry, I don't think the zoo has any chameleons. But I'm sure you'll have a great time seeing the iguanas, turtles, and the lion!",fullList,one-shot QA
+zoo-reptiles,"I'm sorry, but we can't see a chameleon here at the zoo. However, we can see iguanas and turtles!",sameCategory,one-shot QA
+zoo-reptiles,"I'm sorry, there are no chameleons here. But we can go see the turtles and the iguanas!",sameCategory,one-shot QA
+zoo-reptiles,"I'm sorry, we can't see the chameleon today. But we can go see the iguanas, turtles, and the lion!",fullList,one-shot QA
+cafe-pie,"I'm sorry, I don't have any raspberry cake. But I do have some raspberry pie.",competitor,one-shot CoT
+cafe-pie,"I'm sorry, I don't have any raspberry cake. But I do have some raspberry pie.",competitor,one-shot CoT
+cafe-pie,"I'm sorry, I don't have any raspberry cake. But I do have some raspberry pie.",competitor,one-shot CoT
+cafe-pizza,"I'm sorry, I don't have any veggie pizza. But I do have some cheese pizza.",competitor,one-shot CoT
+cafe-pizza,"I'm sorry, I don't have any veggie pizza. But I do have both cheese and pepperoni pizza.",sameCategory,one-shot CoT
+cafe-pizza,"I'm sorry, I don't have any veggie pizza. But I do have cheese pizza.",competitor,one-shot CoT
+cafe-pizza,"I'm sorry, I don't have any veggie pizza. But I do have both cheese and pepperoni pizza.",sameCategory,one-shot CoT
+cafe-pizza,"I'm sorry, I don't have any veggie pizza. But I do have cheese pizza if you'd like.",competitor,one-shot CoT
+bar-whiteWine,"I'm sorry, I don't have any Sauvignon Blanc. But I do have some Chardonnay.",competitor,one-shot CoT
+bar-whiteWine,"I'm sorry, I don't have any Sauvignon Blanc. But I do have some Chardonnay.",competitor,one-shot CoT
+bar-whiteWine,"I'm sorry, I don't have any Sauvignon Blanc. But I do have Chardonnay and craft beer. I can also make you an iced coffee if you'd like.",fullList,one-shot CoT
+bar-whiteWine,"I'm sorry, I don't have any Sauvignon Blanc. But I do have some Chardonnay.",competitor,one-shot CoT
+bar-tea,"I'm sorry, I don't have any iced tea. But I do have some iced coffee.",competitor,one-shot CoT
+bar-tea,"I'm sorry, I don't have any iced tea. But I do have some iced coffee.",competitor,one-shot CoT
+bar-tea,"I'm sorry, I don't have any iced tea. But I do have iced coffee, soda, and Chardonnay.",fullList,one-shot CoT
+bar-tea,"I'm sorry, I don't have any iced tea. But I do have some iced coffee and soda.",sameCategory,one-shot CoT
+touristInfo-childTheatre,"I'm sorry, there isn't a theatre performance for children today. But there is a circus show and I'm sure that would be great fun for a young person!",competitor,one-shot CoT
+touristInfo-childTheatre,"I'm sorry, there isn't a theatre performance for children today. But we do have a circus show and a club event with a hip hop DJ.",other,one-shot CoT
+touristInfo-childTheatre,"I'm sorry, I don't know of any theatre performance for children today. But I do know that the circus show is family-friendly and might be a good fit!",competitor,one-shot CoT
+touristInfo-clubbing,"I'm sorry, I don't have any club events with electronic music today. But we do have a club event with a hip hop DJ happening today.",competitor,one-shot CoT
+touristInfo-clubbing,"I'm sorry, there is no club event with electronic music today. We do have a club event with a hip hop DJ and live jazz music. We also have a circus show.",fullList,one-shot CoT
+touristInfo-clubbing,"I'm sorry, I don't have any club events with electronic music today. But I do have a hip hop DJ playing at the club event.",competitor,one-shot CoT
+touristInfo-clubbing,"Sorry, I don't believe there is an event with electronic music today. But we do have a club event with a hip hop DJ and a live jazz music performance!",competitor,one-shot CoT
+bookingAgency-lowClassAccommodation,"I'm sorry, I don't have any beds available in the youth hostel for tomorrow night. However, I do have a room in a cheap bed-and-breakfast, a room in a budget hotel, and a suite in a four-star hotel available for tomorrow night.",fullList,one-shot CoT
+bookingAgency-lowClassAccommodation,"I'm sorry, I don't have any beds in the youth hostel available for tomorrow night. But I do have a room in a cheap bed-and-breakfast, a room in a budget hotel, and a suite in a four-star hotel you could book.",fullList,one-shot CoT
+bookingAgency-lowClassAccommodation,"I'm sorry, I don't have any beds available in the youth hostel for tomorrow night. But I do have a room in a cheap bed-and-breakfast, a room in a budget hotel, and a suite in a four-star hotel available.",fullList,one-shot CoT
+bookingAgency-lowClassAccommodation,"I'm sorry, I don't have any beds available in the youth hostel for tomorrow night. But I do have a room in a cheap bed-and-breakfast, a room in a budget hotel, and a suite in a four-star hotel.",fullList,one-shot CoT
+bookingAgency-lowClassAccommodation,"I'm sorry, I don't have any beds available in the youth hostel for tomorrow night. However, I have a room in a cheap bed-and-breakfast, a room in a budget hotel, and a suite in a four-star hotel still available.",fullList,one-shot CoT
+bookingAgency-highClassAccommodation,"I'm sorry, I don't have any single rooms in a five-star hotel available for tomorrow night. But I do have a suite in a four-star hotel and an expensive apartment close to the city.",sameCategory,one-shot CoT
+bookingAgency-highClassAccommodation,"I'm sorry, I don't have any single rooms in a five-star hotel available for tomorrow night. But I do have a suite in a four-star hotel and an expensive apartment close to the city.",sameCategory,one-shot CoT
+bookingAgency-highClassAccommodation,"I'm sorry, I don't have any single rooms in a five-star hotel for tomorrow night. But I do have a suite in a four-star hotel available.",competitor,one-shot CoT
+bookingAgency-highClassAccommodation,"I'm sorry, I don't have any single rooms in a five-star hotel available. But I do have a suite in a four-star hotel or an expensive apartment close to the city.",sameCategory,one-shot CoT
+bookingAgency-highClassAccommodation,"I'm sorry, I don't have a single room in a five-star hotel available for tomorrow night. But I do have a suite in a four-star hotel, an expensive apartment close to the city and a room in a cheap bed-and-breakfast.",fullList,one-shot CoT
+waterSport-motor,"I'm sorry, I don't have any jet skis. But we do have water ski equipment, rubber dinghies, and kayaks.",fullList,one-shot CoT
+waterSport-motor,"I'm sorry, we don't rent jet skis. However, we do have water ski equipment, rubber dinghies, and kayaks available for rent.",fullList,one-shot CoT
+waterSport-motor,"I'm sorry, I don't have any jet skis. But we do offer a wide range of water ski equipment, rubber dinghies, and kayaks.",fullList,one-shot CoT
+waterSport-motor,"I'm sorry, we don't rent jet skis. But we do have water ski equipment, rubber dinghies, and kayaks available.",fullList,one-shot CoT
+waterSport-muscle,"I'm sorry, I don't have any canoes available at this time. But I do have kayaks, pedal boats, and water ski equipment.",fullList,one-shot CoT
+waterSport-muscle,"I'm sorry, I don't have any canoes. But I do have some kayaks.",competitor,one-shot CoT
+waterSport-muscle,"I'm sorry, I don't have any canoes. But we do have kayaks and pedal boats which are similar.",sameCategory,one-shot CoT
+waterSport-muscle,"I'm sorry, we don't rent canoes. However, we do offer kayaks, pedal boats, and water ski equipment that you may enjoy.",fullList,one-shot CoT
+dutyFree-smokes,"I'm sorry, I don't have any cigars. But I do have cigarettes.",competitor,one-shot CoT
+dutyFree-smokes,"I'm sorry, I don't have any cigars. But I do have cigarettes.",competitor,one-shot CoT
+dutyFree-smokes,"I'm sorry, I don't have any cigars. But I do have cigarettes if you're looking for something similar.",competitor,one-shot CoT
+dutyFree-sweets,"I'm sorry, I don't have any cookies. But I do have some gingerbread.",competitor,one-shot CoT
+dutyFree-sweets,"I'm sorry, I don't have any cookies. But I do have some gingerbread which I'm sure you'd like.",competitor,one-shot CoT
+dutyFree-sweets,"I'm sorry, I don't have any cookies. But I do have some gingerbread.",competitor,one-shot CoT
+clothing-clothes,"I'm sorry, I don't have any Hawaiian shirts. But I do have some shorts and sweatshirts.",sameCategory,one-shot CoT
+clothing-clothes,"I'm sorry, I don't have any Hawaiian shirts. But I do have some sweatshirts and shorts.",sameCategory,one-shot CoT
+clothing-clothes,"I'm sorry, I don't have any Hawaiian shirts. But I do have some shorts and sweatshirts.",sameCategory,one-shot CoT
+clothing-clothes,"I'm sorry, I don't have any Hawaiian shirts. But I do have some shorts and sweatshirts.",sameCategory,one-shot CoT
+clothing-acc,"I'm sorry, I don't have any earrings. But I do have some beautiful necklaces.",competitor,one-shot CoT
+clothing-acc,"I'm sorry, I don't have any earrings. But I do have some necklaces that you might like.",competitor,one-shot CoT
+clothing-acc,"I'm sorry, I don't have any earrings. But I do have some necklaces.",competitor,one-shot CoT
+clothing-acc,"I'm sorry, I don't have any earrings. But I do have some necklaces that might work. Would you like to take a look at them?",competitor,one-shot CoT
+petAdoption-dogs,"I'm sorry, we don't have any Dalmatians at the moment. However, we have some golden retrievers, chihuahuas, and gerbils if you're interested.",fullList,one-shot CoT
+petAdoption-dogs,"I'm sorry, we don't have any Dalmatians. We have golden retrievers, chihuahuas, and gerbils all ready for adoption.",fullList,one-shot CoT
+petAdoption-dogs,"I'm sorry, I don't have any Dalmatians. But we do have some golden retrievers and chihuahuas.",sameCategory,one-shot CoT
+petAdoption-dogs,"I'm sorry, we don't have any Dalmatians at the moment. But we do have some golden retrievers and chihuahuas that would make great companions!",sameCategory,one-shot CoT
+petAdoption-dogs,"I'm sorry, we don't have any Dalmatians right now. But we do have some very friendly golden retrievers, chihuahuas, and gerbils that would love to find a new home with you.",fullList,one-shot CoT
+petAdoption-hamster,"I'm sorry, we don't have any hamsters. But we do have some gerbils that are looking for a good home.",competitor,one-shot CoT
+petAdoption-hamster,"I'm sorry, I don't have any hamsters. But we do have some gerbils that look very similar!",competitor,one-shot CoT
+petAdoption-hamster,"I'm sorry, I don't have any hamsters. But I do have some gerbils.",competitor,one-shot CoT
+petAdoption-hamster,"I'm sorry, we don't have any hamsters. But we have some gerbils which are a type of small rodent, if that's of interest to you.",competitor,one-shot CoT
+petAdoption-hamster,"I'm sorry, I don't have any hamsters. But I do have some gerbils that might be a good fit for you.",competitor,one-shot CoT
+books-romance,"I'm sorry, I don't have any books of love poems. But I do have a selection of French love letters which might be of interest.",competitor,one-shot CoT
+books-romance,I'm sorry I don't have a book of love poems. But I do have some French love letters which may be just as enjoyable to read!,competitor,one-shot CoT
+books-romance,"I'm sorry, I don't have any books of love poems. But I do have some books of French love letters.",competitor,one-shot CoT
+books-romance,"I'm sorry, I don't have any books of love poems. But I do have a book of French love letters.",competitor,one-shot CoT
+books-romance,"I'm sorry, I don't have any books of love poems. But I do have a collection of French love letters that you might find interesting.",competitor,one-shot CoT
+books-fantasy,"I'm sorry, I don't sell psychological thrillers. But I do have some mystery and adventure novels that feature suspenseful storylines.",sameCategory,one-shot CoT
+books-fantasy,"I'm sorry, I don't have any psychological thrillers. But I do have some mystery novels.",competitor,one-shot CoT
+books-fantasy,"I'm sorry, I don't have any psychological thrillers. But I do have some mystery novels and adventure novels which you might like.",sameCategory,one-shot CoT
+books-fantasy,"I'm sorry, I don't have any psychological thrillers. But I do have some mystery novels that might be of interest to you.",competitor,one-shot CoT
+books-fantasy,"I'm sorry, I don't have any psychological thrillers. But I do have some mystery novels.",competitor,one-shot CoT
+electronics-laptop,"I'm sorry, I don't have a MacBook Pro. But I do have a MacBook Air.",competitor,one-shot CoT
+electronics-laptop,"I'm sorry, I don't have a MacBook Pro, but I do have a MacBook Air that's just as fast. Would you like to take a look at it?",competitor,one-shot CoT
+electronics-laptop,"I'm sorry, I don't have a MacBook Pro. But I do have a MacBook Air.",competitor,one-shot CoT
+electronics-laptop,"I'm sorry, I don't have any MacBook Pros. But I do have a MacBook Air.",competitor,one-shot CoT
+electronics-console,"I'm sorry, I don't have a PlayStation. But I do have an Xbox.",competitor,one-shot CoT
+electronics-console,"I'm sorry, I don't have any PlayStation. But I do have an Xbox.",competitor,one-shot CoT
+electronics-console,"I'm sorry, I don't have a PlayStation. But I do have an Xbox.",competitor,one-shot CoT
+electronics-console,"I'm sorry, I don't have any PlayStation. But I do have an Xbox. Would that work for you?",competitor,one-shot CoT
+electronics-console,"I'm sorry, I don't have a PlayStation. But I do have an Xbox.",competitor,one-shot CoT
+gym-yoga,"I'm sorry, I don't have any yoga classes. But we do offer pilates, zumba, and kickboxing classes.",fullList,one-shot CoT
+gym-yoga,"I'm sorry, I don't have any yoga classes. But we do offer Pilates and Zumba classes, which may be similar to what you are looking for.",fullList,one-shot CoT
+gym-yoga,"I'm sorry, we don't provide yoga classes. However, we have pilates, zumba and kickboxing classes available.",fullList,one-shot CoT
+gym-yoga,"I'm sorry, I don't offer any yoga classes. However, we do have pilates classes, zumba classes, and kickboxing.",fullList,one-shot CoT
+gym-yoga,"I'm sorry, we don't offer yoga classes here at the moment. However, we do offer pilates, zumba, and kickboxing classes which all involve using yoga poses and breathing techniques. Would you like to try any of them?",fullList,one-shot CoT
+gym-boxing,"I'm sorry, we don't have any boxing classes. But we do have kickboxing and karate classes that focus on self-defence and hand-eye coordination. You could also give pilates a try; it's great for flexibility and muscle toning.",competitor,one-shot CoT
+gym-boxing,"I'm sorry, we don't have any boxing classes. But we do have kickboxing classes which are very similar. Would that be of any interest to you?",competitor,one-shot CoT
+gym-boxing,"I'm sorry, I don't have any boxing classes. But I do have kickboxing classes which might be what you are looking for.",competitor,one-shot CoT
+gym-boxing,"I'm sorry, we do not offer boxing classes here, however, we do offer kickboxing classes, karate classes and pilates classes.",fullList,one-shot CoT
+gym-boxing,"I'm sorry, we don't offer any boxing classes. However, we do offer kickboxing classes. It's a great workout and fun to learn.",competitor,one-shot CoT
+kidsActivities-crafts,"I'm sorry, I don't have a pottery class. But I do have a watercolor painting class and a carpentry workshop.",sameCategory,one-shot CoT
+kidsActivities-crafts,"I'm sorry, I don't have any pottery class. But I do have the watercolor painting class, the carpentry workshop, and the acrobatics class.",fullList,one-shot CoT
+kidsActivities-crafts,"I'm sorry, I don't have any pottery class. But I do have a watercolor painting class that you might enjoy.",competitor,one-shot CoT
+kidsActivities-crafts,"I'm sorry, I don't have a pottery class. But I do have a watercolor painting class and a carpentry workshop.",sameCategory,one-shot CoT
+kidsActivities-crafts,"I'm sorry, I don't have a pottery class. But I do have a watercolor painting class and a carpentry workshop.",sameCategory,one-shot CoT
+kidsActivities-sports,"I'm sorry, I don't have a gymnastics class. But I do have an acrobatics class that you may be interested in.",competitor,one-shot CoT
+kidsActivities-sports,"I'm sorry, I don't have a gymnastics class. But I do have an acrobatics class.",competitor,one-shot CoT
+kidsActivities-sports,"I'm sorry, I don't have a gymnastics class. But I do have an acrobatics class.",competitor,one-shot CoT
+kidsActivities-sports,"I'm sorry, I don't have a gymnastics class. But I do have an acrobatics class.",competitor,one-shot CoT
+kidsActivities-sports,"I'm sorry, I don't have any gymnastics class. But I do have an acrobatics class which is very similar. Would you like to sign up for it?",competitor,one-shot CoT
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble. But I do have Monopoly and checkers if you like those.",sameCategory,one-shot CoT
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble. But I do have Monopoly and checkers.",sameCategory,one-shot CoT
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble. But I do have Monopoly and checkers if you'd like to play those.",sameCategory,one-shot CoT
+friendsActivities-boardGames,"I'm sorry, I don't have any Scrabble. But I do have Monopoly and checkers if you'd like to play those.",sameCategory,one-shot CoT
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble. But we do have a few board games, like Monopoly and checkers.",sameCategory,one-shot CoT
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But I do have some movies and Xbox games we can watch and play!",sameCategory,one-shot CoT
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But I do have some movies and Xbox games if you would like to watch or play something.",sameCategory,one-shot CoT
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But I do have some movies and some great games to play.",sameCategory,one-shot CoT
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But I do have some movies, Xbox games, and Monopoly.",fullList,one-shot CoT
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But I do have some movies and Xbox games.",sameCategory,one-shot CoT
+interior-green,"I'm sorry, I don't have an aloe vera plant. But I do have an agave plant.",competitor,one-shot CoT
+interior-green,"I'm sorry, I don't have an aloe vera plant. But I do have an agave plant that would be perfect for your new apartment.",competitor,one-shot CoT
+interior-green,"I'm sorry, I don't have any aloe vera plant. But I do have an agave plant if you'd like that.",competitor,one-shot CoT
+interior-green,"I'm sorry, I don't have an aloe vera plant. But I do have an agave plant, which has a similar look.",competitor,one-shot CoT
+interior-green,"I'm sorry, I don't have an aloe vera plant. But I do have an agave plant that would look great in your new apartment.",competitor,one-shot CoT
+interior-deco,"I'm sorry, I don't have any watercolour paintings. But I do have an oil painting and some printed photographs that you could take.",sameCategory,one-shot CoT
+interior-deco,"I'm sorry, I don't have any watercolour paintings. But I do have an oil painting and some printed photographs that would look great in any home.",sameCategory,one-shot CoT
+interior-deco,"I'm sorry, I don't have any watercolour paintings. But I do have an oil painting and some printed photographs that you might like.",sameCategory,one-shot CoT
+zoo-xl,"I'm sorry, I don't think there are any tigers here. But we can go and see the lion - it's the king of the zoo and sure to be an incredible sight!",competitor,one-shot CoT
+zoo-xl,"I'm sorry, there isn't a tiger here. But we could go say hello to the lion if you'd like.",competitor,one-shot CoT
+zoo-xl,"I'm sorry, I don't think there's any tiger here. But there is a lion and a giraffe, which would you like to see first?",sameCategory,one-shot CoT
+zoo-reptiles,"I'm sorry, I don't have any chameleon here. But I do have some iguanas and turtles which are quite similar to chameleons.",sameCategory,one-shot CoT
+zoo-reptiles,"I'm sorry, I don't have any chameleon. But I do have some iguanas.",competitor,one-shot CoT
+zoo-reptiles,"I'm sorry, I don't have any chameleon. But I saw that the iguanas were really interesting and they have some awesome colors!",competitor,one-shot CoT
+zoo-reptiles,"I'm sorry, I don't have any chameleons here. But we can go and see the iguanas, turtles and the lion.",fullList,one-shot CoT
+cafe-pie,"I'm sorry, we don't have raspberry cake, but we do have raspberry pie! Would you like to try a slice?",competitor,zero-shot
+cafe-pie,"No, I'm sorry we don't have raspberry cake. However, we do have raspberry pie if that would interest you.",competitor,zero-shot
+cafe-pie,"No, we don't have raspberry cake, but we do have raspberry pie. Would you like to try that instead?",competitor,zero-shot
+cafe-pie,"No, unfortunately we do not have raspberry cake, but we do have raspberry pie. Would that work for you?",competitor,zero-shot
+cafe-pie,"No, I'm sorry we don't have raspberry cake. But we do have raspberry pie if that interests you.",competitor,zero-shot
+cafe-pizza,"Yes, we do have veggie pizza. Would you like a slice of cheese pizza, pepperoni pizza, or raspberry pie?",fullList,zero-shot
+cafe-pizza,"Unfortunately, we don't have any veggie pizzas right now, but we do have a delicious cheese pizza and a pepperoni pizza. Would either of those work for you?",sameCategory,zero-shot
+cafe-pizza,"Yes, we do! We have cheese pizza that can be ordered without cheese for a vegan option.",competitor,zero-shot
+bar-whiteWine,"I apologize, we don't carry Sauvignon Blanc at this particular bar. Would you like to try one of our Chardonnays, craft beers, or iced coffees?",fullList,zero-shot
+bar-whiteWine,"I'm sorry, we don't serve Sauvignon Blanc here. We have Chardonnay and craft beer. We also serve iced coffee. Would you like something from any of those selections?",fullList,zero-shot
+bar-whiteWine,"I'm sorry, we don't serve Sauvignon Blanc here. However, I can recommend either a glass of iced coffee or a craft beer, if that's something you might enjoy.",other,zero-shot
+bar-whiteWine,"I'm sorry, we don't have Sauvignon Blanc. We do have an excellent selection of Chardonnay and craft beer. Would you like something from the bar?",sameCategory,zero-shot
+bar-whiteWine,"I'm sorry, we don't have Sauvignon Blanc here. We only have Chardonnay, craft beer, and iced coffee. Is one of those drinks something you would like to try?",fullList,zero-shot
+bar-tea,"Unfortunately, no. We don't have iced tea but we do have iced coffee, soda, and Chardonnay. Would any of those options suit you?",fullList,zero-shot
+bar-tea,"Unfortunately, we do not serve iced tea here. Would you like to try one of our other refreshing beverages such as an iced coffee, a soda, or a glass of Chardonnay?",fullList,zero-shot
+bar-tea,"Unfortunately, we do not serve iced tea, but we do have iced coffee and soda. Could I interest you in one of those?",sameCategory,zero-shot
+bar-tea,"I'm sorry, we don't serve iced tea here. We have iced coffee, soda, and Chardonnay. Is there something else I can get for you?",fullList,zero-shot
+bar-tea,"I'm sorry, we don't have iced tea. We have iced coffee, soda, and Chardonnay. Would any of those work for you?",fullList,zero-shot
+touristInfo-childTheatre,"Unfortunately, there isn't a theatre performance for children today, but there are a few other events you might enjoy. The circus show is sure to be fun, and the club event has a hip hop DJ. The trade fair may also be of interest.",fullList,zero-shot
+touristInfo-childTheatre,"Unfortunately, there isn't a theatre performance specifically for children happening today, however, the circus show is entertaining for all ages and it might be of interest to your child. The trade faire also has a few art installations and activities that could be fun for your child. Lastly, the club event with the hip hop",fullList,zero-shot
+touristInfo-childTheatre,"I'm sorry, no, there isn't a theatre performance specifically for children today. However, the circus show and trade fair might be of interest to children, and the club event is sure to have something for everyone.",other,zero-shot
+touristInfo-childTheatre,"No, unfortunately there isn't a theatre performance for children today. However, I do have some great alternatives for children to enjoy! We have a circus show with juggling, acrobatics, and more, a trade fare filled with toys, books, and fun activities, and a club event with a hip",fullList,zero-shot
+touristInfo-childTheatre,"Unfortunately not, but there is a circus show, a trade fair, and a club event with a hip hop DJ. Depending on your child's age, they may enjoy one or more of these events.",fullList,zero-shot
+touristInfo-clubbing,"Yes, there is a club event with a hip hop DJ at 8 PM today. It should be a great night of upbeat music.",competitor,zero-shot
+touristInfo-clubbing,"Yes, there is a club event with a hip hop DJ today.",competitor,zero-shot
+touristInfo-clubbing,"No, but we do have a club event with a hip hop DJ, live jazz music, and a circus show today.",fullList,zero-shot
+touristInfo-clubbing,"No, there isn't an electronic music event happening today, however, there is a hip-hop DJ playing at a club event, live jazz music, and a circus show going on.",fullList,zero-shot
+touristInfo-clubbing,"Yes, there is a club event with a hip hop DJ today.",competitor,zero-shot
+bookingAgency-lowClassAccommodation,"I'm sorry, but the youth hostel doesn't have any available beds for tomorrow night. However, we do still have rooms available in a cheap bed-and-breakfast, a room in a budget hotel, or a suite in a four-star hotel. Which one interests you the most?",fullList,zero-shot
+bookingAgency-lowClassAccommodation,"I'm sorry, the youth hostel is completely booked up for tomorrow night. However, I do have a room in a cheap bed-and-breakfast, a room in a budget hotel and a suite in a four-star hotel still available for tomorrow night. Which of those options would you like",fullList,zero-shot
+bookingAgency-lowClassAccommodation,"I'm sorry, the local youth hostel is completely booked for tomorrow night. However, I do have a room in a cheap bed-and-breakfast, a room in a budget hotel, and a suite in a four-star hotel still available for tomorrow night. Would any of those options work for",fullList,zero-shot
+bookingAgency-lowClassAccommodation,"I'm sorry, the youth hostel is completely booked for tomorrow night. However, I do have some availability for other types of accommodations in the area, including a room in a cheap bed and breakfast, a room in a budget hotel, and a suite in a four-star hotel. Which would you prefer",fullList,zero-shot
+bookingAgency-highClassAccommodation,"I'm sorry, sir, I'm afraid we don't have any availability in a five-star hotel for tomorrow night. However, we do have a suite in a four-star hotel, an expensive apartment close to the city, and a room in a cheap bed-and-breakfast available. Would",fullList,zero-shot
+bookingAgency-highClassAccommodation,"I'm sorry, sir, but we don't have any five-star hotels nearby. However, we do have a suite in a four-star hotel still available for tomorrow night, or we have an expensive apartment close to the city, as well as a room in a cheap bed-and-breakfast",fullList,zero-shot
+bookingAgency-highClassAccommodation,"I'm sorry, we don't have any single rooms in five-star hotels for tomorrow night. However, we do have a suite in a four-star hotel, an expensive apartment close to the city, or a room in a bed-and-breakfast. Which would you like to book?",fullList,zero-shot
+bookingAgency-highClassAccommodation,"Unfortunately, no. The only accommodation options available for tomorrow night are a suite in a four-star hotel, an expensive apartment close to the city, and a room in a cheap bed-and-breakfast. Would any of these be a satisfactory option?",fullList,zero-shot
+bookingAgency-highClassAccommodation,"I'm sorry, but we don't have any single rooms in a five-star hotel available for tomorrow night. However, we do have a suite in a four-star hotel, an expensive apartment close to the city, and a room in a cheap bed-and-breakfast available for tomorrow night.",fullList,zero-shot
+waterSport-motor,"No, we don't rent jet skis. However, we do have water ski equipment, rubber dinghies, and kayaks available for rent. Would you like more information about any of these items?",fullList,zero-shot
+waterSport-motor,"We do not rent jet skis, but we do offer water ski equipment, rubber dinghies, and kayaks. We have plenty of options for your water-sports needs.",fullList,zero-shot
+waterSport-muscle,"We do not rent canoes, however, we do offer kayaks, pedal boats, and water ski equipment.",fullList,zero-shot
+dutyFree-smokes,"No, I'm sorry, we do not offer cigars. We have cigarettes, gin, and gingerbread instead.",fullList,zero-shot
+dutyFree-smokes,"No, I'm sorry we don't. We have cigarettes, gin, and gingerbread for sale.",fullList,zero-shot
+dutyFree-smokes,"No, I'm sorry, we don't sell cigars. We do have cigarettes and other duty-free items such as gin and gingerbread.",fullList,zero-shot
+dutyFree-smokes,"No, I'm sorry, I don't sell cigars. We have cigarettes, gin, and gingerbread available.",fullList,zero-shot
+dutyFree-smokes,"No, I'm sorry, we only sell cigarettes, gin, and gingerbread.",fullList,zero-shot
+dutyFree-sweets,"No, I'm sorry, we don't sell cookies. We have gingerbread, granola bars, and cigarettes available.",fullList,zero-shot
+dutyFree-sweets,"No, unfortunately we don't have cookies available. However, we do have gingerbread, granola bars, and cigarettes. Would any of those be of interest?",fullList,zero-shot
+dutyFree-sweets,"No, I'm sorry, I don't sell cookies. However, we do have some delicious gingerbread available for purchase.",competitor,zero-shot
+dutyFree-sweets,"No, I'm sorry, we don't sell cookies. We do have gingerbread, granola bars, and cigarettes for sale.",fullList,zero-shot
+dutyFree-sweets,"No, I'm sorry we don't have cookies, but we do have delicious gingerbread and granola bars!",sameCategory,zero-shot
+clothing-clothes,"No, I'm sorry we don't have any Hawaiian shirts in stock right now. However, we do have a great selection of shorts, sweatshirts, and necklaces. Would you like to take a look?",fullList,zero-shot
+clothing-clothes,"No, I'm sorry, we don't have any Hawaiian shirts in stock right now. Is there anything else we can help you find? We have a great selection of shorts, sweatshirts, and necklaces.",fullList,zero-shot
+clothing-clothes,"No, I'm sorry, but we don't have any Hawaiian shirts in stock right now. However, we do have a wide selection of shorts, sweatshirts, and necklaces that might be of interest to you. Let me know if there's anything else I can help you with.",fullList,zero-shot
+clothing-clothes,"Unfortunately, we don't have any Hawaiian shirts in stock at the moment. However, we have a wide selection of shorts, sweatshirts, and necklaces that would look perfect with a Hawaiian shirt. Would you like to take a look?",fullList,zero-shot
+clothing-clothes,"No, we don't have any Hawaiian shirts in stock right now. However, we do have a great selection of shorts, sweatshirts, and necklaces.",fullList,zero-shot
+clothing-acc,"Unfortunately, we don't carry earrings at the moment. For accessories, we have necklaces, sunglasses, and other items. Please let us know if there's anything else we can help you with.",sameCategory,zero-shot
+clothing-acc,"Unfortunately we don't have any earrings in stock right now. However, we do have a selection of necklaces and sunglasses that may interest you.",sameCategory,zero-shot
+clothing-acc,"No, I'm sorry. We don't carry earrings. We have necklaces, sunglasses, and shorts. However, I'm sure we can point you in the right direction to find just what you're looking for!",fullList,zero-shot
+clothing-acc,"No, I'm sorry, we don't carry earrings at this store. However, we have a variety of necklaces, sunglasses, and shorts. Would you like to take a look?",fullList,zero-shot
+clothing-acc,"No, I'm sorry, we don't have any earrings in stock. However, we have a great selection of necklaces and sunglasses. Would you like to take a look at those?",sameCategory,zero-shot
+petAdoption-dogs,"No, unfortunately we do not have any Dalmatians right now, but we do have some wonderful golden retrievers, chihuahuas, and gerbils for adoption. Would you like to meet them?",fullList,zero-shot
+petAdoption-dogs,"No, unfortunately we don't have any Dalmatians at the moment. We do have some lovely golden retrievers, chihuahuas, and gerbils if you're interested.",fullList,zero-shot
+petAdoption-dogs,"No, we don't have any Dalmatians at the moment, but we do have other wonderful breeds of dogs like golden retrievers and chihuahuas that may be suitable for your family. We also have gerbils if you're looking for a small pet.",fullList,zero-shot
+petAdoption-dogs,"No, we don't currently have any Dalmatians. However, we have plenty of other wonderful animals that you can choose from, like our golden retrievers, chihuahuas, and gerbils.",fullList,zero-shot
+petAdoption-dogs,"No, we don't currently have any Dalmatians available for adoption today. However, we do have some wonderful golden retrievers, chihuahuas, and gerbils that are all in need of loving homes. Would you be interested in taking a look at them?",fullList,zero-shot
+petAdoption-hamster,"No, we don't have any hamsters at the moment, but we do have gerbils, ferrets, and golden retrievers. All of our animals are rescues, so if you're interested we can keep an eye out for any hamsters that may come in. Would you like to",fullList,zero-shot
+petAdoption-hamster,"No, we don't have any hamsters available at the moment, but we do have gerbils and ferrets that may make great pets.",sameCategory,zero-shot
+petAdoption-hamster,"No, we don't have any hamsters at the moment, but if you're open to adopting another type of small animal, we have several gerbils and ferrets that are looking for loving homes.",sameCategory,zero-shot
+petAdoption-hamster,"No, unfortunately we don't currently have any hamsters at the moment, but we do have gerbils, ferrets, and golden retrievers. Would any of those fit your needs?",fullList,zero-shot
+petAdoption-hamster,"No, we don't have any hamsters at the moment, but we do have gerbils and ferrets. Would either of those work for you?",sameCategory,zero-shot
+books-romance,"Yes, we do! We have a few books of French love letters that include romantic love poems. Would you like me to take you to that section?",competitor,zero-shot
+books-romance,"Yes, we do! We currently have a collection of French love letters - though it's all written in French, the sentiment is still just as beautiful. If you're looking for something more modern, we also have a selection of love poems written by various poets.",competitor,zero-shot
+books-romance,"Yes, we do! We have a few books of French love letters which contain many beautiful love poems. Would you like to take a look?",competitor,zero-shot
+books-romance,Yes we do! We have a fantastic selection of French love letters that includes some delightful poetry. Would you like to take a look?,competitor,zero-shot
+electronics-laptop,"Unfortunately, we don't have any MacBook Pros in stock right now, but we do have a MacBook Air that may fit your needs.",competitor,zero-shot
+electronics-laptop,"No, we don't have a MacBook Pro, but we do have a MacBook Air. It has a similar design, is a bit smaller, and is a little bit less powerful than the Pro. Would you like to take a look at it?",competitor,zero-shot
+electronics-laptop,"We don't have a MacBook Pro in stock right now, but we can definitely try to track one down for you. Do you have any other preferences or requirements you're looking for in a laptop?",other,zero-shot
+electronics-laptop,"No, I'm sorry, we currently don't have a MacBook Pro in stock. However, we do have the MacBook Air which is similar and offers similar features.",competitor,zero-shot
+electronics-laptop,"No, I'm sorry, we don't have any MacBook Pros at the moment. However, we do have a MacBook Air, a desktop computer, and an Xbox.",fullList,zero-shot
+electronics-console,"No, I'm sorry, we don't have a PlayStation. However, we have an Xbox and a Gameboy.",sameCategory,zero-shot
+electronics-console,"I'm sorry, we don't have a PlayStation at the moment. We do have an Xbox and a Gameboy, though.",sameCategory,zero-shot
+electronics-console,"I'm sorry, we only have Xbox, Gameboy, and MacBook Air right now. If what you're looking for isn't here, you could check our affiliates next door or online.",fullList,zero-shot
+electronics-console,"I'm sorry, we don't have any PlayStations in the store currently. However, we do have an Xbox and a Gameboy, if those might interest you.",sameCategory,zero-shot
+electronics-console,"No, I'm sorry, we don't currently have a PlayStation. However, we do have an Xbox and a Gameboy.",sameCategory,zero-shot
+gym-yoga,"No, we don't currently offer yoga classes, however we do offer pilates, zumba, and kickboxing classes. Would you like to try any of these?",fullList,zero-shot
+gym-yoga,"No, we don't currently offer yoga classes, but we do offer pilates, zumba, and kickboxing classes. Would you be interested in any of those classes?",fullList,zero-shot
+gym-yoga,"No, we don't offer yoga classes currently, but we do have pilates, zumba, and kickboxing classes. Can I help you find something that fits your needs?",fullList,zero-shot
+gym-yoga,"No, unfortunately we do not offer yoga classes currently. We do have Pilates, Zumba, and Kickboxing though.",fullList,zero-shot
+gym-yoga,"No, we do not offer yoga classes at the moment, but we have pilates, zumba, and kickboxing classes available if you're interested.",fullList,zero-shot
+gym-boxing,"No, we don't offer boxing classes, but we have kickboxing, karate, and pilates classes that all involve boxing-like movements. Would you be interested in signing up for one of those?",fullList,zero-shot
+gym-boxing,"No, we don't offer boxing classes, but we do offer kickboxing classes, karate classes, and pilates. Would any of those work for you?",fullList,zero-shot
+gym-boxing,"No sorry, we don't offer boxing classes but we do offer kickboxing classes, karate classes and pilates. If you're looking for a boxing class, there are other gyms in the area that may offer boxing.",fullList,zero-shot
+gym-boxing,"Yes, we do offer boxing classes, however they are called kickboxing classes. We also offer karate classes and pilates classes.",fullList,zero-shot
+kidsActivities-crafts,"No, unfortunately there is no pottery class available this summer. You can sign up for the watercolor painting class, the carpentry workshop, or the acrobatics class.",fullList,zero-shot
+kidsActivities-crafts,"No, there is no pottery class offered. However, we do have a watercolor painting class, a carpentry workshop, and an acrobatics class that you can sign up for.",fullList,zero-shot
+kidsActivities-crafts,"Unfortunately, no. We don't offer a pottery class, but we do have a watercolor painting class, a carpentry workshop, and an acrobatics class. Which one would you like to sign up for?",fullList,zero-shot
+kidsActivities-crafts,"No, unfortunately we do not offer pottery, but we do have a watercolor painting class, a carpentry workshop, and an acrobatics class. Would you be interested in any of these activities?",fullList,zero-shot
+kidsActivities-crafts,"Unfortunately, we don't have a pottery class this summer. Would you like to try the watercolor painting or the carpentry workshop?",sameCategory,zero-shot
+kidsActivities-sports,"No, I'm sorry, we don't have a gymnastics class. We do have an acrobatics class, though. Would you like to sign up for that?",competitor,zero-shot
+kidsActivities-sports,"No, we don't offer gymnastics here, but we do offer an acrobatics class that involves some of the same skills! Would you like to sign up for that?",competitor,zero-shot
+kidsActivities-sports,"No, there is not a gymnastics class. However, we do offer an acrobatics class. It's very similar to gymnastics and it focuses on tumbling and skills like handstands and cartwheels. Would you like to sign up?",competitor,zero-shot
+kidsActivities-sports,"No, there is not a gymnastics class available. We do offer an acrobatics class, a karate class, and a watercolor painting class.",fullList,zero-shot
+kidsActivities-sports,"No, we don't offer a gymnastics class, but we do have an acrobatics class that many of our campers enjoy. Would you like to sign up for it?",competitor,zero-shot
+friendsActivities-boardGames,"No, unfortunately I don't have Scrabble, but we can have a lot of fun with the other games, or we can watch some movies instead.",other,zero-shot
+friendsActivities-boardGames,"No, unfortunately I don't have Scrabble. But we do have Monopoly, checkers, and some movies to watch!",fullList,zero-shot
+friendsActivities-boardGames,"I'm sorry, I didn't think of that one! But we do have Monopoly, checkers, and some movies if you'd like to play those.",fullList,zero-shot
+friendsActivities-boardGames,"No, I'm sorry, I don't have Scrabble. But I do have Monopoly, checkers, and some movies to watch!",fullList,zero-shot
+friendsActivities-boardGames,"No, I'm sorry, I don't have Scrabble. But I do have Monopoly and checkers to play. We could also watch some movies if you'd like.",fullList,zero-shot
+interior-green,"No, I don't have an aloe vera plant, but I can craft some lovely homemade flower pots and paper lanterns that would brighten up a room.",other,zero-shot
+interior-green,"Unfortunately no, I don't have an aloe vera plant. However, I'm happy to make you something special as a housewarming gift. Would you like a handmade macrame wall hanging, a potted succulent, or a set of colorful block prints?",other,zero-shot
+interior-green,"No, sorry, I don't have an aloe vera plant. But I could craft some lovely flower arrangements or paintings that could work nicely in her apartment!",other,zero-shot
+interior-green,"No, I don't have an aloe vera plant, but I could give you some of my tulips. They would look great in your new place!",sameCategory,zero-shot
+interior-green,"No, I don't have an aloe vera plant, but I do have a cactus I could give you. Would that work?",other,zero-shot
+interior-deco,"No, I don't have any watercolour paintings, but I do have an oil painting and some printed photographs. If you're looking for something to craft yourself, I could help you make a decoration out of paper or fabric. I also have an agave plant you could take home.",fullList,zero-shot
+interior-deco,"No, unfortunately I don't have any watercolour paintings. However, I could paint one for you if you'd like! I could also create a craft for you, or you could take the agave plant I have here.",otherCategory,zero-shot
+interior-deco,"No, I don't have watercolour paintings, but I could make one for you if you'd like! I have lots of art supplies in my craft room and I'm sure I could come up with something you would like.",other,zero-shot
+interior-deco,"No, I don't have any watercolour paintings right now, but I could make you something special in that medium if you'd like!",other,zero-shot
+interior-deco,"No, I don't have any watercolour paintings. But I have some other art and decorations that you might be interested in, like my oil painting, printed photographs, and agave plant. I'd be happy to help you pick something out and craft something special just for you.",fullList,zero-shot
+zoo-xl,"""Unfortunately, the zoo doesn't have tigers, but we can go see the lions and giraffes!""",sameCategory,zero-shot
+zoo-xl,"""Unfortunately, the zoo doesn't have a tiger, but we can see lots of other interesting animals like the lion and giraffe!""",sameCategory,zero-shot
+zoo-xl,"No, the zoo doesn't have a tiger, but it does have a lion which is a similar animal! Would you like to see the lion first?",competitor,zero-shot
+zoo-xl,"No, unfortunately they don't have tigers at this zoo. But we can still see plenty of other amazing animals, like the lions, giraffes, and iguanas. Let's go check those out first.",fullList,zero-shot
+zoo-reptiles,"Unfortunately, the zoo doesn't have chameleons, but they do have other lizards and snakes that we can check out. Would you like to do that instead?",other,zero-shot
+zoo-reptiles,"No, I'm sorry, there isn't a chameleon at this zoo. However, I'm sure there are some fun and exciting animals we can see, like the iguanas, turtles, and lions!",fullList,zero-shot
+zoo-reptiles,"Unfortunately, the zoo does not have chameleons, but maybe another time we can find a place that does. Let's see what other interesting animals the zoo has for us to explore!",other,zero-shot
+zoo-reptiles,"No, I'm sorry but there are no chameleons at the zoo. But let's go see the iguanas and turtles, they look really interesting!",sameCategory,zero-shot
+zoo-reptiles,"No, we can't see a chameleon today. But we can see the iguanas, the turtles, and the lion! Those are all really cool animals!",fullList,zero-shot
+cafe-pie,"No, unfortunately we do not have raspberry cake. However, we do have raspberry pie which is similar. Would you like to try that?",competitor,one-shot Explanation
+cafe-pie,"No, unfortunately we don't have raspberry cake today. We have raspberry pie, which is similar, and it is delicious! Would you like to try a slice?",competitor,one-shot Explanation
+cafe-pie,"No, we don't have raspberry cake. We do have raspberry pie though. It has a rich, flaky crust and its filling is made with raspberries. Would you like to try it?",competitor,one-shot Explanation
+cafe-pizza,"Unfortunately we do not have veggie pizza today. However, we do have a cheese pizza and a pepperoni pizza that can be made vegetarian upon request.",sameCategory,one-shot Explanation
+cafe-pizza,"No, unfortunately we don't have veggie pizza today, but we do have cheese pizza which is vegetarian, as well as raspberry pie. Is either of those options satisfactory for you?",other,one-shot Explanation
+cafe-pizza,"I'm sorry, we don't have veggie pizza, but we do have cheese pizza, pepperoni pizza, and raspberry pie. All the pizzas are vegetarian if you don't want to have the pepperoni. Would one of those work?",fullList,one-shot Explanation
+cafe-pizza,"No, unfortunately we don't have veggie pizza today. We have cheese pizza and pepperoni pizza. Would either of those work for you? If you are looking for something else, we also have a raspberry pie.",fullList,one-shot Explanation
+cafe-pizza,"Unfortunately we don't have veggie pizza, however, we have cheese pizza which does not have any meat toppings.",competitor,one-shot Explanation
+bar-whiteWine,"I'm sorry, we don't have Sauvignon Blanc at the moment. We do have Chardonnay, which is a type of white wine, as well as craft beer and iced coffee. Is there anything else I can get for you?",fullList,one-shot Explanation
+bar-whiteWine,"Sorry, we do not serve Sauvignon Blanc. However, we do have Chardonnay. It is a dry white wine, much like Sauvignon Blanc. I'm sure you'll love it. Can I get you a glass?",competitor,one-shot Explanation
+bar-whiteWine,"I'm sorry, we don't serve Sauvignon Blanc. However, we do have Chardonnay, which is a similar white wine. Is that something you'd be interested in?",competitor,one-shot Explanation
+bar-whiteWine,"I'm sorry, we don't have Sauvignon Blanc. We do have a Chardonnay, which is a white wine, and a range of craft beers, which could be a refreshing alternative to wine. We also have iced coffee which might help you unwind.",fullList,one-shot Explanation
+bar-tea,"No, sorry. We don't serve iced tea. We do have iced coffee, soda, and Chardonnay though. Is one of those something you'd like?",fullList,one-shot Explanation
+bar-tea,"Unfortunately, we don't serve iced tea. We do have iced coffee, soda, and Chardonnay. Would any of those be of interest to you?",fullList,one-shot Explanation
+touristInfo-childTheatre,"Sorry, no, there isn't a theatre performance for children today. However, we do have a circus show, a trade fare, and a club event with a hip hop DJ, which may be interesting. All the events are suitable for children too.",fullList,one-shot Explanation
+touristInfo-childTheatre,"I'm sorry, we don't have a theatre performance happening today. However, we do have a circus show that might be suitable for children. It features clowns, acrobats and other displays of skill that are sure to amuse them.",competitor,one-shot Explanation
+touristInfo-childTheatre,"Unfortunately, no, there are no theatre performances for children today. However, we have a circus show, a trade fair, and a club event with a hip hop DJ that might be of interest.",fullList,one-shot Explanation
+touristInfo-clubbing,"Unfortunately not. We do have a club event with a hip hop DJ, live jazz music, and a circus show. Would any of those interest you?",fullList,one-shot Explanation
+touristInfo-clubbing,"Unfortunately, we don't have any electronic music events happening today. We do have a club event with a hip hop DJ, live jazz music, and a circus show.",fullList,one-shot Explanation
+bookingAgency-lowClassAccommodation,"I'm sorry, we don't have a youth hostel listed here. However, if you'd like a more budget accommodation, we have a room in a cheap bed-and-breakfast and a room in a budget hotel still available for tomorrow night. If comfort is a priority for you and you",sameCategory,one-shot Explanation
+bookingAgency-lowClassAccommodation,"Unfortunately, the youth hostel is fully booked. However, I can see that a room in the budget hotel and a suite in the four-star hotel are still available. Would either of those work for you?",other,one-shot Explanation
+bookingAgency-highClassAccommodation,"Unfortunately, no single rooms in a five-star hotel are available for tomorrow night. However, I do have a suite in a four-star hotel, an expensive apartment close to the city, and a room in a cheap bed-and-breakfast. Would any of these options work for you?",fullList,one-shot Explanation
+bookingAgency-highClassAccommodation,"I'm sorry, but we don't have a single room in a five-star hotel available for tomorrow night. However, we do have a suite in a four-star hotel, an expensive apartment close to the city, or a room in a cheap bed-and-breakfast available for tomorrow night",fullList,one-shot Explanation
+bookingAgency-highClassAccommodation,"Unfortunately, no, we don't have a single room available in a five-star hotel for tomorrow night. However, we do have a suite in a four-star hotel, an expensive apartment close to the city, and a room in a cheap bed-and-breakfast. We are sure one",fullList,one-shot Explanation
+bookingAgency-highClassAccommodation,"Unfortunately, we do not have a single room in a five-star hotel available for tomorrow night. However, we do have a suite in a four-star hotel, an expensive apartment close to the city, and a room in a cheap bed-and-breakfast still available. Would any of these",fullList,one-shot Explanation
+waterSport-motor,"Unfortunately, we do not have jet skis available for rent, though we do have water ski equipment and kayaks that might be of interest. Would you like to hear more about these items?",other,one-shot Explanation
+waterSport-motor,"Unfortunately, we do not rent jet skis. However, we do have a number of different water sports activities that you and your party can enjoy. We can provide you with water ski equipment, rubber dinghies and kayaks. Would any of these interest you?",fullList,one-shot Explanation
+waterSport-motor,"Unfortunately, we don't rent jet skis at this time. We do offer water ski equipment, rubber dinghies, and kayaks, however.",fullList,one-shot Explanation
+waterSport-muscle,"Unfortunately, we do not offer canoes, but we have kayaks, pedal boats, and water ski equipment available for rent.",fullList,one-shot Explanation
+dutyFree-smokes,"No, unfortunately I don't have any cigars to offer. However, I do have cigarettes, gin and gingerbread if you're interested.",fullList,one-shot Explanation
+dutyFree-smokes,"Unfortunately, no. We only have cigarettes. Would you like to purchase them?",competitor,one-shot Explanation
+dutyFree-smokes,"No, I'm sorry, we don't sell cigars. However, we do have cigarettes which may suit your needs.",competitor,one-shot Explanation
+dutyFree-smokes,"No, I'm sorry, we don't have cigars. We have cigarettes, gin, and gingerbread on offer.",fullList,one-shot Explanation
+dutyFree-smokes,"No, unfortunately we don't have cigars, but we do have cigarettes if you're looking for a similar product.",competitor,one-shot Explanation
+dutyFree-sweets,"No, I don't sell cookies, but I do have gingerbread and granola bars which are a tasty snack option.",sameCategory,one-shot Explanation
+dutyFree-sweets,Let's think step by step. You reason about what that person most likely wanted to have. That they asked for cookies suggests that they might want a sweet snack. From the items you have cigarettes are the least likely to satisfy the persons desires. Gingerbread and granola bars come much closer. Gingerbread,sameCategory,one-shot Explanation
+dutyFree-sweets,"No, unfortunately we don't have cookies at the moment, however, we do have some tasty gingerbread which might be a satisfying alternative. Would you like to buy some?",competitor,one-shot Explanation
+dutyFree-sweets,"Sorry, we don't have cookies. We have gingerbread, granola bars, and cigarettes. Would any of those suit your needs?",fullList,one-shot Explanation
+clothing-clothes,"No, I'm sorry, we do not have any Hawaiian shirts. We do have shorts, sweatshirts, and necklaces in stock though if you're interested.",fullList,one-shot Explanation
+clothing-clothes,"Unfortunately, we don't have any Hawaiian shirts available right now. However, we do have a wide selection of shorts, sweatshirts, and necklaces that might interest you. Please let me know if I can help you with anything else.",fullList,one-shot Explanation
+clothing-clothes,"Unfortunately, we don't have any Hawaiian shirts in stock at this time. We do have a variety of shorts, sweatshirts, and necklaces that you might enjoy. Let me know if I can be of any help.",fullList,one-shot Explanation
+clothing-acc,"Unfortunately, we don't have any earrings in stock right now. We do have other accessories like necklaces and sunglasses that might interest you.",sameCategory,one-shot Explanation
+clothing-acc,"No, I'm sorry, we don't have any earrings. However, we do have some beautiful necklaces that might interest you.",competitor,one-shot Explanation
+clothing-acc,"No, we don't have any earrings, but we do have necklaces and sunglasses that would make great gifts. We also have stylish shorts that could be perfect for summer.",fullList,one-shot Explanation
+clothing-acc,"No, unfortunately we don't have any earrings in stock. We do have necklaces, sunglasses, and shorts that may interest you.",fullList,one-shot Explanation
+clothing-acc,"No, unfortunately we don't have any earrings. But I do have some of our lovely necklaces which also make great gifts.",competitor,one-shot Explanation
+petAdoption-dogs,"I'm sorry, we don't have any Dalmatians available right now. We have golden retrievers, chihuahuas, and gerbils. Would one of those work for you?",fullList,one-shot Explanation
+petAdoption-dogs,"No, we don't have any Dalmatians available right now, but I can tell you that we do have some really sweet golden retrievers and chihuahuas. If you're looking for smaller animals, we also have gerbils. Would you like to meet any of them?",fullList,one-shot Explanation
+petAdoption-hamster,"No, we don't have any hamsters, but what we do have are gerbils, ferrets, and golden retrievers. All of these rescues animals have just as much love to give and would make great additions to your family.",fullList,one-shot Explanation
+books-romance,"No, we don't have any books of love poems, but we do have a collection of French love letters which could be a great alternative.",competitor,one-shot Explanation
+books-romance,"I'm sorry, at this time we don't have any books of love poems. However, we do have a selection of French love letters that I'm sure you'd enjoy. Would you like to take a look at them?",competitor,one-shot Explanation
+books-romance,"I'm sorry, we don't currently have any books of love poems. However, we do have books of French love letters which may be of interest.",competitor,one-shot Explanation
+books-romance,"I'm sorry, we don't have a book of love poems. However, we do have books of French love letters which might interest you.",competitor,one-shot Explanation
+books-romance,"Unfortunately, I don't currently have books of love poems but I do have a selection of French love letters that might be of interest. Would you like me to show you those?",competitor,one-shot Explanation
+books-fantasy,"Unfortunately, no, we don't have psychological thrillers here. We have mystery novels, adventure novels, and books of French love letters.",fullList,one-shot Explanation
+books-fantasy,"Unfortunately, we don't sell psychological thrillers at the moment, but we do have mystery novels and adventure novels which might be of interest. Those usually have thrilling plot points and unexpected twists that may be the kind of thing you are looking for.",fullList,one-shot Explanation
+electronics-laptop,"I'm sorry, we don't have a MacBook Pro at the moment, however we do have a MacBook Air that might be a good alternative. It has many of the same features as the Pro, in a slim and lightweight form.",competitor,one-shot Explanation
+electronics-laptop,"No, we don't have a MacBook Pro at the moment, but we do have a MacBook Air which is very similar. It has the same sleek design and is just as lightweight and easy to use.",competitor,one-shot Explanation
+electronics-console,"I'm sorry, we don't have a PlayStation. However, I do have an Xbox and a Gameboy. Both are great consoles and I'm sure you would find a game you enjoy. Would you like to take a look?",sameCategory,one-shot Explanation
+electronics-console,"Unfortunately, we don't have a PlayStation right now. We do have an Xbox, a Gameboy, and a MacBook Air. Would any of those work for what you're looking for?",fullList,one-shot Explanation
+gym-yoga,"Unfortunately, we don't offer yoga classes, however, we do have pilates classes which involve mind-body exercises similar to yoga. Would you like to try out one of our pilates classes?",competitor,one-shot Explanation
+gym-yoga,"No, we don't currently offer yoga classes. However, we have pilates classes which focus on strengthening your core and flexibility, zumba classes which combine unique dance moves with aerobic exercise, and kickboxing classes which are a great way to get a full body workout.",fullList,one-shot Explanation
+gym-yoga,"No, we don't currently offer yoga classes, but we do have pilates and zumba classes, which help to sustain and improve flexibility and balance. You might also like our kickboxing classes, as they help to increase strength and stamina.",fullList,one-shot Explanation
+gym-yoga,"No, we don't offer yoga classes. But we have pilates and zumba classes which focus on flexibility and core exercises, as well as kickboxing which is a full-body workout.",fullList,one-shot Explanation
+gym-yoga,"No, we currently don't offer yoga classes, but we do have pilates, zumba, and kickboxing which could provide similar benefits to a yoga class. Would you be interested in any of those?",fullList,one-shot Explanation
+kidsActivities-crafts,"I'm sorry, we don't offer a pottery class, but you might like the watercolor painting class or the carpentry workshop. Those require a similar level of dexterity and precision.",sameCategory,one-shot Explanation
+kidsActivities-crafts,"We don't have a pottery class, but we have a watercolor painting class which may be of interest to you. This class involves painting with pigments on paper and creating works of art. It's a great way to express yourself and explore your creativity.",competitor,one-shot Explanation
+kidsActivities-sports,"I'm sorry, we don't offer a gymnastics class. However, we do offer an acrobatics class which is very similar. It will help you learn how to use the equipment like a trampoline and a trapeze and perform cool creative jumps and tricks. Would you like to join",competitor,one-shot Explanation
+friendsActivities-boardGames,"No, unfortunately I don't have Scrabble but we have Monopoly, checkers, and some movies. We also could play charades if you want to!",fullList,one-shot Explanation
+friendsActivities-boardGames,"No, I'm sorry, I didn't bring Scrabble. However, I have Monopoly and checkers, which are board games as well.",sameCategory,one-shot Explanation
+friendsActivities-boardGames,"I'm sorry, we don't have Scrabble. Monopoly and checkers are more similar in the sense that they are both board games and each game requires some strategy and luck while movies are more thrilling and can carry quite a bit of suspense.",sameCategory,one-shot Explanation
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix, but I have some movies and games that I thought we could enjoy together. Would you like to choose a movie or game to play?",sameCategory,one-shot Explanation
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But, I do have the movies, Xbox games and Monopoly that I mentioned earlier. You're welcome to check out those activities if that's something you'll be interested in.",fullList,one-shot Explanation
+friendsActivities-videoEntertainment,"Unfortunately, no, but we have a selection of movies and games we can watch and play. Would you like to check out what we have?",other,one-shot Explanation
+interior-green,"No, I'm sorry I don't. I have an agave plant, which is in the same family. Would you like that?",competitor,one-shot Explanation
+interior-green,"No, I'm sorry, I don't have an aloe vera plant. But I did just craft this beautiful oil painting for my living room, if you'd like it as a house warming gift? It could be a nice decoration for your new apartment!",otherCategory,one-shot Explanation
+interior-green,"No, I don't have an aloe vera plant, but I do have an agave plant that looks similar. Would you like me to gift it to you?",competitor,one-shot Explanation
+interior-deco,"I'm sorry, I don't have any watercolour paintings, but could you use an oil painting or some printed photographs instead? I'm sure that the agave plant could brighten up any room, too.",fullList,one-shot Explanation
+interior-deco,"Unfortunately, I don't have any watercolour paintings available at the moment, but I have a few printed photographs and an oil painting. I also have an agave plant, if you're looking for something green to brighten up the apartment.",fullList,one-shot Explanation
+interior-deco,"No, I don't have any watercolour paintings. However, I have an oil painting that would make a great addition to your new space and an agave plant that can really bring life to your living room.",other,one-shot Explanation
+zoo-xl,"No, they don't have tigers here. However, we can see lions, giraffes and iguanas.",fullList,one-shot Explanation
+zoo-xl,"Let's think about what your child most likely wanted. That they asked for a tiger suggests that they are looking for a larger, more impressive animal. Giraffes and iguanas probably wouldn't be as exciting. Lions are much closer and also a large, impressive animal that you can find at the",competitor,one-shot Explanation
+zoo-reptiles,"Unfortunately, no we can't. I studied the zoo map before the visit, and we won't be able to see a chameleon since it doesn't show up on the list of animals. We can, however, see iguanas and turtles, which are similar reptiles. We even have the",sameCategory,one-shot Explanation
+zoo-reptiles,"No, I'm sorry, we don't have a chameleon habitat. However, we do have iguanas, which are part of the family of lizards and are quite colorful. We have turtles too, which are reptiles and have a long life span. Lastly, we have a lion which",fullList,one-shot Explanation
+cafe-pie,"No, unfortunately we do not have raspberry cake. However, we do have raspberry pie which is similar. Would you like to try that?",competitor,one-shot Explanation
+cafe-pie,"No, unfortunately we don't have raspberry cake today. We have raspberry pie, which is similar, and it is delicious! Would you like to try a slice?",competitor,one-shot Explanation
+cafe-pie,"No, we don't have raspberry cake. We do have raspberry pie though. It has a rich, flaky crust and its filling is made with raspberries. Would you like to try it?",competitor,one-shot Explanation
+cafe-pizza,"Unfortunately we do not have veggie pizza today. However, we do have a cheese pizza and a pepperoni pizza that can be made vegetarian upon request.",sameCategory,one-shot Explanation
+cafe-pizza,"No, unfortunately we don't have veggie pizza today, but we do have cheese pizza which is vegetarian, as well as raspberry pie. Is either of those options satisfactory for you?",other,one-shot Explanation
+cafe-pizza,"I'm sorry, we don't have veggie pizza, but we do have cheese pizza, pepperoni pizza, and raspberry pie. All the pizzas are vegetarian if you don't want to have the pepperoni. Would one of those work?",fullList,one-shot Explanation
+cafe-pizza,"No, unfortunately we don't have veggie pizza today. We have cheese pizza and pepperoni pizza. Would either of those work for you? If you are looking for something else, we also have a raspberry pie.",fullList,one-shot Explanation
+cafe-pizza,"Unfortunately we don't have veggie pizza, however, we have cheese pizza which does not have any meat toppings.",competitor,one-shot Explanation
+bar-whiteWine,"I'm sorry, we don't have Sauvignon Blanc at the moment. We do have Chardonnay, which is a type of white wine, as well as craft beer and iced coffee. Is there anything else I can get for you?",fullList,one-shot Explanation
+bar-whiteWine,"Sorry, we do not serve Sauvignon Blanc. However, we do have Chardonnay. It is a dry white wine, much like Sauvignon Blanc. I'm sure you'll love it. Can I get you a glass?",competitor,one-shot Explanation
+bar-whiteWine,"I'm sorry, we don't serve Sauvignon Blanc. However, we do have Chardonnay, which is a similar white wine. Is that something you'd be interested in?",competitor,one-shot Explanation
+bar-whiteWine,"I'm sorry, we don't have Sauvignon Blanc. We do have a Chardonnay, which is a white wine, and a range of craft beers, which could be a refreshing alternative to wine. We also have iced coffee which might help you unwind.",fullList,one-shot Explanation
+bar-tea,"No, sorry. We don't serve iced tea. We do have iced coffee, soda, and Chardonnay though. Is one of those something you'd like?",fullList,one-shot Explanation
+bar-tea,"Unfortunately, we don't serve iced tea. We do have iced coffee, soda, and Chardonnay. Would any of those be of interest to you?",fullList,one-shot Explanation
+touristInfo-childTheatre,"Sorry, no, there isn't a theatre performance for children today. However, we do have a circus show, a trade fare, and a club event with a hip hop DJ, which may be interesting. All the events are suitable for children too.",fullList,one-shot Explanation
+touristInfo-childTheatre,"I'm sorry, we don't have a theatre performance happening today. However, we do have a circus show that might be suitable for children. It features clowns, acrobats and other displays of skill that are sure to amuse them.",competitor,one-shot Explanation
+touristInfo-childTheatre,"Unfortunately, no, there are no theatre performances for children today. However, we have a circus show, a trade fair, and a club event with a hip hop DJ that might be of interest.",fullList,one-shot Explanation
+touristInfo-clubbing,"Unfortunately not. We do have a club event with a hip hop DJ, live jazz music, and a circus show. Would any of those interest you?",fullList,one-shot Explanation
+touristInfo-clubbing,"Unfortunately, we don't have any electronic music events happening today. We do have a club event with a hip hop DJ, live jazz music, and a circus show.",fullList,one-shot Explanation
+bookingAgency-lowClassAccommodation,"I'm sorry, we don't have a youth hostel listed here. However, if you'd like a more budget accommodation, we have a room in a cheap bed-and-breakfast and a room in a budget hotel still available for tomorrow night. If comfort is a priority for you and you",sameCategory,one-shot Explanation
+bookingAgency-lowClassAccommodation,"Unfortunately, the youth hostel is fully booked. However, I can see that a room in the budget hotel and a suite in the four-star hotel are still available. Would either of those work for you?",other,one-shot Explanation
+bookingAgency-highClassAccommodation,"Unfortunately, no single rooms in a five-star hotel are available for tomorrow night. However, I do have a suite in a four-star hotel, an expensive apartment close to the city, and a room in a cheap bed-and-breakfast. Would any of these options work for you?",fullList,one-shot Explanation
+bookingAgency-highClassAccommodation,"I'm sorry, but we don't have a single room in a five-star hotel available for tomorrow night. However, we do have a suite in a four-star hotel, an expensive apartment close to the city, or a room in a cheap bed-and-breakfast available for tomorrow night",fullList,one-shot Explanation
+bookingAgency-highClassAccommodation,"Unfortunately, no, we don't have a single room available in a five-star hotel for tomorrow night. However, we do have a suite in a four-star hotel, an expensive apartment close to the city, and a room in a cheap bed-and-breakfast. We are sure one",fullList,one-shot Explanation
+bookingAgency-highClassAccommodation,"Unfortunately, we do not have a single room in a five-star hotel available for tomorrow night. However, we do have a suite in a four-star hotel, an expensive apartment close to the city, and a room in a cheap bed-and-breakfast still available. Would any of these",fullList,one-shot Explanation
+waterSport-motor,"Unfortunately, we do not have jet skis available for rent, though we do have water ski equipment and kayaks that might be of interest. Would you like to hear more about these items?",other,one-shot Explanation
+waterSport-motor,"Unfortunately, we do not rent jet skis. However, we do have a number of different water sports activities that you and your party can enjoy. We can provide you with water ski equipment, rubber dinghies and kayaks. Would any of these interest you?",fullList,one-shot Explanation
+waterSport-motor,"Unfortunately, we don't rent jet skis at this time. We do offer water ski equipment, rubber dinghies, and kayaks, however.",fullList,one-shot Explanation
+waterSport-muscle,"Unfortunately, we do not offer canoes, but we have kayaks, pedal boats, and water ski equipment available for rent.",fullList,one-shot Explanation
+dutyFree-smokes,"No, unfortunately I don't have any cigars to offer. However, I do have cigarettes, gin and gingerbread if you're interested.",fullList,one-shot Explanation
+dutyFree-smokes,"Unfortunately, no. We only have cigarettes. Would you like to purchase them?",competitor,one-shot Explanation
+dutyFree-smokes,"No, I'm sorry, we don't sell cigars. However, we do have cigarettes which may suit your needs.",competitor,one-shot Explanation
+dutyFree-smokes,"No, I'm sorry, we don't have cigars. We have cigarettes, gin, and gingerbread on offer.",fullList,one-shot Explanation
+dutyFree-smokes,"No, unfortunately we don't have cigars, but we do have cigarettes if you're looking for a similar product.",competitor,one-shot Explanation
+dutyFree-sweets,"No, I don't sell cookies, but I do have gingerbread and granola bars which are a tasty snack option.",sameCategory,one-shot Explanation
+dutyFree-sweets,Let's think step by step. You reason about what that person most likely wanted to have. That they asked for cookies suggests that they might want a sweet snack. From the items you have cigarettes are the least likely to satisfy the persons desires. Gingerbread and granola bars come much closer. Gingerbread,sameCategory,one-shot Explanation
+dutyFree-sweets,"No, unfortunately we don't have cookies at the moment, however, we do have some tasty gingerbread which might be a satisfying alternative. Would you like to buy some?",competitor,one-shot Explanation
+dutyFree-sweets,"Sorry, we don't have cookies. We have gingerbread, granola bars, and cigarettes. Would any of those suit your needs?",fullList,one-shot Explanation
+clothing-clothes,"No, I'm sorry, we do not have any Hawaiian shirts. We do have shorts, sweatshirts, and necklaces in stock though if you're interested.",fullList,one-shot Explanation
+clothing-clothes,"Unfortunately, we don't have any Hawaiian shirts available right now. However, we do have a wide selection of shorts, sweatshirts, and necklaces that might interest you. Please let me know if I can help you with anything else.",fullList,one-shot Explanation
+clothing-clothes,"Unfortunately, we don't have any Hawaiian shirts in stock at this time. We do have a variety of shorts, sweatshirts, and necklaces that you might enjoy. Let me know if I can be of any help.",fullList,one-shot Explanation
+clothing-acc,"Unfortunately, we don't have any earrings in stock right now. We do have other accessories like necklaces and sunglasses that might interest you.",sameCategory,one-shot Explanation
+clothing-acc,"No, I'm sorry, we don't have any earrings. However, we do have some beautiful necklaces that might interest you.",competitor,one-shot Explanation
+clothing-acc,"No, we don't have any earrings, but we do have necklaces and sunglasses that would make great gifts. We also have stylish shorts that could be perfect for summer.",fullList,one-shot Explanation
+clothing-acc,"No, unfortunately we don't have any earrings in stock. We do have necklaces, sunglasses, and shorts that may interest you.",fullList,one-shot Explanation
+clothing-acc,"No, unfortunately we don't have any earrings. But I do have some of our lovely necklaces which also make great gifts.",competitor,one-shot Explanation
+petAdoption-dogs,"I'm sorry, we don't have any Dalmatians available right now. We have golden retrievers, chihuahuas, and gerbils. Would one of those work for you?",fullList,one-shot Explanation
+petAdoption-dogs,"No, we don't have any Dalmatians available right now, but I can tell you that we do have some really sweet golden retrievers and chihuahuas. If you're looking for smaller animals, we also have gerbils. Would you like to meet any of them?",fullList,one-shot Explanation
+petAdoption-hamster,"No, we don't have any hamsters, but what we do have are gerbils, ferrets, and golden retrievers. All of these rescues animals have just as much love to give and would make great additions to your family.",fullList,one-shot Explanation
+books-romance,"No, we don't have any books of love poems, but we do have a collection of French love letters which could be a great alternative.",competitor,one-shot Explanation
+books-romance,"I'm sorry, at this time we don't have any books of love poems. However, we do have a selection of French love letters that I'm sure you'd enjoy. Would you like to take a look at them?",competitor,one-shot Explanation
+books-romance,"I'm sorry, we don't currently have any books of love poems. However, we do have books of French love letters which may be of interest.",competitor,one-shot Explanation
+books-romance,"I'm sorry, we don't have a book of love poems. However, we do have books of French love letters which might interest you.",competitor,one-shot Explanation
+books-romance,"Unfortunately, I don't currently have books of love poems but I do have a selection of French love letters that might be of interest. Would you like me to show you those?",competitor,one-shot Explanation
+books-fantasy,"Unfortunately, no, we don't have psychological thrillers here. We have mystery novels, adventure novels, and books of French love letters.",fullList,one-shot Explanation
+books-fantasy,"Unfortunately, we don't sell psychological thrillers at the moment, but we do have mystery novels and adventure novels which might be of interest. Those usually have thrilling plot points and unexpected twists that may be the kind of thing you are looking for.",fullList,one-shot Explanation
+electronics-laptop,"I'm sorry, we don't have a MacBook Pro at the moment, however we do have a MacBook Air that might be a good alternative. It has many of the same features as the Pro, in a slim and lightweight form.",competitor,one-shot Explanation
+electronics-laptop,"No, we don't have a MacBook Pro at the moment, but we do have a MacBook Air which is very similar. It has the same sleek design and is just as lightweight and easy to use.",competitor,one-shot Explanation
+electronics-console,"I'm sorry, we don't have a PlayStation. However, I do have an Xbox and a Gameboy. Both are great consoles and I'm sure you would find a game you enjoy. Would you like to take a look?",sameCategory,one-shot Explanation
+electronics-console,"Unfortunately, we don't have a PlayStation right now. We do have an Xbox, a Gameboy, and a MacBook Air. Would any of those work for what you're looking for?",fullList,one-shot Explanation
+gym-yoga,"Unfortunately, we don't offer yoga classes, however, we do have pilates classes which involve mind-body exercises similar to yoga. Would you like to try out one of our pilates classes?",competitor,one-shot Explanation
+gym-yoga,"No, we don't currently offer yoga classes. However, we have pilates classes which focus on strengthening your core and flexibility, zumba classes which combine unique dance moves with aerobic exercise, and kickboxing classes which are a great way to get a full body workout.",fullList,one-shot Explanation
+gym-yoga,"No, we don't currently offer yoga classes, but we do have pilates and zumba classes, which help to sustain and improve flexibility and balance. You might also like our kickboxing classes, as they help to increase strength and stamina.",fullList,one-shot Explanation
+gym-yoga,"No, we don't offer yoga classes. But we have pilates and zumba classes which focus on flexibility and core exercises, as well as kickboxing which is a full-body workout.",fullList,one-shot Explanation
+gym-yoga,"No, we currently don't offer yoga classes, but we do have pilates, zumba, and kickboxing which could provide similar benefits to a yoga class. Would you be interested in any of those?",fullList,one-shot Explanation
+kidsActivities-crafts,"I'm sorry, we don't offer a pottery class, but you might like the watercolor painting class or the carpentry workshop. Those require a similar level of dexterity and precision.",sameCategory,one-shot Explanation
+kidsActivities-crafts,"We don't have a pottery class, but we have a watercolor painting class which may be of interest to you. This class involves painting with pigments on paper and creating works of art. It's a great way to express yourself and explore your creativity.",competitor,one-shot Explanation
+kidsActivities-sports,"I'm sorry, we don't offer a gymnastics class. However, we do offer an acrobatics class which is very similar. It will help you learn how to use the equipment like a trampoline and a trapeze and perform cool creative jumps and tricks. Would you like to join",competitor,one-shot Explanation
+friendsActivities-boardGames,"No, unfortunately I don't have Scrabble but we have Monopoly, checkers, and some movies. We also could play charades if you want to!",fullList,one-shot Explanation
+friendsActivities-boardGames,"No, I'm sorry, I didn't bring Scrabble. However, I have Monopoly and checkers, which are board games as well.",sameCategory,one-shot Explanation
+friendsActivities-boardGames,"I'm sorry, we don't have Scrabble. Monopoly and checkers are more similar in the sense that they are both board games and each game requires some strategy and luck while movies are more thrilling and can carry quite a bit of suspense.",sameCategory,one-shot Explanation
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix, but I have some movies and games that I thought we could enjoy together. Would you like to choose a movie or game to play?",sameCategory,one-shot Explanation
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But, I do have the movies, Xbox games and Monopoly that I mentioned earlier. You're welcome to check out those activities if that's something you'll be interested in.",fullList,one-shot Explanation
+friendsActivities-videoEntertainment,"Unfortunately, no, but we have a selection of movies and games we can watch and play. Would you like to check out what we have?",other,one-shot Explanation
+interior-green,"No, I'm sorry I don't. I have an agave plant, which is in the same family. Would you like that?",competitor,one-shot Explanation
+interior-green,"No, I'm sorry, I don't have an aloe vera plant. But I did just craft this beautiful oil painting for my living room, if you'd like it as a house warming gift? It could be a nice decoration for your new apartment!",otherCategory,one-shot Explanation
+interior-green,"No, I don't have an aloe vera plant, but I do have an agave plant that looks similar. Would you like me to gift it to you?",competitor,one-shot Explanation
+interior-deco,"I'm sorry, I don't have any watercolour paintings, but could you use an oil painting or some printed photographs instead? I'm sure that the agave plant could brighten up any room, too.",fullList,one-shot Explanation
+interior-deco,"Unfortunately, I don't have any watercolour paintings available at the moment, but I have a few printed photographs and an oil painting. I also have an agave plant, if you're looking for something green to brighten up the apartment.",fullList,one-shot Explanation
+interior-deco,"No, I don't have any watercolour paintings. However, I have an oil painting that would make a great addition to your new space and an agave plant that can really bring life to your living room.",other,one-shot Explanation
+zoo-xl,"No, they don't have tigers here. However, we can see lions, giraffes and iguanas.",fullList,one-shot Explanation
+zoo-xl,"Let's think about what your child most likely wanted. That they asked for a tiger suggests that they are looking for a larger, more impressive animal. Giraffes and iguanas probably wouldn't be as exciting. Lions are much closer and also a large, impressive animal that you can find at the",competitor,one-shot Explanation
+zoo-reptiles,"Unfortunately, no we can't. I studied the zoo map before the visit, and we won't be able to see a chameleon since it doesn't show up on the list of animals. We can, however, see iguanas and turtles, which are similar reptiles. We even have the",sameCategory,one-shot Explanation
+zoo-reptiles,"No, I'm sorry, we don't have a chameleon habitat. However, we do have iguanas, which are part of the family of lizards and are quite colorful. We have turtles too, which are reptiles and have a long life span. Lastly, we have a lion which",fullList,one-shot Explanation
+kidsActivities-sports,no there isnt,taciturn,human E1
+gym-boxing,no we dont,taciturn,human E1
+bookingAgency-highClassAccommodation,no none,taciturn,human E1
+electronics-console,no we dont,taciturn,human E1
+petAdoption-hamster,No we have no hamsters sorry,taciturn,human E1
+gym-boxing,Sorry we only offer kickboxing,competitor,human E1
+interior-deco,"We dont have watercolour but we do have, Oil paintings and printed photographs",sameCategory,human E1
+books-fantasy,No we only sell books on french love letters and adventure novels,other,human E1
+gym-yoga,"No, we do not offer yoga classes, we only offer pilates class, kickboxing, and zumba classes.",fullList,human E1
+petAdoption-dogs,"No, we do not have Dalmatians",taciturn,human E1
+books-romance,"Unfortunately, we do not have a book of love poems",taciturn,human E1
+clothing-clothes,"No, we do not Hawaiian shirts",taciturn,human E1
+dutyFree-smokes,"No, but we sell cigarettes.",competitor,human E1
+kidsActivities-crafts,"No, but there's carpentry if you're interested.",competitor,human E1
+interior-green,"No, only agave plant.",competitor,human E1
+touristInfo-childTheatre,"No, but there is a circus show.",competitor,human E1
+clothing-acc,"sorry, unfortunately we're out of stock at this time. Would you be interested in necklaces instead perhaps?",competitor,human E1
+interior-deco,"only oil, want to take a look?",competitor,human E1
+touristInfo-clubbing,only hip hop and jazz sorry,sameCategory,human E1
+zoo-reptiles,do you mean iguanas?,competitor,human E1
+petAdoption-dogs,"""I am sorry, but all I have at the moment are golden retrievers, chihuahuas and a gerbil named Fred""",fullList,human E1
+books-romance,"""Sorry, I don't have them at the moment, though I do have books of French love letters if you are interested""",competitor,human E1
+dutyFree-smokes,"""Sorry we do not do cigars. All we have are gingerbread, gin and cigarettes""",fullList,human E1
+cafe-pie,"""Sorry, I only have raspberry pie, but I can offer you a cheesy pizza or chocolate cookie""",fullList,human E1
+kidsActivities-crafts,"No hun, there is no pottery class but there are acrobatics, watercolor painting and carpentry classes",fullList,human E1
+bar-whiteWine,"Unfortunately we do not. However we do have iced coffee, chardonnay and  craft beer.",fullList,human E1
+electronics-laptop,No only the Macbook air.,competitor,human E1
+waterSport-motor,"No sorry we only offer rubber dinghies, water ski equipment and kayaks.",fullList,human E1
+dutyFree-sweets,"No
+
+",taciturn,human E1
+kidsActivities-sports,"No
+
+",taciturn,human E1
+bar-tea,"No
+
+",taciturn,human E1
+touristInfo-clubbing,"No
+
+",taciturn,human E1
+gym-boxing,"No, sorry, we don’t.",taciturn,human E1
+books-fantasy,"No, unfortunately we don’t have any of those.",taciturn,human E1
+bar-tea,"No,sorry, but we do have iced coffee, if you’d like that.",competitor,human E1
+bookingAgency-highClassAccommodation,"No, I’m sorry.",taciturn,human E1
+gym-yoga,"No I'm sorry, but maybe you would like to try a zumba class",sameCategory,human E1
+petAdoption-dogs,"No I'm sorry, but we have some lovely golden retrievers if you were interested",competitor,human E1
+bar-whiteWine,"Sorry, but no.  However ,we do have some rather delicious chardonnay",competitor,human E1
+dutyFree-smokes,"NO, I'm sorry I only have cigarettes.",competitor,human E1
+friendsActivities-boardGames,"Sorry, I don't have that.",taciturn,human E1
+zoo-xl,There aren't any tigers but we could see a lion.,competitor,human E1
+gym-yoga,No sorry but we can offer pilates.,competitor,human E1
+interior-green,No but I do have an agarve plant.,competitor,human E1
+touristInfo-childTheatre,No there isnt,taciturn,human E1
+petAdoption-dogs,No we don't,taciturn,human E1
+bookingAgency-lowClassAccommodation,No there isnt,taciturn,human E1
+electronics-laptop,No we dont,taciturn,human E1
+electronics-laptop,"No sorry, we have the MacBook Air though if that interests you.",competitor,human E1
+kidsActivities-crafts,"Unfortunately not this year, but you can try either carpentry or water colour painting.",sameCategory,human E1
+cafe-pie,"Not a cake, but we have raspberry pie.",competitor,human E1
+bookingAgency-lowClassAccommodation,Not as far as i know,taciturn,human E1
+electronics-laptop,"No, but i have a macbook air",competitor,human E1
+interior-green,"No, would you like an agave plant or some tulips instead?",sameCategory,human E1
+books-romance,"No, would french love letters be of any interest?",competitor,human E1
+zoo-xl,We can go and see the lions which are similar to tigers.,competitor,human E1
+clothing-clothes,"No, but we do have a selection of sweatshirts.",sameCategory,human E1
+interior-green,I have some tulips or an agave plant.,sameCategory,human E1
+books-romance,"No, but we do have French love letters.",competitor,human E1
+gym-boxing,We have kickboxing classes - would you be interested in that?,competitor,human E1
+interior-deco,I don't at the moment. Do you have any watercolour artists you like?,taciturn,human E1
+kidsActivities-sports,"Sorry, we don't have gymnastics, but why don't you give acrobatics or karate a go? Or we have watercolour painting as well.",fullList,human E1
+friendsActivities-videoEntertainment,I haven't got Netflix but I've got some movies we could watch. Take a look and pick out something you like!,competitor,human E1
+clothing-acc,"Unfortunately, we do not have any earrings.",taciturn,human E1
+dutyFree-sweets,"We do not sell cookies. However, we do sell gingerbread which may suit you.",competitor,human E1
+books-fantasy,"Unfortunately, we do not have any psychological thrillers in stock. We have mystery and adventure books, which may be suitable alternatives.",sameCategory,human E1
+zoo-reptiles,"I'm sorry honey, there are no chameleons! Would you like to see an iguana instead?",competitor,human E1
+electronics-laptop,No I only have a macnook air,competitor,human E1
+cafe-pie,No but we do have raspberry pie,competitor,human E1
+waterSport-motor,No but we do have water ski equipment,competitor,human E1
+dutyFree-smokes,No only cigarettes,competitor,human E1
+books-romance,No. We have a book of french love letters,competitor,human E1
+electronics-laptop,No. We have a MacBook Air,competitor,human E1
+interior-green,"No, I have an agave plant",competitor,human E1
+petAdoption-dogs,No sorry we dont,taciturn,human E1
+books-romance,We've got french love letters will that do?,competitor,human E1
+zoo-xl,"Unfortunately there is no Tiger, but the lions are good!",competitor,human E1
+bar-whiteWine,"No, I have chardonnay",competitor,human E1
+gym-yoga,"No, but we do offer Pilates",competitor,human E1
+touristInfo-childTheatre,No but we have a circus performance,competitor,human E1
+friendsActivities-boardGames,No but we have checkers and monopoly,sameCategory,human E1
+bar-tea,"No, sorry we don't serve ided tea",taciturn,human E1
+waterSport-muscle,We don't rent canoes but kayaks are similar,competitor,human E1
+cafe-pizza,"If you accept cheese pizza is vegetarian, then yes we do",competitor,human E1
+gym-boxing,"I'm sorry, we only have kickboxing",competitor,human E1
+touristInfo-clubbing,The DJ might play some electronic music.,other,human E1
+gym-boxing,We do a kickboxing class.,competitor,human E1
+books-fantasy,"Sorry, we don’t have any of those in stock at the moment.",taciturn,human E1
+waterSport-muscle,We have kayaks.,competitor,human E1
+bookingAgency-highClassAccommodation,"No, there are no single rooms in any five-star hotels available. The closest to this is a suite in a four-star hotel.",competitor,human E1
+electronics-console,Unfortunately we do not have any playstations in stock. However we do have other electronics and game consoles.,other,human E1
+cafe-pizza,"We have cheese pizza which is vegeterian, however we do not have any pizzas with vegetable toppings.",competitor,human E1
+clothing-clothes,"No sorry, we do not have any Hawaiian shirts in stock.",taciturn,human E1
+waterSport-motor,"No sorry, we do not rent jet skis.",taciturn,human E1
+bookingAgency-lowClassAccommodation,"No sorry, we do not have a bed in a youth hostel available for tomorrow night.",taciturn,human E1
+gym-yoga,"No sorry, we do not offer yoga classes.",taciturn,human E1
+touristInfo-childTheatre,no there is not,taciturn,human E1
+zoo-xl,no there isn't one here,taciturn,human E1
+interior-green,nope,taciturn,human E1
+friendsActivities-boardGames,i do not,taciturn,human E1
+touristInfo-clubbing,"No, but there is a hip hop show, a circus show and a jazz show",fullList,human E1
+zoo-reptiles,There are no chameleons little Dave,taciturn,human E1
+gym-boxing,No but you could try kick-boxing if you like,competitor,human E1
+petAdoption-hamster,No but we have gerbils if you like,competitor,human E1
+kidsActivities-sports,We have an acrobatics class which is similar to gymnastics.,competitor,human E1
+zoo-reptiles,Yes. We'll see it soon. Let's see all the animals. We'll be at the reptile house soon.,other,human E1
+dutyFree-sweets,"The closest we have to cookies, sir, are granola bars and gingerbread.",sameCategory,human E1
+interior-deco,No. I have oil paintings though. Would you like to have a look at them ? I painted them myself.,competitor,human E1
+books-fantasy,"I'm sorry, we don't have any currently.",taciturn,human E1
+bar-tea,"I'm sorry we don't, but we do have iced coffee if that's any good for you?",competitor,human E1
+electronics-console,"We don't unfortunately, would you like me to show you what we have in stock?",other,human E1
+touristInfo-clubbing,"There is a club event, but it's with hip hop rather than electronic music.",competitor,human E1
+bookingAgency-lowClassAccommodation,No I’m afraid not,taciturn,human E1
+interior-green,No but I have an agave plant,competitor,human E1
+books-romance,No but I have books of French love letters,competitor,human E1
+bar-whiteWine,We only have Chardonnay I’m afraid,competitor,human E1
+kidsActivities-crafts,No there is not,taciturn,human E1
+touristInfo-childTheatre,There is a circus show,competitor,human E1
+friendsActivities-boardGames,"No, but I do have monopoly!",competitor,human E1
+books-romance,"Hmm, not exactly but I have French love letters, would that be any good?",competitor,human E1
+bookingAgency-lowClassAccommodation,"There isn't anything in a hostel, maybe a budget room or cheap b&b would be useful?",sameCategory,human E1
+clothing-clothes,"We only have sweatshirts unfortunately, but I might be able to get something in if you could come back",sameCategory,human E1
+electronics-console,"No we do not but we have an Xbox, a game boy and a MacBook air",fullList,human E1
+gym-boxing,"No we do not but would you like to try kickboxing, karate or even some pilates",fullList,human E1
+waterSport-muscle,No we have no canoes but we do offer kayaks and pedal boats,sameCategory,human E1
+electronics-console,"No, but we have a gameboy or xbox",sameCategory,human E1
+bar-tea,"
+No we don't",taciturn,human E1
+petAdoption-hamster,No but we have gerbils,competitor,human E1
+books-fantasy,No we don't,taciturn,human E1
+bookingAgency-highClassAccommodation,"No, we have a suite available in a four star hotel or an apartment close to the city.",sameCategory,human E1
+cafe-pizza,Yes we have a cheese piazza,competitor,human E1
+kidsActivities-sports,We don't have gymnastics but we do have acrobatics,competitor,human E1
+clothing-acc,Unfortunately not,taciturn,human E1
+friendsActivities-boardGames,Sorry i do not so I have arranged either Monopoloy or checkers,sameCategory,human E1
+bar-whiteWine,Sorry we only have Chardonnay or iced coffee,other,human E1
+clothing-clothes,Sorry no but i can offer sweatshirts,sameCategory,human E1
+petAdoption-dogs,Sorry the only dog we have available is golden retrievers,competitor,human E1
+interior-deco,I have a lovely oil painting if you want it.,competitor,human E1
+petAdoption-hamster,"No, sorry I don't",taciturn,human E1
+waterSport-muscle,"Oh yes, we have wonderful kayaks",competitor,human E1
+bookingAgency-highClassAccommodation,"Nothing that would suit your needs sir, sorry",taciturn,human E1
+touristInfo-clubbing,"We are hosting a club event with a hip hop DJ, would that be the one you were thinking of?",competitor,human E1
+friendsActivities-videoEntertainment,"Afraid not, but i've prepared some movies and games for us all.",other,human E1
+clothing-acc,"I'm sorry, we don't currently have earrings in stock.",taciturn,human E1
+petAdoption-hamster,"No, sorry, but we do have gerbils if you're open to another type of small pet.",competitor,human E1
+cafe-pizza,Our only vegi pizza the cheese pizza,competitor,human E1
+bar-tea,No sorry,taciturn,human E1
+interior-deco,No but I do have water colours.,other,human E1
+clothing-acc,No.,taciturn,human E1
+touristInfo-clubbing,No.,taciturn,human E1
+friendsActivities-videoEntertainment,"I have some movies we could watch, but they aren't on Netflix.",competitor,human E1
+cafe-pizza,"No, but our pepperoni is excellent.",sameCategory,human E1
+electronics-laptop,No sorry,taciturn,human E1
+petAdoption-hamster,"Hello, unfortunately we don’t have any hamsters but we do have gerbils, would you like to have a look?",competitor,human E1
+bookingAgency-highClassAccommodation,No it isn’t however could i interest you in this one?,other,human E1
+zoo-reptiles,We will work our away around and get there eventually,other,human E1
+bar-tea,I don’t but I can see what I can do,other,human E1
+dutyFree-sweets,Sorry i have only have gingerbread and granola bars for sale.,sameCategory,human E1
+interior-deco,"No, but have a oil painting you can look at.",competitor,human E1
+zoo-reptiles,Sorry they do not have a chameleon but they have other animals to see in the zoo.,other,human E1
+friendsActivities-videoEntertainment,No do not have Netflix But have some movies we can watch.,competitor,human E1
+bookingAgency-highClassAccommodation,"No but we have an apartment close to the city, a room in a bed and breakfast and a suite in a four-star hotel available.",fullList,human E1
+interior-deco,"No but I have some printed photographs, and an oil painting if you're interested?",sameCategory,human E1
+bar-tea,"Nope, but we have iced coffee, and soda.",sameCategory,human E1
+waterSport-muscle,"No but we can offer pedal boats, water ski equipment and kayaks.",fullList,human E1
+waterSport-muscle,I am sorry but we have no canoes at present but can offer pedal boats or kayaks.,sameCategory,human E1
+zoo-reptiles,I don’t think they have chameleons but we can have a look at the iguanas.,competitor,human E1
+clothing-acc,I’m sorry but we do not stock earrings but have a wide choice of necklaces.,competitor,human E1
+books-fantasy,I’m sorry but we are out of stock of psychological thrillers.,taciturn,human E1
+clothing-clothes,we have sweatshirts,sameCategory,human E1
+friendsActivities-boardGames,"i have monopoly,some movies,checkers",fullList,human E1
+dutyFree-smokes,we have cigarettes,competitor,human E1
+zoo-xl,there is giraffe and lion,sameCategory,human E1
+dutyFree-smokes,no sorry,taciturn,human E1
+clothing-clothes,I'm afraid we don't but we do have other shorts.,competitor,human E1
+friendsActivities-boardGames,"Ah no we don't but I have got checkers, movies and monopoly",fullList,human E1
+interior-green,ah sorry I don't but I have an agave plant you could have?,competitor,human E1
+books-romance,We have books of French love letters that may contain poems.,competitor,human E1
+friendsActivities-boardGames,"No, but I have Monopoly and checkers.",sameCategory,human E1
+zoo-xl,"They don't have a tiger, but we can go see the lion.",competitor,human E1
+clothing-clothes,"Sorry, we don't have Hawaiian shirts.",taciturn,human E1
+interior-green,"I don't have an aloe vera plant right now, I do have an agave plant which looks very similar if you want it.",competitor,human E1
+petAdoption-dogs,"We don't have any Dalmatians, if you are looking for a dog of similar size we do have golden retrievers.",competitor,human E1
+gym-yoga,"We currently don't offer yoga classes, pilates classes are very similar if you wish to try it out.",competitor,human E1
+electronics-laptop,No but we do have a MacBook Air,competitor,human E1
+cafe-pizza,No we do not have a veggie pizza,taciturn,human E1
+bookingAgency-highClassAccommodation,No it is not available for tomorrow night,taciturn,human E1
+interior-deco,Sorry I do not have any,taciturn,human E1
+petAdoption-hamster,Sorry we do not have any hamsters,taciturn,human E1
+interior-green,"I don't, but I'd quite like one, next time I'm at the garden centre, I'll pick one up for each of us. You can have one as a house warminf present.",other,human E1
+clothing-clothes,"I'm very sorry, we don't have that in stock, I'll speak to our other stores and see if we have anything like that in stock elsewhere for you.",other,human E1
+gym-yoga,"I'm really sorry, we don't currently offer yoga, what will do is mention it to our manager as other people have also asked about yoga. In the meantime would you like to try a free plates session?",competitor,human E1
+cafe-pie,We don't have any cake today but we have a beautiful raspberry pie that I'd reccomend.,competitor,human E1
+gym-boxing,"no, we do kickboxing.",competitor,human E1
+zoo-reptiles,they don't have chameleons here,taciturn,human E1
+bookingAgency-highClassAccommodation,no. i can offer you an apartmnet or a suite in a 4 star hotel.,sameCategory,human E1
+gym-yoga,"No, we offer kickboxing, zumba and pilates",fullList,human E1
+kidsActivities-crafts,"No, only acrobatics, watercolor and carpentry",fullList,human E1
+touristInfo-childTheatre,there is a circus,competitor,human E1
+petAdoption-dogs,"no, only golden retirevers, gerbils and chihuahuas",fullList,human E1
+touristInfo-clubbing,"Hi, we don't have any electronic music events in town today but we do have several other music events. Would you be interested to know more about these?",other,human E1
+petAdoption-hamster,"Hello, well we don't have any in right now. Is there something about hamsters that really interest you? Because we do have other animal in need of rehoming",other,human E1
+books-fantasy,While we don't have any directly of that genre please take a look at these other titles that may have something you are looking for,other,human E1
+cafe-pizza,We don't have a vegetable pizza today. If you are vegetarian we have a cheese pizza. Is that good for you?,competitor,human E1
+gym-yoga,I’m afraid we don’t at present,taciturn,human E1
+cafe-pie,No but we do have raspberry pie,competitor,human E1
+petAdoption-dogs,No we don’t have any Dalmatian’s at present but we have these other breeds,other,human E1
+petAdoption-hamster,no. but we have gerbils,competitor,human E1
+electronics-console,no. only xbox and gameboy,sameCategory,human E1
+zoo-reptiles,it's an iguana.,competitor,human E1
+interior-deco,no. but I have an oil painting,competitor,human E1
+cafe-pie,"No but we have raspberry pie, would you like that?",competitor,human E1
+dutyFree-smokes,"No, sorry. Cigarettes though, would you like those instead?",competitor,human E1
+clothing-clothes,"No we haven't - we have shorts, necklaces and sweatshirts.",fullList,human E1
+friendsActivities-boardGames,"I have prepared movies, checkers and Monopoly. I may have scrabble somewhere - shall I have a look?",fullList,human E1
+bar-tea,"No, sorry, we do not, but we do have iced coffee.",competitor,human E1
+clothing-acc,"No we do not have any in stock at the moment, sorry.",taciturn,human E1
+zoo-reptiles,"No, we can't, there is no chameleon here.",taciturn,human E1
+electronics-console,"No sorry, we don't stock any Playstations. Do any of these other games consoles interest you?",other,human E1
+kidsActivities-sports,There is an acrobatics class which is similar to activities you would do in a gymnastics class.,competitor,human E1
+friendsActivities-videoEntertainment,I don't have Netflix but I have some movies and games for us to play this evening. You won't miss Netflix trust me!,other,human E1
+gym-boxing,No we do not have boxing classes but we offer the following classes if these are of interest to you ?,other,human E1
+dutyFree-sweets,"I'm sorry but I dont have any cookies at the moment, but I will check for you if we can offer that, I have the following items if these interest you?",other,human E1
+gym-boxing,"Hello, sorry we don't offer boxing classes but perhaps you may be interested in our kickboxing or karate classes?",sameCategory,human E1
+bar-tea,I'm so sorry we don't serve iced tea. I can recommend our iced coffee though.,competitor,human E1
+interior-deco,"No, how about an oil painting?",competitor,human E1
+books-fantasy,We don't but we have some great mystery and adventure novels.,sameCategory,human E1
+waterSport-muscle,"No sir but we do rent the same family of boats, our version is the kayak",competitor,human E1
+interior-deco,i have none at the moment however if you want a substitute short term then you can choose between an oil painting and photograph prints,sameCategory,human E1
+clothing-acc,"we have sold out until next weeks new stock arrives, how about a necklace but be quick as they are selling out too.",competitor,human E1
+touristInfo-clubbing,not today however i can get you into a hip hop session.,competitor,human E1
+clothing-acc,"No, I'm sorry, we are out of stock at the moment.",taciturn,human E1
+touristInfo-clubbing,"No, not today but we do have a hip hop DJ and live jazz music.",sameCategory,human E1
+interior-deco,"No, we don't have any watercolour paintings but we do have oil paintings, if you would like to take a look.",competitor,human E1
+interior-green,"I have an agave plant and some tulips of they're any good for you, you're welcome to have them.",sameCategory,human E1
+cafe-pie,We have raspberry pie which is lovely,competitor,human E1
+electronics-laptop,We have a macbook air and a desktop computer,sameCategory,human E1
+dutyFree-smokes,We have ciggerattes,competitor,human E1
+interior-green,"Sorry, no I don't",taciturn,human E1
+kidsActivities-crafts,"No, but we have some great alternatives",other,human E1
+bookingAgency-lowClassAccommodation,"The options I have for tomorrow are, a budget hotel or a bed and breakfast. Do you want to discuss pricing for those? They could be not much more than a hostel.",sameCategory,human E1
+touristInfo-childTheatre,"There isn’t today, although there is a circus show. Would this be of interest to you?",competitor,human E1
+books-romance,We do have a book of French love letters.  Would that interest you?,competitor,human E1
+cafe-pie,We actually have a raspberry pie today instead. Would you like to try it?,competitor,human E1
+electronics-console,"sorry, we don't",taciturn,human E1
+kidsActivities-sports,"sorry, we don't",taciturn,human E1
+zoo-reptiles,"Sorry, I don't think there are any chameleons! We can go to the igaunas if you want instead?",competitor,human E1
+petAdoption-hamster,"We don't sorry, but we do have gerbils that you might be interested in?",competitor,human E1
+gym-boxing,"We don't sorry, but we do have kickboxing instead if that's something you're interested in.",competitor,human E1
+bookingAgency-highClassAccommodation,"There isn't, sorry, however we do have a room in a bed-and-breakfast, a suite in a four-star hotel and an apartment that's close to the city.",fullList,human E1
+zoo-reptiles,There are no chameleons here but let's see the amazing turtles and iguanas.,sameCategory,human E1
+bar-tea,I am afraid we do not have iced tea. We do have iced coffee.,competitor,human E1
+touristInfo-clubbing,"No, we have a hip-hop night and later performance by a live jazz band.",sameCategory,human E1
+waterSport-muscle,"We have kayaks only, if that's ok?",competitor,human E1
+cafe-pizza,"No, sorry we don't have that today.",taciturn,human E1
+interior-deco,"No, but I do have an oil painting you could have.",competitor,human E1
+friendsActivities-videoEntertainment,"No, how about we watch a movie instead?",competitor,human E1
+gym-boxing,"No, we do kickboxing if that is of interest?",competitor,human E1
+dutyFree-sweets,"No, but we do have gingerbread.",competitor,human E1
+petAdoption-hamster,"We have gerbils, if you prefer?",competitor,human E1
+electronics-console,"No, how about an Xbox?",competitor,human E1
+waterSport-muscle,"Kayaks, pedal boats and water ski equipment, but no canoes.",fullList,human E1
+petAdoption-hamster,"No, but we have gerbils.",competitor,human E1
+interior-deco,"No, but I can make you one.",other,human E1
+bookingAgency-highClassAccommodation,"No, but how about a suite in a four star hotel?",competitor,human E1
+gym-boxing,"No, we have karate and kickboxing though.",sameCategory,human E1
+dutyFree-sweets,"Unfortunately not, but we do have gingerbread available.",competitor,human E1
+petAdoption-hamster,"We don't have any hamsters, sadly. However, we do have gerbils if that is okay?",competitor,human E1
+books-fantasy,"We don't have any psychological thrillers in at the moment, but we have some adventure novels as well as mystery novels that you might like.",sameCategory,human E1
+gym-boxing,We don't offer boxing classes but we do offer kickboxing classes.,competitor,human E1
+clothing-acc,"I’m sorry, we don’t stock those at present.",taciturn,human E1
+bar-tea,"Sorry, we don’t have iced tea, but we do serve a refreshing iced coffee.",competitor,human E1
+cafe-pizza,"Sorry, no veggie pizza today but there is cheese pizza.",competitor,human E1
+friendsActivities-videoEntertainment,"No, there is no Netflix but there’s plenty of other options for entertainment.",other,human E1
+dutyFree-smokes,"No I’m afraid we do not sell those on board.
+Would you like anything else?
+",other,human E1
+interior-green,No but I have this agave instead- would you like that?,competitor,human E1
+gym-yoga,"No, the closest we offer is Pilates- you should give it a try",competitor,human E1
+electronics-laptop,"No, we only have the MacBook Air at the moment.",competitor,human E1
+books-romance,"No, but I do have some books of French love letters",competitor,human E1
+zoo-xl,I'm not sure that there is a tiger in this zoo. But there is definitely a lion that we can go to see,competitor,human E1
+friendsActivities-boardGames,"No, we don't have scrabble, but we do have monopoly, and there's also checkers and some movie we can watch",fullList,human E1
+kidsActivities-crafts,Unfortunately we don't have a pottery class. But maybe you would like a painting class. Or there'd also carpentry or acrobatics classes.,fullList,human E1
+electronics-console,"We do not have a Playstation, sorry.",taciturn,human E1
+interior-deco,"I don't have watercolour paintings, I'm afraid.",taciturn,human E1
+touristInfo-clubbing,"There is no club event with electronic music today, only hip hop",competitor,human E1
+friendsActivities-videoEntertainment,"I do not have Netflix, sorry.",taciturn,human E1
+books-fantasy,We have some mystery books that could also be considered thrillers.,competitor,human E1
+interior-deco,"No, I'm sorry but the only painting I have at the moment is an oil painting.",competitor,human E1
+waterSport-muscle,Unfortunately not - the most similar item we have is a kayak.,competitor,human E1
+friendsActivities-videoEntertainment,"No, but there's a selection of movies if you want to choose one.",competitor,human E1
+books-romance,"We have books with french love letters, would you be interested in those?",competitor,human E1
+petAdoption-dogs,We unfortnatly don't but do have golden retrievers that are similar in energy level and size.,competitor,human E1
+dutyFree-smokes,We don't but would you be interested in any cigarettes?,competitor,human E1
+interior-green,Would an agave plant or tulips but something you'd like instead since I currently have no aloe vera plants?,sameCategory,human E1
+zoo-reptiles,"chameleon is probably near to iguanas, let's go and have a look.",competitor,human E1
+waterSport-muscle,"hello, we do have kayaks if you are interested.",competitor,human E1
+gym-boxing,"hello, we do offer kickboxing classes, are you interested about it?",competitor,human E1
+friendsActivities-videoEntertainment,"Netflix is boring, let's play some games guys",other,human E1
+bar-tea,We don’t generally have iced tea but I’ll see what I can do for you,other,human E1
+interior-deco,Yes I have some paintings. Also if interested I have plant as well to make your house look homely,other,human E1
+clothing-acc,I’m sorry I havnt but I do have some necklaces if your interested,competitor,human E1
+interior-deco,"I don't have any watercolours but if you're looking for something nice to fill up a wall, you could take a look at this oil painting. Oh, and I've got some printed photographs too.",sameCategory,human E1
+dutyFree-sweets,I'm sorry we don't have cookies. Would you like to purchase some duty-free granola bars or gingerbread instead? We've also got cigarettes on sale if you'd like.,fullList,human E1
+books-fantasy,"Hi, sorry we don't have those in stock at the moment. Though if you're interested, we've got some mystery novels, adventure novels and books of French love letters.",fullList,human E1
+bar-tea,"Sorry ma'am, we only serve soda, Chardonnay and iced coffee here. Would you like some?",fullList,human E1
+interior-green,"No I don't, but I do have an agave plant or some tulips you are welcome to if you would like those?",sameCategory,human E1
+electronics-laptop,No sorry but I have a MacBook Air or a desktop computer if you are interested in those?,sameCategory,human E1
+clothing-clothes,No we do not have any I'm afraid.,taciturn,human E1
+dutyFree-smokes,No sorry. I do have some cigarettes if you are interested in those instead?,competitor,human E1
+books-romance,"I don't think we have books on love poems, but we do have books of French love letters.",competitor,human E1
+petAdoption-dogs,"I'm sorry, we don't have any dalmations currently, but we do have chihuahuas and golden retrievers.",sameCategory,human E1
+clothing-clothes,"I'm sorry, the only clothing we have in stock right now is shorts and sweatshirts.",sameCategory,human E1
+friendsActivities-boardGames,"Sorry, the only board games I have are checkers and Monopoly.",sameCategory,human E1
+bookingAgency-highClassAccommodation,"Unfortunately there are no five-star hotels available for a single room, but we have a great option for a suite in a four-star hotel.",competitor,human E1
+friendsActivities-videoEntertainment,"I do not have netflix, but we can play some Xbox games and Monopoly. I also have some movies available for us to watch without needing Netflix.",fullList,human E1
+clothing-acc,"We do not have earrings, we only have necklaces, sunglasses, and shorts in stock.",fullList,human E1
+electronics-console,"We do not have a PlayStation in stock, however we do have an Xbox that works almost the same as a PlayStation.",competitor,human E1
+clothing-acc,"no, sorry just sunglasses, shorts and necklaces",fullList,human E1
+petAdoption-hamster,"no, sorry",taciturn,human E1
+dutyFree-sweets,we have gingerbread and granola bars!,sameCategory,human E1
+bar-tea,"sorry, just iced coffee, would you like some water?",competitor,human E1
+gym-boxing,"Unfortunately we don't. However, we do offer kickboxing classes which focused on kicking and punching if you'd like to consider.",competitor,human E1
+books-fantasy,"Unfortunately we don't have them on shelf at the moment, however, I'd be happy to order some for you if you're interested.",other,human E1
+waterSport-muscle,"No, we don't at the moment. W",taciturn,human E1
+kidsActivities-sports,No. We have other interesting classes if you'd like to try.,other,human E1
+friendsActivities-videoEntertainment,"No I don't, but I have lots of movies at hand here",competitor,human E1
+petAdoption-hamster,"No, but we have ferrets and gerbils",sameCategory,human E1
+dutyFree-sweets,"No, we do not. But we have granola bars and gingerbread",sameCategory,human E1
+zoo-reptiles,"Yes, we can look at the reptile area",other,human E1
+zoo-reptiles,"no
+
+",taciturn,human E1
+petAdoption-hamster,"no 
+",taciturn,human E1
+friendsActivities-videoEntertainment,"no 
+",taciturn,human E1
+books-fantasy,"We don't have any in stock right now I'm afraid, but we do have this mystery novel that you might be interested in",competitor,human E1
+clothing-acc,"We don't right now, but if it's jewellery you're after then our necklace section is just over here",competitor,human E1
+electronics-console,"We don't, would you be interested in an Xbox?",competitor,human E1
+friendsActivities-videoEntertainment,I've got some movies lined up for us to check out,competitor,human E1
+bar-tea,"I'm sorry, we don't but we serve iced coffee",competitor,human E1
+dutyFree-sweets,We dell gingerbread or granola bars.,sameCategory,human E1
+gym-boxing,"No, sorry but we offer Karate or kickboxing classes.",sameCategory,human E1
+friendsActivities-videoEntertainment,"No, but I have movies lined up for us to choose from.",competitor,human E1
+touristInfo-clubbing,There is a club event but it is playing hip hop music should this be of interest to you.,competitor,human E1
+kidsActivities-sports,No not a gymnastics class but there is an acrobatics class which could be fun!  But also a karate class if you would like to try something new and active.,sameCategory,human E1
+bar-tea,No not today.  May I interest you in an iced coffee?,competitor,human E1
+interior-deco,I don't at the moment.  But if you would like an oil painting or perhaps some photographic prints I can help you out.,sameCategory,human E1
+friendsActivities-boardGames,Sure we have scrabble. Lets see who prefers to to Monopoly.,competitor,human E1
+dutyFree-smokes,"Sorry, but we are sold out of cigars at the moment. I can arrange for some to be available when we land tho if you tell me which ones you are interested in.",other,human E1
+gym-yoga,"I'm sorry we don't offer Yoga currently, but our pilates classes are very popular as it is seen as the next big thing. Are you interested in the social or technical aspects?",competitor,human E1
+kidsActivities-crafts,"I'm sorry but we don't have any kilns to give pottery classes at the moment. Have you tried all of watercolour painting, carpentry and acrobatics before and given up on them?",fullList,human E1
+clothing-clothes,"no sorry we do not have any
+",taciturn,human E1
+bookingAgency-lowClassAccommodation,No sorry but we have availibility at a budget hotel?,competitor,human E1
+touristInfo-childTheatre,No but there is a circus show happening if you are intrested?,competitor,human E1
+petAdoption-dogs,No sorry but we have golden retrievers if you would like to take a look?,competitor,human E1
+friendsActivities-boardGames,"I don't but we do have monopoly, would that be ok instead?",competitor,human E1
+dutyFree-smokes,WE don't sorry about that,taciturn,human E1
+cafe-pie,I  could offer you raspberry pie instead?,competitor,human E1
+kidsActivities-sports,"Unfortuantely not, however we have acrobatics, which is similar to gymnastics",competitor,human E1
+electronics-console,"No playstations sorry, we do have an Xbox which is similar",competitor,human E1
+waterSport-muscle,"Sorry we don't, we do however have kayaks or pedal boats if you would be interested in renting these",sameCategory,human E1
+gym-boxing,"No boxing, but we do offer kickboxing or karate",sameCategory,human E1
+bookingAgency-highClassAccommodation,"no, I'm sorry, that is not available, but we do have a four star hotel option open.",competitor,human E1
+bar-tea,"sorry, no. we only have soda, chardonnay, and iced coffee.",fullList,human E1
+electronics-console,"We don't, sorry, but we have a gameboy, macbook air, and an xbox if you'd be interested in looking at those.",fullList,human E1
+interior-deco,"I don't, but I do have an oil painting.",competitor,human E1
+waterSport-muscle,Sorry we dont but i can offer you a kayak which is very similar.,competitor,human E1
+interior-deco,I dont but would let you have a very nice oil painting now or perhaps paint you a watercolour in the next few weeks.,competitor,human E1
+kidsActivities-sports,there isn’t a gymnastics class as such but there is acrobatics and karate which are similar to gymnastics.,sameCategory,human E1
+gym-boxing,we offer kick-boxing classes but not boxing classes unfortunately,competitor,human E1
+zoo-reptiles,let’s see the other animals first and then we can find the chameleon,other,human E1
+electronics-console,we don’t unfortunately but we have an xbox and gameboy if that interests you?,sameCategory,human E1
+bookingAgency-highClassAccommodation,We have a luxurious apartment close to the city available or a suite in a 4 star hotel sir.,sameCategory,human E1
+bar-tea,"Unfortunately no we don't, but we do have iced coffee",competitor,human E1
+interior-deco,"I don't have anyy water colour paintings, but I do have an oil painting if you'd like to see it?",competitor,human E1
+waterSport-muscle,"We do rent out a range of different boats, we have Kayaks and pedal boats available to rent",sameCategory,human E1
+kidsActivities-crafts,"I'm sorry, there are no pottery classes. There's a carpentry workshop you could do instead?",sameCategory,human E1
+friendsActivities-boardGames,"Sorry, I haven't. I've got other games",other,human E1
+gym-yoga,No we don't but we do offer many other classes that might be of interest?,other,human E1
+cafe-pie,We don't but we do have a delicious raspberry pie,competitor,human E1
+interior-green,No sorry I don't have an aloe vera plant.,taciturn,human E1
+cafe-pie,No sorry we only have raspberry pie available.,competitor,human E1
+kidsActivities-crafts,No sadly there isn't a pottery class.,taciturn,human E1
+touristInfo-childTheatre,No unfortunately there isn't a theatre performance for children today.,taciturn,human E1
+bookingAgency-highClassAccommodation,"I’m sorry sir, we only have suits and apartments available at the moment.",sameCategory,human E1
+zoo-reptiles,I don’t think they have a chameleon but they’ve got lions! They’re much more exciting!,otherCategory,human E1
+petAdoption-hamster,"I’m sorry we don’t at the moment but, we do have gerbils. They’re similar but easier to look after.",competitor,human E1
+kidsActivities-sports,"No, but there's acrobatics",competitor,human E1
+zoo-reptiles,"There's no chameleons, let's see iguanas instead",competitor,human E1
+touristInfo-clubbing,No sorry,taciturn,human E1
+electronics-laptop,"no, unfortunatley we only have a Macbook Air in stock at the moment",competitor,human E1
+friendsActivities-boardGames,no I dont however I do have Monopoly and checkers if we feel like playing games,sameCategory,human E1
+waterSport-motor,"We do have a range of water ski equipment, but I will have to double check if we specifically have jet skis avaliable at the moment",other,human E1
+bar-whiteWine,sadly we have no sauvignon blanc in at the moment but we do offer a lovely chardonnay,competitor,human E1
+interior-green,"Unfortunately I don't have Aloe Vera, but I do have an agave plant you might like.",competitor,human E1
+books-romance,"We have books of French love letters, some of these may contain poems. you may find them interesting.",competitor,human E1
+bookingAgency-lowClassAccommodation,There is no youth hostel available today unfortauntely. You may find this bed-and-breakfast option suitable?,sameCategory,human E1
+touristInfo-childTheatre,"There is a circus show today which is suitable for children, but no theatre I'm afraid.",competitor,human E1
+touristInfo-childTheatre,No but there is a circus show?,competitor,human E1
+dutyFree-smokes,No but we sell cigarettes?,competitor,human E1
+bar-whiteWine,"Unfortunately not, but we do have Chardonnay?",competitor,human E1
+electronics-laptop,No but we do have a MacBook Air?,competitor,human E1
+books-fantasy,"Sorry we don't currently have any psychological thrillers in stock. If there is a specific book you have in mind I may be able to order one in for you. Alternatively, you may want to look at our range of mystery novels which might be similar to what you are looking for or feel free to peruse our range of adventure novels if you are looking for something different.",sameCategory,human E1
+gym-boxing,"We don't currently offer boxing classes, however we do offer kickboxing which is a striking sport that also includes kicks or karate for a more traditional martial art.",sameCategory,human E1
+clothing-acc,We don't currently have any earrings but we do have a selection of necklaces and sunglasses if you are looking for other accessories,sameCategory,human E1
+bookingAgency-highClassAccommodation,We do not have a five star hotel available for tomorrow night but there is a four star suite in a hotel nearby,competitor,human E1
+interior-deco,"No I don't, but I do have an oil painting",competitor,human E1
+gym-boxing,We do offer kickboxing classes here.,competitor,human E1
+electronics-console,"No we don't sorry, we do have an xbox though, would this be ok?",competitor,human E1
+petAdoption-dogs,"Currently no but we do have other dogs desperate for a new homme
+
+",other,human E1
+bookingAgency-lowClassAccommodation,Not that precise accommodation but we do have alternatives which are not too expensive,other,human E1
+interior-green,No but would you consider an agave?,competitor,human E1
+gym-yoga,We're hoping to start those soon. Have you heard of zumba?,sameCategory,human E1
+electronics-console,"Not currently I'm afraid, just Xbox and Gameboy.",sameCategory,human E1
+bookingAgency-highClassAccommodation,"No there isn't, sorry, but there is a suite in a four star hotel.",competitor,human E1
+gym-boxing,"Not at the moment, just kickboxing, pilates and karate.",fullList,human E1
+zoo-reptiles,Soon we can see something very like a chameleon,other,human E1
+cafe-pizza,"Yes, we have cheese pizza.",competitor,human E1
+dutyFree-sweets,"No, we only have gingerbread and granola bars.",sameCategory,human E1
+cafe-pizza,No we don't but you might like to try the cheese pizza?,competitor,human E1
+interior-deco,I don't have any at the moment but I do have some photographs or an oil painting if that would work?,sameCategory,human E1
+books-fantasy,no not here but can I recommend something else?,other,human E1
+zoo-reptiles,"I'm not sure if there are any. Should we walk around and see?
+",other,human E1
+bar-whiteWine,"No sorry, But the Chardonnay is very good",competitor,human E1
+electronics-laptop,We don't but have you considered a MacBook Air instead?,competitor,human E1
+touristInfo-childTheatre,Not a theatre performance but they will love the Circus which starts shortly,competitor,human E1
+petAdoption-dogs,"No, sorry. We do have some other dogs you may like to see",other,human E1
+kidsActivities-sports,"No there is a karate class, a watercolor painting class and an acrobatics class. You may enjoy acrobatics though it is pretty similar to gymnastics in many ways and you can learn some similar skills.",fullList,human E1
+electronics-console,"No we don't have any play stations. We have a Gameboy, an xbos and a mac book air.",fullList,human E1
+dutyFree-sweets,No we don't have cookies but we do have gingerbread or granola bars.,sameCategory,human E1
+waterSport-muscle,No we don't have canoes but we do have kayaks which are pretty similar although they are closed boat and have a slightly different padle,competitor,human E1
+cafe-pie,We have raspberry pie,competitor,human E1
+clothing-clothes,I'm sorry we do not have any Hawaiian shirts.,taciturn,human E1
+electronics-laptop,"We have a Macbook Air, will that interest you?",competitor,human E1
+kidsActivities-crafts,I'm sorry we don't have a pottery class.,taciturn,human E1
+zoo-reptiles,Maybe. I'm not sure if there is a chameleon or not. Let's double check the map.,other,human E1
+friendsActivities-videoEntertainment,"No, I don't but if you do then you can log in on my Xbox and we can watch a movie.",other,human E1
+kidsActivities-sports,"We don't have a gymnastics class, but we do have an acrobatics class. Would you like to sign up for that?",competitor,human E1
+gym-boxing,"No, but we do offer kickboxing classes. Would you be interested in signing up for the kickboxing classes?",competitor,human E1
+gym-yoga,I don't believe we do at this time.  Sorry.,taciturn,human E1
+friendsActivities-boardGames,That's a great game!  We might have it.  Let me go look.,other,human E1
+bookingAgency-lowClassAccommodation,It does not appear there is still vacancy for that.  I'm sorry.,taciturn,human E1
+petAdoption-dogs,Not at this time.  I'm sorry.,taciturn,human E1
+interior-deco,I don't have any watercolour paintings but I have some printed photographs or an oil painting if you'd like to look at those to see if they would suit?,sameCategory,human E1
+bookingAgency-highClassAccommodation,"There are no rooms in a five-star hotel available, but there is a suite in a four-star hotel available? Alternatively, there is a luxury apartment available if you need to be close to the city.",sameCategory,human E1
+cafe-pizza,We do have cheese pizza available.,competitor,human E1
+clothing-acc,"We do not have any earrings in stock at the moment. If you're interested in jewellery though, we do have some necklacke's.",competitor,human E1
+gym-boxing,"Not boxing, but we offer kickboxing, pliates and karate classes which might be worthwhile checking out",fullList,human E1
+zoo-reptiles,"The chameleon is hiding, let's go and see if he is in with the iguanas",competitor,human E1
+bar-tea,"Sorry no iced tea, but our iced coffee is really popular",competitor,human E1
+clothing-acc,Not at the moment. We are expecting a delivery later this week. Is there anything in oarticular you are looking for,other,human E1
+bookingAgency-highClassAccommodation,"No sorry, but we do have an up market apartment, a suite in a 4 star hotel or a room in a lower end b and b",fullList,human E1
+clothing-acc,"No sorry we sold the last ones this morning, they will be in stock next Tuesday",other,human E1
+touristInfo-clubbing,Well do you class a club event with a hip hop DJ as electronic?,competitor,human E1
+books-fantasy,Well not really but we do have adventure or mystery,sameCategory,human E1
+cafe-pie,Unfortunately we don't have raspberry cake but we have raspberry pie if you are interested to try.,competitor,human E1
+bar-whiteWine,Apologies we don't have Sauvignon Blanc but if you like a glass of white wine we have Chardonnay in our bar.,competitor,human E1
+petAdoption-dogs,"Sorry we don't have any Dalmations in the rescue centre. We only have Chihuahuas, gerbils and golden retrievers. Would you like to have a look",fullList,human E1
+touristInfo-childTheatre,Sorry no theater performance for children today. There is a circus show if you are interested,competitor,human E1
+electronics-console,"No, sorry.",taciturn,human E1
+bar-tea,"No, sorry.",taciturn,human E1
+books-fantasy,"Not at the moment, can i help you find something else?",other,human E1
+books-romance,Yes i do. I have books of French love letters written in poems,competitor,human E1
+dutyFree-smokes,"Yes, i sell Cigarettes",competitor,human E1
+friendsActivities-boardGames,"No, I wish i do but i have prepared some nice movies, monopoly and checkers",fullList,human E1
+bar-whiteWine,"Sorry Madam. We do not serve Sauvignon Blanc in our hotel. Here are a list of drinks we have available Chardonnay, craft beer and iced coffee",fullList,human E1
+friendsActivities-boardGames,"No, i have Monopoly though",competitor,human E1
+bar-whiteWine,"No, our wine choice is Chardonnay",competitor,human E1
+petAdoption-dogs,No we don't have any Dalmatians at the moment. We currently have Chihuahuas and Retreiver dogs,sameCategory,human E1
+kidsActivities-crafts,"No pottery, but you can do carpentry or watercolor painting.",sameCategory,human E1
+dutyFree-sweets,No we don't sell cookies.,taciturn,human E1
+petAdoption-hamster,No we don't have any hamsters but we have other small animals.,other,human E1
+bar-tea,No we have iced coffee though.,competitor,human E1
+gym-boxing,No we have kickboxing classes only.,competitor,human E1
+dutyFree-sweets,No sorry we don't,taciturn,human E1
+electronics-console,No sorry,taciturn,human E1
+zoo-reptiles,No the zoo doesn't have any of those but they have lions,otherCategory,human E1
+kidsActivities-sports,No we don't have gymnastics classes but have karate classes if that interests you,sameCategory,human E1
+petAdoption-dogs,I’m sorry.  We do not have any Dalmatians right now.,taciturn,human E1
+dutyFree-smokes,"Unfortunately, we do not sell cigars, but we do have cigarettes for sale.",competitor,human E1
+interior-green,"I do not have an aloe vera plant right now, but I do have an agave plant. Would you be interested in that instead?",competitor,human E1
+bar-whiteWine,I’m sorry.  The only wine was have right now is Chardonnay.  Would you like a glass of that?,competitor,human E1
+bookingAgency-lowClassAccommodation,No but we do have a cheap bed and breakfast available,competitor,human E1
+zoo-xl,I'm not sure if they have tigers,other,human E1
+bar-whiteWine,Il see if there is any in the back,other,human E1
+gym-yoga,No but we do have zumba classes,sameCategory,human E1
+bar-tea,"we dont im afraid we have soda, iced coffee and chardonnay only.",fullList,human E1
+books-fantasy,we do not no,taciturn,human E1
+touristInfo-clubbing,"there isnt no, not today",taciturn,human E1
+zoo-reptiles,"no we cant we can go see the turtles, lion or iguanas if you like",fullList,human E1
+bar-whiteWine,We serve Chardonnay if that is any good to you.,competitor,human E1
+waterSport-motor,We rent water ski equipment,competitor,human E1
+dutyFree-smokes,"We dont, we do have cigarettes for sale.",competitor,human E1
+kidsActivities-crafts,There isnt but we do have a watercolor painting class and a carpentry workshop.,sameCategory,human E1
+waterSport-muscle,We rent kayaks or pedal boats instead of canoes,sameCategory,human E1
+dutyFree-sweets,I can offer you gingerbread or granola bars,sameCategory,human E1
+friendsActivities-videoEntertainment,I have some movies prepared or we could play some games,other,human E1
+petAdoption-hamster,We do not have hamsters but we have gerbils,competitor,human E1
+gym-yoga,No we don't offer Yoga Classes,taciturn,human E1
+kidsActivities-crafts,No we don't offer Pottery classes,taciturn,human E1
+waterSport-motor,No we don't offer jet skis,taciturn,human E1
+cafe-pizza,I’m sorry today we’re not serving veggie pizza.,taciturn,human E1
+gym-boxing,"Sorry, we do not offer boxing classes. We do, however offer kickboxing classes.",competitor,human E1
+petAdoption-hamster,"I’m sorry we do not currently have hamsters. The adoption center currently has gerbils, ferrets, and golden retrievers.",fullList,human E1
+bar-whiteWine,"No madam but I have a delicious Chardonnay that would brighten anyone's day , would you care to sample some?",competitor,human E1
+petAdoption-dogs,I'm afraid not but we do have the cutest golden retriever that is looking for a loving home would you like to meet him?,competitor,human E1
+friendsActivities-boardGames,Yes but it has letters missing so we'll have to stick to these two games or watch a movie.,other,human E1
+books-romance,"Unfortunately not but just in is this very well known book of French love letters and at a very reasonable price , we also have some great historical dramas if you enjoy that sort of thing?",sameCategory,human E1
+zoo-xl,"We will but let's look at other animals first
+",other,human E1
+gym-yoga,Sorry we do have Zumba classes though,sameCategory,human E1
+books-romance,Wait and I will have a look.,other,human E1
+electronics-laptop,I do have a macbook.,competitor,human E1
+bookingAgency-lowClassAccommodation,"Sorry, we don't have that just now, but we have a room in a bed and breakfast and a room in a budget hotel if you are interested.",sameCategory,human E1
+friendsActivities-boardGames,"No I don't, but I have monopoly.",competitor,human E1
+gym-boxing,"Yes, we do offer kickboxing classes. Would you be interested in learning more about these?",competitor,human E1
+bar-tea,"No, sorry. We can offer you iced coffee or a soda instead if you want",sameCategory,human E1
+touristInfo-clubbing,"Not with electronic music, but there is a club event with a hip hop DJ",competitor,human E1
+interior-deco,Not watercolour but I do have an oil painting if that interests you,competitor,human E1
+books-fantasy,I have some mystery novels which I think you will love.,competitor,human E1
+gym-boxing,No….but we have some great kickboxing classes that I think you will love.,competitor,human E1
+bar-tea,No…..but I have some iced coffee which is the best in town….you will love it.,competitor,human E1
+waterSport-muscle,We rent kayaks which I am sure you will be happy with.,competitor,human E1
+gym-boxing,"No, I'm sorry. We do not offer boxing classes at this time.",taciturn,human E1
+zoo-reptiles,I don't believe they have chameleons at this zoo.  But they have other reptiles we can look at.,other,human E1
+kidsActivities-sports,"No, but we have acrobatics or karate class. Do either of those sound good to you?
+",sameCategory,human E1
+petAdoption-hamster,"No, we have gerbils though which are similar to hamsters.",competitor,human E1
+clothing-clothes,Unfortunately no but we have some sweatshirts you may like,sameCategory,human E1
+bar-whiteWine,No but i hVe a fantastic chardonnay,competitor,human E1
+gym-yoga,No but pilates may interest you,competitor,human E1
+friendsActivities-boardGames,Im afraid not,taciturn,human E1
+kidsActivities-sports,"I'm sorry there isn't, but let me show you what we do have available",other,human E1
+clothing-acc,"I'm sorry we don't, we do have necklaces though if you're interested?",competitor,human E1
+interior-deco,"I'm sorry I don't, but i do have an oil painting",competitor,human E1
+friendsActivities-videoEntertainment,No but I do have some movies,competitor,human E1
+bookingAgency-lowClassAccommodation,"No, but there is a room in a cheap bed-and-breakfast, a suite in a 4-star hotel, and a room in a budget hotel.",fullList,human E1
+books-romance,"No, but we have books of French love letters!",competitor,human E1
+waterSport-motor,"No we only rent rubber dinghies, kayaks, and water ski equipment.",fullList,human E1
+friendsActivities-boardGames,"No, but I have Monopoly, checkers, and some movies!",fullList,human E1
+bookingAgency-lowClassAccommodation,"No, the only options we have are a room in a budget hotel, a suite in a four-star hotel, and a roon in a cheap bed-and-breakfast.",fullList,human E1
+books-romance,"No, but we do have a book on French love letters.
+",competitor,human E1
+dutyFree-smokes,Unfortunately not but we do sell cigarettes.,competitor,human E1
+touristInfo-clubbing,"There is a club event today with a hip hop DJ, not electronic music I'm afraid.",competitor,human E1
+cafe-pizza,"I'm afraid we only have cheese pizza and pepperoni pizza, not veggie pizzas here. However, we also have raspberry pie if that interests you?",fullList,human E1
+electronics-console,"Unfortunately we do not have any PlayStations here. We currently have Xbox and Gameboys in terms of consoles. Or if you prefer to game on a laptop, we have MacBook Airs also available.",fullList,human E1
+books-fantasy,"Sadly not, we do have an excellent selection of mystery novels available though - would that interest you?",competitor,human E1
+interior-green,"Unfortunately, I don't at the moment. I only have tulips, an agave plant and an oil painting. It might be possible to get you some if I'm given some time to work on it.",fullList,human E1
+electronics-laptop,"Sorry no, we don't. we only have a MacBook Air",competitor,human E1
+clothing-clothes,no sorry. we are currently out of shirts.,taciturn,human E1
+petAdoption-dogs,sorry we don't at the moment,taciturn,human E1
+dutyFree-smokes,We currently do not have cigars.,taciturn,human E1
+cafe-pie,We currently do not have raspberry cake but we do have raspberry pie.,competitor,human E1
+interior-green,I have several other plants but do not currently have an aloe vera plant.,other,human E1
+touristInfo-childTheatre,There’s not a theater performance scheduled but there are several other featured events.,other,human E1
+gym-boxing,"Hello, Sir . Well we currently do not do boxing, classes; however , we do offer kickboxing and karate classes  , if that might interest you ?",sameCategory,human E1
+cafe-pizza,"Hi . When you say veggie pizza , can that be a cheese pizza ? As we have that which has no meat! We do have a scrummy raspberry pie too if that might take your fancy . But I’m afraid we don’t specifically have a veggie pizza on offer today .",other,human E1
+friendsActivities-videoEntertainment,"Oh no don’t have Netflix . We have something much better than that …  a selection of films to hand without scrolling through a subscription site . We have board games like Monopoly and computer games, so who needs Netflix",other,human E1
+touristInfo-clubbing,"Hello there . What we have today is a hip hop DJ which might interest you ? There is also some live jazz music which I must say is highly recommended . But, alas, no electronic music as such",sameCategory,human E1
+zoo-reptiles,there are none,taciturn,human E1
+bookingAgency-highClassAccommodation,"no there is not
+",taciturn,human E1
+touristInfo-clubbing,no but there is with a hip hop DJ,competitor,human E1
+bar-tea,no but we have iced coffee,competitor,human E1
+books-romance,We don’t have a love poem but we do have a book of French love letters if that’s any use to you?,competitor,human E1
+zoo-xl,Shall we go and look at the lion? That’s the closest thing to a tiger they have here today.,competitor,human E1
+friendsActivities-boardGames,No scrabble but lots of other things; do you want to choose one of these instead?,other,human E1
+touristInfo-childTheatre,We have a circus show that would be suitable for children.,competitor,human E1
+waterSport-motor,Unfortunately we do not,taciturn,human E1
+clothing-clothes,We do not,taciturn,human E1
+interior-green,I dont but I may next year,other,human E1
+kidsActivities-crafts,There isn't but I bet you would love the painting class!,competitor,human E1
+dutyFree-sweets,"I'm sorry, no, we don't have cookies, but I can offer you gingerbread or a granola bar if you would like something sweet.",sameCategory,human E1
+electronics-console,"I'm sorry, no, we don't have one in stock at the moment. Are you interested in an Xbox?",competitor,human E1
+petAdoption-hamster,"I'm sorry, no, we don't have any at the moment. Would you consider a gerbil?",competitor,human E1
+bar-tea,"I'm sorry, no, we have iced coffee but no iced tea.",competitor,human E1
+gym-boxing,"No, but we offer kickboxing lessons.",competitor,human E1
+touristInfo-clubbing,There is a club event with a hip hop DJ.,competitor,human E1
+kidsActivities-sports,"No, but there is an acrobatics class.",competitor,human E1
+bookingAgency-highClassAccommodation,"No, but there is a suite at a four-star hotel or a room at a cheap bed and breakfast.",other,human E1
+gym-yoga,No we don't but we do have other classes similar like zumba and plates classes,sameCategory,human E1
+interior-green,No but we have an agave plant,competitor,human E1
+bar-whiteWine,No but we have chardonnay,competitor,human E1
+clothing-clothes,"No we don't sorry, we do have sweatshirts though",sameCategory,human E1
+interior-deco,No but I do have some printed photographs and an oil painting,sameCategory,human E1
+dutyFree-sweets,No but I do have gringerbread and granola bars if you would like,sameCategory,human E1
+books-fantasy,Sorry no but I do have some mystery novels if they would be any good,competitor,human E1
+cafe-pizza,the only pizza I have is a cheese pizza if that would do,competitor,human E1
+petAdoption-hamster,"I personally don't, but it's has been tempting!",other,human E1
+books-fantasy,"You may find our mystery novels to be your liking, but, if not, I do have a few recommendations you may find elsewhere.",competitor,human E1
+gym-boxing,"Unfortunately not, but, may I interest you in some of our top of the range kickboxing classes? You may find that it gives you the adrenaline rush - and fitness regime - that you're looking for.",competitor,human E1
+waterSport-muscle,"Canoes? We don't offer any I'm afraid, but we do offer pedal boats and kayaks, that may be of interest to yourself.",sameCategory,human E1
+interior-deco,"No, i have an oil painting though",competitor,human E1
+electronics-console,"No, sorry, we have other consoles though",other,human E1
+touristInfo-clubbing,"no, there is a hip-hop dj though",competitor,human E1
+petAdoption-hamster,"No, we have gerbils",competitor,human E1
+waterSport-muscle,"No, but we do rent out pedal boats, water ski equipment and kayaks.",fullList,human E1
+bookingAgency-highClassAccommodation,Unfortunatly we don't but I can offer you a suite in a 4 star hotel.,competitor,human E1
+zoo-reptiles,Well we can go the the iguanas and ask the people who look after them if we can see the chameleon.,competitor,human E1
+petAdoption-hamster,"No we don't. If you are interested in finding out more info of any of our other animals, just ask.",other,human E1

@@ -1,0 +1,25 @@
+category,prop,prompt
+competitor,0.47413793103448276,one-shot QA
+other,0.02586206896551724,one-shot QA
+fullList,0.20689655172413793,one-shot QA
+sameCategory,0.29310344827586204,one-shot QA
+competitor,0.5348837209302325,one-shot CoT
+sameCategory,0.24806201550387597,one-shot CoT
+fullList,0.20930232558139536,one-shot CoT
+other,0.007751937984496124,one-shot CoT
+competitor,0.1732283464566929,zero-shot
+fullList,0.5748031496062992,zero-shot
+sameCategory,0.14960629921259844,zero-shot
+other,0.09448818897637795,zero-shot
+otherCategory,0.007874015748031496,zero-shot
+competitor,0.30952380952380953,one-shot Explanation
+sameCategory,0.13095238095238096,one-shot Explanation
+other,0.05952380952380952,one-shot Explanation
+fullList,0.4880952380952381,one-shot Explanation
+otherCategory,0.011904761904761904,one-shot Explanation
+taciturn,0.17845117845117844,human E1
+competitor,0.45791245791245794,human E1
+sameCategory,0.15824915824915825,human E1
+other,0.11447811447811448,human E1
+fullList,0.08754208754208755,human E1
+otherCategory,0.003367003367003367,human E1
