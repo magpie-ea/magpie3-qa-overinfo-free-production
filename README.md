@@ -70,7 +70,7 @@ This directory contains results of querying the various neural models on both ex
 
 ### `data+analysis`
 
-Files contained directly in this top level directory are pilot experimental results, including from pilot prior elicitation results. There are .md files and directories for all .Rmd files which were knitted.
+Files contained directly in this top level directory are pilot experimental results, including from pilot prior elicitation results. There are .md files and directories for all .Rmd files which were knitted. It is recommended to use the files in the `cogsci` subdirectory which contain selected final analyses only.
 
 * `01_main_free_typing_analysis.Rmd`: free production E1 pilot analysis
 * `02_main_prior_elicitation_analysis.Rmd`: analysis of prior elicitation experiment ("conditional likability rating") pilot 1 for E1.

@@ -1,0 +1,202 @@
+---
+title: "QA E2 analysis"
+author: "anonymous"
+date: '2000-01-01'
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tidyboot)
+library(brms)
+library(tidybayes)
+```
+
+```{r, include=FALSE}
+# these options help Stan run faster
+options(mc.cores = parallel::detectCores())
+```
+
+## Intro
+
+The vignettes presented pairs of different contexts. However, the list of alternatives was the same for both contexts. The hypothesis is that the suggested competitors will differ across contexts.
+
+The responses were manually classified into the following categories: 
+
+* competitor: responses mentioning the anticipated competitor only (vary across contexts, sometimes several options were categorized as competitors)
+* mostSimilar: one of the sameCategory alternatives is an items that can be considered most similar to the target _out of context_ (i.e., same for both contexts), so this category comprises responses offering that alternative
+* sameCategory: responses offering both same category alternatives or offering the option which we did not consider the direct competitor (options categorised as competitors in one context usually are sameCategory items in the second context)
+* otherCategory: responses offering the alternative from the different category (distractors; usually same in both contexts. In some vignettes, there are two, in some there is only one other category alternative)
+* fullList: responses where all alternatives were listed (also in two sentences, where one offered the competitor only etc)
+* taciturn: responses not offering any alternative options or further alternative solutions
+* other: responses where a same category + other category response are mixed, uncertain answers, unclassifiable responses, responses offering further teps towards solving the problem, responses using basic level categories (e.g., "dogs" instead of offering specific alternatives)
+* yes responses (excluded from analyses when not mentioning one of the alternatives)
+
+
+In the experiment, each subject saw *four main trials* and *one attention checking trial*. Participants failing attention checks were excluded from analysis. 
+
+## Summary and exclusions
+
+```{r, include=FALSE, warning=FALSE, message=FALSE}
+answerOrder <- c( 'competitor', 'mostSimilar', 'sameCategory', 'otherCategory', 'fullList', 'taciturn', 'other')
+answerOrder_rev <- c('other', 'taciturn', 'fullList',  'otherCategory', 'sameCategory', 'mostSimilar','competitor')
+
+df_clean_main <- read_csv("../data/results_e2_human_category_raw.csv")
+e2_vignettes <- read_csv("../data/e2_vignettes.csv") 
+e2_items_cats <- read_csv("../data/e2_ItemCategorization.csv")
+
+head(df_clean_main)
+cat("Number of recruited subjects: ", df_clean_main %>% pull(submission_id) %>% unique() %>% length())
+```
+
+
+```{r, echo=FALSE}
+cat("\nNumber of analysed responses: ", nrow(df_clean_main))
+
+df_clean_main %>% count(category)
+
+df_clean_main %>% count(itemName) 
+
+cat("\naverage number of responses per vignette:", mean(df_clean_main %>% count(itemName) %>% pull(n)))
+
+cat("\nvignette with most responses: ", df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$n)
+cat("\nvignette with least responses: ", df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$n)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+df_clean_main %>% count(itemName) %>% pull(n) %>% mean()
+e2_wVignette <- left_join(df_clean_main, e2_vignettes, by = c("itemName", "settingName")) 
+
+e2_summary <- df_clean_main %>% ungroup() %>% group_by(category) %>% 
+  mutate(responseCategory_count = n(),
+         responseCategory_proportion = responseCategory_count / nrow(df_clean_main)
+         ) %>% ungroup() %>%
+  select(category, responseCategory_proportion) %>% unique() 
+
+e2_wVignette_raw <- e2_wVignette %>% filter((response_option != "yes") & (response_option != "no") & (response_option != "other")) %>%
+  group_by(context_nr) %>%
+  mutate(context_count = n()) %>% ungroup() %>%
+  separate_rows(response_option, sep=",") %>%
+  mutate(response_option = gsub(" ", "", response_option)) %>%
+  left_join(., e2_items_cats, by = c("settingName", "response_option"))
+
+e2_byContext_summary <- e2_wVignette_raw %>% select(itemName, context_nr, global_category, submission_id, context_count) %>% 
+  arrange(submission_id) %>% 
+  group_by(context_nr, global_category) %>% summarize(x = n() / context_count) %>% unique() %>%
+  pivot_wider(values_from = "x", names_from = "context_nr") %>% mutate(prompt = "human E2")
+
+```
+
+Below, the response type patterns are reported. The types are classified akin to Experiment 1, with the addition of the mostSimilar category.
+First, the response category distribution across vignettes is reported.
+```{r}
+e2_summary %>% 
+  mutate(category = factor(category, levels = answerOrder_rev,
+                           labels = c("other", "no option", "all options", "unrelated option\n(carpet)","similar option\n(pillow)", "related option\n(bubble wrap)", "competitor\n(sleeping bag)")
+                           )) %>%
+  ggplot(., aes(x = category, y = responseCategory_proportion, fill = category)) +
+  geom_col(color = "#575463", fill = "#FFFFFF") +
+  theme_csp() +
+  theme(legend.position = "none", plot.title = element_text(hjust = 0.5)) +
+  #theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Proportion of answer type") +
+  xlab("") +
+  labs(fill = "Answer type") + coord_flip() +
+  ggtitle("Do you have a blanket?")
+  
+```
+
+Below, context 1 vs context 2 are compared in terms of numbers of mentions of the different option types in the respective context (comp_c1, comp_c2, mostSimilar, otherCategory; mostSimilar and otherCategory match for both contexts ). The mapping of alternatives to these option types depending on context can be found in the data folder. To this end, the responses which do not mention any alternatives are excluded (i.e., other, yes, and no are excluded).
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+e2_byContext_summary %>%
+  mutate(global_category = factor(global_category, levels = c("otherCategory", "mostSimilar", "competitor_c2", "competitor_c1"), 
+                                  labels = c("unrelated option (carpet)", "similar option (pillow)", "context 2 competitor (bubble wrap)", "context 1 competitor (sleeping bag)"))) %>%
+  ggplot(., aes(fill = global_category, x = global_category)) +
+  geom_col(aes(y = context1)) +
+  geom_col(aes(y = -context2)) +
+  scale_fill_manual(values = c("#E2BA78", "#99C2C2", "#C65353", "#7581B3")) +
+  theme(legend.position = "none", axis.text.y = element_text(size = 14), axis.text.x = element_text(size = 14)) + # , axis.ticks.y = element_blank(), 
+  scale_y_continuous( limits = c(-1, 1), breaks = c(-1, -0.5, 0, 0.5, 1), labels = c("1", "0.5", "0", "0.5", "1")) +
+  geom_hline(yintercept = 0, color = "white", size = 1) +
+  coord_flip() +
+  ylab("context 2 <--> context 1") +
+  xlab("Alternative category")
+
+```
+
+## Stats
+
+```{r}
+multinomial_context_brm <- brm(
+  global_category ~ 1 + context_nr + (1|settingName),
+  data =  e2_wVignette_raw,
+  family = "categorical",
+  iter = 3000,
+  control = list(adapt_delta=0.96),
+  cores = 4
+)
+summary(multinomial_context_brm)
+```
+
+```{r}
+multinom_context_posteriors <- multinomial_context_brm %>% spread_draws(b_mucompetitorc2_Intercept, b_mumostSimilar_Intercept, b_muotherCategory_Intercept, b_mucompetitorc2_context_nrcontext2, b_mumostSimilar_context_nrcontext2, b_muotherCategory_context_nrcontext2) %>%
+  mutate(
+    comp_c2 = b_mucompetitorc2_context_nrcontext2 - b_mucompetitorc2_Intercept,
+    most_similar = b_mumostSimilar_context_nrcontext2 - b_mumostSimilar_Intercept,
+    other_cat =  b_muotherCategory_context_nrcontext2 - b_muotherCategory_Intercept,
+    comp_c1 = (exp(b_mucompetitorc2_context_nrcontext2) + exp(b_mumostSimilar_context_nrcontext2) + exp(b_muotherCategory_context_nrcontext2)) - (exp(b_mucompetitorc2_Intercept) + exp(b_mumostSimilar_Intercept) + exp(b_muotherCategory_Intercept))
+  )
+
+multinom_context_posteriors %>% select(comp_c2, most_similar, other_cat, comp_c1) %>%
+  gather(key, val) %>%
+  group_by(key) %>%
+  summarize(
+    '|95%' = quantile(val, probs = c(0.025, 0.975))[[1]],
+    'mean'  = mean(val),
+    '95%|' = quantile(val, probs = c(0.025, 0.975))[[2]],
+    prob_gt_0 = mean(val > 0)*100,
+    prob_lt_0 = mean(val < 0)*100
+  ) -> multinom_context_posteriors_summary
+
+```
+
+```{r}
+multinomial_e2_brm <- brm(
+  category ~ 1,
+  data =  df_clean_main,
+  family = "categorical",
+  iter = 3000,
+  control = list(adapt_delta=0.9),
+  cores = 4
+)
+summary(multinomial_e2_brm)
+```
+
+```{r}
+multinom_e2_posteriors <- multinomial_e2_brm %>% spread_draws(b_musameCategory_Intercept, b_muotherCategory_Intercept, b_mufullList_Intercept, b_mumostSimilar_Intercept, b_mutaciturn_Intercept) %>%
+  mutate(
+    sameCategory_vs_fullList = b_musameCategory_Intercept - b_mufullList_Intercept,
+    sameCategory_vs_otherCategory = b_musameCategory_Intercept - b_muotherCategory_Intercept,
+    sameCategory_vs_mostSimilar = b_musameCategory_Intercept - b_mumostSimilar_Intercept,
+    sameCategory_vs_taciturn = b_musameCategory_Intercept - b_mutaciturn_Intercept
+  )
+
+multinom_e2_posteriors %>% select(sameCategory_vs_fullList, sameCategory_vs_otherCategory, sameCategory_vs_mostSimilar, sameCategory_vs_taciturn) %>%
+  gather(key, val) %>%
+  group_by(key) %>%
+  summarize(
+    '|95%' = quantile(val, probs = c(0.025, 0.975))[[1]],
+    'mean'  = mean(val),
+    '95%|' = quantile(val, probs = c(0.025, 0.975))[[2]],
+    prob_gt_0 = mean(val > 0)*100,
+    prob_lt_0 = mean(val < 0)*100
+  ) -> multinom_e2_posteriors_summary
+
+multinom_e2_posteriors_summary
+```

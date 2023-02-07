@@ -1,0 +1,174 @@
+---
+title: "QA E1 analysis"
+author: "anonymous"
+date: '2000-01-01'
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tidyboot)
+library(brms)
+library(tidybayes)
+```
+
+```{r, include=FALSE}
+# these options help Stan run faster
+options(mc.cores = parallel::detectCores())
+```
+
+## Intro
+
+Below, the analysis of the free production experiment 1 data can be found. In this experiment, the context is relatively uninformative regarding the goal of the questioner with respect to the target. The respondents may infer the questioners' goal based on the question itself.
+
+The responses were manually classified into the following categories: 
+
+* competitor: responses mentioning the anticipated competitor only
+* sameCategory: responses offering both same category alternatives or offering the option which we did not consider the direct competitor 
+* otherCategory: responses offering the alternative from the different category
+* fullList: responses where all alternatives were listed (also in two sentences, where one offered the competitor only)
+* taciturn: responses not offering any alternative options or further alternative solutions
+* other: responses where a same category + other category response are mixed, uncertain answers, unclassifiable responses, responses offering further teps towards solving the problem, responses using basic level categories (e.g., "dogs" instead of offering specific alternatives)
+* yes responses (excluded from analyses when not mentioning one of the alternatives)
+
+
+In the experiment, each subject saw *four main trials* and *one attention checking trial*. Participants failing attention checks were excluded from analysis. 
+
+## Summary and exclusions
+
+```{r, include=FALSE, warning=FALSE, message=FALSE}
+answerOrder <- c( 'competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn')
+answerOrder_rev <- c('taciturn','other', 'fullList', 'otherCategory', 'sameCategory', 'competitor')
+
+df_clean_main <- read_csv("../data/results_QA_e1_cleaned.csv") %>% 
+  mutate(answerType = factor(category, levels = answerOrder))
+head(df_clean_main)
+cat("Number of recruited subjects: ", df_clean_main %>% pull(submission_id) %>% unique() %>% length())
+```
+
+
+```{r, echo=FALSE}
+cat("\nNumber of analysed responses: ", nrow(df_clean_main))
+
+df_clean_main %>% count(category)
+
+df_clean_main %>% count(itemName) 
+
+cat("\naverage number of responses per vignette:", mean(df_clean_main %>% count(itemName) %>% pull(n)))
+
+cat("\nvignette with most responses: ", df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(desc(n)) %>% .[1,] %>% .$n)
+cat("\nvignette with least responses: ", df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$itemName, df_clean_main %>% count(itemName) %>% arrange(n) %>% .[1,] %>% .$n)
+```
+
+Below, the response type patterns are reported.
+
+## Plots
+
+
+The plot below shows response proportions by response category averaged across vignettes. 
+
+```{r, echo=FALSE, fig.height=6, fig.width=8}
+# plot answerTypes proportions
+df_answerOptions_global_summary <- df_clean_main  %>%
+  group_by(answerType) %>% 
+  summarise(answerType_count = n(), 
+            answerType_proportion = answerType_count / nrow(df_clean_main)
+            )
+
+cat("Global response proportions: ")
+df_answerOptions_global_summary
+
+df_answerOptions_global_summary %>%
+  mutate(answerType = factor(answerType, levels = answerOrder_rev, labels = c("no option", "other", "all options", "unrelated option\n(Chardonnay)", "similar option\n(soda)", "competitor\n(iced coffee)"))) %>%
+  ggplot(aes(x = answerType, y = answerType_proportion)) +
+  geom_col(color = "#575463", fill = "#FFFFFF") +
+  theme_csp() +
+  theme(legend.position = "none", plot.title = element_text(hjust = 0.5)) +
+  #theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Proportion of answer type") +
+  xlab("") +
+  labs(fill = "Answer type") + coord_flip() +
+  ggtitle("Do you have iced tea?")
+
+```
+
+
+## Exploratory stats
+
+Below some exploratory statistical analyses are computed. The analyses investigate whether: 
+
+1. the competitor is the prevalent category  
+2. competitor is more prevalent than otherCategory
+3. competitor is more prevalent than fullList
+4. sameCategory is more prevalent than otherCategory
+5. sameCategory is more prevalent than fullList
+
+Check if the proportions of other response categories are credibly different from the competitor responses (competitor is coded as reference level in the dummy coding of the response categories). All intercepts are credible (all proportions are credibly smaller). That is, hypotheses 1-3 are supported by the data.
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+contrasts(df_clean_main$answerType)
+
+# multinomial regression with intercept only
+multinom_brm <- brm(answerType ~ 1, 
+    data = df_clean_main, 
+    family = "categorical",
+    iter = 3000
+    )
+summary(multinom_brm)
+```
+
+Check if the number of sameCategory responses is larger than the number of fullList / otherCategory responses. Both estimates are credible, so hypotheses 4-5 are supported by the data, as well.
+```{r}
+multinom_posteriors <- multinom_brm %>% spread_draws(b_musameCategory_Intercept, b_muotherCategory_Intercept, b_mufullList_Intercept) %>%
+  mutate(
+    sameCategory_vs_fullList = b_musameCategory_Intercept - b_mufullList_Intercept,
+    sameCategory_vs_otherCategory = b_musameCategory_Intercept - b_muotherCategory_Intercept
+  )
+
+multinom_posteriors %>% select(sameCategory_vs_fullList, sameCategory_vs_otherCategory) %>%
+  gather(key, val) %>%
+  group_by(key) %>%
+  summarize(
+    '|95%' = quantile(val, probs = c(0.025, 0.975))[[1]],
+    'mean'  = mean(val),
+    '95%|' = quantile(val, probs = c(0.025, 0.975))[[2]],
+    prob_gt_0 = mean(val > 0)*100,
+    prob_lt_0 = mean(val < 0)*100
+  ) -> multinom_posteriors_summary
+
+multinom_posteriors_summary
+```
+
+Additionally, we fit a model regressing the response type against an intercept, treating all response types as one vs taciturn responses, in order to check that generally, participants are less likely to produce taciturn responses than anything else. The same analysis is conducted for full list vs everything else. 
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+df_clean_main_binary <- df_clean_main %>% mutate(
+  answerType_taciturn = ifelse(answerType == "taciturn", "taciturn", "all"),
+  answerType_taciturn = factor(answerType_taciturn),
+  answerType_fullList = ifelse(answerType == "fullList", "fullList", "all"),
+  answerType_fullList = factor(answerType_fullList)
+)
+contrasts(df_clean_main_binary$answerType_taciturn)
+contrasts(df_clean_main_binary$answerType_fullList)
+
+# multinomial regression with intercept only
+taciturn_brm <- brm(answerType_taciturn ~ 1, 
+    data = df_clean_main_binary, 
+    family = "categorical",
+    iter = 3000
+    )
+summary(taciturn_brm)
+```
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+fullList_brm <- brm(answerType_fullList ~ 1, 
+    data = df_clean_main_binary, 
+    family = "categorical",
+    iter = 3000
+    )
+summary(fullList_brm)
+```

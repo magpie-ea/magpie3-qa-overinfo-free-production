@@ -1,0 +1,272 @@
+---
+title: "QA free typing analysis"
+author: "Polina Tsvilodub"
+date: '2023-01-02'
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tidyboot)
+library(brms)
+library(tidybayes)
+library(ggpattern)
+```
+
+```{r, include=FALSE}
+# these options help Stan run faster
+options(mc.cores = parallel::detectCores())
+```
+
+
+## Load processed experimental results and neural model data, display descriptions
+
+
+```{r, include=FALSE, warning=FALSE, message=FALSE}
+answerOrder <- c( 'competitor', 'sameCategory', 'otherCategory', 'fullList', 'taciturn', 'other')
+
+e1_humans <- read_csv("../data/results_QA_e1_cleaned.csv") %>% select(category, answer, itemName) %>%
+  mutate(prompt = "human E1") %>% rename("predictions" = "answer")
+
+e2_humans <- read_csv("../data/e2_human_summary_wide.csv") %>% 
+  mutate(prompt = "human E2")
+e2_human_byCategory <- read_csv("../data/results_e2_human_category_raw.csv")
+e2_items_cats <- read_csv("../data/e2_ItemCategorization.csv") 
+e2_vignettes <-  read_csv("../data/e2_vignettes.csv")
+
+
+nm_samples_categorized_e1 <- read_csv("../supplementary_materials/QA_neural_models_categorized_samples_E1.csv") 
+nm_samples_categorized_e2 <- read_csv("../supplementary_materials/QA_neural_models_categorized_samples_E2.csv")
+
+e1_samples_global <- nm_samples_categorized_e1 %>%
+  select(-probs, -is_few_shot, -dataset, -model_type) %>%
+  rename("prompt" = "model_name") %>%
+  rbind(., e1_humans)
+
+e1_gpt3_summary <- read_csv("../supplementary_materials/e1_gpt3_byPrompt_summary.csv")
+
+e2_gpt3_category_summary <- read_csv("../supplementary_materials/e2_gpt3_byPrompt_byCategory_summary.csv")
+e2_gpt3_context_summary <- read_csv("../supplementary_materials/e2_gpt3_byPrompt_byContext_summary.csv")
+
+e2_samples_global <- nm_samples_categorized_e2 %>% select(-probs, -is_few_shot, -dataset, -model_type) %>%
+  rename("prompt" = "model_name") %>%
+  rbind(., e2_human_byCategory %>% select(-submission_id, -settingName, -response_option) %>% mutate(prompt = "human E2") %>% rename("predictions" = "answer"))
+```
+
+
+
+### Comparing neural and human responses
+
+```{r}
+# retrieve ChatGPT by context results
+
+nm_samples_categorized_e1 %>% filter(model_name == "chatGPT") %>%
+  filter((category != 'yes')) %>%
+  group_by(model_name, category, is_few_shot) %>%
+  mutate(n = n()) %>% ungroup() %>% group_by(is_few_shot) %>%
+  mutate(cat_n = n(),
+    prop = n / cat_n) %>%
+  select(model_name, is_few_shot, category, prop) %>% unique()
+
+nm_samples_categorized_e2 %>% filter(model_name == "chatGPT") %>%
+  filter((category != 'yes')) %>%
+  group_by(model_name, category, is_few_shot) %>%
+  mutate(n = n()) %>% ungroup() %>% group_by(is_few_shot) %>%
+  mutate(cat_n = n(),
+    prop = n / cat_n) %>%
+  select(model_name, is_few_shot, category, prop) %>% unique()
+```
+
+
+
+## Stats
+
+Compute p-value of human data under model data: Chi-square tests of human response proportions vs model probabilities and response proportions (assumed to be ground truth).
+
+```{r, warning=FALSE, message=FALSE}
+e1_samples_global <- e1_samples_global %>% mutate(
+  category = factor(category, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "other", "taciturn"))
+)
+e1_samples_global_model_summary <- e1_samples_global %>% filter(prompt != "human E1") %>%
+  group_by(prompt) %>% mutate(resp_count = n()) %>% group_by(prompt, category) %>% summarise(cat_count = n(), prop = cat_count / resp_count) %>% unique()
+# assumed order of counts / proportions: comp, sameCat, otherCat, fullList, other, taciturn
+human_counts_e1 <- e1_samples_global %>% filter(prompt == "human E1") %>% group_by(category) %>%
+  summarize(count = n()) 
+
+e1_gpt3_summary_pval <- e1_gpt3_summary %>% filter(prompt != "human E1") %>% 
+  mutate(category = factor(category, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "other", "taciturn")))
+
+compute_p <- function(human_counts, name, models_df, type) {
+  cats <- c("competitor", "sameCategory", "otherCategory", "fullList", "other", "taciturn")
+  
+  if (type == "samples") {
+    df <- models_df %>% filter(prompt == name) %>% select(category, prop) 
+  } else {
+    df <- models_df %>% filter(prompt == name) %>% select(category, answer_type_prob) %>%
+      rename("prop" = "answer_type_prob") 
+  }
+  df <- df %>% filter(!is.na(category))
+  answer_types <- df$category
+  # pad missing category with epsilon and renormalize
+  if (answer_types %>% length() < 6) {
+    for (a in setdiff(cats, answer_types)) {
+      df <- df %>% ungroup() %>%
+      add_row(category = a, prop = 0.01)
+    }
+  }
+  df <- df %>% ungroup() %>% mutate(
+        category = factor(category, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "other", "taciturn")),
+        sum_prop = sum(prop),
+        prop = prop / sum_prop
+      )  #%>% filter(!is.na(category))
+  df <- human_counts %>% left_join(., df, by = "category")
+  print(df)
+  print(df %>% pull(count))
+  print(df %>% pull(prop))
+  res <- chisq.test(x = df %>% pull(count), p = df %>% pull(prop), rescale.p = TRUE)
+  return(res$p.value)
+}
+
+all_models_samples_e1 <- e1_samples_global_model_summary %>% pull(prompt) %>% unique()
+# define df 
+df_pvals_models_vs_humans_e1 <- data.frame(model_name=character(), type=character(), p=double())
+# iterate over model samples
+for (m in all_models_samples_e1) {
+  print(m)
+  p <- compute_p(human_counts_e1, m, e1_samples_global_model_summary, "samples")
+  df_pvals_models_vs_humans_e1 <- df_pvals_models_vs_humans_e1 %>%
+    add_row(model_name=m, type="samples", p=p)
+}
+# iterate over scores
+all_gpt3_models <- e1_gpt3_summary_pval %>% pull(prompt) %>% unique()
+for (m in all_gpt3_models) {
+  p <- compute_p(human_counts_e1, m, e1_gpt3_summary_pval, "samples")
+  df_pvals_models_vs_humans_e1 <- df_pvals_models_vs_humans_e1 %>%
+    add_row(model_name=m, type="prob", p=p)
+}
+cat("P values under Chi square tests of human data against probabilities / sample proportions of neural models ")
+df_pvals_models_vs_humans_e1
+```
+
+```{r}
+all(df_pvals_models_vs_humans_e1 %>% pull(p) < 0.05)
+```
+
+The same analysis for E2:
+```{r, warning=FALSE, message=FALSE}
+e2_samples_global <- e2_samples_global %>% mutate(
+  category = factor(category, levels = c("competitor", "mostSimilar", "sameCategory", "otherCategory", "fullList", "other", "taciturn"))
+) 
+e2_samples_global_model_summary <- e2_samples_global %>% filter(prompt != "human E2") %>% filter(!is.na(category)) %>%
+  group_by(prompt) %>% mutate(resp_count = n()) %>% group_by(prompt, category) %>% summarise(cat_count = n(), prop = cat_count / resp_count) %>% unique()
+# assumed order of counts / proportions: comp, sameCat, otherCat, fullList, other, taciturn
+human_counts_e2 <- e2_samples_global %>% filter(prompt == "human E2") %>% group_by(category) %>%
+  summarize(count = n()) 
+
+e2_gpt3_summary_pval <- e2_gpt3_category_summary %>% filter(prompt != "human E2") %>% 
+  mutate(category = factor(category, levels = c("competitor", "mostSimilar", "sameCategory", "otherCategory", "fullList", "other", "taciturn")))
+
+compute_p <- function(human_counts, name, models_df, type) {
+  cats <- c("competitor", "mostSimilar", "sameCategory", "otherCategory", "fullList", "other", "taciturn")
+  
+  if (type == "samples") {
+    df <- models_df %>% filter(prompt == name) %>% select(category, prop) 
+  } else {
+    df <- models_df %>% filter(prompt == name) %>% select(category, answer_type_prob) %>%
+      rename("prop" = "answer_type_prob") 
+  }
+  df <- df %>% filter(!is.na(category))
+  answer_types <- df$category
+  # pad missing category with epsilon and renormalize
+  if (answer_types %>% length() < 7) {
+    for (a in setdiff(cats, answer_types)) {
+      df <- df %>% ungroup() %>%
+      add_row(category = a, prop = 0.01)
+    }
+  }
+  df <- df %>% ungroup() %>% mutate(
+        category = factor(category, levels = c("competitor", "mostSimilar", "sameCategory", "otherCategory", "fullList", "other", "taciturn")),
+        sum_prop = sum(prop),
+        prop = prop / sum_prop
+      )  
+  df <- human_counts %>% left_join(., df, by = "category")
+  print(df)
+  print(df %>% pull(count))
+  print(df %>% pull(prop))
+  res <- chisq.test(x = df %>% pull(count), p = df %>% pull(prop), rescale.p = TRUE)
+  return(res$p.value)
+}
+
+all_models_samples_e2 <- e2_samples_global_model_summary %>% pull(prompt) %>% unique()
+# define df 
+df_pvals_models_vs_humans_e2 <- data.frame(model_name=character(), type=character(), p=double())
+# iterate over model samples
+for (m in all_models_samples_e2) {
+  print(m)
+  p <- compute_p(human_counts_e2, m, e2_samples_global_model_summary, "samples")
+  df_pvals_models_vs_humans_e2 <- df_pvals_models_vs_humans_e2 %>%
+    add_row(model_name=m, type="samples", p=p)
+}
+# iterate over scores
+all_gpt3_models_e2 <- e2_gpt3_summary_pval %>% pull(prompt) %>% unique()
+for (m in all_gpt3_models_e2) {
+  p <- compute_p(human_counts_e2, m, e2_gpt3_summary_pval, "samples")
+  df_pvals_models_vs_humans_e2 <- df_pvals_models_vs_humans_e2 %>%
+    add_row(model_name=m, type="samples", p=p)
+}
+cat("P values under Chi square tests of human data against probabilities / sample proportions of neural models ")
+df_pvals_models_vs_humans_e2
+```
+
+```{r}
+all(df_pvals_models_vs_humans_e2 %>% pull(p) < 0.05)
+```
+
+### Plot
+
+Experiment 1:
+```{r}
+e1_plot_summary_labels <- e1_gpt3_summary %>% group_by(category) %>%
+  summarize(max_val = max(prop)) %>% 
+  mutate(category = factor(category, levels = c("competitor", "sameCategory", "otherCategory", "fullList", "other", "taciturn"), labels = c("competitor\n(iced coffee)", "similar option\n(soda)", "unrelated\noption\n(Chardonnay)", "all options", "other", "no options") ))
+
+e1_gpt3_summary %>% 
+  mutate(prompt = factor(prompt, levels = c("zero-shot", "one-shot Explanation", "one-shot QA", "one-shot CoT", "human E1")),
+    category = factor(category, levels = rev(c("taciturn", "other", "fullList", "otherCategory", "sameCategory", "competitor")), labels = rev(c("no options",  "other", "all options", "unrelated\noption\n(Chardonnay)", "similar option\n(soda)", "competitor\n(iced coffee)"  ) ))) %>%
+  ggplot(., aes(x = category, y = prop, fill = prompt, label = category)) +
+  geom_col(position = position_dodge(preserve = "single"), color = "#575463", width = 0.8 )+
+  geom_text(inherit.aes = FALSE, data = e1_plot_summary_labels, aes(x = category, y = max_val, label = category), stat = 'unique', nudge_y = 0.08, size = 4, check_overlap = TRUE) +
+  theme_csp() +
+  scale_y_continuous( limits = c(0, 0.7), breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7)) +
+   theme(plot.title = element_text(hjust = 0.5), legend.position = "right",  legend.title = element_text(size=12), legend.text = element_text(size=12), axis.text.x = element_blank(), axis.ticks.x = element_blank() ) +  
+  ylab("Proportion of answer type") +
+  xlab("Answer type") +
+  ggtitle("Do you have iced tea?")
+```
+
+Experiment 2:
+
+```{r}
+e2_gpt3_context_summary %>% 
+  mutate(prompt = factor(prompt, levels = c("zero-shot", "one-shot Explanation", "one-shot QA", "one-shot CoT", "human E2"))) %>%
+  mutate(global_category = factor(global_category, levels = c( 'otherCategory', 'mostSimilar', 'competitor_c2', 'competitor_c1'),
+                           labels = c("unrelated option\n(carpet)", "a priori\nsimilar (pillow)", "competitor 2\n(bubble wrap)", "competitor 1\n(sleeping bag)")
+                           )) %>%
+  ggplot(., aes(fill = prompt, x = global_category)) +
+  geom_col(aes(y = context1), position = position_dodge(preserve = "single"), color = "#575463" ) +
+  geom_col(aes(y = -context2), position = position_dodge(preserve = "single"), color = "#575463" ) +
+  theme_csp() + 
+  theme( axis.text.y = element_text(size = 12), axis.text.x = element_text(size = 12),  legend.title = element_text(size=12), legend.text = element_text(size=12), legend.position = "right", plot.title = element_text(hjust = 0.5)) + # , axis.ticks.y = element_blank(), 
+  scale_y_continuous( limits = c(-1, 1), breaks = c(-1, -0.5, 0, 0.5, 1), labels = c("1", "0.5", "0", "0.5", "1")) +
+  geom_hline(yintercept = 0, color = "white", size = 1) +
+  coord_flip() +
+  ylab("transport <--> sleepover") +
+  xlab("") +
+  ggtitle("Do you have a blanket?")
+
+```
+
