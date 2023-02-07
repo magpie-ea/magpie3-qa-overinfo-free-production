@@ -4,6 +4,7 @@
 /data+analysis/.RData
 /data+analysis/.Rhistory
 /data+analysis/viz/.DS_Store
+/data+analysis/data/.DS_Store
 /node_modules/
 /experiments/.DS_Store
 /experiments/prior_elicitation/node_modules/
