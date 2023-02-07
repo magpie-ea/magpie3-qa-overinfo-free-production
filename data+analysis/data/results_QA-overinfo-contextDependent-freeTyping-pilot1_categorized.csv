@@ -1,0 +1,60 @@
+submission_id,age,answer,category,response_option,itemName,comments,correct_response,education,experiment_duration,experiment_end_time,experiment_start_time,gender,languages,responseTime,settingName,trialNr,trial_type
+4779,22,"I say yes, why?",yes,yes,chair-repair,,main,Graduated High-school,113545,1673332215603,1673332102058,male,,14121,chair,1,main
+4779,22,teacher,,,jobCenter-office,,teacher,Graduated High-school,113545,1673332215603,1673332102058,male,,11529,jobCenter,2,filler
+4779,22,"no sorry, i have sweetener if thats ok? i didnt have tine to get groceries today",competitor,sweetener,sugar-coffee,,main,Graduated High-school,113545,1673332215603,1673332102058,male,,35674,sugar,3,main
+4779,22,"No sorry, but i have a sleeping bag if you want that",competitor,sleeping bag,blanket-sleepover,,main,Graduated High-school,113545,1673332215603,1673332102058,male,,19163,blanket,4,main
+4779,22,no i have ziplock bag you can take home with you ,otherCompetitor,ziplock,box-muffins,,main,Graduated High-school,113545,1673332215603,1673332102058,male,,18184,box,5,main
+4783,43,"yes, i do have a carton",mostSimilar,carton,box-bbq,,main,Graduated High-school,571989,1673332683423,1673332111434,female,spanish and english,140723,box,1,main
+4783,43,No but I am going to the store would you want me to bring you some..or I do have agave sirup and sweetener tablets,sameCategory,"agave sirup, sweetener",sugar-baking,,main,Graduated High-school,571989,1673332683423,1673332111434,female,spanish and english,135405,sugar,2,main
+4783,43,i dont have a chair but I do have a stool,competitor,stool,chair-party,,main,Graduated High-school,571989,1673332683423,1673332111434,female,spanish and english,40215,chair,3,main
+4783,43,I would say not a blanket but i have a bed spread and a sleeping bag,sameCategory,"bedspread, sleeping bag",blanket-transportation,,main,Graduated High-school,571989,1673332683423,1673332111434,female,spanish and english,164632,blanket,4,main
+4783,43,classic,,,music-softrock,,classic,Graduated High-school,571989,1673332683423,1673332111434,female,spanish and english,55871,music,5,filler
+4782,61,No but I have a bedspread you could use,sameCategory,bedspread,blanket-sleepover,,main,Graduated College,223152,1673332619673,1673332396521,female,English,23764,blanket,1,main
+4782,61,I have a ladder you could borrow,competitor,ladder,chair-repair,,main,Graduated College,223152,1673332619673,1673332396521,female,English,21539,chair,2,main
+4782,61,"Classic
+
+",,,music-hardrock,,classic,Graduated College,223152,1673332619673,1673332396521,female,English,45789,music,3,filler
+4782,61,"I have a cake container you could use
+",competitor,cake container,box-muffins,,main,Graduated College,223152,1673332619673,1673332396521,female,English,30728,box,4,main
+4782,61,"Sorry I don't, but I do have honey or sweetners
+",sameCategory,"honey, sweetener",sugar-coffee,,main,Graduated College,223152,1673332619673,1673332396521,female,English,62383,sugar,5,main
+4778,25,"I have lots of useful items that can be used as a blanket, such as my bed spread and sleeping blanket. Is this okay?",sameCategory,"bedspread, sleeping bag",blanket-sleepover,,main,Higher degree,191808,1673311755629,1673311563821,female,English,60156,blanket,1,main
+4778,25,Yes of course,yes,yes,box-muffins,,main,Higher degree,191808,1673311755629,1673311563821,female,English,17915,box,2,main
+4778,25,London,,,airport-usa,,London,Higher degree,191808,1673311755629,1673311563821,female,English,9565,airport,3,filler
+4778,25,"No sorry but I have sweeteners, would you like one? ",competitor,sweetener,sugar-coffee,,main,Higher degree,191808,1673311755629,1673311563821,female,English,27769,sugar,4,main
+4778,25,Yeah I have an armchair,mostSimilar,armchair,chair-repair,,main,Higher degree,191808,1673311755629,1673311563821,female,English,29766,chair,5,main
+4775,22,Yes I do have a chair. Do you need a hand or would you like to borrow it?,yes,yes,chair-repair,,main,Graduated College,349247,1673311408719,1673311059472,female,English ,58802,chair,1,main
+4775,22,"No sorry, I don't have a blanket. Would you like to see what else I packed, you might be able to find something else that might help such as this bed spread or sleeping bag?",sameCategory,"bedspread, sleeping bag",blanket-sleepover,,main,Graduated College,349247,1673311408719,1673311059472,female,English ,86730,blanket,2,main
+4775,22,I can't offer you any sugar but I do have an alternative of sweetner tablets instead if you'd like?,competitor,sweetener,sugar-coffee,,main,Graduated College,349247,1673311408719,1673311059472,female,English ,42772,sugar,3,main
+4775,22,"This cake container would be the best thing I can offer you, sorry I can't provide a box ",competitor,cake container,box-muffins,,main,Graduated College,349247,1673311408719,1673311059472,female,English ,35670,box,4,main
+4775,22,"Sculpture 
+
+Sorry we don't provide acrylic paintings for sale here but can I offer you some other material-based art like water or oil colour paintings ",,,art-painting,,sculpture,Graduated College,349247,1673311408719,1673311059472,female,English ,95772,art,5,filler
+4780,44,I have a sleeping bag or bedspread you could take,otherCompetitor,"bedspread, sleeping bag",blanket-transportation,,main,Graduated College,261297,1673332370508,1673332109211,female,English ,39709,blanket,1,main
+4780,44,Teacher,,,jobCenter-engineer,,teacher,Graduated College,261297,1673332370508,1673332109211,female,English ,15813,jobCenter,2,filler
+4780,44,No sorry ,taciturn,no,box-bbq,,main,Graduated College,261297,1673332370508,1673332109211,female,English ,38583,box,3,main
+4780,44,No sorry We are all out ,taciturn,no,sugar-baking,,main,Graduated College,261297,1673332370508,1673332109211,female,English ,28556,sugar,4,main
+4780,44,You can borrow my stool ,competitor,stool,chair-party,,main,Graduated College,261297,1673332370508,1673332109211,female,English ,101793,chair,5,main
+4776,30,"Yes 
+",yes,yes,box-bbq,,main,Graduated College,229620,1673311575283,1673311345663,female,English ,30394,box,1,main
+4776,30,"I do, but it is not suitable for a dinner party ",other,other,chair-party,,main,Graduated College,229620,1673311575283,1673311345663,female,English ,41685,chair,2,main
+4776,30,"No, sorry
+",taciturn,no,blanket-transportation,,main,Graduated College,229620,1673311575283,1673311345663,female,English ,33540,blanket,3,main
+4776,30,"No, but I'm going to the shop now, would you like me to pick some up?
+",other,other,sugar-baking,,main,Graduated College,229620,1673311575283,1673311345663,female,English ,56325,sugar,4,main
+4776,30,Sculpture ,,,art-drawing,,sculpture,Graduated College,229620,1673311575283,1673311345663,female,English ,15162,art,5,filler
+4774,44,'teacher',,,jobCenter-engineer,,teacher,Graduated College,214803,1673311310459,1673311095656,female,english,23737,jobCenter,1,filler
+4774,44,I have an armchair that may work and a stool that would definitely work.,sameCategory,"armchair, stool",chair-party,,main,Graduated College,214803,1673311310459,1673311095656,female,english,51612,chair,2,main
+4774,44,I do not have a box.,taciturn,no,box-bbq,,main,Graduated College,214803,1673311310459,1673311095656,female,english,23897,box,3,main
+4774,44,"I do not but I'm running to the store, can I get you some?",other,other,sugar-baking,,main,Graduated College,214803,1673311310459,1673311095656,female,english,24495,sugar,4,main
+4774,44,I do have a bedspread and also a sleeping bag that could work.,otherCompetitor,"bedspread, sleeping bag",blanket-transportation,,main,Graduated College,214803,1673311310459,1673311095656,female,english,49393,blanket,5,main
+4777,18,"No sorry, i just used mine up. I can grab you some next time i go out?",other,other,sugar-baking,,main,Graduated High-school,291339,1673311661520,1673311370181,male,English,96522,sugar,1,main
+4777,18,"Sorry we dont have a box, but we do have a bag if you would prefer.",other,other,box-bbq,,main,Graduated High-school,291339,1673311661520,1673311370181,male,English,42580,box,2,main
+4777,18,London,,,airport-europe-UPDATED,,London,Graduated High-school,291339,1673311661520,1673311370181,male,English,29533,airport,3,filler
+4777,18,"Sorry, we've run out, ill just go grab a stool for you.",competitor,stool,chair-party,,main,Graduated High-school,291339,1673311661520,1673311370181,male,English,42618,chair,4,main
+4777,18,I have a sleeping bag if that'll do.,otherCompetitor,sleeping bag,blanket-transportation,,main,Graduated High-school,291339,1673311661520,1673311370181,male,English,42267,blanket,5,main
+4781,30,This is the range of products we have here. I'm not sure if any will suit your needs,other,other,box-bbq,,main,Graduated College,239014,1673332376197,1673332137183,female,Emglish,62277,box,1,main
+4781,30,I don't but I do have some alternatives which work well,other,other,sugar-baking,,main,Graduated College,239014,1673332376197,1673332137183,female,Emglish,24570,sugar,2,main
+4781,30,Classic,,,music-softrock,,classic,Graduated College,239014,1673332376197,1673332137183,female,Emglish,13943,music,3,filler
+4781,30,I don't but I have some spare bedding,other,other,blanket-transportation,,main,Graduated College,239014,1673332376197,1673332137183,female,Emglish,52186,blanket,4,main
+4781,30,I have a stool. Let me get it,competitor,stool,chair-party,,main,Graduated College,239014,1673332376197,1673332137183,female,Emglish,42756,chair,5,main

@@ -1,0 +1,58 @@
+submission_id,age,answer,response_option,category,correct_response,education,experiment_duration,experiment_end_time,experiment_start_time,gender,itemName,languages,responseTime,settingName,trialNr,trial_type
+4786,33,Classic,,,classic,Graduated College,179238,1673527891272,1673527712034,female,music-softrock,English,25751,music,1,filler
+4786,33,"No, but you can use this sleeping bag",sleeping bag,sameCategory,main,Graduated College,179238,1673527891272,1673527712034,female,blanket-transportation,English,31801,blanket,2,main
+4786,33,"Yes, no problem",yes,yes,main,Graduated College,179238,1673527891272,1673527712034,female,box-bbq,English,27234,box,3,main
+4786,33,"Sorry, none that can be moved downstairs",no,other,main,Graduated College,179238,1673527891272,1673527712034,female,chair-party,English,37100,chair,4,main
+4786,33,"Sorry I’m all out, but I have….",other,other,main,Graduated College,179238,1673527891272,1673527712034,female,sugar-baking,English,24534,sugar,5,main
+4785,36,We have items containing sugar,other,other,main,Graduated College,176958,1673527775692,1673527598734,female,sugar-baking,English,36369,sugar,1,main
+4785,36,"Teacher
+
+Yes there are",,,teacher,Graduated College,176958,1673527775692,1673527598734,female,jobCenter-engineer,English,27408,jobCenter,2,filler
+4785,36,No bit I have similar items you could use,other,other,main,Graduated College,176958,1673527775692,1673527598734,female,box-bbq,English,32610,box,3,main
+4785,36,No but I have similar items you can use,other,other,main,Graduated College,176958,1673527775692,1673527598734,female,blanket-transportation,English,26305,blanket,4,main
+4785,36,Yes a armchair,armchair,sameCategory,main,Graduated College,176958,1673527775692,1673527598734,female,chair-party,English,21325,chair,5,main
+4787,34,Yes I’ll bring one down if you want to borrow it,other,other,main,Graduated High-school,154460,1673527909193,1673527754733,female,chair-party,English,31500,chair,1,main
+4787,34,Yes I’ll find something for you to put the leftover in,other,other,main,Graduated High-school,154460,1673527909193,1673527754733,female,box-bbq,English,24725,box,2,main
+4787,34,Motorcycle,,,motorcycle,Graduated High-school,154460,1673527909193,1673527754733,female,carRental-moving,English,10962,carRental,3,filler
+4787,34,No but I’ve got some bubble wrap if you want to borrow that,bubble wrap,competitor,main,Graduated High-school,154460,1673527909193,1673527754733,female,blanket-transportation,English,32280,blanket,4,main
+4787,34,No sorry only sweetener tablets,sweetener,sameCategory,main,Graduated High-school,154460,1673527909193,1673527754733,female,sugar-baking,English,25727,sugar,5,main
+4788,46,"Sorry, no",no,taciturn,main,Higher degree,186949,1673527999009,1673527812060,female,blanket-sleepover,English ,8477,blanket,1,main
+4788,46,teacher ,,,teacher,Higher degree,186949,1673527999009,1673527812060,female,jobCenter-office,English ,26780,jobCenter,2,filler
+4788,46,"Yes, this cake container ",cake container,competitor,main,Higher degree,186949,1673527999009,1673527812060,female,box-muffins,English ,33577,box,3,main
+4788,46,Yes and I also have a stool and a ladder if you need one,"stool, ladder",sameCategory,main,Higher degree,186949,1673527999009,1673527812060,female,chair-repair,English ,41357,chair,4,main
+4788,46,No but I have sweeteners,sweetener,competitor,main,Higher degree,186949,1673527999009,1673527812060,female,sugar-coffee,English ,48748,sugar,5,main
+4790,29,No sorry,,,main,Higher degree,207523,1673528045404,1673527837881,female,sugar-coffee,English,33342,sugar,1,main
+4790,29,No but I have a duvet or sleeping bags,"duvet, sleeping bag",sameCategory,main,Higher degree,207523,1673528045404,1673527837881,female,blanket-sleepover,English,45604,blanket,2,main
+4790,29,I have an armchair will that help?,armchair,sameCategory,main,Higher degree,207523,1673528045404,1673527837881,female,chair-repair,English,40898,chair,3,main
+4790,29,Yes I have a container,other,other,main,Higher degree,207523,1673528045404,1673527837881,female,box-muffins,English,28920,box,4,main
+4790,29,London,,,London,Higher degree,207523,1673528045404,1673527837881,female,airport-usa,English,16769,airport,5,filler
+4792,62,"No, but I have a stool. Would that do?",stool,competitor,main,Graduated College,347394,1673528110988,1673527763594,female,chair-party,English,44265,chair,1,main
+4792,62,"No, but I think if we wrap up the mirror with some of these other items it'll do the same job. I've got bubble wrap, rags, and a sleeping bag here. Any good?","bubble wrap, rags, sleeping bag",other,main,Graduated College,347394,1673528110988,1673527763594,female,blanket-transportation,English,114048,blanket,2,main
+4792,62,London,,,London,Graduated College,347394,1673528110988,1673527763594,female,airport-europe-UPDATED,English,15417,airport,3,filler
+4792,62,"No, I'm afraid not. Would honey or agave syrup work as a substitute in your recipe? I do have those.","agave syrup, honey",sameCategory,main,Graduated College,347394,1673528110988,1673527763594,female,sugar-baking,English,65817,sugar,4,main
+4792,62,"I don't have any Tupperware, but take your pick from these other items to take your stuff home in.",other,other,main,Graduated College,347394,1673528110988,1673527763594,female,box-bbq,English,47949,box,5,main
+4793,22,"Yeah, I have a cake container in the cupboard - you can put them in there.",cake container,competitor,main,Higher degree,778855,1673528387105,1673527608250,female,box-muffins,English,70417,box,1,main
+4793,22,"I have either a stool or a ladder, which ever one you would find most useful ","stool, ladder",sameCategory,main,Higher degree,778855,1673528387105,1673527608250,female,chair-repair,English,81727,chair,2,main
+4793,22,"I have a sleeping bag you can use. I also have a duvet cover set, but I don't have a duvet to go in it.","duvet, sleeping bag",sameCategory,main,Higher degree,778855,1673528387105,1673527608250,female,blanket-sleepover,English,79583,blanket,3,main
+4793,22,"I have some sweetener tablets instead, it tastes the same as sugar",sweetener,competitor,main,Higher degree,778855,1673528387105,1673527608250,female,sugar-coffee,English,189514,sugar,4,main
+4793,22,Teacher,,,teacher,Higher degree,778855,1673528387105,1673527608250,female,jobCenter-office,English,298604,jobCenter,5,filler
+4791,21,No sorry I only have sweeteners instead,sweetener,competitor,main,Graduated High-school,257671,1673528047687,1673527790016,female,sugar-coffee,English,50731,sugar,1,main
+4791,21,I can try and find a spare to bring,other,other,main,Graduated High-school,257671,1673528047687,1673527790016,female,blanket-sleepover,English,71980,blanket,2,main
+4791,21,I don’t have a box but i do have containers,other,other,main,Graduated High-school,257671,1673528047687,1673527790016,female,box-muffins,English,37275,box,3,main
+4791,21,motorcycle ,,,motorcycle,Graduated High-school,257671,1673528047687,1673527790016,female,carRental-fun,English,30318,carRental,4,filler
+4791,21,I have a stool but ladders would be safer,"stool, ladder",sameCategory,main,Graduated High-school,257671,1673528047687,1673527790016,female,chair-repair,English,38150,chair,5,main
+4794,80,Yes an armchair,armchair,sameCategory,main,Graduated High-school,182137,1673529514139,1673529332002,male,chair-party,english,33090,chair,1,main
+4794,80,I can lend you a caketin,cake container,sameCategory,main,Graduated High-school,182137,1673529514139,1673529332002,male,box-bbq,english,25799,box,2,main
+4794,80,Would a sleeping bag help?,sleeping bag,sameCategory,main,Graduated High-school,182137,1673529514139,1673529332002,male,blanket-transportation,english,25462,blanket,3,main
+4794,80,London,,,London,Graduated High-school,182137,1673529514139,1673529332002,male,airport-europe-UPDATED,english,21378,airport,4,filler
+4794,80,Would honey be any help?,honey,competitor,main,Graduated High-school,182137,1673529514139,1673529332002,male,sugar-baking,english,25825,sugar,5,main
+4795,33,I have an armchair and a stool you can use,"armchair, stool",sameCategory,main,Graduated High-school,587898,1673529925835,1673529337937,male,chair-party,English,37161,chair,1,main
+4795,33,No soft rock but I have classic rock s an alternative,,,classic,Graduated High-school,587898,1673529925835,1673529337937,male,music-softrock,English,25690,music,2,filler
+4795,33,Yeah I've got either a duvet or bubble wrap you could use,"duvet, bubble wrap",sameCategory,main,Graduated High-school,587898,1673529925835,1673529337937,male,blanket-transportation,English,45539,blanket,3,main
+4795,33,Ive got boxes or bags what would you prefer? I even have a basket,"basket, other",sameCategory,main,Graduated High-school,587898,1673529925835,1673529337937,male,box-bbq,English,26289,box,4,main
+4795,33,I've got agave syrup and sweetener as alternatives?,"agave syrup, sweetener",sameCategory,main,Graduated High-school,587898,1673529925835,1673529337937,male,sugar-baking,English,439337,sugar,5,main
+4789,50,"No, I ran out. Sorry.",no,taciturn,main,Higher degree,286596,1673528040976,1673527754380,female,sugar-baking,English,48578,sugar,1,main
+4789,50,I have a carton or a Ziploc bag that might work.,"carton, ziplock",sameCategory,main,Higher degree,286596,1673528040976,1673527754380,female,box-bbq,English,68194,box,2,main
+4789,50,motorcycle,,,motorcycle,Higher degree,286596,1673528040976,1673527754380,female,carRental-moving,English,7828,carRental,3,filler
+4789,50,"Yes, but I might need some help carrying it downstairs. ",other,other,main,Higher degree,286596,1673528040976,1673527754380,female,chair-party,English,41283,chair,4,main
+4789,50,"I have some things that you could borrow: a duvet cover, a sleeping bag, or some bubble wrap.","duvet, bubble wrap, sleeping bag",other,main,Higher degree,286596,1673528040976,1673527754380,female,blanket-transportation,English,90377,blanket,5,main

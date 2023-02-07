@@ -1,0 +1,364 @@
+submission_id,age,answer,response_option,category,itemName,comments,correct_response,education,experiment_duration,experiment_end_time,experiment_start_time,gender,languages,responseTime,settingName,trialNr,trial_type
+4954,43,"No, but I have a sleeping bag",sleeping bag,competitor,blanket-sleepover,NA,main,Graduated College,272912,1674417773349,1674417500437,female,English,47991,blanket,1,main
+4954,43,"No, but I have a whiteboard marker",marker,competitor,postit-board,NA,main,Graduated College,272912,1674417773349,1674417500437,female,English,57226,postit,2,main
+4954,43,"No, but we have trail mix packages",trailmix,competitor,candy-halloween,NA,main,Graduated College,272912,1674417773349,1674417500437,female,English,55215,candy,3,main
+4954,43,sculpture,,,art-painting,NA,sculpture,Graduated College,272912,1674417773349,1674417500437,female,English,30077,art,4,filler
+4954,43,"No, but I have pyjamas or shorts","pyjamas, shorts",sameCategory,sweatpants-sleepover,NA,main,Graduated College,272912,1674417773349,1674417500437,female,English,31690,sweatpants,5,main
+4848,NA,"Yes, we have a chocolate bar.",chocolate,mostSimilar,candy-dessert,NA,main,NA,202059,1673789049404,1673788847345,NA,NA,33604,candy,1,main
+4848,NA,No but I have some other containers you can use,other,other,box-bbq,NA,main,NA,202059,1673789049404,1673788847345,NA,NA,42003,box,2,main
+4848,NA,No but I have a blanket and a hairdryer you can use,"blanket, hairdryer",other,towel-clothes,NA,main,NA,202059,1673789049404,1673788847345,NA,NA,37266,towel,3,main
+4848,NA,I have some pans you can use,pans,competitor,pot-jam,NA,main,NA,202059,1673789049404,1673788847345,NA,NA,41622,pot,4,main
+4848,NA,teacher,,,jobCenter-engineer,NA,teacher,NA,202059,1673789049404,1673788847345,NA,NA,19863,jobCenter,5,filler
+4929,34,motorcycle,,,carRental-fun,NA,motorcycle,Graduated College,102596,1674411703073,1674411600477,male,english,12392,carRental,1,filler
+4929,34,"No.
+
+",no,taciturn,bottle-plants,NA,main,Graduated College,102596,1674411703073,1674411600477,male,english,16912,bottle,2,main
+4929,34,"No, I don't
+",no,taciturn,postit-board,NA,main,Graduated College,102596,1674411703073,1674411600477,male,english,16614,postit,3,main
+4929,34,"Nope, sorry",no,taciturn,umbrella-summer,NA,main,Graduated College,102596,1674411703073,1674411600477,male,english,13419,umbrella,4,main
+4929,34,Nope,no,taciturn,sugar-coffee,NA,main,Graduated College,102596,1674411703073,1674411600477,male,english,13710,sugar,5,main
+4862,30,"I'd reply ""yes"" and tell her about the variety of supplies I have and ask if she would like to take a look and choose something",other,other,pot-garden,NA,main,Higher degree,410535,1673789300576,1673788890041,female,English,52000,pot,1,main
+4862,30,"teacher
+I'd tell him ""there isn't an accountant job, sorry, the closest thing we have to that is a bookkeeper vacancy""",,,jobCenter-office,NA,teacher,Higher degree,410535,1673789300576,1673788890041,female,English,87440,jobCenter,2,filler
+4862,30,"I don't have post-its, sorry, but I've got sticky bookmarks and a notebook if they'd be of any use?","bookmarks, notebook",sameCategory,postit-board,NA,main,Higher degree,410535,1673789300576,1673788890041,female,English,67259,postit,3,main
+4862,30,I have a stool or a ladder you could borrow,"stool, ladder",sameCategory,chair-repair,NA,main,Higher degree,410535,1673789300576,1673788890041,female,English,47077,chair,4,main
+4862,30,Yes of course. I'll give you some spare clothes if you want and can put your wet ones in the dryer. I'll get you a hair dryer too,"dryer, hairdryer",sameCategory,towel-hair,NA,main,Higher degree,410535,1673789300576,1673788890041,female,English,65871,towel,5,main
+4873,32,Yes I do but il get you a ladder as that will be safer and easier for you,ladder,competitor,chair-repair,NA,main,Higher degree,198263,1673806007711,1673805809448,female,English,52509,chair,1,main
+4873,32,I’m afraid I don’t but I have natural and artificial sweeteners if you would like those,sweetener,competitor,sugar-coffee,NA,main,Higher degree,198263,1673806007711,1673805809448,female,English,41512,sugar,2,main
+4873,32,I’m afraid I don’t sorry,no,taciturn,pot-garden,NA,main,Higher degree,198263,1673806007711,1673805809448,female,English,22769,pot,3,main
+4873,32,Im afraid I don’t but I have a sleeping bag if that’s any use,sleeping bag,competitor,blanket-sleepover,NA,main,Higher degree,198263,1673806007711,1673805809448,female,English,34236,blanket,4,main
+4873,32,Classic,,,music-hardrock,NA,classic,Higher degree,198263,1673806007711,1673805809448,female,English,18361,music,5,filler
+4843,28,"No, but I have a hair dryer you could use.",hairdryer,competitor,towel-hair,NA,main,Graduated College,226965,1673788910200,1673788683235,female,English,46626,towel,1,main
+4843,28,"No, but I have some PJs you can borrow",pyjamas,competitor,sweatpants-sleepover,NA,main,Graduated College,226965,1673788910200,1673788683235,female,English,36447,sweatpants,2,main
+4843,28,"Yes, I also have a vacuum if you'd like that.",vacuum,competitor,broom-renovation,NA,main,Graduated College,226965,1673788910200,1673788683235,female,English,52672,broom,3,main
+4843,28,Motorcycle,,,carRental-fun,NA,motorcycle,Graduated College,226965,1673788910200,1673788683235,female,English,15210,carRental,4,filler
+4843,28,No but I have some cans that would work!,cans,competitor,pot-garden,NA,main,Graduated College,226965,1673788910200,1673788683235,female,English,35284,pot,5,main
+4842,34,I have some old cans and pans that might work?,"cans, pans",sameCategory,pot-garden,NA,main,Higher degree,203008,1673788719304,1673788516296,other,English,44064,pot,1,main
+4842,34,"Sorry, no sugar. I have some sweeteners or syrup if that will do?","sweetener, syrup",sameCategory,sugar-coffee,NA,main,Higher degree,203008,1673788719304,1673788516296,other,English,43480,sugar,2,main
+4842,34,"No, but I have a sleeping bag",sleeping bag,competitor,blanket-sleepover,NA,main,Higher degree,203008,1673788719304,1673788516296,other,English,27304,blanket,3,main
+4842,34,You can use the watering can,watering can,competitor,bottle-plants,NA,main,Higher degree,203008,1673788719304,1673788516296,other,English,30184,bottle,4,main
+4842,34,classic,,,music-hardrock,NA,classic,Higher degree,203008,1673788719304,1673788516296,other,English,11863,music,5,filler
+4874,43,"Yeah have a look in the basement, theres a hairdryer you can use too",hairdryer,competitor,towel-hair,NA,main,Graduated High-school,220929,1673806037810,1673805816881,female,English,39776,towel,1,main
+4874,43,teacher,,,jobCenter-office,NA,teacher,Graduated High-school,220929,1673806037810,1673805816881,female,English,25895,jobCenter,2,filler
+4874,43,Ive got a stool you can use to reach the window,stool,sameCategory,chair-repair,NA,main,Graduated High-school,220929,1673806037810,1673805816881,female,English,37144,chair,3,main
+4874,43,No but I have some ziplock bags you can use,ziplock,sameCategory,box-muffins,NA,main,Graduated High-school,220929,1673806037810,1673805816881,female,English,27175,box,4,main
+4874,43,"no, sorry, I have a tent but thats not much good!",tent,otherCategory,umbrella-summer,NA,main,Graduated High-school,220929,1673806037810,1673805816881,female,English,35237,umbrella,5,main
+4857,24,"No, l have a mug though?
+",other,other,bottle-water,"N/A
+",main,Graduated College,287749,1673789249248,1673788961499,female,English,53427,bottle,1,main
+4857,24,"No, but I have other things you can use to dry off
+",other,other,towel-clothes,"N/A
+",main,Graduated College,287749,1673789249248,1673788961499,female,English,95361,towel,2,main
+4857,24,"classic
+
+",,,music-softrock,"N/A
+",classic,Graduated College,287749,1673789249248,1673788961499,female,English,19340,music,3,filler
+4857,24,I have a rain jacket you can use,rain jacket,competitor,umbrella-rain,"N/A
+",main,Graduated College,287749,1673789249248,1673788961499,female,English,27347,umbrella,4,main
+4857,24,I have paper napkins or wet wipes?,"napkins, wet wipes",sameCategory,handkerchief-sauce,"N/A
+",main,Graduated College,287749,1673789249248,1673788961499,female,English,37804,handkerchief,5,main
+4860,61,no i do not have a handerchief but i have some wet wipes and napkins if you need them for the child i also have a band aid too if needed,"napkins, wet wipes, band aids",sameCategory,handkerchief-injury,NA,main,Graduated High-school,289972,1673789251669,1673788961697,male,English,79431,handkerchief,1,main
+4860,61,no i dont have a blanket but i have a sleeping bag and a pillow if you need them,"sleeping bag, pillow",sameCategory,blanket-sleepover,NA,main,Graduated High-school,289972,1673789251669,1673788961697,male,English,64487,blanket,2,main
+4860,61,no but i have some sunscreen you can use,sunscreen,competitor,umbrella-summer,NA,main,Graduated High-school,289972,1673789251669,1673788961697,male,English,43144,umbrella,3,main
+4860,61,no but you can borrow my vacuum cleaner and brush i f you want,"vacuum, hand brush",sameCategory,broom-renovation,NA,main,Graduated High-school,289972,1673789251669,1673788961697,male,English,45944,broom,4,main
+4860,61,London,,,airport-usa,NA,London,Graduated High-school,289972,1673789251669,1673788961697,male,English,17432,airport,5,filler
+4870,38,"No i don't have a box, I've got a cake container?",cake container,competitor,box-muffins,NA,main,Higher degree,144862,1673805948025,1673805803163,female,English,33613,box,1,main
+4870,38,"No, you can use the watering can?",watering can,competitor,bottle-plants,NA,main,Higher degree,144862,1673805948025,1673805803163,female,English,25437,bottle,2,main
+4870,38,"I've got a hand brush you can use, or hoover?",hand brush,mostSimilar,broom-renovation,NA,main,Higher degree,144862,1673805948025,1673805803163,female,English,26178,broom,3,main
+4870,38,Sculpture,,,art-painting,NA,sculpture,Higher degree,144862,1673805948025,1673805803163,female,English,12783,art,4,filler
+4870,38,"No, I've some other bits you can use?",other,other,handkerchief-injury,NA,main,Higher degree,144862,1673805948025,1673805803163,female,English,20721,handkerchief,5,main
+4877,45,classic,,,music-hardrock,NA,classic,Graduated College,262310,1673806076001,1673805813691,male,english,16833,music,1,filler
+4877,45,no i dont have an umbrella,no,taciturn,umbrella-summer,NA,main,Graduated College,262310,1673806076001,1673805813691,male,english,44714,umbrella,2,main
+4877,45,no but i have a carton or a cake container,"carton, cake container",sameCategory,box-muffins,NA,main,Graduated College,262310,1673806076001,1673805813691,male,english,88958,box,3,main
+4877,45,no but i have some sweeteners,sweetener,competitor,sugar-coffee,NA,main,Graduated College,262310,1673806076001,1673805813691,male,english,29259,sugar,4,main
+4877,45,no but i have a sleeping bag and a pillow,"sleeping bag, pillow",sameCategory,blanket-sleepover,NA,main,Graduated College,262310,1673806076001,1673805813691,male,english,41663,blanket,5,main
+4846,52,No sorry I don’t,no,taciturn,handkerchief-injury,NA,main,Graduated High-school,138499,1673788993004,1673788854505,male,English,28946,handkerchief,1,main
+4846,52,No sorry I don’t,no,taciturn,bottle-plants,NA,main,Graduated High-school,138499,1673788993004,1673788854505,male,English,28780,bottle,2,main
+4846,52,Yes I do,yes,yes,airport-usa,NA,London,Graduated High-school,138499,1673788993004,1673788854505,male,English,14846,airport,3,filler
+4846,52,No I don’t,no,taciturn,chair-repair,NA,main,Graduated High-school,138499,1673788993004,1673788854505,male,English,16352,chair,4,main
+4846,52,No I don’t,no,taciturn,blanket-sleepover,NA,main,Graduated High-school,138499,1673788993004,1673788854505,male,English,18537,blanket,5,main
+4851,50,"We have sticky book marks, yes.",bookmarks,sameCategory,postit-board,NA,main,Graduated High-school,362066,1673789144475,1673788782409,female,English,58688,postit,1,main
+4851,50,"No, but I have a sleeping bag.",sleeping bag,competitor,blanket-sleepover,NA,main,Graduated High-school,362066,1673789144475,1673788782409,female,English,46204,blanket,2,main
+4851,50,I’ve got a ladder it might be easier to use.,ladder,competitor,chair-repair,NA,main,Graduated High-school,362066,1673789144475,1673788782409,female,English,89116,chair,3,main
+4851,50,Sculpture,,,art-painting,NA,sculpture,Graduated High-school,362066,1673789144475,1673788782409,female,English,27661,art,4,filler
+4851,50,No but I have some napkins and wet wipes. Would you like a band aid as well?,"napkins, wet wipes, band aids",sameCategory,handkerchief-injury,NA,main,Graduated High-school,362066,1673789144475,1673788782409,female,English,66460,handkerchief,5,main
+4849,63,"yes we have candy
+",yes,yes,candy-dessert,NA,main,Higher degree,281434,1673789058362,1673788776928,male,english,53891,candy,1,main
+4849,63,No I have no sugar,no,taciturn,sugar-baking,NA,main,Higher degree,281434,1673789058362,1673788776928,male,english,36061,sugar,2,main
+4849,63,No I do not have any pots,no,taciturn,pot-jam,NA,main,Higher degree,281434,1673789058362,1673788776928,male,english,45321,pot,3,main
+4849,63,No I do not have a chair,no,taciturn,chair-party,NA,main,Higher degree,281434,1673789058362,1673788776928,male,english,34807,chair,4,main
+4849,63,sculpture,,,art-drawing,NA,sculpture,Higher degree,281434,1673789058362,1673788776928,male,english,22465,art,5,filler
+4853,44,sculpture,,,art-drawing,NA,sculpture,Higher degree,292215,1673789176232,1673788884017,female,English,31060,art,1,filler
+4853,44,"No I'm sorry, I don't.",no,taciturn,umbrella-rain,NA,main,Higher degree,292215,1673789176232,1673788884017,female,English,30449,umbrella,2,main
+4853,44,I don't have a towel I'm sorry but I have paper towels or you could use the dryer or hair dryer.,"paper towels, dryer, hairdryer",sameCategory,towel-clothes,NA,main,Higher degree,292215,1673789176232,1673788884017,female,English,66923,towel,3,main
+4853,44,No I'm sorry but I have some bubble wrap you could use to pack your mirror.,bubble wrap,competitor,blanket-transportation,NA,main,Higher degree,292215,1673789176232,1673788884017,female,English,52090,blanket,4,main
+4853,44,No I'm sorry I don't but I do have a shovel or hand brunch you can use if you like.,"shovel, hand brush",sameCategory,broom-snow,NA,main,Higher degree,292215,1673789176232,1673788884017,female,English,66374,broom,5,main
+4863,52,"Not a broom, I have a brush and a vacuum cleaner that you could use","hand brush, vacuum",sameCategory,broom-renovation,NA,main,Graduated College,378267,1673789302397,1673788924130,female,English,129208,broom,1,main
+4863,52,"No, but I have a notebook, and whiteboard marker and eraser if this helps.","marker, eraser",other,postit-board,NA,main,Graduated College,378267,1673789302397,1673788924130,female,English,85248,postit,2,main
+4863,52,"No, but I have a watering can.",watering can,competitor,bottle-plants,NA,main,Graduated College,378267,1673789302397,1673788924130,female,English,47377,bottle,3,main
+4863,52,Motorcycle,,,carRental-fun,NA,motorcycle,Graduated College,378267,1673789302397,1673788924130,female,English,20423,carRental,4,filler
+4863,52,"No, but I have several pans and old cans if this helps.","pans, cans",sameCategory,pot-garden,NA,main,Graduated College,378267,1673789302397,1673788924130,female,English,48009,pot,5,main
+4867,39,"No, but I have sweetener tablets or honey","sweetener, honey",sameCategory,sugar-baking,Didn’t seem clear if I was meant to suggest all options. I suggested the one closest to what was asked,main,Higher degree,243239,1673789400819,1673789157580,female,English and Thai,40396,sugar,1,main
+4867,39,No but I have a to go mug,mug,competitor,bottle-water,Didn’t seem clear if I was meant to suggest all options. I suggested the one closest to what was asked,main,Higher degree,243239,1673789400819,1673789157580,female,English and Thai,28368,bottle,2,main
+4867,39,London,,,airport-europe-UPDATED,Didn’t seem clear if I was meant to suggest all options. I suggested the one closest to what was asked,London,Higher degree,243239,1673789400819,1673789157580,female,English and Thai,22055,airport,3,filler
+4867,39,"No but I have shorts, leggings or pyjamas","shorts, leggings, pyjamas",sameCategory,sweatpants-spill,Didn’t seem clear if I was meant to suggest all options. I suggested the one closest to what was asked,main,Higher degree,243239,1673789400819,1673789157580,female,English and Thai,35631,sweatpants,4,main
+4867,39,I have paper towels or a hairdryer you could use,"paper towels, hairdryer",sameCategory,towel-clothes,Didn’t seem clear if I was meant to suggest all options. I suggested the one closest to what was asked,main,Higher degree,243239,1673789400819,1673789157580,female,English and Thai,48636,towel,5,main
+4841,30,"No sorry, but I have a stool",stool,competitor,chair-repair,NA,main,Higher degree,198004,1673788706957,1673788508953,female,English,39625,chair,1,main
+4841,30,I have these little Sticky Bookmarks if thats of any use,bookmarks,sameCategory,postit-board,NA,main,Higher degree,198004,1673788706957,1673788508953,female,English,54098,postit,2,main
+4841,30,"No sorry, I do have a sleeping bag though",sleeping bag,competitor,blanket-sleepover,NA,main,Higher degree,198004,1673788706957,1673788508953,female,English,32645,blanket,3,main
+4841,30,Here's a pair of Pyjamas,pyjamas,competitor,sweatpants-sleepover,NA,main,Higher degree,198004,1673788706957,1673788508953,female,English,30612,sweatpants,4,main
+4841,30,Classic,,,music-hardrock,NA,classic,Higher degree,198004,1673788706957,1673788508953,female,English,20604,music,5,filler
+4850,23,"no, i have sweetener",sweetener,sameCategory,sugar-baking,NA,main,Graduated High-school,178197,1673789097174,1673788918977,female,english,55276,sugar,1,main
+4850,23,"no, we have other stuff",other,other,candy-dessert,NA,main,Graduated High-school,178197,1673789097174,1673788918977,female,english,23568,candy,2,main
+4850,23,"no, i have a notebook",notebook,sameCategory,postit-reading,NA,main,Graduated High-school,178197,1673789097174,1673788918977,female,english,23084,postit,3,main
+4850,23,classic,,,music-softrock,NA,classic,Graduated High-school,178197,1673789097174,1673788918977,female,english,14116,music,4,filler
+4850,23,"no, paper towels",paper towels,mostSimilar,towel-clothes,NA,main,Graduated High-school,178197,1673789097174,1673788918977,female,english,22500,towel,5,main
+4861,56,No sorry - only leggings,leggings,mostSimilar,sweatpants-sleepover,NA,main,Graduated College,297592,1673789264077,1673788966485,female,English,39953,sweatpants,1,main
+4861,56,No but I do have some wipes and band aids if that helps?,"wet wipes, band aids",sameCategory,handkerchief-injury,NA,main,Graduated College,297592,1673789264077,1673788966485,female,English,41728,handkerchief,2,main
+4861,56,London,,,airport-usa,NA,London,Graduated College,297592,1673789264077,1673788966485,female,English,15919,airport,3,filler
+4861,56,"No but I do have honey, syrup and sweetener tablets if any of those would be suitable?","sweetener, syrup, honey",sameCategory,sugar-coffee,NA,main,Graduated College,297592,1673789264077,1673788966485,female,English,77472,sugar,4,main
+4861,56,No - but I do have these containers. Please pick whichever you prefer.,other,other,box-muffins,NA,main,Graduated College,297592,1673789264077,1673788966485,female,English,69560,box,5,main
+4868,54,Motorcycle,,,carRental-fun,NA,motorcycle,Graduated College,396072,1673789401458,1673789005386,female,English,39860,carRental,1,filler
+4868,54,"No, but I do have a watering can you can use if you like.",watering can,competitor,bottle-plants,NA,main,Graduated College,396072,1673789401458,1673789005386,female,English,84329,bottle,2,main
+4868,54,I don't have a broom but you're more than welcome to borrow my brush and vacuum cleaner.,"vacuum, hand brush",sameCategory,broom-renovation,NA,main,Graduated College,396072,1673789401458,1673789005386,female,English,88992,broom,3,main
+4868,54,"No, but you can use my pyjamas if you like.",pyjamas,competitor,sweatpants-sleepover,NA,main,Graduated College,396072,1673789401458,1673789005386,female,English,46383,sweatpants,4,main
+4868,54,"No, but I do have sweetener, honey or agave syrup.","sweetener, syrup, honey",sameCategory,sugar-coffee,NA,main,Graduated College,396072,1673789401458,1673789005386,female,English,79742,sugar,5,main
+4937,28,"London
+",,,airport-usa,NA,London,Graduated High-school,278793,1674411890936,1674411612143,female,English,36831,airport,1,filler
+4937,28,Unfortunately I don't have a blanket but I do have a sleeping bag if that helps?,sleeping bag,competitor,blanket-sleepover,NA,main,Graduated High-school,278793,1674411890936,1674411612143,female,English,55205,blanket,2,main
+4937,28,I dont have a bottle but I have a watering can if you would like to use that to water the plants,watering can,competitor,bottle-plants,NA,main,Graduated High-school,278793,1674411890936,1674411612143,female,English,45304,bottle,3,main
+4937,28,I dont have a towel im afraid but you can use my hair dryer?,hairdryer,competitor,towel-hair,NA,main,Graduated High-school,278793,1674411890936,1674411612143,female,English,43279,towel,4,main
+4937,28,I dont have a box but I have a cake container and some ziplock bags you can use,"cake container, ziplock",sameCategory,box-muffins,NA,main,Graduated High-school,278793,1674411890936,1674411612143,female,English,50283,box,5,main
+4945,23,"Sorry. We only have flights to that location this afternoon 
+",,,airport-usa,NA,London,Higher degree,643089,1674412249982,1674411606893,female,English,193555,airport,1,filler
+4945,23,We don’t have candy but we have some chocolate,chocolate,mostSimilar,candy-halloween,NA,main,Higher degree,643089,1674412249982,1674411606893,female,English,129118,candy,2,main
+4945,23,I have a mug I can fill up,mug,sameCategory,bottle-plants,NA,main,Higher degree,643089,1674412249982,1674411606893,female,English,174125,bottle,3,main
+4945,23,Nah but ive got a blanket give me your clothes I’ll put them in the dryer,"blanket, dryer",other,towel-hair,NA,main,Higher degree,643089,1674412249982,1674411606893,female,English,40405,towel,4,main
+4945,23,What’s it for? I’ve got sweetener,sweetener,competitor,sugar-coffee,NA,main,Higher degree,643089,1674412249982,1674411606893,female,English,69130,sugar,5,main
+4844,34,London,,,airport-europe-UPDATED,NA,London,Higher degree,235765,1673788925663,1673788689898,male,English,61122,airport,1,filler
+4844,34,No I don't but can offer you a glass.,glass,mostSimilar,bottle-water,NA,main,Higher degree,235765,1673788925663,1673788689898,male,English,30686,bottle,2,main
+4844,34,No I do not,no,taciturn,sugar-baking,NA,main,Higher degree,235765,1673788925663,1673788689898,male,English,33344,sugar,3,main
+4844,34,I do not but can offer an alternative,other,other,broom-snow,NA,main,Higher degree,235765,1673788925663,1673788689898,male,English,38705,broom,4,main
+4844,34,No but can offer you a napkin,napkins,mostSimilar,handkerchief-sauce,NA,main,Higher degree,235765,1673788925663,1673788689898,male,English,34112,handkerchief,5,main
+4845,27,I've got a cake box or a ziplock bag if you want to use them,"cake container, ziplock",sameCategory,box-bbq,NA,main,Graduated College,255013,1673788971896,1673788716883,female,english,57247,box,1,main
+4845,27,"Yeah, I've got sticky bookmarks",bookmarks,competitor,postit-reading,NA,main,Graduated College,255013,1673788971896,1673788716883,female,english,44054,postit,2,main
+4845,27,"no, but I've got some shorts or leggings if you want them","shorts, leggings",sameCategory,sweatpants-spill,NA,main,Graduated College,255013,1673788971896,1673788716883,female,english,49712,sweatpants,3,main
+4845,27,sculpture,,,art-drawing,NA,sculpture,Graduated College,255013,1673788971896,1673788716883,female,english,21285,art,4,filler
+4845,27,I have chocolate,chocolate,mostSimilar,candy-dessert,NA,main,Graduated College,255013,1673788971896,1673788716883,female,english,25995,candy,5,main
+4847,49,No but you can use hair the dryer in the basement?,dryer,sameCategory,towel-hair,NA,main,Graduated High-school,443966,1673789030444,1673788586478,female,English,138490,towel,1,main
+4847,49,No but you are welcome to use the hand brush,hand brush,mostSimilar,broom-renovation,NA,main,Graduated High-school,443966,1673789030444,1673788586478,female,English,67595,broom,2,main
+4847,49,London,,,airport-usa,NA,London,Graduated High-school,443966,1673789030444,1673788586478,female,English,62466,airport,3,filler
+4847,49,No sorry but you can use the watering can,watering can,competitor,bottle-plants,NA,main,Graduated High-school,443966,1673789030444,1673788586478,female,English,46747,bottle,4,main
+4847,49,No but I have sunscreen and you can use the tent for shade,"sunscreen, tent",other,umbrella-summer,NA,main,Graduated High-school,443966,1673789030444,1673788586478,female,English,63515,umbrella,5,main
+4938,56,"No, sorry",no,taciturn,sweatpants-spill,NA,main,Graduated College,303739,1674411904969,1674411601230,female,English,37032,sweatpants,1,main
+4938,56,sculpture,,,art-drawing,NA,sculpture,Graduated College,303739,1674411904969,1674411601230,female,English,25670,art,2,filler
+4938,56,"I have a stool or a recliner, will one of those do?","leather recliner, stool",sameCategory,chair-party,NA,main,Graduated College,303739,1674411904969,1674411601230,female,English,67364,chair,3,main
+4938,56,Does chocolate bar count as candy?,chocolate,mostSimilar,candy-dessert,NA,main,Graduated College,303739,1674411904969,1674411601230,female,English,38418,candy,4,main
+4938,56,"I've only got a hand brush, will that be enough?",hand brush,mostSimilar,broom-snow,NA,main,Graduated College,303739,1674411904969,1674411601230,female,English,54992,broom,5,main
+4947,41,Classic,,,music-softrock,NA,classic,Higher degree,694032,1674412719739,1674412025707,female,NA,439681,music,1,filler
+4947,41,Sure i think i have something we could use,other,other,chair-party,NA,main,Higher degree,694032,1674412719739,1674412025707,female,NA,20229,chair,2,main
+4947,41,Yes and afew other things might help,yes,yes,towel-clothes,NA,main,Higher degree,694032,1674412719739,1674412025707,female,NA,11785,towel,3,main
+4947,41,No i dont have a spare one sorry,no,taciturn,blanket-transportation,NA,main,Higher degree,694032,1674412719739,1674412025707,female,NA,28626,blanket,4,main
+4947,41,I might have some cookware,other,other,pot-jam,NA,main,Higher degree,694032,1674412719739,1674412025707,female,NA,135873,pot,5,main
+4852,30,"Yes, I have sticky bookmarks.",bookmarks,sameCategory,postit-board,"I answered these as best I could, trying to give detail to explain my answers.",main,Graduated College,155924,1673789145404,1673788989480,female,Englsih,35584,postit,1,main
+4852,30,Teacher,,,jobCenter-office,"I answered these as best I could, trying to give detail to explain my answers.",teacher,Graduated College,155924,1673789145404,1673788989480,female,Englsih,19887,jobCenter,2,filler
+4852,30,"No, I only have Pyjamas or leggings. 
+","pyjamas, leggings",sameCategory,sweatpants-sleepover,"I answered these as best I could, trying to give detail to explain my answers.",main,Graduated College,155924,1673789145404,1673788989480,female,Englsih,30336,sweatpants,3,main
+4852,30,No but I have a hair dryer,hairdryer,competitor,towel-hair,"I answered these as best I could, trying to give detail to explain my answers.",main,Graduated College,155924,1673789145404,1673788989480,female,Englsih,18105,towel,4,main
+4852,30,No but I have a watering can or my to-go mug.,"watering can, mug",sameCategory,bottle-plants,"I answered these as best I could, trying to give detail to explain my answers.",main,Graduated College,155924,1673789145404,1673788989480,female,Englsih,21480,bottle,5,main
+4858,39,We have chocolate,chocolate,mostSimilar,candy-dessert,NA,main,Graduated College,356863,1673789252185,1673788895322,female,English,34510,candy,1,main
+4858,39,No sorry but I’ve got a shovel and a hand brush.,"shovel, hand brush",sameCategory,broom-snow,NA,main,Graduated College,356863,1673789252185,1673788895322,female,English,83568,broom,2,main
+4858,39,"No sorry, I do have a sleeping bag you could borrow. That would help to protect it.",sleeping bag,sameCategory,blanket-transportation,NA,main,Graduated College,356863,1673789252185,1673788895322,female,English,59611,blanket,3,main
+4858,39,"No sorry, I’ve got a rain jacket you could borrow, although only one I’m afraid.",rain jacket,competitor,umbrella-rain,NA,main,Graduated College,356863,1673789252185,1673788895322,female,English,87057,umbrella,4,main
+4858,39,sculpture,,,art-drawing,NA,sculpture,Graduated College,356863,1673789252185,1673788895322,female,English,27886,art,5,filler
+4865,25,"I do yeah, I've got wet wipes or tissues, which would you like?","wet wipes, napkins",sameCategory,handkerchief-sauce,"I am English, not American, I believe I have selected the correct education level - I have a bachelors degree.",main,Graduated College,552005,1673789357323,1673788805318,other,English,108007,handkerchief,1,main
+4865,25,"Kind of, would these sticky bookmarks do? I've got a notebook if that'd be better.","bookmarks, notebook",sameCategory,postit-reading,"I am English, not American, I believe I have selected the correct education level - I have a bachelors degree.",main,Graduated College,552005,1673789357323,1673788805318,other,English,53815,postit,2,main
+4865,25,"Sorry I don't, would leggings work? Come have a look, you can choose something.",leggings,mostSimilar,sweatpants-spill,"I am English, not American, I believe I have selected the correct education level - I have a bachelors degree.",main,Graduated College,552005,1673789357323,1673788805318,other,English,90095,sweatpants,3,main
+4865,25,"I've got a sleeping bag, that'll be more padded than a blanket anyways, I think.",sleeping bag,sameCategory,blanket-transportation,"I am English, not American, I believe I have selected the correct education level - I have a bachelors degree.",main,Graduated College,552005,1673789357323,1673788805318,other,English,55064,blanket,4,main
+4865,25,motorcycles,,,carRental-moving,"I am English, not American, I believe I have selected the correct education level - I have a bachelors degree.",motorcycle,Graduated College,552005,1673789357323,1673788805318,other,English,73545,carRental,5,filler
+4866,42,no sorry but i have loads of bags and cake containers.,cake container,sameCategory,box-bbq,NA,main,Graduated High-school,357590,1673789359163,1673789001573,female,english,48279,box,1,main
+4866,42,"'teacher' hi, im sure we have something similar available, why dont you take a seat and we can open the search up to see what there is to suit your needs.",,,jobCenter-engineer,NA,teacher,Graduated High-school,357590,1673789359163,1673789001573,female,english,114184,jobCenter,2,filler
+4866,42,"dude, you knoow i  havnt done my washing yet, b i  have towelsr u can u the dryers",dryer,competitor,towel-clothes,NA,main,Graduated High-school,357590,1673789359163,1673789001573,female,english,54522,towel,3,main
+4866,42,"no but i have a shovel, lets do this together shall we",shovel,competitor,broom-snow,NA,main,Graduated High-school,357590,1673789359163,1673789001573,female,english,48222,broom,4,main
+4866,42,"sorry no, but you can lend these shorts or pat dry with a towel 
+","shorts, towel",other,sweatpants-spill,NA,main,Graduated High-school,357590,1673789359163,1673789001573,female,english,56906,sweatpants,5,main
+4872,23,"no but i have sticky bookmarks
+",bookmarks,competitor,postit-reading,NA,main,Graduated High-school,206213,1673805999298,1673805793085,female,English,41745,postit,1,main
+4872,23,no but i have a rain jacket,rain jacket,competitor,umbrella-rain,NA,main,Graduated High-school,206213,1673805999298,1673805793085,female,English,26140,umbrella,2,main
+4872,23,"no but i have a pair of leggings, pyjamas or shorts.","leggings, pyjamas, shorts",sameCategory,sweatpants-spill,NA,main,Graduated High-school,206213,1673805999298,1673805793085,female,English,29941,sweatpants,3,main
+4872,23,"no but i have a big chocolate bar, ice cream or little trail mix packages","chocolate, ice cream, trailmix",sameCategory,candy-dessert,NA,main,Graduated High-school,206213,1673805999298,1673805793085,female,English,30883,candy,4,main
+4872,23,"there are similar jobs open, such as electrical engineer, car mechanic or electrician jobs.",,,jobCenter-engineer,NA,teacher,Graduated High-school,206213,1673805999298,1673805793085,female,English,51134,jobCenter,5,filler
+4854,40,No but there is a dryer in the basement that they could use,dryer,competitor,towel-clothes,NA,main,Graduated High-school,181798,1673789180110,1673788998312,female,English,26127,towel,1,main
+4854,40,I have ice cream or chocolate,"ice cream, chocolate",sameCategory,candy-dessert,NA,main,Graduated High-school,181798,1673789180110,1673788998312,female,English,15219,candy,2,main
+4854,40,sculpture,,,art-drawing,NA,sculpture,Graduated High-school,181798,1673789180110,1673788998312,female,English,16068,art,3,filler
+4854,40,I do - I have camping cookware and pans that I can lend you,"camping cookware, pans",sameCategory,pot-jam,NA,main,Graduated High-school,181798,1673789180110,1673788998312,female,English,25060,pot,4,main
+4854,40,not a box but I can give you something to take leftovers in,other,other,box-bbq,NA,main,Graduated High-school,181798,1673789180110,1673788998312,female,English,77943,box,5,main
+4871,26,classic,,,music-softrock,NA,classic,Higher degree,171956,1673805990559,1673805818603,female,English,8833,music,1,filler
+4871,26,"No, but I have agave sugar",syrup,competitor,sugar-baking,NA,main,Higher degree,171956,1673805990559,1673805818603,female,English,26020,sugar,2,main
+4871,26,No but I have other things that might be helpful,other,other,postit-reading,NA,main,Higher degree,171956,1673805990559,1673805818603,female,English,35581,postit,3,main
+4871,26,No but do you want to use this to-go mug?,mug,competitor,bottle-water,NA,main,Higher degree,171956,1673805990559,1673805818603,female,English,22550,bottle,4,main
+4871,26,I'll give you a cake container,cake container,sameCategory,box-bbq,NA,main,Higher degree,171956,1673805990559,1673805818603,female,English,53180,box,5,main
+4939,44,"Sorry, no, but I do have a hair dryer that you could use instead.",hairdryer,competitor,towel-hair,NA,main,Higher degree,278840,1674411904404,1674411625564,female,English,62533,towel,1,main
+4939,44,"Yeah, there's some candy and chocolate in the kitchen - give them that!",chocolate,mostSimilar,candy-halloween,NA,main,Higher degree,278840,1674411904404,1674411625564,female,English,63164,candy,2,main
+4939,44,I've got some leggings and pyjamas - would either of those be ok?,"leggings, pyjamas",sameCategory,sweatpants-sleepover,NA,main,Higher degree,278840,1674411904404,1674411625564,female,English,42122,sweatpants,3,main
+4939,44,classic,,,music-hardrock,NA,classic,Higher degree,278840,1674411904404,1674411625564,female,English,13075,music,4,filler
+4939,44,Hi..I've got a ladder if that's any good? Or a stool?,"ladder, stool",sameCategory,chair-repair,NA,main,Higher degree,278840,1674411904404,1674411625564,female,English,46273,chair,5,main
+4855,23,"Nothing I can move easily, no. Sorry!",other,other,chair-party,NA,main,Graduated College,198657,1673789204474,1673789005817,female,English,49906,chair,1,main
+4855,23,motorcycle,,,carRental-moving,NA,motorcycle,Graduated College,198657,1673789204474,1673789005817,female,English,14691,carRental,2,filler
+4855,23,No sorry. I have a to-go mug if that helps at all?,mug,competitor,bottle-water,NA,main,Graduated College,198657,1673789204474,1673789005817,female,English,33849,bottle,3,main
+4855,23,"Yeah, we have chocolate and ice cream!","ice cream, chocolate",sameCategory,candy-dessert,NA,main,Graduated College,198657,1673789204474,1673789005817,female,English,29118,candy,4,main
+4855,23,I can offer you some leggings?,leggings,mostSimilar,sweatpants-spill,NA,main,Graduated College,198657,1673789204474,1673789005817,female,English,17240,sweatpants,5,main
+4856,48,motorcycle,,,carRental-fun,I was a bit unsure what sort of dryer was implied.  I guessed a tumble dryer.,motorcycle,Higher degree,384774,1673789208790,1673788824016,female,English,24326,carRental,1,filler
+4856,48,"No, but You could make a sunshade from the bike cover or set up the tent?","bike cover, tent",other,umbrella-summer,I was a bit unsure what sort of dryer was implied.  I guessed a tumble dryer.,main,Higher degree,384774,1673789208790,1673788824016,female,English,69616,umbrella,2,main
+4856,48,"No, but I've got a sleeping bag, if that helps?",sleeping bag,competitor,blanket-sleepover,I was a bit unsure what sort of dryer was implied.  I guessed a tumble dryer.,main,Higher degree,384774,1673789208790,1673788824016,female,English,57658,blanket,3,main
+4856,48,"No, but I've got a notebook and some sticky bookmarks you can have?","bookmarks, notebook",sameCategory,postit-board,I was a bit unsure what sort of dryer was implied.  I guessed a tumble dryer.,main,Higher degree,384774,1673789208790,1673788824016,female,English,68445,postit,4,main
+4856,48,"No, but I've got some paper towels?",paper towels,mostSimilar,towel-hair,I was a bit unsure what sort of dryer was implied.  I guessed a tumble dryer.,main,Higher degree,384774,1673789208790,1673788824016,female,English,74000,towel,5,main
+4859,30,"No, but I do have a sleeping bag.",sleeping bag,competitor,blanket-sleepover,It was fun to complete.,main,Graduated College,317023,1673789252441,1673788935418,female,English,59769,blanket,1,main
+4859,30,"No, but I dohave a hair dryer if you want to use that.",hairdryer,competitor,towel-hair,It was fun to complete.,main,Graduated College,317023,1673789252441,1673788935418,female,English,60041,towel,2,main
+4859,30,"No, but I have pyjamas or shorts if you'd like any of those.","pyjamas, shorts",sameCategory,sweatpants-sleepover,It was fun to complete.,main,Graduated College,317023,1673789252441,1673788935418,female,English,52622,sweatpants,3,main
+4859,30,Classic,,,music-hardrock,It was fun to complete.,classic,Graduated College,317023,1673789252441,1673788935418,female,English,28203,music,4,filler
+4859,30,"No, but I have a hand brush and a shovel, or a vacuum cleaner if you could use those.","shovel, hand brush, vacuum",sameCategory,broom-renovation,It was fun to complete.,main,Graduated College,317023,1673789252441,1673788935418,female,English,56755,broom,5,main
+4864,32,"No, but I have a hair dryer, if that helps.",hairdryer,competitor,towel-hair,NA,main,Graduated College,361128,1673789335035,1673788973907,male,English,82024,towel,1,main
+4864,32,No. I have some ziplock bags though.,ziplock,sameCategory,box-muffins,NA,main,Graduated College,361128,1673789335035,1673788973907,male,English,59620,box,2,main
+4864,32,sculpture,,,art-painting,NA,sculpture,Graduated College,361128,1673789335035,1673788973907,male,English,28369,art,3,filler
+4864,32,No. I have some sunscreen if you're interested.,sunscreen,competitor,umbrella-summer,NA,main,Graduated College,361128,1673789335035,1673788973907,male,English,82975,umbrella,4,main
+4864,32,"No, sorry.",no,taciturn,broom-renovation,NA,main,Graduated College,361128,1673789335035,1673788973907,male,English,49631,broom,5,main
+4869,29,"No I have le
+
+",no,taciturn,sweatpants-spill,NA,main,Higher degree,98917,1673805915135,1673805816218,female,English,38068,sweatpants,1,main
+4869,29,Sculpture,,,art-drawing,NA,sculpture,Higher degree,98917,1673805915135,1673805816218,female,English,9322,art,2,filler
+4869,29,No I have a container,other,other,box-bbq,NA,main,Higher degree,98917,1673805915135,1673805816218,female,English,18007,box,3,main
+4869,29,No I dont,no,taciturn,postit-reading,NA,main,Higher degree,98917,1673805915135,1673805816218,female,English,10603,postit,4,main
+4869,29,I have chocolate,chocolate,mostSimilar,candy-dessert,NA,main,Higher degree,98917,1673805915135,1673805816218,female,English,10799,candy,5,main
+4940,34,"No, but I have a stool or a ladder?","ladder, stool",sameCategory,chair-repair,NA,main,Graduated College,343566,1674411961033,1674411617467,female,English,62298,chair,1,main
+4940,34,London,,,airport-usa,NA,London,Graduated College,343566,1674411961033,1674411617467,female,English,21832,airport,2,filler
+4940,34,"No, but you can use my hairdryer?",hairdryer,competitor,towel-hair,NA,main,Graduated College,343566,1674411961033,1674411617467,female,English,43006,towel,3,main
+4940,34,I don’t. I have a marker for the whiteboard we could use?,marker,competitor,postit-board,NA,main,Graduated College,343566,1674411961033,1674411617467,female,English,82228,postit,4,main
+4940,34,I don’t but you are welcome to borrow something else.,other,other,sweatpants-sleepover,NA,main,Graduated College,343566,1674411961033,1674411617467,female,English,59284,sweatpants,5,main
+4875,37,I have paper towels in the basement,paper towels,mostSimilar,towel-clothes,NA,main,Higher degree,245765,1673806041108,1673805795343,female,English,44624,towel,1,main
+4875,37,London,,,airport-europe-UPDATED,NA,London,Higher degree,245765,1673806041108,1673805795343,female,English,24206,airport,2,filler
+4875,37,no sorry but I have a shovel,shovel,competitor,broom-snow,NA,main,Higher degree,245765,1673806041108,1673805795343,female,English,48747,broom,3,main
+4875,37,No sorry but I have some cans and pans,"cans, pans",sameCategory,pot-jam,NA,main,Higher degree,245765,1673806041108,1673805795343,female,English,45498,pot,4,main
+4875,37,I have sticky bookmarks if that helps,bookmarks,competitor,postit-reading,NA,main,Higher degree,245765,1673806041108,1673805795343,female,English,48289,postit,5,main
+4878,36,"No, sorry. I don't have a broom but I do have a shovel or a hand brush. Could they help you at all?","shovel, hand brush",sameCategory,broom-snow,NA,main,Graduated High-school,282258,1673806388940,1673806106682,female,English,73149,broom,1,main
+4878,36,sculpture,,,art-drawing,NA,sculpture,Graduated High-school,282258,1673806388940,1673806106682,female,English,26797,art,2,filler
+4878,36,"No, sorry - I have used all mine in my baking. What are yo making? Will honey or agave syrup do?","syrup, honey",sameCategory,sugar-baking,NA,main,Graduated High-school,282258,1673806388940,1673806106682,female,English,62709,sugar,3,main
+4878,36,"No, but a wet wipe might clear that up better - I have some of those of you like?",wet wipes,competitor,handkerchief-sauce,NA,main,Graduated High-school,282258,1673806388940,1673806106682,female,English,48393,handkerchief,4,main
+4878,36,"I have a blanket to warm you up and I can put your clothes in the drier if you like? 
+","blanket, dryer",other,towel-clothes,NA,main,Graduated High-school,282258,1673806388940,1673806106682,female,English,42761,towel,5,main
+4941,38,Teacher,,,jobCenter-engineer,None,teacher,Higher degree,349682,1674411965450,1674411615768,female,English,25698,jobCenter,1,filler
+4941,38,"No I don’t have a box but I have a carton, a tote bag, a cake container and a zip lock bag if you’d like any of those instead?","carton, cake container, ziplock, tote",fullList,box-bbq,None,main,Higher degree,349682,1674411965450,1674411615768,female,English,83021,box,2,main
+4941,38,No I haven’t got a broom but I do have a hand brush if that would be any help?,hand brush,mostSimilar,broom-snow,None,main,Higher degree,349682,1674411965450,1674411615768,female,English,53619,broom,3,main
+4941,38,"No I don’t have a towel but you could try using my blanket, if you wanted?",blanket,otherCategory,towel-clothes,None,main,Higher degree,349682,1674411965450,1674411615768,female,English,45820,towel,4,main
+4941,38,No I don’t have a blanket but I do have other stuff that may help you transport the mirror.,other,other,blanket-transportation,None,main,Higher degree,349682,1674411965450,1674411615768,female,English,61303,blanket,5,main
+4876,40,classic,,,music-hardrock,NA,classic,Higher degree,258739,1673806068311,1673805809572,female,English,25023,music,1,filler
+4876,40,I don’t have a blanket but I do have a sleeping bag if that would be helpful?,sleeping bag,competitor,blanket-sleepover,NA,main,Higher degree,258739,1673806068311,1673805809572,female,English,43647,blanket,2,main
+4876,40,"No, I don’t have a bottle, do you want the watering can?",watering can,competitor,bottle-plants,NA,main,Higher degree,258739,1673806068311,1673805809572,female,English,52165,bottle,3,main
+4876,40,"Sorry I don’t, I have lots of other bits but nothing like a plant pot.",other,other,pot-garden,NA,main,Higher degree,258739,1673806068311,1673805809572,female,English,50001,pot,4,main
+4876,40,"I have a hair dryer you can use, it will be better than a towel.",hairdryer,competitor,towel-hair,NA,main,Higher degree,258739,1673806068311,1673805809572,female,English,39000,towel,5,main
+4942,38,"No sorry, I have a hand brush but I don't have a broom I'm afraid.",hand brush,mostSimilar,broom-renovation,NA,main,Graduated College,345037,1674411975429,1674411630392,male,English,59859,broom,1,main
+4942,38,No sorry I don't have any pots but I have some old cans and ceramic plates that you could maybe use instead of a pot if you would like to try them?,"cans, ceramic plates",other,pot-garden,NA,main,Graduated College,345037,1674411975429,1674411630392,male,English,71020,pot,2,main
+4942,38,No sorry but you can borrow my sleeping bag which could be used instead of a blanket.,sleeping bag,competitor,blanket-sleepover,NA,main,Graduated College,345037,1674411975429,1674411630392,male,English,47924,blanket,3,main
+4942,38,teacher,,,jobCenter-office,NA,teacher,Graduated College,345037,1674411975429,1674411630392,male,English,25229,jobCenter,4,filler
+4942,38,No sorry I don't have a bottle but you can use my watering can or my glass to water the plants if you like?,"watering can, glass",sameCategory,bottle-plants,NA,main,Graduated College,345037,1674411975429,1674411630392,male,English,67055,bottle,5,main
+4943,65,"I have a vacuum cleaner if that helps, you are welcome to borrow it",vacuum,competitor,broom-renovation,NA,main,Graduated High-school,375824,1674411981515,1674411605691,female,English,92626,broom,1,main
+4943,65,motorcycle,,,carRental-fun,NA,motorcycle,Graduated High-school,375824,1674411981515,1674411605691,female,English,84029,carRental,2,filler
+4943,65,I have some chocolate,chocolate,mostSimilar,candy-halloween,NA,main,Graduated High-school,375824,1674411981515,1674411605691,female,English,54510,candy,3,main
+4943,65,I have some old cans,cans,competitor,pot-garden,NA,main,Graduated High-school,375824,1674411981515,1674411605691,female,English,49659,pot,4,main
+4943,65,No but I have a watering can,watering can,competitor,bottle-plants,NA,main,Graduated High-school,375824,1674411981515,1674411605691,female,English,35888,bottle,5,main
+4944,52,"I sure do, would you like some?",other,other,candy-dessert,NA,main,Graduated High-school,426411,1674412026998,1674411600587,female,English,50856,candy,1,main
+4944,52,"Sure we can share, no problem",other,other,bottle-water,NA,main,Graduated High-school,426411,1674412026998,1674411600587,female,English,204457,bottle,2,main
+4944,52,classic,,,music-softrock,NA,classic,Graduated High-school,426411,1674412026998,1674411600587,female,English,43336,music,3,filler
+4944,52,"Yes I do, help yourself",yes,yes,postit-reading,NA,main,Graduated High-school,426411,1674412026998,1674411600587,female,English,37488,postit,4,main
+4944,52,Yes you're welcome to borrow it,yes,yes,blanket-transportation,NA,main,Graduated High-school,426411,1674412026998,1674411600587,female,English,40655,blanket,5,main
+4934,20,"Yes, u have several things you could use",yes,yes,chair-repair,NA,main,Graduated College,190076,1674411814275,1674411624199,female,English,38576,chair,1,main
+4934,20,Sculpture,,,art-painting,NA,sculpture,Graduated College,190076,1674411814275,1674411624199,female,English,22789,art,2,filler
+4934,20,I have a watering can you can use,watering can,competitor,bottle-plants,NA,main,Graduated College,190076,1674411814275,1674411624199,female,English,23942,bottle,3,main
+4934,20,I have some pyjamas you could wear,pyjamas,competitor,sweatpants-sleepover,NA,main,Graduated College,190076,1674411814275,1674411624199,female,English,30304,sweatpants,4,main
+4934,20,I have a vacuum,vacuum,competitor,broom-renovation,NA,main,Graduated College,190076,1674411814275,1674411624199,female,English,31976,broom,5,main
+4930,52,"Yes I have several, come and see which one you would like!",other,other,pot-garden,NA,main,Graduated College,154234,1674411768966,1674411614732,female,English,21352,pot,1,main
+4930,52,"Not exactly, would you like to borrow a hairdryer?",hairdryer,competitor,towel-hair,NA,main,Graduated College,154234,1674411768966,1674411614732,female,English,27728,towel,2,main
+4930,52,teacher,,,jobCenter-office,NA,teacher,Graduated College,154234,1674411768966,1674411614732,female,English,10416,jobCenter,3,filler
+4930,52,"No, but I have sunscreen.",sunscreen,competitor,umbrella-summer,NA,main,Graduated College,154234,1674411768966,1674411614732,female,English,22480,umbrella,4,main
+4930,52,"I've got sticky bookmarks, will that do?",bookmarks,sameCategory,postit-board,NA,main,Graduated College,154234,1674411768966,1674411614732,female,English,36040,postit,5,main
+4931,32,sorry i do not have a broom. I do have a hand brush though.,hand brush,mostSimilar,broom-snow,NA,main,Higher degree,190454,1674411788992,1674411598538,male,english,47456,broom,1,main
+4931,32,I only have a stool.,stool,competitor,chair-party,NA,main,Higher degree,190454,1674411788992,1674411598538,male,english,29752,chair,2,main
+4931,32,teacher,,,jobCenter-engineer,NA,teacher,Higher degree,190454,1674411788992,1674411598538,male,english,17671,jobCenter,3,filler
+4931,32,I have a sleeping bag and a pillow if that helps?,"sleeping bag, pillow",sameCategory,blanket-transportation,NA,main,Higher degree,190454,1674411788992,1674411598538,male,english,30344,blanket,4,main
+4931,32,I have some pans.,pans,competitor,pot-jam,NA,main,Higher degree,190454,1674411788992,1674411598538,male,english,24104,pot,5,main
+4932,24,London,,,airport-usa,NA,London,Higher degree,185719,1674411788606,1674411602887,male,English,14966,airport,1,filler
+4932,24,I don't have a pot sorry but I have a few things that may be suitable such as old cans,cans,competitor,pot-garden,NA,main,Higher degree,185719,1674411788606,1674411602887,male,English,39469,pot,2,main
+4932,24,No I don't but I have sweetener tablets,sweetener,competitor,sugar-coffee,NA,main,Higher degree,185719,1674411788606,1674411602887,male,English,25045,sugar,3,main
+4932,24,I have a stool you can use but I also have a ladder which would probably be easier,"ladder, stool",sameCategory,chair-repair,NA,main,Higher degree,185719,1674411788606,1674411602887,male,English,60194,chair,4,main
+4932,24,No but i have a watering can you can use,watering can,competitor,bottle-plants,NA,main,Higher degree,185719,1674411788606,1674411602887,male,English,22211,bottle,5,main
+4933,28,"""I don't have any sweatpants I'm afraid, but I do have a pair of leggings or some pyjama bottoms you could borrow.""","leggings, pyjamas",sameCategory,sweatpants-spill,NA,main,Graduated College,178024,1674411793464,1674411615440,female,English,43171,sweatpants,1,main
+4933,28,Teacher,,,jobCenter-engineer,NA,teacher,Graduated College,178024,1674411793464,1674411615440,female,English,14724,jobCenter,2,filler
+4933,28,"""I've got a big chocolate bar. Otherwise it's ice cream.""","chocolate, ice cream",sameCategory,candy-dessert,NA,main,Graduated College,178024,1674411793464,1674411615440,female,English,31066,candy,3,main
+4933,28,"""I don't have an umbrella but you could wear my rain jacket.""",rain jacket,competitor,umbrella-rain,NA,main,Graduated College,178024,1674411793464,1674411615440,female,English,33829,umbrella,4,main
+4933,28,"""I've got plenty of pans in the basement.""",pans,competitor,pot-jam,NA,main,Graduated College,178024,1674411793464,1674411615440,female,English,27382,pot,5,main
+4935,32,classic,,,music-hardrock,NA,classic,Graduated College,236907,1674411833893,1674411596986,female,English,31894,music,1,filler
+4935,32,"Yes we have chocolate , trail mix and soda","chocolate, trailmix, soda",other,candy-halloween,NA,main,Graduated College,236907,1674411833893,1674411596986,female,English,67501,candy,2,main
+4935,32,I have everything but I don’t think I have pots,other,other,pot-garden,NA,main,Graduated College,236907,1674411833893,1674411596986,female,English,32722,pot,3,main
+4935,32,No but I have a sleeping bag,sleeping bag,competitor,blanket-sleepover,NA,main,Graduated College,236907,1674411833893,1674411596986,female,English,24881,blanket,4,main
+4935,32,I have a cake container or a zip lock bag?,"cake container, ziplock",sameCategory,box-muffins,NA,main,Graduated College,236907,1674411833893,1674411596986,female,English,38174,box,5,main
+4936,39,I have a shovel which will be much more useful,shovel,competitor,broom-snow,NA,main,Graduated High-school,248648,1674411850674,1674411602026,female,English,48009,broom,1,main
+4936,39,I have a to-go mug which you can use instead.,mug,competitor,bottle-water,NA,main,Graduated High-school,248648,1674411850674,1674411602026,female,English,41572,bottle,2,main
+4936,39,I have some chocolate which you might enjoy,chocolate,mostSimilar,candy-dessert,NA,main,Graduated High-school,248648,1674411850674,1674411602026,female,English,22311,candy,3,main
+4936,39,I have some wet wipes that you can use to clean your sweater.,wet wipes,competitor,handkerchief-sauce,NA,main,Graduated High-school,248648,1674411850674,1674411602026,female,English,26197,handkerchief,4,main
+4936,39,motorcycle,,,carRental-moving,NA,motorcycle,Graduated High-school,248648,1674411850674,1674411602026,female,English,15389,carRental,5,filler
+4946,27,"I don't, but you could borrow a cake container.",cake container,sameCategory,box-bbq,NA,main,Graduated College,917423,1674412536561,1674411619138,female,English,64122,box,1,main
+4946,27,"Sorry, I don't",no,taciturn,towel-clothes,NA,main,Graduated College,917423,1674412536561,1674411619138,female,English,39115,towel,2,main
+4946,27,"I don't, but would bubble wrap be helpful as I have that?",bubble wrap,competitor,blanket-transportation,NA,main,Graduated College,917423,1674412536561,1674411619138,female,English,177922,blanket,3,main
+4946,27,"No, but we have chocolate or ice-cream.","chocolate, ice cream",sameCategory,candy-dessert,NA,main,Graduated College,917423,1674412536561,1674411619138,female,English,27921,candy,4,main
+4946,27,classic,,,music-softrock,NA,classic,Graduated College,917423,1674412536561,1674411619138,female,English,6106,music,5,filler
+4948,52,I would reply. Yes I have some paper napkins. You are more than welcome to have some.,napkins,mostSimilar,handkerchief-sauce,A good interesting study.,main,Graduated High-school,616466,1674414629746,1674414013280,female,NA,115309,handkerchief,1,main
+4948,52,No unfortunately I do not one but I can lend you my use rain coat if that helps.,rain jacket,competitor,umbrella-rain,A good interesting study.,main,Graduated High-school,616466,1674414629746,1674414013280,female,NA,86207,umbrella,2,main
+4948,52,I have got some camping cookware and several pans you can use if that is helpful to you.,"camping cookware, pans",sameCategory,pot-jam,A good interesting study.,main,Graduated High-school,616466,1674414629746,1674414013280,female,NA,94936,pot,3,main
+4948,52,motorcycle,,,carRental-moving,A good interesting study.,motorcycle,Graduated High-school,616466,1674414629746,1674414013280,female,NA,39225,carRental,4,filler
+4948,52,"I have no sugar , but I do have some honey, sweetener tablets and syrup if that helps.","sweetener, syrup, honey",sameCategory,sugar-baking,A good interesting study.,main,Graduated High-school,616466,1674414629746,1674414013280,female,NA,83610,sugar,5,main
+4949,35,No sorry but I have some bubble wrap,bubble wrap,competitor,blanket-transportation,NA,main,Graduated High-school,150175,1674417612578,1674417462403,female,English,19304,blanket,1,main
+4949,35,No but I have some sticky bookmarks,bookmarks,sameCategory,postit-reading,NA,main,Graduated High-school,150175,1674417612578,1674417462403,female,English,25015,postit,2,main
+4949,35,What sort of pot? I have some pans,pans,competitor,pot-jam,NA,main,Graduated High-school,150175,1674417612578,1674417462403,female,English,26856,pot,3,main
+4949,35,classic,,,music-softrock,NA,classic,Graduated High-school,150175,1674417612578,1674417462403,female,English,11232,music,4,filler
+4949,35,No sorry but I have a shovel or hand brush you could use,"shovel, hand brush",sameCategory,broom-snow,NA,main,Graduated High-school,150175,1674417612578,1674417462403,female,English,36537,broom,5,main
+4955,24,"No, I don't have a bottle, but I have a watering can.",watering can,competitor,bottle-plants,NA,main,Higher degree,299919,1674417771722,1674417471803,female,English,50422,bottle,1,main
+4955,24,"No, I don't have any sugar, but I have sweetener if that helps.",sweetener,competitor,sugar-coffee,NA,main,Higher degree,299919,1674417771722,1674417471803,female,English,42336,sugar,2,main
+4955,24,"Sorry, no, I do t have an umbrella, but I have sunscreen, and you could try to sit in the shade.",sunscreen,competitor,umbrella-summer,NA,main,Higher degree,299919,1674417771722,1674417471803,female,English,43557,umbrella,3,main
+4955,24,"No, sorry, I do t have a pit. Bit I have some old cans and some plates and could make you a pot for your plants from rhat.","cans, ceramic plates",sameCategory,pot-garden,NA,main,Higher degree,299919,1674417771722,1674417471803,female,English,57084,pot,4,main
+4955,24,Motorcycle.,,,carRental-fun,NA,motorcycle,Higher degree,299919,1674417771722,1674417471803,female,English,25372,carRental,5,filler
+4957,29,sculpture,,,art-painting,No,sculpture,Higher degree,379267,1674417844738,1674417465471,male,"English, Urdu",28199,art,1,filler
+4957,29,"I'm sorry, I don't have sugar, but I do have honey, sweetener tablets, salt, and agave syrup if those would work for your coffee.","sweetener, syrup, honey, salt",fullList,sugar-coffee,No,main,Higher degree,379267,1674417844738,1674417465471,male,"English, Urdu",138471,sugar,2,main
+4957,29,"Yes, I have a towel for you to use. I also have a hair dryer, a dryer in the basement, a blanket, and paper towels if those would work for drying your hair.","paper towels, dryer, hairdryer, blanket",fullList,towel-hair,No,main,Higher degree,379267,1674417844738,1674417465471,male,"English, Urdu",67938,towel,3,main
+4957,29,I don't have a blanket sorry however I have a sleeping bag that will do the job.,sleeping bag,competitor,blanket-sleepover,No,main,Higher degree,379267,1674417844738,1674417465471,male,"English, Urdu",67489,blanket,4,main
+4957,29,I do have a chair however I also have a stool which will be a lot better for the job.,stool,sameCategory,chair-repair,No,main,Higher degree,379267,1674417844738,1674417465471,male,"English, Urdu",39578,chair,5,main
+4950,35,Yes. I have some sticky bookmarks you can use as post-it notes.,bookmarks,sameCategory,postit-board,Interesting study. Thanks.,main,Higher degree,203078,1674417666867,1674417463789,male,English,42469,postit,1,main
+4950,35,No. Sorry.,no,taciturn,bottle-plants,Interesting study. Thanks.,main,Higher degree,203078,1674417666867,1674417463789,male,English,28181,bottle,2,main
+4950,35,teacher,,,jobCenter-office,Interesting study. Thanks.,teacher,Higher degree,203078,1674417666867,1674417463789,male,English,25503,jobCenter,3,filler
+4950,35,No. Sorry.,no,taciturn,pot-garden,Interesting study. Thanks.,main,Higher degree,203078,1674417666867,1674417463789,male,English,24748,pot,4,main
+4950,35,No. But I have trail mix bags we can use instead. Its healthier.,trailmix,competitor,candy-halloween,Interesting study. Thanks.,main,Higher degree,203078,1674417666867,1674417463789,male,English,38274,candy,5,main
+4951,18,"Yeah, but i've only got honey or sweeteners, is that ok?",sweetener,competitor,sugar-coffee,NA,main,Graduated High-school,230521,1674417706058,1674417475537,female,English,61102,sugar,1,main
+4951,18,I've got a cake container?,cake container,competitor,box-muffins,NA,main,Graduated High-school,230521,1674417706058,1674417475537,female,English,21243,box,2,main
+4951,18,"Here, have some napkins. I might even have a band aid in here if you need some","napkins, band aids",sameCategory,handkerchief-injury,NA,main,Graduated High-school,230521,1674417706058,1674417475537,female,English,30154,handkerchief,3,main
+4951,18,Have a sticky bookmark. It's practically the same thing,bookmarks,sameCategory,postit-board,NA,main,Graduated High-school,230521,1674417706058,1674417475537,female,English,22857,postit,4,main
+4951,18,"Unfortunatly not, however we have a front desk, bookkeeper, carpenter and a manager's assistant job. are any of these of interest to you?",,,jobCenter-office,NA,teacher,Graduated High-school,230521,1674417706058,1674417475537,female,English,75588,jobCenter,5,filler
+4953,NA,motorcycle,,,carRental-fun,NA,motorcycle,NA,158502,1674417762433,1674417603931,NA,NA,14546,carRental,1,filler
+4953,NA,No I don't,no,taciturn,blanket-sleepover,NA,main,NA,158502,1674417762433,1674417603931,NA,NA,39340,blanket,2,main
+4953,NA,Yes I do,yes,yes,sweatpants-sleepover,NA,main,NA,158502,1674417762433,1674417603931,NA,NA,17568,sweatpants,3,main
+4953,NA,No but i have a hair dryer,hairdryer,competitor,towel-hair,NA,main,NA,158502,1674417762433,1674417603931,NA,NA,20080,towel,4,main
+4953,NA,"We dont have candy, but we have other things",other,other,candy-halloween,NA,main,NA,158502,1674417762433,1674417603931,NA,NA,20617,candy,5,main
+4958,49,"I'm sorry I don't have one - use this watering can. 
+",watering can,competitor,bottle-plants,NA,main,Higher degree,476965,1674417960057,1674417483092,female,English,98458,bottle,1,main
+4958,49,Use this hairdryer instead.,hairdryer,competitor,towel-hair,NA,main,Higher degree,476965,1674417960057,1674417483092,female,English,90358,towel,2,main
+4958,49,"Sorry, but you can use this sleeping bag if you open it out.",sleeping bag,competitor,blanket-sleepover,NA,main,Higher degree,476965,1674417960057,1674417483092,female,English,70857,blanket,3,main
+4958,49,Why don't you give people paper out of this notebook of mine and then use my whiteboard pen to collate ideas.,"notebook, marker",sameCategory,postit-board,NA,main,Higher degree,476965,1674417960057,1674417483092,female,English,124832,postit,4,main
+4958,49,teacher,,,jobCenter-office,NA,teacher,Higher degree,476965,1674417960057,1674417483092,female,English,28829,jobCenter,5,filler
+4952,33,I dont have a bottle but i have a glass or travel cup you could use?,"glass, mug",sameCategory,bottle-water,NA,main,Graduated College,241669,1674417716090,1674417474421,female,English,51811,bottle,1,main
+4952,33,I have some small bookmark notes or you can use this notebook i've got if thats any help to you?,"bookmarks, notebook",sameCategory,postit-reading,NA,main,Graduated College,241669,1674417716090,1674417474421,female,English,56369,postit,2,main
+4952,33,"No sorry i haven't got an umbrella, just wait for the rain to ease.",other,other,umbrella-rain,NA,main,Graduated College,241669,1674417716090,1674417474421,female,English,36231,umbrella,3,main
+4952,33,Teacher,,,jobCenter-engineer,NA,teacher,Graduated College,241669,1674417716090,1674417474421,female,English,21118,jobCenter,4,filler
+4952,33,I have a stool that i might be able to carry down but might need a hand if its quite heavy.,stool,competitor,chair-party,NA,main,Graduated College,241669,1674417716090,1674417474421,female,English,47214,chair,5,main
+4956,53,No candy but we have something else for trick & treaters,other,other,candy-halloween,NA,main,Higher degree,210339,1674417790891,1674417580552,female,English,66745,candy,1,main
+4956,53,No sorry I don’t but I have sweetener,sweetener,competitor,sugar-coffee,NA,main,Higher degree,210339,1674417790891,1674417580552,female,English,24145,sugar,2,main
+4956,53,I don’t have a towel but I have a hair dryer you can use,hairdryer,competitor,towel-hair,NA,main,Higher degree,210339,1674417790891,1674417580552,female,English,32716,towel,3,main
+4956,53,I don’t have post it’s but I have a whiteboard and sticky bookmarks,"marker, bookmarks",sameCategory,postit-board,NA,main,Higher degree,210339,1674417790891,1674417580552,female,English,42047,postit,4,main
+4956,53,Teacher,,,jobCenter-office,NA,teacher,Higher degree,210339,1674417790891,1674417580552,female,English,9742,jobCenter,5,filler
