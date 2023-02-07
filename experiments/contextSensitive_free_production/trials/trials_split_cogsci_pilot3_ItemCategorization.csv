@@ -1,0 +1,71 @@
+itemName,settingName,itemQuestion,response_option,context1_category,context2_category,global_category,updates
+chair-repair,chair,a chair,ladder,competitor,otherCategory,competitor_c1,
+chair-repair,chair,a chair,stool,sameCategory,competitor,competitor_c2,
+chair-repair,chair,a chair,drumthrone,sameCategory,sameCategory,sameCategory,1
+chair-repair,chair,a chair,leatherrecliner,mostSimilar,mostSimilar,mostSimilar,
+chair-repair,chair,a chair,broom,otherCategory,otherCategory,otherCategory,
+blanket-sleepover,blanket,a blanket,sleepingbag,competitor,otherCategory,competitor_c1,
+blanket-sleepover,blanket,a blanket,pillow,mostSimilar,mostSimilar,mostSimilar,
+blanket-sleepover,blanket,a blanket,carpet,otherCategory,sameCategory,sameCategory,
+blanket-sleepover,blanket,a blanket,bubblewrap,otherCategory,competitor,competitor_c2,
+blanket-sleepover,blanket,a blanket,rags,sameCategory,sameCategory,sameCategory,1
+box-muffins,box,a box,cakecontainer,competitor,sameCategory,competitor_c1,
+box-muffins,box,a box,carton,mostSimilar,mostSimilar,mostSimilar,
+box-muffins,box,a box,basket,otherCategory,otherCategory,otherCategory,1
+box-muffins,box,a box,ziplock,sameCategory,competitor,competitor_c2,
+box-muffins,box,a box,tote,otherCategory,otherCategory,otherCategory,
+sugar-coffee,sugar,sugar,sweetener,competitor,sameCategory,competitor_c1,
+sugar-coffee,sugar,sugar,syrup,sameCategory,competitor,competitor_c2,
+sugar-coffee,sugar,sugar,honey,mostSimilar,mostSimilar,mostSimilar,
+sugar-coffee,sugar,sugar,candy,otherCategory,otherCategory,otherCategory,1
+sugar-coffee,sugar,sugar,salt,otherCategory,otherCategory,otherCategory,
+handkerchief-injury,handkerchief,a handkerchief,bandaids,competitor,otherCategory,competitor_c1,
+handkerchief-injury,handkerchief,a handkerchief,napkins,mostSimilar,mostSimilar,mostSimilar,
+handkerchief-injury,handkerchief,a handkerchief,wetwipes,sameCategory,competitor,competitor_c2,
+handkerchief-injury,handkerchief,a handkerchief,sanitizer,sameCategory,sameCategory,sameCategory,1
+handkerchief-injury,handkerchief,a handkerchief,cell,otherCategory,otherCategory,otherCategory,
+broom-renovation,broom,a broom,vacuum,competitor,otherCategory,competitor_c1,
+broom-renovation,broom,a broom,mop,sameCategory,otherCategory,sameCategory,1
+broom-renovation,broom,a broom,handbrush,mostSimilar,mostSimilar,mostSimilar,
+broom-renovation,broom,a broom,shovel,otherCategory,competitor,competitor_c2,
+broom-renovation,broom,a broom,rake,otherCategory,sameCategory,sameCategory,lamp as other cat for both
+sweatpants-sleepover,sweatpants,sweatpants,pyjamas,competitor,sameCategory,competitor_c1,
+sweatpants-sleepover,sweatpants,sweatpants,leggings,mostSimilar,mostSimilar,mostSimilar,
+sweatpants-sleepover,sweatpants,sweatpants,shorts,sameCategory,competitor,competitor_c2,
+sweatpants-sleepover,sweatpants,sweatpants,tanktop,otherCategory,otherCategory,otherCategory,1
+sweatpants-sleepover,sweatpants,sweatpants,towel,otherCategory,otherCategory,otherCategory,
+umbrella-summer,umbrella,an umbrella,sunscreen,competitor,otherCategory,competitor_c1,
+umbrella-summer,umbrella,an umbrella,tent,sameCategory,otherCategory,sameCategory,otherCat for both
+umbrella-summer,umbrella,an umbrella,bikecover,mostSimilar,mostSimilar,mostSimilar,
+umbrella-summer,umbrella,an umbrella,rubberboots,otherCategory,sameCategory,sameCategory,1
+umbrella-summer,umbrella,an umbrella,rainjacket,otherCategory,competitor,competitor_c2,
+postit-board,postit,post-its,marker,competitor,otherCategory,competitor_c1,
+postit-board,postit,post-its,notebook,mostSimilar,mostSimilar,mostSimilar,
+postit-board,postit,post-its,bookmarks,sameCategory,competitor,competitor_c2,New
+postit-board,postit,post-its,pencil,otherCategory,sameCategory,sameCategory,1
+postit-board,postit,post-its,eraser,otherCategory,otherCategory,otherCategory,
+pot-garden,pot,a pot,cans,competitor,otherCategory,competitor_c1,
+pot-garden,pot,a pot,bucket,sameCategory,sameCategory,sameCategory,1
+pot-garden,pot,a pot,ceramicplates,sameCategory,otherCategory,sameCategory,New for otherCat both
+pot-garden,pot,a pot,campingcookware,mostSimilar,mostSimilar,mostSimilar,"new, might become the new comp cor C2"
+pot-garden,pot,a pot,pans,otherCategory,competitor,competitor_c2,
+towel-hair,towel,a towel,hairdryer,competitor,sameCategory,competitor_c1,
+towel-hair,towel,a towel,papertowels,mostSimilar,mostSimilar,mostSimilar,
+towel-hair,towel,a towel,blanket,otherCategory,otherCategory,otherCategory,
+towel-hair,towel,a towel,hoodie,sameCategory,sameCategory,sameCategory,1
+towel-hair,towel,a towel,dryer,otherCategory,competitor,competitor_c2,
+paper-bbq,paper,some paper,newspaper,competitor,sameCategory,competitor_c1,remove
+paper-bbq,paper,some paper,notebook,mostSimilar,mostSimilar,mostSimilar,remove
+paper-bbq,paper,some paper,book,sameCategory,otherCategory,sameCategory,remove
+paper-bbq,paper,some paper,grass,otherCategory,competitor,competitor_c2,remove
+paper-bbq,paper,some paper,paperplate,otherCategory,otherCategory,otherCategory,remove
+candy-halloween,candy,candy,trailmix,competitor,otherCategory,competitor_c1,
+candy-halloween,candy,candy,soda,sameCategory,otherCategory,sameCategory,New othercat
+candy-halloween,candy,candy,chocolate,mostSimilar,mostSimilar,mostSimilar,
+candy-halloween,candy,candy,icecream,otherCategory,sameCategory,sameCategory,Make this C2 comp
+candy-halloween,candy,candy,cheesecake,otherCategory,competitor,competitor_c2,1
+bottle-plants,bottle,a bottle,wateringcan,competitor,otherCategory,competitor_c1,
+bottle-plants,bottle,a bottle,coffeecup,sameCategory,sameCategory,sameCategory,1
+bottle-plants,bottle,a bottle,glass,mostSimilar,mostSimilar,mostSimilar,
+bottle-plants,bottle,a bottle,mug,otherCategory,competitor,competitor_c2,
+bottle-plants,bottle,a bottle,spoon,otherCategory,otherCategory,otherCategory,
