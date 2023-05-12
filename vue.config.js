@@ -1,4 +1,4 @@
-module.exports = {                                                                                                                                                               7ms 
+module.exports = {                                                                                                                                                    
   configureWebpack: {
     module: {
       rules: [
