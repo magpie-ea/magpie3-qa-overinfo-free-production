@@ -1,0 +1,6 @@
+Instructions:
+
+Based on following examples, your task is to come up with an actionable goal that a person might pursue in their every day life. Make sure that there is a step which needs to be taken to achieve the goal. This step must have at least two different realisations which have two different values on a scale associated with the step. 
+Provide the goal, the step and scale needed to achieve it and the two values on the scale.
+
+Examples:

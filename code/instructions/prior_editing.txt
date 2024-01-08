@@ -1,0 +1,3 @@
+Instructions:
+
+Given the context and the score (1-10) of how natural the provided conversation is, please edit the story such that the conversation in the story would have a higher naturalness score. The question in the story must remain unchanged.

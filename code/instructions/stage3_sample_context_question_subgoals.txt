@@ -1,0 +1,6 @@
+Instructions:
+
+You will be given a goal a person wants to achieve and possible options to achieve that goal. Each of the options is optimal with respect to the provided value of a step scale.
+Please provide a context in which you are the speaker and you know both options for achieving the goal. The context must be such that it is natural to think about the step scale. The context must include a question where a person asks you how to achieve the goal.
+
+Examples:

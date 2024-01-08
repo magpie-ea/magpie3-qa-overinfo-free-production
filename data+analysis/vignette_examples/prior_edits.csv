@@ -1,0 +1,4 @@
+context,question,revision
+You are the manager of a furniture store. You currently have sofas in stock.,A customer walks in and asks: Do you have any furniture?,You are the manager of an antiques shop. You currently have sofas in stock.
+"You are the manager of a clothing store. Today, the store is stocked with T-shirts.",A customer walks in and asks: Do you have any clothes in stock?,"You are the manager of a thrift shop. Today, the store is stocked with T-shirts."
+"You work at an electronics store. Today, you have several old Nokias for sale.",A customer walks in and asks: Do you have any electronics?,You are having a yard sale. You have several old Nokias for sale.

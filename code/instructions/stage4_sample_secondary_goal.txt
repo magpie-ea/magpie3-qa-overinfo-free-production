@@ -1,0 +1,7 @@
+Instructions:
+
+You will be given a context in which a person wants to achieve a goal where you know two possible options for achieving that goal. In the given context the person asks how to achieve the goal.
+Please modify the question context and provide two versions. One version must include some conditions such that it is intuitively clear that the questioner has a preference for scale value 1 for achieving the goal. The other version must include some conditions such that it is intuitively clear that the questioner has a preference for scale value 2 for achieving the goal.
+The respective conditions must be mentioned in the context but not in the question. The provided question must stay the same.
+
+Examples:

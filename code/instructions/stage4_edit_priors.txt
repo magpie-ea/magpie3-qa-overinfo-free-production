@@ -1,0 +1,6 @@
+Instructions:
+
+You will be given a context about objects and a question where a person asks about the avialability of an object.
+Provide, if necessary, a revised version of the context such that the question asked by the person is not trivial, given the revised context. The mentioned available objects in the context must remain unchanged. If it is already natural to ask the question in the given context, return the original context.
+
+Examples:

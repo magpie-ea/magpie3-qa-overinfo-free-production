@@ -1,0 +1,7 @@
+Instructions:
+
+You will be given an every day goal that a person wants to achieve. You will also be given a step the person needs to take to achieve the goal, a scale and two values on that scale which determine how this step might look like. Following the examples below, generate two options how the goal can be reached. Each option must be such that the person would need to take the step and it will be optimal with respect to one of the step scale values.
+Make sure that the options could naturally occur in the real world and could naturally be mentioned in a conversation. 
+Provide the goal and the two options to achieve the goal.
+
+Examples:

@@ -1,0 +1,4 @@
+Instructions:
+
+Generate new object categories based on following examples. The object categories should be relatively general. Make sure that there are at least two more specific object subcategories for that category. 
+One of the possible subcategories should be more common than the other in every day situations. Make sure that the subcategories are distinct and not the same as the basic object category. Please provide the object category, the common and the uncommon subcategories.

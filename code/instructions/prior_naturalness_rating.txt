@@ -1,0 +1,3 @@
+Instructions:
+
+You will be given a story in which a person asks a question and you provide an answer. On a scale of 1-10, how natural is the conversation?

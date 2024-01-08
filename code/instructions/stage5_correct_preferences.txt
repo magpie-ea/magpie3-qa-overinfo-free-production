@@ -1,0 +1,7 @@
+Instructions:
+
+You will be given a person's goal, an aspect which the person wants to accomplish while achieving the goal, and the person's question about the goal.
+Your task is to edit the question such that the question does NOT contain any information about the additional aspect the person pays attention to. Instead IMPLICIT hints that the aspect is importnat should be added to the question context.
+Provide the edited question and context.
+
+Examples:

@@ -1,0 +1,6 @@
+Instructions:
+
+You will be given a goal a person wants to achieve and possible methods to achieve that goal. You will also be given two options that would satisfy the goal and that are achievable with each of the methods.
+Please provide a context in which you are the speaker and you know both options for achieving the goal. The context must include a question where a person asks you how to achieve the goal.
+
+Examples:

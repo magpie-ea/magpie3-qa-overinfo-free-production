@@ -1,0 +1,6 @@
+Instructions:
+
+You will be given a general object category and two more specific types of the object. You will also see situation describing the availability of one of the specific object types. Generate a question fitting the context where a person asks you about the general object category. The context must be such that the person might have a preference for either of the object subtypes. The question must not include explicit information which subtype of object the person prefers.
+Provide the question.
+
+Examples:

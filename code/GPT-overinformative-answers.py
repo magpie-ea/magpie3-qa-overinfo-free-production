@@ -12,8 +12,10 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # items = pd.read_csv('trials_LLMs_e1.csv')
-# items = pd.read_csv('../experiments/contextSensitive_free_production/trials/trials_e2_fctPrompt_fixedOrder.csv')#[15:].reset_index()
-items = pd.read_csv('trials_LLMs_e2.csv')
+# items = pd.read_csv('../experiments/contextSensitive_free_production/trials/trials_e2_fctPrompt_fixedOrder.csv')[24:].reset_index()
+items = pd.read_csv('speaker_priors_examples2.csv') #[24:].reset_index()
+
+# items = pd.read_csv('trials_LLMs_e2.csv')
 
 # preface for GPT3 as a one-shot learner in E1
 oneShotExample = '''EXAMPLE: 
@@ -37,6 +39,16 @@ So you say: No, I don't have a spare chair, but you can have the stool.
 
 YOUR TURN:
 '''
+oneShotExampleE2_mismatch = '''EXAMPLE:
+
+You give a dinner party at your apartment. More people showed up than you expected. 
+Your neighbor, who just arrived, approaches you and asks: Do you have a spare chair I could borrow?
+
+You do not, in fact, have a spare chair, but you do have the following items: a stool, a TV armchair, a ladder and a broom. 
+So you say: No, I don't have a spare chair, but you can have the broom.
+
+YOUR TURN:
+''' # You deliberate your response as follows. The practical goal of the questioner is to sit down at the dinner table. For this purpose, the most useful object from the list of available items is the broom.
 oneShotExampleE2_polina = '''EXAMPLE:
 
 You are out in the forest for a camping trip with your friends. You are about to camp for the first night in a new location.
@@ -76,7 +88,7 @@ def sampleContinuation(initialSequence, topk = 1, max_tokens = 32, preface = '')
     """
     Helper for sampling predicted responses given prompts.
     """
-    initialSequence = preface + initialSequence
+    initialSequence = preface + "\n\nYour turn.\n" + initialSequence
     response = openai.Completion.create(
             engine      = "text-davinci-003", 
             prompt      = initialSequence,
@@ -179,7 +191,9 @@ def sampleAnswersForItem(item, wait = 0, preface = '', topk = 1, max_tokens = 32
     """
     answers = []
     probs = []
-    answer, prob = sampleContinuation(item.context_fct_prompt, preface=preface, topk=topk, max_tokens=max_tokens)
+    if preface == "diverseQA":
+        preface = "EXAMPLE: " + item.CoT
+    answer, prob = sampleContinuation(item.context, preface=preface, topk=topk, max_tokens=max_tokens) # item.context_fct_prompt
     answers.append(answer)
     probs.append(prob)
     results = pd.DataFrame(
@@ -192,7 +206,7 @@ def sampleAnswersForItem(item, wait = 0, preface = '', topk = 1, max_tokens = 32
     # flatten df in case more than one answer was sampled
     results = results.explode(["predictions", "probs"])
     # also save each item for the case of time outs
-    results.to_csv(f"GPT3-davinci-003-samples-e2-{item.itemName}.csv")
+    results.to_csv(f"results/GPT3-davinci-003-samples-twoShotLearner-diverseQA-{item.itemName}.csv")
     time.sleep(wait) # to prevent overburdening free tier of OpenAI
     return results    
 
@@ -221,13 +235,14 @@ if __name__ == "__main__":
         # one shot
         if args.one_shot:
             # don't forget to use the appropriate prompt
-            samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = oneShotExampleE2, topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
-            samples_oneShotLearner.to_csv(f'GPT3-davinci-003-samples-oneShotLearner-e2.csv', index = False)
+            # samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = oneShotExampleE2_mismatch, topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
+            samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = "diverseQA", topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
+            samples_oneShotLearner.to_csv(f'results/GPT3-davinci-003-samples-oneShot-speaker-prior2.csv', index = False)
         # vs zero shot
         else:
             
             samples_zeroShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = "", topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
-            samples_zeroShotLearner.to_csv('GPT3-davinci-002-samples-zeroShotLearner-e2.csv', index = False)
+            samples_zeroShotLearner.to_csv('results/GPT3-davinci-003-samples-zeroShotLearner-diverseQA-mismatch.csv', index = False)
 
     else:
         raise ValueError("Unknown task type")

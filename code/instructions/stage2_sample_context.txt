@@ -1,0 +1,6 @@
+Instructions:
+
+You will be given a general object category and two more specific types of the object. Come up with two contexts or situations that make intuitive sense and can happen in the world, describing that you have each of the subtypes of the object. Your occupation or personal traits should be such that having the objects available is natural.
+Provide the two contexts.
+
+Examples:

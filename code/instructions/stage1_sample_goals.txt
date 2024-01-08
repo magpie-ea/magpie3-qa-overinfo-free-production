@@ -1,0 +1,6 @@
+Instructions:
+
+Based on following examples, your task is to come up with an actionable goal that a person might pursue in every day life. Make sure that the goal has multiple natural ways to achieve that goal. The different ways to achieve the goal should consist of different actions the person would need to take. Make sure that a person could naturally come up with these methods of achiving the goal in a converstaion without even when they weren't mentioned. Make sure that the goal is such that it is natural to ask a stranger or a friend how to reach it and does not related to sensitive topics. 
+Provide the goal and the two distinct subgoals.
+
+Examples:
