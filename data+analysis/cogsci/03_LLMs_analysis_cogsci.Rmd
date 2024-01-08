@@ -15,6 +15,7 @@ library(tidyboot)
 library(brms)
 library(tidybayes)
 library(ggpattern)
+library(cspplot)
 ```
 
 ```{r, include=FALSE}
@@ -29,34 +30,89 @@ options(mc.cores = parallel::detectCores())
 ```{r, include=FALSE, warning=FALSE, message=FALSE}
 answerOrder <- c( 'competitor', 'sameCategory', 'otherCategory', 'fullList', 'taciturn', 'other')
 
-e1_humans <- read_csv("../data/results_QA_e1_cleaned.csv") %>% select(category, answer, itemName) %>%
+e1_humans <- read_csv("../data/results_QA-overinfo-freeTyping-cogsci_full_anonymized_categorized_cleaned.csv") %>% select(category, answer, itemName) %>% # results_QA_e1_cleaned.csv
   mutate(prompt = "human E1") %>% rename("predictions" = "answer")
 
-e2_humans <- read_csv("../data/e2_human_summary_wide.csv") %>% 
+e2_humans <- read_csv("../../data_paper_neural/e2_human_summary_wide.csv") %>% 
   mutate(prompt = "human E2")
-e2_human_byCategory <- read_csv("../data/results_e2_human_category_raw.csv")
-e2_items_cats <- read_csv("../data/e2_ItemCategorization.csv") 
-e2_vignettes <-  read_csv("../data/e2_vignettes.csv")
+e2_human_byCategory <- read_csv("../data/results_e2_human_category_raw_cleaned.csv")
+e2_items_cats <- read_csv("../../data_paper_neural/e2_ItemCategorization.csv") 
+e2_vignettes <-  read_csv("../../data_paper_neural/e2_vignettes.csv")
 
 
-nm_samples_categorized_e1 <- read_csv("../supplementary_materials/QA_neural_models_categorized_samples_E1.csv") 
-nm_samples_categorized_e2 <- read_csv("../supplementary_materials/QA_neural_models_categorized_samples_E2.csv")
+nm_samples_categorized_e1 <- read_csv("../../data_paper_neural/QA_neural_models_categorized_samples_E1.csv") #("../supplementary_materials/QA_neural_models_categorized_samples_E1.csv") 
+nm_samples_categorized_e2 <- read_csv("../../data_paper_neural/QA_neural_models_categorized_samples_E2.csv")#("../supplementary_materials/QA_neural_models_categorized_samples_E2.csv")
 
 e1_samples_global <- nm_samples_categorized_e1 %>%
   select(-probs, -is_few_shot, -dataset, -model_type) %>%
   rename("prompt" = "model_name") %>%
   rbind(., e1_humans)
 
-e1_gpt3_summary <- read_csv("../supplementary_materials/e1_gpt3_byPrompt_summary.csv")
+e1_gpt3_summary <- read_csv("../../data_paper_neural/e1_gpt3_byPrompt_summary.csv")
 
-e2_gpt3_category_summary <- read_csv("../supplementary_materials/e2_gpt3_byPrompt_byCategory_summary.csv")
-e2_gpt3_context_summary <- read_csv("../supplementary_materials/e2_gpt3_byPrompt_byContext_summary.csv")
+e2_gpt3_category_summary <- read_csv("../../data_paper_neural/e2_gpt3_byPrompt_byCategory_summary.csv")
+e2_gpt3_context_summary <- read_csv("../../data_paper_neural/e2_gpt3_byPrompt_byContext_summary.csv")
 
 e2_samples_global <- nm_samples_categorized_e2 %>% select(-probs, -is_few_shot, -dataset, -model_type) %>%
   rename("prompt" = "model_name") %>%
   rbind(., e2_human_byCategory %>% select(-submission_id, -settingName, -response_option) %>% mutate(prompt = "human E2") %>% rename("predictions" = "answer"))
 ```
 
+
+Post-Cogsci prompting exploration:
+```{r}
+e2_cot_mimatch <- read_csv("../../code/results/GPT3-davinci-003-samples-oneShotLearner-CoT-mismatch-e2.csv") %>% 
+  filter(!is.na(response_option)) %>%
+  left_join(., read_csv("../../data_paper_neural/e2_vignettes.csv"), by="itemName") %>%
+  group_by(context_nr) %>%
+  mutate(num_response_context = n()) %>%
+  separate_rows(response_option, sep=",") %>%
+  mutate(response_option = gsub(" ", "", response_option),
+         prompt = "mismatch CoT"
+         ) %>%
+  left_join(., read_csv("../../data_paper_neural/e2_ItemCategorization.csv"), by="response_option")
+
+e2_cot_mismatrch_category_summary <- read_csv("../../code/results/GPT3-davinci-003-samples-oneShotLearner-CoT-mismatch-e2.csv") %>% 
+  filter(!is.na(response_option)) %>%
+  mutate(n_response = n()) %>%
+  group_by(category) %>%
+  summarize(prop = n() / n_response) %>% unique() %>% 
+  mutate(prompt = "mismatch CoT")
+  
+e2_qa_mimatch <- read_csv("../../code/results/GPT3-davinci-003-samples-oneShotLearner-QA-mismatch-e2.csv") %>% 
+  filter(!is.na(response_option)) %>%
+  left_join(., read_csv("../../data_paper_neural/e2_vignettes.csv"), by="itemName") %>%
+  group_by(context_nr) %>%
+  mutate(num_response_context = n()) %>%
+  separate_rows(response_option, sep=",") %>%
+  mutate(response_option = gsub(" ", "", response_option),
+         prompt = "mismatch QA"
+         ) %>%
+  left_join(., read_csv("../../data_paper_neural/e2_ItemCategorization.csv"), by="response_option")
+
+e2_qa_mismatrch_category_summary <- read_csv("../../code/results/GPT3-davinci-003-samples-oneShotLearner-QA-mismatch-e2.csv") %>% 
+  filter(!is.na(response_option)) %>%
+  mutate(n_response = n()) %>%
+  group_by(category) %>%
+  summarize(prop = n() / n_response) %>% unique() %>% 
+  mutate(prompt = "mismatch QA")
+
+e2_cot_mismatch_summary <- e2_cot_mimatch %>% ungroup() %>% group_by(context_nr, global_category) %>%
+  summarize(n_responseType = n(), prop = n_responseType / num_response_context) %>% unique() %>%
+  filter(!is.na(global_category)) %>% select(-n_responseType) %>%
+  pivot_wider(values_from = prop, names_from = context_nr) %>%
+  mutate(prompt = "mismatch CoT")  
+
+e2_qa_mismatch_summary <- e2_qa_mimatch %>% ungroup() %>% group_by(context_nr, global_category) %>%
+  summarize(n_responseType = n(), prop = n_responseType / num_response_context) %>% unique() %>%
+  filter(!is.na(global_category)) %>% select(-n_responseType) %>%
+  pivot_wider(values_from = prop, names_from = context_nr) %>%
+  mutate(prompt = "mismatch QA")
+
+e2_mismatch_summary <- rbind(e2_cot_mismatch_summary, e2_qa_mismatch_summary)
+
+e2_mismatch_category_summary <- rbind(e2_qa_mismatrch_category_summary, e2_cot_mismatrch_category_summary)
+```
 
 
 ### Comparing neural and human responses
@@ -247,12 +303,41 @@ e1_gpt3_summary %>%
   xlab("Answer type") +
   ggtitle("Do you have iced tea?")
 ```
+Post-review stacked version of the plot:
+```{r}
+e1_gpt3_summary %>% 
+  mutate(prompt = factor(prompt, levels = c("zero-shot", "one-shot Explanation", "one-shot QA", "one-shot CoT", "human E1"), 
+                         labels = c("zero-shot\n(V)", "one-shot\nExplanation\n(I+II+IV+V)", "one-shot\nQA\n(I+III+IV+V)", "one-shot\nCoT\n(I-V)", "human\nE1\n(V)")),
+    category = factor(category, levels = rev(c("taciturn", "other", "fullList", "otherCategory", "sameCategory", "competitor")), labels = rev(c("no options",  "other", "all options", "unrelated option\n(Chardonnay)", "similar option\n(soda)", "competitor\n(iced coffee)"  ) ))) %>%
+  ggplot(., aes(x = prompt, y = prop, fill = category, label = category)) +
+  geom_col(color = "#575463", show.legend = F)+ # , aes(linetype=prompt), size = 1, show.legend = F
+  #geom_text(inherit.aes = FALSE, data = e1_plot_summary_labels, aes(x = category, y = max_val, label = category), stat = 'unique', nudge_y = 0.08, size = 4, check_overlap = TRUE) +
+  theme_csp() +
+  scale_y_continuous( limits = c(0, 1), breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)) +
+   theme(plot.title = element_text(hjust = 0.5), legend.position = "right",  legend.title = element_text(size=12), legend.text = element_text(size=12), axis.ticks.x = element_blank(), axis.text.x = element_text(angle = 35),
+    panel.background = element_rect(fill='transparent'), #transparent panel bg
+    plot.background = element_rect(fill='transparent', color=NA), #transparent plot bg
+    #panel.grid.major = element_blank(), #remove major gridlines
+    #panel.grid.minor = element_blank(), #remove minor gridlines
+    legend.background = element_rect(fill='transparent'), #transparent legend bg
+    legend.box.background = element_rect(fill='transparent') #transparent legend panel
+         ) +  
+  ylab("Proportion of answer type") +
+  xlab("Prompt type") +
+  guides(fill=guide_legend(title="Response category")) +
+  ggtitle("Do you have iced tea?")
+
+#ggsave("../viz/revisions/E1_stacked_numbered_transparent.pdf", bg="transparent", width = 5, height = 4.5)
+```
+
 
 Experiment 2:
 
 ```{r}
-e2_gpt3_context_summary %>% 
+e2_gpt3_context_summary %>%
+#e2_mismatch_summary %>% 
   mutate(prompt = factor(prompt, levels = c("zero-shot", "one-shot Explanation", "one-shot QA", "one-shot CoT", "human E2"))) %>%
+  #mutate(prompt = factor(prompt, levels = c("mismatch QA", "mismatch CoT"))) %>%
   mutate(global_category = factor(global_category, levels = c( 'otherCategory', 'mostSimilar', 'competitor_c2', 'competitor_c1'),
                            labels = c("unrelated option\n(carpet)", "a priori\nsimilar (pillow)", "competitor 2\n(bubble wrap)", "competitor 1\n(sleeping bag)")
                            )) %>%
@@ -260,13 +345,98 @@ e2_gpt3_context_summary %>%
   geom_col(aes(y = context1), position = position_dodge(preserve = "single"), color = "#575463" ) +
   geom_col(aes(y = -context2), position = position_dodge(preserve = "single"), color = "#575463" ) +
   theme_csp() + 
-  theme( axis.text.y = element_text(size = 12), axis.text.x = element_text(size = 12),  legend.title = element_text(size=12), legend.text = element_text(size=12), legend.position = "right", plot.title = element_text(hjust = 0.5)) + # , axis.ticks.y = element_blank(), 
+  theme( axis.text.y = element_text(size = 12), axis.text.x = element_text(size = 12),  legend.title = element_text(size=12), legend.text = element_text(size=12), legend.position = "right", plot.title = element_text(hjust = 0.5),
+         panel.background = element_rect(fill='transparent'), #transparent panel bg
+    plot.background = element_rect(fill='transparent', color=NA), #transparent plot bg
+    #panel.grid.major = element_blank(), #remove major gridlines
+    #panel.grid.minor = element_blank(), #remove minor gridlines
+    legend.background = element_rect(fill='transparent'), #transparent legend bg
+    legend.box.background = element_rect(fill='transparent') #transparent legend panel
+         ) + # , axis.ticks.y = element_blank(), 
   scale_y_continuous( limits = c(-1, 1), breaks = c(-1, -0.5, 0, 0.5, 1), labels = c("1", "0.5", "0", "0.5", "1")) +
   geom_hline(yintercept = 0, color = "white", size = 1) +
   coord_flip() +
-  ylab("transport <--> sleepover") +
+  ylab("mirror transport <--> sleepover") +
   xlab("") +
   ggtitle("Do you have a blanket?")
 
+#ggsave("../viz/revisions/E2_transparent.pdf", bg="transparent", width = 7.5, height = 4.5)
+
 ```
 
+Post-review revisions (stacked plot for E2):
+```{r}
+e2_gpt3_context_summary_stack <- e2_gpt3_context_summary %>% 
+  rowwise() %>%
+  mutate(context_sum = sum(context1+context2),
+         context1_prop = context1 / context_sum,
+         context2_prop = context2 / context_sum
+         ) %>%
+  pivot_longer(cols = c(context1_prop, context2_prop), names_to = "byContext_prop_key", values_to = "byContext_prop_val")
+
+e2_gpt3_context_summary_stack %>%
+#e2_mismatch_summary %>% 
+  mutate(prompt = factor(prompt, levels = c("zero-shot", "one-shot Explanation", "one-shot QA", "one-shot CoT", "human E2"))) %>%
+  #mutate(prompt = factor(prompt, levels = c("mismatch QA", "mismatch CoT"))) %>%
+  mutate(global_category = factor(global_category, levels = c( 'otherCategory', 'mostSimilar', 'competitor_c2', 'competitor_c1'),
+                           labels = c("unrelated option\n(carpet)", "a priori\nsimilar (pillow)", "competitor 2\n(bubble wrap)", "competitor 1\n(sleeping bag)")
+                           ),
+         byContext_prop_key = factor(byContext_prop_key, levels = c("context2_prop", "context1_prop"), labels = c( "transportation", "sleepover") )
+         ) %>%
+  ggplot(., aes(fill = byContext_prop_key, x = global_category)) +
+  geom_col(aes(y = byContext_prop_val), color = "#575463" ) +
+  #geom_col(aes(y = -context2), color = "#575463" ) +
+  theme_csp() + 
+  theme( axis.text.y = element_text(size = 10), axis.text.x = element_text(size = 8, angle = 35),  legend.title = element_text(size=12), legend.text = element_text(size=12), legend.position = "right", plot.title = element_text(hjust = 0.5), strip.text.x = element_text(size = 10)) + # , axis.ticks.y = element_blank(), 
+  #scale_y_continuous( limits = c(-3, 3), ) + # breaks = c(-1, -0.5, 0, 0.5, 1), labels = c("1", "0.5", "0", "0.5", "1")
+  #geom_hline(yintercept = 0, color = "white", size = 1) +
+  #coord_flip() +
+  facet_grid(.~prompt) +
+  ylab("By-context proportion") +
+  xlab("Response category") +
+  guides(fill=guide_legend(title="Context")) +
+  ggtitle("Do you have a blanket?")
+
+#ggsave("../viz/revisions/E2_stacked_byPrompt.pdf", width = 11.5, height = 4.5)
+```
+
+The same thing but without faceting, using different styles instead:
+```{r}
+
+e2_gpt3_context_summary_stack %>% ungroup() %>%
+  mutate(model_type = factor(model_type, levels = c("extractive", "generative"))) %>%
+  ggplot(aes(x = answerType, fill = answerType, y = prop, pattern = model_type)) +
+  geom_col_pattern(alpha = 0.7, position = position_dodge(preserve = "single"),
+                   width = bar.width,
+                   color = "black", 
+                   pattern_fill = "black",
+                   pattern_angle = 45,
+                   pattern_density = 0.1,
+                   pattern_spacing = 0.025,
+                   pattern_key_scale_factor = 0.6
+                   ) +
+  scale_pattern_manual(values = c(extractive = "stripe", generative = "none")) +
+  labs(x = "Answer type", y = "Response type proportion", pattern = "Model type") +
+  guides(pattern = guide_legend(override.aes = list(fill = "white")),
+         fill = guide_legend(override.aes = list(pattern = "none"))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  ggtitle("Response type proportions by model type (extractive vs generative)")
+```  
+
+
+Post-Cogsci mismatching prompt explorations:
+```{r}
+e2_mismatch_category_summary %>% 
+  mutate(prompt = factor(prompt, levels = c("mismatch QA", "mismatch CoT")),
+    category = factor(category, levels = rev(c("taciturn", "other", "fullList", "otherCategory", "mostSimilar", "sameCategory", "competitor")), labels = rev(c("no options",  "other", "all options", "unrelated\noption\n(carpet)", "most similar\n(pillow)", "similar option\n(bubble wrap)", "competitor\n(sleeping bag)"  ) ))) %>%
+  ggplot(., aes(x = category, y = prop, fill = prompt, label = category)) +
+  geom_col(position = position_dodge(preserve = "single"), color = "#575463", width = 0.8 )+
+  theme_csp() +
+  scale_y_continuous( limits = c(0, 0.7), breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7)) +
+   theme(plot.title = element_text(hjust = 0.5), legend.position = "right",  legend.title = element_text(size=12), legend.text = element_text(size=12), axis.text.x = element_text(angle = 45) ) +  
+  ylab("Proportion of answer type") +
+  xlab("Answer type") +
+  ggtitle("Do you have a blanket?")
+```

@@ -44,7 +44,7 @@ In the experiment, each subject saw *four main trials* and *one attention checki
 answerOrder <- c( 'competitor', 'sameCategory', 'otherCategory', 'fullList', 'other', 'taciturn')
 answerOrder_rev <- c('taciturn','other', 'fullList', 'otherCategory', 'sameCategory', 'competitor')
 
-df_clean_main <- read_csv("../data/results_QA_e1_cleaned.csv") %>% 
+df_clean_main <- read_csv("../data/results_QA-overinfo-freeTyping-cogsci_full_anonymized_categorized_cleaned.csv") %>% #("../data/results_QA_e1_cleaned.csv") %>% 
   mutate(answerType = factor(category, levels = answerOrder))
 head(df_clean_main)
 cat("Number of recruited subjects: ", df_clean_main %>% pull(submission_id) %>% unique() %>% length())
@@ -171,4 +171,29 @@ fullList_brm <- brm(answerType_fullList ~ 1,
     iter = 3000
     )
 summary(fullList_brm)
+```
+
+Add post-review analysis including a main effect of vignette in a pair.
+```{r}
+df_clean_main_pairs <- df_clean_main %>% select(itemName, settingName) %>% unique() %>%
+  arrange(settingName) %>%
+  mutate(pair = rep(c("pair1", "pair2"), 15))
+
+#df_clean_main_pairs %>% write_csv("../data/e1_pairs.csv")
+
+df_clean_main <- left_join(df_clean_main, df_clean_main_pairs, by = c("itemName", "settingName")) 
+
+df_clean_main <- df_clean_main %>%
+  mutate(pair = factor(pair) )
+
+contrasts(df_clean_main$pair)
+
+
+# multinomial regression with intercept only
+multinom_brm_pair <- brm(answerType ~ 1 + pair, 
+    data = df_clean_main, 
+    family = "categorical",
+    iter = 3000
+    )
+summary(multinom_brm_pair)
 ```

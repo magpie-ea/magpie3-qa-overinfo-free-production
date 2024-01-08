@@ -14,6 +14,7 @@ library(tidyverse)
 library(tidyboot)
 library(brms)
 library(tidybayes)
+library(cspplot)
 ```
 
 ```{r, include=FALSE}
@@ -45,9 +46,9 @@ In the experiment, each subject saw *four main trials* and *one attention checki
 answerOrder <- c( 'competitor', 'mostSimilar', 'sameCategory', 'otherCategory', 'fullList', 'taciturn', 'other')
 answerOrder_rev <- c('other', 'taciturn', 'fullList',  'otherCategory', 'sameCategory', 'mostSimilar','competitor')
 
-df_clean_main <- read_csv("../data/results_e2_human_category_raw.csv")
-e2_vignettes <- read_csv("../data/e2_vignettes.csv") 
-e2_items_cats <- read_csv("../data/e2_ItemCategorization.csv")
+df_clean_main <- read_csv("../data/results_e2_human_category_raw_cleaned.csv")
+e2_vignettes <- read_csv("../../data_paper_neural/e2_vignettes.csv") 
+e2_items_cats <- read_csv("../../data_paper_neural/e2_ItemCategorization.csv")
 
 head(df_clean_main)
 cat("Number of recruited subjects: ", df_clean_main %>% pull(submission_id) %>% unique() %>% length())
