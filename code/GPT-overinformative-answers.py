@@ -27,7 +27,7 @@ oneShotExample = '''EXAMPLE:
 You are hosting a barbecue party. You are standing behind the barbecue. You have the following goods to offer: pork sausages, vegan burgers, grilled potatoes and beef burgers. 
 Someone asks: Do you have grilled zucchini?
 
-You reason about what that person most likely wanted to have. That they asked for grilled zucchini suggests that they might want vegetarian food. From the items you have pork sausages and beef burgers are least likely to satisfy the persons desires. Vegan burgers and grilled potatoes come much closer. Grilled potatoes are most similar to grilled zucchini.
+Let's think step by step. You reason about what that person most likely wanted to have. That they asked for grilled zucchini suggests that they might want vegetarian food. From the items you have pork sausages and beef burgers are least likely to satisfy the person's desires. Vegan burgers and grilled potatoes come much closer. Grilled potatoes are most similar to grilled zucchini.
 You reply: I'm sorry, I don't have any grilled zucchini. But I do have some grilled potatoes.
 
 YOUR TURN:
@@ -293,7 +293,7 @@ if __name__ == "__main__":
             # don't forget to use the appropriate prompt
             # samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = oneShotExampleE2_mismatch, topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
             samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = few_shot_items, topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
-            samples_oneShotLearner.to_csv(f'../data_paper_neural/results_post_cogsci/GPT4-samples-oneShot-speaker_{args.experiment}_{timestamp}.csv', index = False)
+            samples_oneShotLearner.to_csv(f'../data_paper_neural/results_post_cogsci/GPT4-samples-oneShot-speaker_CoT_{args.experiment}_{timestamp}.csv', index = False)
         # vs zero shot
         else:
             
