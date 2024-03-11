@@ -1,0 +1,151 @@
+itemName,predictions,probs,model_version
+cafe-pie,"I'm sorry, we don't have raspberry cake. But we do have a delicious raspberry pie that you might like.",-0.19422230817389166,gpt-4-0613
+cafe-pie,"I'm sorry, we don't have raspberry cake today. But we do have raspberry pie which would be most similar. Would you like to give that a try?",-0.7355640864871908,gpt-4-0613
+cafe-pie,"I'm sorry, I don't have any raspberry cake. But I do have some raspberry pie.",-0.0787591493844225,gpt-4-0613
+cafe-pie,"I'm sorry, we don't have raspberry cake today. However, we do have a delicious raspberry pie.",-0.25576055974568185,gpt-4-0613
+cafe-pie,"I'm sorry, we don't have raspberry cake. However, we do have a delicious raspberry pie that you might enjoy.",-0.16566958882244,gpt-4-0613
+cafe-pizza,"I'm sorry, we don't have veggie pizza today. However, we do have cheese pizza available. Also, we have a delicious raspberry pie if you're interested in that.",-270.56876698443466,gpt-4-0613
+cafe-pizza,"I'm sorry, we don't have veggie pizza today. However, we do have cheese pizza, which is a vegetarian option.",-0.20322614584501114,gpt-4-0613
+cafe-pizza,"I'm sorry, we don't have veggie pizza today. However, we do have a delicious cheese pizza that you might enjoy.",-0.12903149136360373,gpt-4-0613
+cafe-pizza,"I'm sorry, we don't have veggie pizza today. But we do have a cheese pizza which might cater to your preferences.",-0.3465283887286778,gpt-4-0613
+cafe-pizza,"I'm sorry, we don't have veggie pizza today. However, we do have a cheese pizza which is vegetarian, if that suits your preference.",-0.2971859253916339,gpt-4-0613
+bar-whiteWine,"I'm sorry, I don't have any Sauvignon Blanc. But I do have some Chardonnay.",-0.021648726753385417,gpt-4-0613
+bar-whiteWine,"I'm sorry, I don't have any Sauvignon Blanc. But I do have some Chardonnay.",-0.017888069796970833,gpt-4-0613
+bar-whiteWine,"I'm sorry, I don't have Sauvignon Blanc. But I do have Chardonnay.",-0.17309487181056502,gpt-4-0613
+bar-whiteWine,"I'm sorry, I don't have any Sauvignon Blanc. But I do have some Chardonnay.",-0.01524350249024375,gpt-4-0613
+bar-whiteWine,"I'm sorry, I don't have any Sauvignon Blanc. But I do have some Chardonnay.",-0.020359180135568335,gpt-4-0613
+bar-tea,"I'm sorry, I don't have any iced tea. But I do have iced coffee and soda, if you'd like one of those.",-0.2493490981272058,gpt-4-0613
+bar-tea,"I'm sorry, I don't have any iced tea. But I do have iced coffee, would that work for you?",-0.0746877225858963,gpt-4-0613
+bar-tea,"I'm sorry, I don't have any iced tea. But I do have iced coffee, would you like that instead?",-0.10822835777625334,gpt-4-0613
+bar-tea,"I'm sorry, I don't have any iced tea. But I do have iced coffee and soda available.",-0.12974559888404794,gpt-4-0613
+bar-tea,"I'm sorry, I don't have any iced tea. But I do have iced coffee if you would like.",-0.29026000479768166,gpt-4-0613
+touristInfo-childTheatre,"I'm sorry, there isn't a theatre performance for children today. However, there is a circus show happening which children typically enjoy.",-0.2402327842427037,gpt-4-0613
+touristInfo-childTheatre,"I'm sorry, there isn't a theatre performance for children today. However, there is a circus show happening, which often appeals to kids.",-0.3798444444607241,gpt-4-0613
+touristInfo-childTheatre,"I'm sorry, there isn't a theatre performance for children today. However, there is a circus show happening which might be entertaining for the kids.",-0.21473460310433667,gpt-4-0613
+touristInfo-childTheatre,"I'm sorry, there isn't a theatre performance for children today. However, there is a circus show happening which can be enjoyable for the whole family.",-0.3713490226067323,gpt-4-0613
+touristInfo-childTheatre,"I'm sorry, there isn't a theatre performance for children today. However, there is a circus show happening that could be enjoyable for children.",-0.23973047796605518,gpt-4-0613
+touristInfo-clubbing,"I'm sorry, there isn't a club event with electronic music today. But we do have a club event with a hip hop DJ.",-0.13021210162855715,gpt-4-0613
+touristInfo-clubbing,"I'm sorry, we don't have a club event with electronic music today. However, we do have a club event with a hip hop DJ, which might be of interest to you.",-0.14963957369918685,gpt-4-0613
+touristInfo-clubbing,"I'm sorry, there isn't a club event with electronic music today. However, we do have a club event with a hip hop DJ that you might enjoy.",-0.14381581547690905,gpt-4-0613
+touristInfo-clubbing,"I'm sorry, there isn't a club event with electronic music today. However, there is a club event with a hip hop DJ which you might enjoy.",-0.12652431949395937,gpt-4-0613
+touristInfo-clubbing,"I'm sorry, we don't have a club event with electronic music today. However, we do have a hip hop DJ performing at a club event.",-0.18634715964962903,gpt-4-0613
+bookingAgency-lowClassAccommodation,"I'm sorry, there are no beds available in the youth hostel for tomorrow night. However, we do have a room in a cheap bed-and-breakfast or a room in a budget hotel which fall within a similar budget range. Would you be interested in any of these?",-182.12055433095514,gpt-4-0613
+bookingAgency-lowClassAccommodation,"I'm sorry, there's no bed available in the youth hostel for tomorrow night. But I do have a room in a cheap bed-and-breakfast or a room in a budget hotel that you might be interested in.",-0.21725594059881662,gpt-4-0613
+bookingAgency-lowClassAccommodation,"I'm sorry, but we currently have no beds available in the youth hostel for tomorrow night. However, we do have a room available in a cheap bed-and-breakfast or a budget hotel, which you might find to your liking.",-0.5545837244652905,gpt-4-0613
+bookingAgency-lowClassAccommodation,"I'm sorry, we don't have any beds available in the youth hostel for tomorrow night. However, I can offer a room in a cheap bed-and-breakfast or a room in a budget hotel. Would any of these work for you?",-0.30354848733975304,gpt-4-0613
+bookingAgency-lowClassAccommodation,"I'm sorry, but the youth hostel is fully booked for tomorrow night. However, I can offer you a room in a cheap bed-and-breakfast, or a room in a budget hotel.",-0.23892408065026494,gpt-4-0613
+bookingAgency-highClassAccommodation,"I'm sorry, but we don't have any available single rooms in a five-star hotel for tomorrow night. The highest category we have is a suite in a four-star hotel. Alternatively, we also have an expensive apartment close to the city if you're interested.",-0.514033410074951,gpt-4-0613
+bookingAgency-highClassAccommodation,"I'm sorry, we don't have any five-star hotels available tomorrow night. However, we do have a suite in a four-star hotel that might interest you.",-0.3321808861653121,gpt-4-0613
+bookingAgency-highClassAccommodation,"I'm sorry, we don't have any available rooms in a five-star hotel for tomorrow night. But we do have a suite in a four-star hotel that you might find comfortable.",-0.19580852060175677,gpt-4-0613
+bookingAgency-highClassAccommodation,"I'm sorry, we don't have any single rooms in a five-star hotel available for tomorrow night. However, we do have a suite in a four-star hotel, or an expensive apartment close to the city.",-0.10842995009202328,gpt-4-0613
+bookingAgency-highClassAccommodation,"I'm sorry, we don't have any available rooms in a five-star hotel for tomorrow night. However, we do have a suite in a four-star hotel that you might be interested in.",-0.12900781265724356,gpt-4-0613
+waterSport-motor,"I'm sorry, we don't rent jet skis. However, we do have water ski equipment, rubber dinghies, and kayaks available for rent.",-0.024641153428526668,gpt-4-0613
+waterSport-motor,"I'm sorry, we don't rent jet skis. But we do have water ski equipment, rubber dinghies, and kayaks for rent.",-0.13929677063707388,gpt-4-0613
+waterSport-motor,"I'm sorry, we don't rent jet skis. However, we do have water ski equipment, rubber dinghies, and kayaks available for rent which are a great way to enjoy the water.",-0.3644584150954852,gpt-4-0613
+waterSport-motor,"I'm sorry, we don't rent jet skis. However, we do have water ski equipment, rubber dinghies, and kayaks for rent.",-0.11863230928053124,gpt-4-0613
+waterSport-motor,"I'm sorry, we don't rent jet skis. However, we do have water ski equipment, rubber dinghies, and kayaks available for rent.",-0.024929852441184848,gpt-4-0613
+waterSport-muscle,"I'm sorry, we don't rent canoes. But we do have kayaks available for rent, which might meet your needs for a similar experience.",-0.5038387048791484,gpt-4-0613
+waterSport-muscle,"I'm sorry, we don't rent out canoes. However, we do have kayaks available for rent, which are a similar type of watercraft.",-0.3021603710642344,gpt-4-0613
+waterSport-muscle,"I'm sorry, we don't rent canoes. However, we do have kayaks available, which could provide a very similar experience.",-0.4358209040879678,gpt-4-0613
+waterSport-muscle,"I'm sorry, we don't rent out canoes. However, we do offer kayaks which are quite similar. Would you be interested in that?",-0.26981058557559484,gpt-4-0613
+waterSport-muscle,"I'm sorry, we don't rent out canoes. But we do have kayaks available for rent, which is a similar type of watercraft.",-0.33175626632615934,gpt-4-0613
+dutyFree-smokes,"I'm sorry, I don't have any cigars. But I do have some cigarettes.",-0.030536960821811107,gpt-4-0613
+dutyFree-smokes,"I'm sorry, I don't have any cigars. But I do have some cigarettes on offer.",-0.24854000791862996,gpt-4-0613
+dutyFree-smokes,"I'm sorry, I don't have any cigars. But I do have cigarettes, would you be interested in those?",-0.274297543381775,gpt-4-0613
+dutyFree-smokes,"I'm sorry, I don't have any cigars. But I do have some cigarettes.",-0.05756234878982222,gpt-4-0613
+dutyFree-smokes,"I'm sorry, I don't have any cigars. But I do have some cigarettes, if you're interested.",-0.20191172063111304,gpt-4-0613
+dutyFree-sweets,"I'm sorry, I don't have any cookies at the moment. But I do have gingerbread and granola bars available.",-0.4277550566404461,gpt-4-0613
+dutyFree-sweets,"I'm sorry, I don't have any cookies. But I do have some gingerbread which is quite similar.",-0.08010955832221739,gpt-4-0613
+dutyFree-sweets,"I'm sorry, I don't have any cookies right now. But I do have gingerbread which you might find enjoyable.",-0.7129593036330119,gpt-4-0613
+dutyFree-sweets,"I'm sorry, I don't have any cookies. But I do have some gingerbread, which is quite similar.",-0.08110653320252917,gpt-4-0613
+dutyFree-sweets,"I'm sorry, I don't have any cookies. But I do have some gingerbread, which is quite similar.",-0.0754353283769875,gpt-4-0613
+clothing-clothes,"I'm sorry, I don't have any Hawaiian shirts. But I do have some colorful shorts that might interest you.",-0.22103885777032914,gpt-4-0613
+clothing-clothes,"I'm sorry, I don't have any Hawaiian shirts. But I do have some stylish shorts that might interest you.",-0.16469097772158334,gpt-4-0613
+clothing-clothes,"I'm sorry, I don't have any Hawaiian shirts. But I do have some shorts and sweatshirts that you might like.",-0.17907464737664447,gpt-4-0613
+clothing-clothes,"I'm sorry, we don't have any Hawaiian shirts in stock at the moment. However, we do have a variety of shorts which you might be interested in.",-0.38859127837195756,gpt-4-0613
+clothing-clothes,"I'm sorry, I don't have any Hawaiian shirts. But I do have some sweatshirts that you might like.",-0.15932292147643198,gpt-4-0613
+clothing-acc,"I'm sorry, we don't have any earrings at the moment. However, we do have some beautiful necklaces that may interest you.",-0.28343458691688567,gpt-4-0613
+clothing-acc,"I'm sorry, I don't have any earrings. But I do have some necklaces that may interest you.",-0.2546841187045622,gpt-4-0613
+clothing-acc,"I'm sorry, I don't have any earrings. But I do have some necklaces that might interest you.",-0.10186904247457824,gpt-4-0613
+clothing-acc,"I'm sorry, I don't have any earrings. But I do have some necklaces that you might like.",-0.10576172737818826,gpt-4-0613
+clothing-acc,"I'm sorry, we don't have any earrings. But we do have some stylish necklaces.",-0.53244163681575,gpt-4-0613
+petAdoption-dogs,"I'm sorry, we don't currently have any Dalmatians. But we do have some wonderful golden retrievers and chihuahuas that are looking for a loving home.",-0.19522441984148511,gpt-4-0613
+petAdoption-dogs,"I'm sorry, we currently don't have any Dalmatians. But we do have some adorable golden retrievers and chihuahuas.",-0.24446790674906468,gpt-4-0613
+petAdoption-dogs,"I'm sorry, we don't have any Dalmatians at the moment. But we do have some golden retrievers and chihuahuas that are in need of a loving home.",-0.13451816324139232,gpt-4-0613
+petAdoption-dogs,"I'm sorry, we don't have any Dalmatians at the moment. However, we do have some wonderful golden retrievers and chihuahuas that are in need of a loving home.",-0.19739098623224388,gpt-4-0613
+petAdoption-dogs,"I'm sorry, we don't have any Dalmatians at the moment. But we do have golden retrievers and chihuahuas that are looking for a loving home.",-0.1571204986095527,gpt-4-0613
+petAdoption-hamster,"I'm sorry, we don't have any hamsters at the moment. However, we do have gerbils, which are quite similar. Would you like to see them?",-0.15068719754193888,gpt-4-0613
+petAdoption-hamster,"I'm sorry, we don't have any hamsters at the moment. But we do have gerbils, which are quite similar. Would you like to meet them?",-0.1426697316932743,gpt-4-0613
+petAdoption-hamster,"I'm sorry, we don't have any hamsters at the moment. However, we do have gerbils which are often quite similar in care and temperament.",-0.44254266229155453,gpt-4-0613
+petAdoption-hamster,"I'm sorry, we don't have any hamsters at the moment. But we do have gerbils which are quite similar and also very adorable.",-0.28831060247232904,gpt-4-0613
+petAdoption-hamster,"I'm sorry, we don't have any hamsters at the moment. But we do have gerbils which are very similar and equally charming.",-0.3879230501580233,gpt-4-0613
+books-romance,"I'm sorry, I don't have any books of love poems. But I do have a book of French love letters that you might find interesting.",-0.09923961495178998,gpt-4-0613
+books-romance,"I'm sorry, I don't have any books specifically of love poems. However, I do have a book of French love letters which might interest you.",-0.20854662195857096,gpt-4-0613
+books-romance,"I'm sorry, I don't have any books of love poems. But I do have a book of French love letters, which might interest you.",-0.13032276352412334,gpt-4-0613
+books-romance,"I'm sorry, I don't have any books of love poems. But I do have a book of French love letters that you might enjoy.",-0.12213384435747587,gpt-4-0613
+books-romance,"I'm sorry, I don't have any books of love poems. But I do have a book of French love letters which might interest you.",-0.09071757560487587,gpt-4-0613
+books-fantasy,"I'm sorry, I don't have any psychological thrillers. But I do have some mystery novels which you might find interesting.",-0.05780355387305385,gpt-4-0613
+books-fantasy,"I'm sorry, I don't have any psychological thrillers. But I do have some mystery novels that you might enjoy.",-0.12134646978343999,gpt-4-0613
+books-fantasy,"I'm sorry, I don't have any psychological thrillers. But I do have some mystery novels that you might find intriguing.",-0.2076427028727654,gpt-4-0613
+books-fantasy,"I'm sorry, we don't currently have any psychological thrillers. However, we do have a range of mystery novels that you might find intriguing.",-0.3377936649939333,gpt-4-0613
+books-fantasy,"I'm sorry, we don't have any psychological thrillers at the moment. But we do have some mystery novels which have similar suspense and surprising plot twists.",-312.91582416803084,gpt-4-0613
+electronics-laptop,"I'm sorry, I don't have any MacBook Pros at the moment. But I do have a MacBook Air that might suit your needs.",-0.21336063750401785,gpt-4-0613
+electronics-laptop,"I'm sorry, I don't have a MacBook Pro at the moment. But I do have a MacBook Air which is similar. Would you like to have a look at it?",-0.27498708332655,gpt-4-0613
+electronics-laptop,"I'm sorry, I don't have any MacBook Pro's at the moment. However, I do have a MacBook Air, which is quite similar. Would you like to take a look at that?",-0.28001315566500995,gpt-4-0613
+electronics-laptop,"I'm sorry, I don't have any MacBook Pro right now. But I do have a MacBook Air which also offers great performance.",-0.4412407966712555,gpt-4-0613
+electronics-laptop,"I'm sorry, I don't have any MacBook Pros at the moment. But I do have a MacBook Air which is similar and might meet your needs.",-0.18512195772892584,gpt-4-0613
+electronics-console,"I'm sorry, we don't currently have a PlayStation in stock. However, we do have an Xbox which is a similar gaming console.",-0.18729241925881787,gpt-4-0613
+electronics-console,"I'm sorry, we don't currently have a PlayStation in stock. However, we do have an Xbox available, which is also a popular gaming console.",-0.3401248160504096,gpt-4-0613
+electronics-console,"I'm sorry, we don't currently have any PlayStations. However, we do have an Xbox which is a similar gaming console.",-0.18315178554707856,gpt-4-0613
+electronics-console,"I'm sorry, we don't have a PlayStation at the moment. However, we do have an Xbox which is a similar gaming console.",-0.19665941513844284,gpt-4-0613
+electronics-console,"I'm sorry, we don't have a PlayStation at the moment. However, we do have an Xbox which is similarly a great gaming console.",-0.47850128112186213,gpt-4-0613
+gym-yoga,"I'm sorry, we don't currently offer yoga classes. But we do have a pilates class which is similar and you might find it equally beneficial.",-0.5169755622535419,gpt-4-0613
+gym-yoga,"I'm sorry, we don't currently offer yoga classes. But we do have pilates and zumba classes which might interest you. They are quite similar and provide a fun and relaxing workout experience.",-0.8239299284984749,gpt-4-0613
+gym-yoga,"I'm sorry, we don't currently offer yoga classes. However, we do have a Pilates class which you might find interesting.",-0.22851077090377037,gpt-4-0613
+gym-yoga,"I'm sorry, we don't currently offer yoga classes. But we do have pilates class which could be of interest to you as it's also focused on balance, flexibility, and mind-body connection.",-0.5021548189035611,gpt-4-0613
+gym-yoga,"I'm sorry, we don't currently offer yoga classes. However, we do have pilates which might be close to what you're looking for.",-0.3646302955694434,gpt-4-0613
+gym-boxing,"I'm sorry, we don't currently offer boxing classes. However, we do have kickboxing classes which you might find interesting.",-0.12765120957770382,gpt-4-0613
+gym-boxing,"I'm sorry, we don't offer boxing classes. However, we do have kickboxing classes which you might enjoy.",-0.15486090634820834,gpt-4-0613
+gym-boxing,"I'm sorry, we don't offer boxing classes. But we do have kickboxing classes which might interest you.",-0.2096236270100043,gpt-4-0613
+gym-boxing,"I'm sorry, we don't offer boxing classes specifically. However, we do have kickboxing classes which you might find interesting as it involves similar training techniques.",-0.4009854263585906,gpt-4-0613
+gym-boxing,"I'm sorry, we don't currently offer boxing classes. However, we do have kickboxing classes which are quite similar and might be of interest to you.",-0.30960112887318436,gpt-4-0613
+kidsActivities-crafts,"I'm sorry, we don't have a pottery class. But we do have a watercolor painting class which you might find interesting.",-0.135634858543,gpt-4-0613
+kidsActivities-crafts,"I'm sorry, we don't have a pottery class. But we do have a watercolor painting class which could be interesting if you like creative activities.",-0.32047940468478714,gpt-4-0613
+kidsActivities-crafts,"I'm sorry, we don't have a pottery class. But we do have a watercolor painting class that you might enjoy.",-0.09099475097033848,gpt-4-0613
+kidsActivities-crafts,"I'm sorry, we don't have a pottery class. But we do have a watercolor painting class which you might enjoy.",-0.07022785899019232,gpt-4-0613
+kidsActivities-crafts,"I'm sorry, we don't have a pottery class. But we do have a watercolor painting class which you might enjoy.",-0.07432902334591537,gpt-4-0613
+kidsActivities-sports,"I'm sorry, we don't have a gymnastics class. But we do offer an acrobatics class which may interest you, as it's somewhat similar.",-0.5821574878542121,gpt-4-0613
+kidsActivities-sports,"I'm sorry, we don't have a gymnastics class. But we do have an acrobatics class which you might enjoy.",-0.05523287219468148,gpt-4-0613
+kidsActivities-sports,"I'm sorry, we don't have a gymnastics class. However, we do have an acrobatics class which you might enjoy.",-0.14056902713021785,gpt-4-0613
+kidsActivities-sports,"I'm sorry, we don't have a gymnastics class. But you might enjoy the acrobatics class as it's the most similar.",-0.4702673596025414,gpt-4-0613
+kidsActivities-sports,"I'm sorry, we don't have a gymnastics class. But we do have an acrobatics class which involves similar skills. Would you like to sign up for that?",-0.1973822066161222,gpt-4-0613
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble. But we can play Monopoly or checkers.",-0.051053623199991904,gpt-4-0613
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble. But we can play Monopoly or checkers.",-0.04814247442709047,gpt-4-0613
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble. But we can play Monopoly or checkers.",-0.06087679992139047,gpt-4-0613
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble. But we can play Monopoly or checkers.",-0.05856241759811428,gpt-4-0613
+friendsActivities-boardGames,"I'm sorry, I don't have Scrabble. But we can play Monopoly or checkers.",-0.0479334840267381,gpt-4-0613
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But I do have some movies and Xbox games we can enjoy.",-0.0810743615676087,gpt-4-0613
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But I have prepared some movies and Xbox games. We could also play Monopoly.",-0.3228376065969074,gpt-4-0613
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But we have some movies ready to watch or we could play some Xbox games or Monopoly.",-0.4210729449628621,gpt-4-0613
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But I've prepared some movies and we also have Xbox games and Monopoly.",-0.32514918073376925,gpt-4-0613
+friendsActivities-videoEntertainment,"I'm sorry, I don't have Netflix. But we do have some movies and Xbox games we could enjoy.",-0.23237285669491303,gpt-4-0613
+interior-green,"I'm sorry, I don't have any aloe vera plants. But I do have an agave plant which could make a great addition to your new apartment.",-0.2781875777889879,gpt-4-0613
+interior-green,"I'm sorry, I don't have an aloe vera plant. But I do have an agave plant which is quite similar and adds a wonderful green touch to any space.",-278.07309777475473,gpt-4-0613
+interior-green,"I'm sorry, I don't have any aloe vera plants. But I do have an agave plant, which is quite similar and also very beautiful.",-0.19221993321113123,gpt-4-0613
+interior-green,"I'm sorry, I don't have any aloe vera plants. But I do have an agave plant that you might like.",-0.20402825355199405,gpt-4-0613
+interior-green,"I'm sorry, I don't have any aloe vera plants. But I do have an agave plant, which is similar and could also make a great decoration for your new apartment.",-0.28506833233157625,gpt-4-0613
+interior-deco,"I'm sorry, I don't have any watercolour paintings. But I do have an oil painting and some printed photographs that might also be suitable for your apartment. And there's this lovely agave plant too.",-0.573236705161366,gpt-4-0613
+interior-deco,"I'm sorry, I don't have any watercolour paintings. But I do have an oil painting and some printed photographs that might add a nice touch to your new apartment.",-0.09187913711481144,gpt-4-0613
+interior-deco,"I'm sorry, I don't have any watercolour paintings. But I do have an oil painting and some printed photographs that you might like.",-0.05407452799526553,gpt-4-0613
+interior-deco,"I'm sorry, I don't have any watercolour paintings. But I do have an oil painting and some printed photographs that might interest you.",-0.09740470844808415,gpt-4-0613
+interior-deco,"I'm sorry, I don't have any watercolour paintings. But I do have an oil painting and some printed photographs that you might like for your apartment.",-0.15230680794400625,gpt-4-0613
+zoo-xl,"I'm sorry, there isn't a tiger at this zoo. But we can go see the lion, it's a big cat like a tiger.",-0.2041887596325467,gpt-4-0613
+zoo-xl,"I'm sorry, but the zoo doesn't have a tiger. However, we can see the lion which is also a large and fascinating big cat.",-0.4215456631925767,gpt-4-0613
+zoo-xl,"I'm sorry, there isn't a tiger in this zoo. But we could go see the lion, which is another big cat you might find interesting.",-0.31790457000600325,gpt-4-0613
+zoo-xl,"I'm sorry, there are no tigers in this zoo. But we can go see the lion, it might be interesting too.",-0.3896677757108148,gpt-4-0613
+zoo-xl,"I'm sorry, but there are no tigers at this zoo. However, we can visit the lion, which is a large big cat similar to a tiger.",-0.4356129836912727,gpt-4-0613
+zoo-reptiles,"I'm sorry, they don't have a chameleon here. But we can go see the iguanas. They're also reptiles and quite interesting to see.",-0.5153521747810236,gpt-4-0613
+zoo-reptiles,"I'm sorry, we don't have chameleons here. But we do have iguanas that might be interesting to see.",-0.6296216490538536,gpt-4-0613
+zoo-reptiles,"I'm sorry, there aren't any chameleons here. But we could go see the iguanas, they're another type of reptile, just like chameleons.",-0.39635671558807817,gpt-4-0613
+zoo-reptiles,"I'm sorry, there isn't a chameleon here. But we can go see the iguanas, they are also reptiles like chameleons.",-0.24438432514924366,gpt-4-0613
+zoo-reptiles,"I'm sorry, there are no chameleons in this zoo. But we can definitely go see the iguanas which are reptiles like chameleons.",-0.47899724001368854,gpt-4-0613
