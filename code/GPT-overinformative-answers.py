@@ -5,6 +5,9 @@ import pandas as pd
 from dotenv import load_dotenv
 import os
 import argparse 
+from openai import OpenAI
+from pprint import pprint
+from datetime import datetime
 
 # set openAI key in separate .env file w/ content
 # OPENAIKEY = yourkey
@@ -12,8 +15,9 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # items = pd.read_csv('trials_LLMs_e1.csv')
+# items = pd.read_csv('../experiments/free_production/trials/trials_LLMs_all_options_postprocessed.csv')
 # items = pd.read_csv('../experiments/contextSensitive_free_production/trials/trials_e2_fctPrompt_fixedOrder.csv')[24:].reset_index()
-items = pd.read_csv('speaker_priors_examples2.csv') #[24:].reset_index()
+# items = pd.read_csv('speaker_priors_examples2.csv') #[24:].reset_index()
 
 # items = pd.read_csv('trials_LLMs_e2.csv')
 
@@ -34,7 +38,7 @@ oneShotExampleE2 = '''EXAMPLE:
 You give a dinner party at your apartment. More people showed up than you expected. 
 Your neighbor, who just arrived, approaches you and asks: Do you have a spare chair I could borrow?
 
-You do not, in fact, have a spare chair, but you do have the following items: a broom, a TV armchair, a drum throne, a ladder and a kitchen table. You deliberate your response as follows. The practical goal of the questioner is to sit down at the dinner table. For this purpose, the most useful object from the list of available items is the stool.
+You do not, in fact, have a spare chair, but you do have the following items: a broom, a TV armchair, a stool, a ladder and a kitchen table. You deliberate your response as follows. The practical goal of the questioner is to sit down at the dinner table. For this purpose, the most useful object from the list of available items is the stool.
 So you say: No, I don't have a spare chair, but you can have the stool.
 
 YOUR TURN:
@@ -82,42 +86,79 @@ def getLogProbContinuation(initialSequence, continuation, preface = ''):
     meanAnswerLogProb = np.mean(answerTokenLogProbs)
     sentenceLogProb = np.sum(answerTokenLogProbs)
 
+
     return meanAnswerLogProb, sentenceLogProb, (endIndex - cutIndex)
 
-def sampleContinuation(initialSequence, topk = 1, max_tokens = 32, preface = ''):
+def sampleContinuation(initialSequence, topk = 1, max_tokens = 32, preface = '', model='text-davinci-003'):
     """
     Helper for sampling predicted responses given prompts.
     """
     initialSequence = preface + "\n\nYour turn.\n" + initialSequence
-    response = openai.Completion.create(
-            engine      = "text-davinci-003", 
-            prompt      = initialSequence,
-            max_tokens  = max_tokens,
-            temperature = 1, 
-            logprobs    = 0,
-            echo        = True,
-            n           = topk,
-        ) 
-    print("response ", response)
     answers = []
     probs = []
-    for i in range(topk):
-        text_offsets = response.choices[i]['logprobs']['text_offset']
-        cutIndex = text_offsets.index(max(i for i in text_offsets if i < len(initialSequence))) + 1
-        try:
-            endIndex = response.choices[i]["logprobs"]["tokens"].index("<|endoftext|>")
-        # cases when eos token was not predicted
-        except ValueError:
-            print("No eos token ")
-            endIndex = text_offsets.index(text_offsets[-1]) + 1
-        answerTokens = response.choices[i]["logprobs"]["tokens"][cutIndex:endIndex]
-        answerTokenLogProbs = response.choices[i]["logprobs"]["token_logprobs"][cutIndex:endIndex] 
-        meanAnswerLogProb = np.mean(answerTokenLogProbs)
-        probs.append(meanAnswerLogProb)
-        answerSentence = "".join(answerTokens).replace("\n", "").strip()
-        answers.append(answerSentence)
-        print("AnswerSentence ", answerSentence)
-    return answers, probs
+
+    if (model == "text-davinci-003"):
+        response = openai.Completion.create(
+                engine      = "text-davinci-003", 
+                prompt      = initialSequence,
+                max_tokens  = max_tokens,
+                temperature = 1, 
+                logprobs    = 0,
+                echo        = True,
+                n           = topk,
+            ) 
+        print("response ", response)
+
+        for i in range(topk):
+            text_offsets = response.choices[i]['logprobs']['text_offset']
+            cutIndex = text_offsets.index(max(i for i in text_offsets if i < len(initialSequence))) + 1
+            try:
+                endIndex = response.choices[i]["logprobs"]["tokens"].index("<|endoftext|>")
+            # cases when eos token was not predicted
+            except ValueError:
+                print("No eos token ")
+                endIndex = text_offsets.index(text_offsets[-1]) + 1
+            answerTokens = response.choices[i]["logprobs"]["tokens"][cutIndex:endIndex]
+            answerTokenLogProbs = response.choices[i]["logprobs"]["token_logprobs"][cutIndex:endIndex] 
+            meanAnswerLogProb = np.mean(answerTokenLogProbs)
+            probs.append(meanAnswerLogProb)
+            answerSentence = "".join(answerTokens).replace("\n", "").strip()
+            answers.append(answerSentence)
+            print("AnswerSentence ", answerSentence)
+        
+    elif (model == 'gpt-4') or (model == 'gpt-3.5-turbo'):
+
+        client = OpenAI()
+        for i in range(topk):
+            completion = client.chat.completions.create(
+                model=model,
+                logprobs=True,
+                temperature=1,
+                max_tokens=64,
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": initialSequence}
+                ]
+            )
+            response = completion.choices[0].message.content
+            log_probs_obj = completion.choices[0].logprobs.content
+            print("Length of log probs object ", len(log_probs_obj))
+            log_probs_list = [l.logprob for l in log_probs_obj]
+            tokens_list = [l.token for l in log_probs_obj]
+            print("Number of generated words ", len(response.split(" ")))
+            print("Log probs list ", log_probs_list, len(log_probs_list))
+            print("Tokens list ", len(tokens_list), tokens_list)
+            # print("Completion ")
+            # pprint(completion)
+            print("Model version ", completion.model)
+            print("GPT -4 resp ", response)
+            answers.append(response)
+            probs.append(np.mean(log_probs_list))
+    else:
+        raise ValueError("Unknown model type")
+    
+    
+    return answers, probs, completion.model
 
 
 def processItem(item, wait = 0, preface = ''):
@@ -181,7 +222,7 @@ def processItem(item, wait = 0, preface = ''):
     }, index = [item.itemName]*6)
     
     # write out by item results, in case API stops responding
-    results.to_csv(f"GPT3-davinci-003-predictions-e2-{item.itemName}.csv")
+    results.to_csv(f"../data_paper_neural/results_post_cogsci/GPT3-davinci-003-predictions-e2-{item.itemName}.csv")
     time.sleep(wait) # to prevent overburdening free tier of OpenAI
     return(results)
     
@@ -193,7 +234,7 @@ def sampleAnswersForItem(item, wait = 0, preface = '', topk = 1, max_tokens = 32
     probs = []
     if preface == "diverseQA":
         preface = "EXAMPLE: " + item.CoT
-    answer, prob = sampleContinuation(item.context, preface=preface, topk=topk, max_tokens=max_tokens) # item.context_fct_prompt
+    answer, prob, model_version = sampleContinuation(item.context, preface=preface, topk=topk, max_tokens=max_tokens, model="gpt-4") # item.context_fct_prompt
     answers.append(answer)
     probs.append(prob)
     results = pd.DataFrame(
@@ -201,48 +242,63 @@ def sampleAnswersForItem(item, wait = 0, preface = '', topk = 1, max_tokens = 32
         "itemName"     : item.itemName,
         "predictions"  : answers,
         "probs"        : probs,  
+        "model_version": [model_version] * len(answers),
         }, index = [item.itemName]
     )
     # flatten df in case more than one answer was sampled
     results = results.explode(["predictions", "probs"])
     # also save each item for the case of time outs
-    results.to_csv(f"results/GPT3-davinci-003-samples-twoShotLearner-diverseQA-{item.itemName}.csv")
+    results.to_csv(f"../data_paper_neural/results_post_cogsci/GPT4-samples-e1-{item.itemName}.csv")
     time.sleep(wait) # to prevent overburdening free tier of OpenAI
     return results    
 
 if __name__ == "__main__":
     # parse cmd args
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M")
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-t", "--task", help = "which response should be retrieved from GPT3?", choices = ["probs", "samples"])
     parser.add_argument("-os", "--one_shot", help = "one shot or zero shot context for GPT3?", action="store_true")
     parser.add_argument("-n", "--num_samples", help = "number of samples to draw (WARNING: high credit cost)", nargs="?", default=1, type = int)
     parser.add_argument("-m", "--max_tokens", help = "maximal number of tokens to sample for each response (WARNING: high credit cost)", nargs="?", default=32, type = int)
+    parser.add_argument("-e", "--experiment", help = "which experiment to process?", choices = ["e1", "e2"], default = "e1")
     
     args = parser.parse_args()
+    if args.experiment == "e1":
+        few_shot_items = oneShotExample
+        items = pd.read_csv('../experiments/free_production/trials/trials_LLMs_all_options_postprocessed.csv')
+    elif args.experiment == "e2":
+        few_shot_items = oneShotExampleE2
+        items = pd.read_csv('../experiments/contextSensitive_free_production/trials/trials_e2_fctPrompt_fixedOrder.csv')
+        # remove items that were used as one-shot example
+        items = items[(items.itemName != "chair-repair") & (items.itemName != "chair-party")]
+        print("Number of items for E2: ", len(items))
+    else:
+        raise ValueError("Unknown experiment number")
+    
     # run scoring
     if args.task == "probs": 
         # one-shot vs zero shot
         if args.one_shot:
             # don't forget to use the appropriate prompt
-            results_oneShotLearner = pd.concat([processItem(items.loc[i], wait = 40, preface = oneShotExampleE2) for i in range(len(items))])
-            results_oneShotLearner.to_csv('GPT3-davinci-003-predictions-oneShotLearner-e2.csv', index = False)
+            results_oneShotLearner = pd.concat([processItem(items.loc[i], wait = 40, preface = few_shot_items) for i in range(len(items))])
+            results_oneShotLearner.to_csv('../data_paper_neural/results_post_cogsci/GPT3-davinci-003-predictions-oneShotLearner-e2.csv', index = False)
         else:
             results_zeroShotLearner = pd.concat([processItem(items.loc[i], wait = 40, preface = "") for i in range(len(items))])
-            results_zeroShotLearner.to_csv('GPT3-davinci-003-predictions-overinfo-zeroShotLearner-e2.csv', index = False)
+            results_zeroShotLearner.to_csv('../data_paper_neural/results_post_cogsci/GPT3-davinci-003-predictions-overinfo-zeroShotLearner-e2.csv', index = False)
     # run sampling
     elif args.task == "samples":
         # one shot
         if args.one_shot:
             # don't forget to use the appropriate prompt
             # samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = oneShotExampleE2_mismatch, topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
-            samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = "diverseQA", topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
-            samples_oneShotLearner.to_csv(f'results/GPT3-davinci-003-samples-oneShot-speaker-prior2.csv', index = False)
+            samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = few_shot_items, topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
+            samples_oneShotLearner.to_csv(f'../data_paper_neural/results_post_cogsci/GPT4-samples-oneShot-speaker_{args.experiment}_{timestamp}.csv', index = False)
         # vs zero shot
         else:
             
             samples_zeroShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = "", topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
-            samples_zeroShotLearner.to_csv('results/GPT3-davinci-003-samples-zeroShotLearner-diverseQA-mismatch.csv', index = False)
+            samples_zeroShotLearner.to_csv(f'../data_paper_neural/results_post_cogsci/GPT4-samples-zero-shot-{args.experiment}_{timestamp}.csv', index = False)
 
     else:
         raise ValueError("Unknown task type")

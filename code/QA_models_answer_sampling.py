@@ -114,7 +114,7 @@ def predict_from_qa_model(model, stimuli, output_path, topk, max_length):
     
     df.to_csv(output_path, index=False)    
 
-def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_length=0, temperature=0, top_p=1.0, top_k=0, seed=1234, few_shot=False):
+def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_length=0, temperature=0, top_p=1.0, top_k=0, seed=1234, few_shot=False, prompt="zero-shot"):
     """
     Helper for sampling responses from huggingface pretrained QA language models.
 
@@ -142,6 +142,8 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
         Random seed to set.
     few_shot: bool
         Flag indicating whether to use the one-shot example context additionally to the story context.
+    prompt: str
+        Type of prompt to use for sampling.
     """
     torch.manual_seed(seed)
     random.seed(seed)
@@ -161,13 +163,19 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
 
     print("DEVICE ", device)
     # load requested model
-    model_qa = transformers.AutoModelWithLMHead.from_pretrained(model)
+    model_qa = transformers.AutoModelForCausalLM.from_pretrained(
+        model,
+        device_map="auto",
+        torch_dtype=torch.float16,
+
+    )
+    model_qa.eval()
     if model == "danyaljj/gpt2_question_answering_squad2":
         tokenizer = transformers.AutoTokenizer.from_pretrained("gpt2")
     else:
         tokenizer = transformers.AutoTokenizer.from_pretrained(model)
 
-    model_qa.to(device)
+    # model_qa.to(device)
 
     few_shot_context = """
     You are hosting a barbecue party. You are standing behind the barbecue. You have the following goods to offer: pork sausages, vegan burgers, grilled potatoes and beef burgers.
@@ -178,26 +186,34 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
     model_name = []
     predictions = []
     probs = []
+    prompting = []
     for i, r in tqdm(df[["context_qa", "question"]].iterrows()):
         question = r["question"] 
         context = r["context_qa"] 
         if few_shot:
-            context = few_shot_context + " " + few_shot_question + " " + few_shot_answer + " " + context
+            if prompt == "cot":
+                context = few_shot_context + " " + few_shot_question + " " + few_shot_answer + " " + context
+            elif prompt == "explanation":
+                context = few_shot_context + " " + context
+            elif prompt == "example":
+                context = few_shot_context.split("\n")[0] + " " + few_shot_question + " " + few_shot_answer + " " + context
+            else:
+                context = context
 
         if model == "danyaljj/gpt2_question_answering_squad2":
             input = f"{context} Q: {question} A:"
         elif model == "gpt2":
             input = context + " " + question + " You reply:" 
         else:
-            input = f"question: {question} context: {context}"
+            input = f"{context} {question}" #f"question: {question} context: {context}"
 
         encoded_input = tokenizer(
             [input],
             return_tensors='pt',
-            max_length=512,
-            truncation=True
+            # max_length=512,
+            # truncation=True
         )
-        encoded_input.to(device)
+        encoded_input.to(model_qa.device)
         try:
             output = model_qa.generate(
                 input_ids = encoded_input.input_ids,
@@ -207,7 +223,7 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
                 max_length = max_length if max_length > 0 else 20,
                 temperature = temperature if temperature != 1 else 1.0,
                 top_p = top_p if top_p != 1 else top_p,
-                top_k = top_k if top_k != 0 else 50,
+                top_k = top_k if top_k != 0 else None,
                 output_scores = True,
                 return_dict_in_generate = True,
             )
@@ -215,19 +231,24 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
                 # only take the scores of the answer sequence
                 start_ind = encoded_input.input_ids[0].shape[-1] + 1
                 output_seq = tokenizer.batch_decode(output.sequences[:, start_ind:], skip_special_tokens=True)
+            elif ("mistral" in model) or ("llama" in model):
+                start_ind = encoded_input.input_ids[0].shape[-1]
+                output_seq = tokenizer.batch_decode(output.sequences[:, start_ind:], skip_special_tokens=True)
             else:
                 output_seq = tokenizer.batch_decode(output.sequences, skip_special_tokens=True)
         # catch some weird (probably version difference related) bugs arising with finetuned BART
         except ValueError:
-            output_seq = ""
+            output_seq = "ERROR"
         # append predictions
         model_name.append(model)
         predictions.append(output_seq)
+        prompting.append(prompt)
         probs.append(torch.exp(output.sequences_scores).tolist())
 
     df["model_name"] = model_name
     df["predictions"] = predictions
     df["probs"] = probs
+    df["prompting_strategy"] = prompting
 
     df = df.explode(["predictions", "probs"])
     
@@ -402,6 +423,7 @@ if __name__ == "__main__":
     parser.add_argument("-s", "--seed", help = "random seed for drawing several samples", nargs="?", default=1234, type=int)
     parser.add_argument("-r", "--reduction", help = "cross entropy calculation reduction strategy for scoring answer options with LMs", nargs="?", default="mean", type=str, choices=["mean", "sum"])
     parser.add_argument("-fs", "--few_shot", help = "should the few-shot example context be used for LMs?", action="store_true")
+    parser.add_argument("-pr", "--prompt", help="Type of prompt", default="zero-shot", type=str, choices=["zero-shot", "explanation", "example", "cot"])
 
     args = parser.parse_args()
 
@@ -409,7 +431,7 @@ if __name__ == "__main__":
         predict_from_qa_model(args.model, args.path, args.output, args.topk, args.max_length)
 
     elif args.task == "lm_sampling":
-        sample_response_from_lm(args.model, args.path, args.output, args.topk, args.num_beams, args.max_length, args.temperature, args.top_p, args.top_k, args.seed, args.few_shot)
+        sample_response_from_lm(args.model, args.path, args.output, args.topk, args.num_beams, args.max_length, args.temperature, args.top_p, args.top_k, args.seed, args.few_shot, args.prompt)
 
     elif args.task == "lm_prob":
         score_answers_with_lm(args.model, args.path, args.output, args.reduction, args.seed)
