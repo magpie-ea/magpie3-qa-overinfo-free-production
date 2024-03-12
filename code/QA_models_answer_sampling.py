@@ -245,7 +245,7 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
        # except ValueError:
         #    output_seq = "ERROR"
         continuation = output.sequences[:, start_ind:]
-        seq_log_prob = [output_seq.scores[i][0, j].item() for i, j in enumerate(continuation)]
+        seq_log_prob = [output.scores[i][0, j].item() for i, j in enumerate(continuation)]
         seq_mean_log_prob = np.mean([np.log(np.exp(i)/(1 + np.exp(i))) for i in seq_log_prob])
     
         # append predictns
