@@ -245,10 +245,13 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
        # except ValueError:
         #    output_seq = "ERROR"
         continuation = output.sequences[:, start_ind:]
-        seq_log_prob = [output.scores[i][0, j].item() for i, j in enumerate(continuation)]
-        seq_mean_log_prob = np.mean([np.log(np.exp(i)/(1 + np.exp(i))) for i in seq_log_prob])
-    
-        # append predictns
+        seq_mean_log_prob = []
+        for k in range(len(output_seq)):
+            print('len scores ', len(output.scores), output.scores[0].shape)
+            seq_log_prob = [output.scores[i][k, j].item() for i, j in enumerate(continuation)]
+            seq_mean_log_p = np.mean([np.log(np.exp(i)/(1 + np.exp(i))) for i in seq_log_prob])
+            seq_mean_log_prob.append(seq_mean_log_p)
+        # append predictions
         model_name.append(model)
         predictions.append(output_seq)
         prompting.append(prompt)
