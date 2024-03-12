@@ -244,11 +244,15 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
         # catch some weird (probably version difference related) bugs arising with finetuned BART
        # except ValueError:
         #    output_seq = "ERROR"
-        # append predictions
+        continuation = output.sequences[:, start_ind:]
+        seq_log_prob = [output_seq.scores[i][0, j].item() for i, j in enumerate(continuation)]
+        seq_mean_log_prob = np.mean([np.log(np.exp(i)/(1 + np.exp(i))) for i in seq_log_prob])
+    
+        # append predictns
         model_name.append(model)
         predictions.append(output_seq)
         prompting.append(prompt)
-        probs.append(torch.exp(output.scores).tolist())
+        probs.append(seq_mean_log_prob)
 
     df["model_name"] = model_name
     df["predictions"] = predictions
