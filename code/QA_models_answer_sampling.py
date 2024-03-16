@@ -179,24 +179,25 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
 
     few_shot_context = """
     You are hosting a barbecue party. You are standing behind the barbecue. You have the following goods to offer: pork sausages, vegan burgers, grilled potatoes and beef burgers.
-    You reason about what that person most likely wanted to have. That they asked for grilled zucchini suggests that they might want vegetarian food. From the items you have pork sausages and beef burgers are least likely to satisfy the persons desires. Vegan burgers and grilled potatoes come much closer. Grilled potatoes are most similar to grilled zucchini.
     """
     few_shot_question = "Someone asks: Do you have grilled zucchini?"
-    few_shot_answer = "You reply: I'm sorry, I don't have any grilled zucchini. But I do have some grilled potatoes. Now consider a different situation."
+    few_shot_answer = "You reply: I'm sorry, I don't have any grilled zucchini. But I do have some grilled potatoes."
+    few_shot_cot = "Let's think step by step. You reason about what that person most likely wanted to have. That they asked for grilled zucchini suggests that they might want vegetarian food. From the items you have pork sausages and beef burgers are least likely to satisfy the persons desires. Vegan burgers and grilled potatoes come much closer. Grilled potatoes are most similar to grilled zucchini."
     model_name = []
     predictions = []
     probs = []
     prompting = []
+    inputs = []
     for i, r in tqdm(df[["context_qa", "question"]].iterrows()):
         question = r["question"] 
         context = r["context_qa"] 
         if few_shot:
             if prompt == "cot":
-                context = few_shot_context + " " + few_shot_question + " " + few_shot_answer + " " + context
+                context = few_shot_context + " " + few_shot_question + " " + few_shot_cot + " " + few_shot_answer + " " + context
             elif prompt == "explanation":
-                context = few_shot_context + " " + context
+                context = few_shot_context + " " + few_shot_question + " " + few_shot_cot + context
             elif prompt == "example":
-                context = few_shot_context.split("\n")[0] + " " + few_shot_question + " " + few_shot_answer + " " + context
+                context = few_shot_context + " " + few_shot_question + " " + few_shot_answer + " " + context
             else:
                 context = context
 
@@ -206,9 +207,9 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
             input = context + " " + question + " You reply:" 
         else:
             input = f"{context} {question}" #f"question: {question} context: {context}"
-
+        inputs.append(input)
         encoded_input = tokenizer(
-            [input],
+            input,
             return_tensors='pt',
             # max_length=512,
             # truncation=True
@@ -245,12 +246,12 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
        # except ValueError:
         #    output_seq = "ERROR"
         continuation = output.sequences[:, start_ind:]
-        seq_mean_log_prob = []
-        for k in range(len(output_seq)):
-            print('len scores ', len(output.scores), output.scores[0].shape)
-            seq_log_prob = [output.scores[i][k, j].item() for i, j in enumerate(continuation)]
-            seq_mean_log_p = np.mean([np.log(np.exp(i)/(1 + np.exp(i))) for i in seq_log_prob])
-            seq_mean_log_prob.append(seq_mean_log_p)
+        seq_mean_log_prob = [np.nan for i in range(len(output_seq))]
+        # for k in range(len(output_seq)):
+        #     print('len scores ', len(output.scores), output.scores[0].shape)
+        #     seq_log_prob = [output.scores[i][k, j].item() for i, j in enumerate(continuation)]
+        #     seq_mean_log_p = np.mean([np.log(np.exp(i)/(1 + np.exp(i))) for i in seq_log_prob])
+        # seq_mean_log_prob.append(seq_mean_log_p)
         # append predictions
         model_name.append(model)
         predictions.append(output_seq)
@@ -258,6 +259,7 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
         probs.append(seq_mean_log_prob)
 
     df["model_name"] = model_name
+    df["inputs"] = inputs
     df["predictions"] = predictions
     df["probs"] = probs
     df["prompting_strategy"] = prompting
