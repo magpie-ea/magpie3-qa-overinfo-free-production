@@ -152,7 +152,7 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
     # assume there is a question and answer field and the file has long format
     assert ("question" in df.columns) and ("context_qa" in df.columns), "The stimuli file has to have a question and a context_qa column"
     
-    assert topk <= num_beams, "Number of sequences to be returned has to be <= than the beam size when decoding"
+#    assert topk <= num_beams, "Number of sequences to be returned has to be <= than the beam size when decoding"
     # move to gpu for faster inference
     if torch.backends.mps.is_available():
         device = "cpu"#"mps"
@@ -213,32 +213,37 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
             # max_length=512,
             # truncation=True
         )
+        print("Input ids ", len(encoded_input.input_ids))
         encoded_input.to(model_qa.device)
-        try:
-            output = model_qa.generate(
+        
+        output = model_qa.generate(
                 input_ids = encoded_input.input_ids,
                 attention_mask = encoded_input.attention_mask,
+                do_sample=True,
                 num_return_sequences = topk,
-                num_beams = num_beams,
-                max_length = max_length if max_length > 0 else 20,
+             #   num_beams = num_beams,
+                max_new_tokens = max_length if max_length > 0 else 20,
                 temperature = temperature if temperature != 1 else 1.0,
                 top_p = top_p if top_p != 1 else top_p,
                 top_k = top_k if top_k != 0 else None,
                 output_scores = True,
                 return_dict_in_generate = True,
-            )
-            if "gpt2" in model:
+        )
+        if "gpt2" in model:
                 # only take the scores of the answer sequence
-                start_ind = encoded_input.input_ids[0].shape[-1] + 1
-                output_seq = tokenizer.batch_decode(output.sequences[:, start_ind:], skip_special_tokens=True)
-            elif ("mistral" in model) or ("llama" in model):
-                start_ind = encoded_input.input_ids[0].shape[-1]
-                output_seq = tokenizer.batch_decode(output.sequences[:, start_ind:], skip_special_tokens=True)
-            else:
-                output_seq = tokenizer.batch_decode(output.sequences, skip_special_tokens=True)
+            start_ind = encoded_input.input_ids[0].shape[-1] + 1
+            output_seq = tokenizer.batch_decode(output.sequences[:, start_ind:], skip_special_tokens=True)
+        elif ("mistral" in model) or ("llama" in model):
+            start_ind = encoded_input.input_ids[0].shape[-1]
+            print("Mistral start ind ", start_ind)
+            output_seq = tokenizer.batch_decode(output.sequences[:, start_ind:], skip_special_tokens=True)
+            print(output_seq)
+            print(output.keys())
+        else:
+            output_seq = tokenizer.batch_decode(output.sequences, skip_special_tokens=True)
         # catch some weird (probably version difference related) bugs arising with finetuned BART
-        except ValueError:
-            output_seq = "ERROR"
+       # except ValueError:
+        #    output_seq = "ERROR"
         continuation = output.sequences[:, start_ind:]
         seq_mean_log_prob = []
         for k in range(len(output_seq)):
