@@ -21,6 +21,20 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # items = pd.read_csv('trials_LLMs_e2.csv')
 
+examples = {
+    "e1": {
+        "zero-shot": "",
+        "cot": "You are hosting a barbecue party. You are standing behind the barbecue. You have the following goods to offer: pork sausages, vegan burgers, grilled potatoes and beef burgers. Someone asks: Do you have grilled zucchini? Let's think step by step. You reason about what that person most likely wanted to have. That they asked for grilled zucchini suggests that they might want vegetarian food. From the items you have pork sausages and beef burgers are least likely to satisfy the persons desires. Vegan burgers and grilled potatoes come much closer. Grilled potatoes are most similar to grilled zucchini. You reply: I'm sorry, I don't have any grilled zucchini. But I do have some grilled potatoes.",
+        "explanation": "You are hosting a barbecue party. You are standing behind the barbecue. You have the following goods to offer: pork sausages, vegan burgers, grilled potatoes and beef burgers. Someone asks: Do you have grilled zucchini? Let's think step by step. You reason about what that person most likely wanted to have. That they asked for grilled zucchini suggests that they might want vegetarian food. From the items you have pork sausages and beef burgers are least likely to satisfy the persons desires. Vegan burgers and grilled potatoes come much closer. Grilled potatoes are most similar to grilled zucchini.",
+        "example": "You are hosting a barbecue party. You are standing behind the barbecue. You have the following goods to offer: pork sausages, vegan burgers, grilled potatoes and beef burgers. Someone asks: Do you have grilled zucchini? You reply: I'm sorry, I don't have any grilled zucchini. But I do have some grilled potatoes."
+    },
+    "e2": {
+        "zero-shot": "",
+        "cot": "",
+        "explanation": "",
+        "example": ""
+    }
+}
 # preface for GPT3 as a one-shot learner in E1
 oneShotExample = '''EXAMPLE: 
 
@@ -96,6 +110,7 @@ def sampleContinuation(initialSequence, topk = 1, max_tokens = 32, preface = '',
     initialSequence = preface + "\n\nYour turn.\n" + initialSequence
     answers = []
     probs = []
+    inputs = []
 
     if (model == "text-davinci-003"):
         response = openai.Completion.create(
@@ -152,13 +167,14 @@ def sampleContinuation(initialSequence, topk = 1, max_tokens = 32, preface = '',
             # pprint(completion)
             print("Model version ", completion.model)
             print("GPT -4 resp ", response)
+            inputs.append(initialSequence)
             answers.append(response)
             probs.append(np.mean(log_probs_list))
     else:
         raise ValueError("Unknown model type")
     
     
-    return answers, probs, completion.model
+    return answers, probs, completion.model, inputs
 
 
 def processItem(item, wait = 0, preface = ''):
@@ -234,12 +250,13 @@ def sampleAnswersForItem(item, wait = 0, preface = '', topk = 1, max_tokens = 32
     probs = []
     if preface == "diverseQA":
         preface = "EXAMPLE: " + item.CoT
-    answer, prob, model_version = sampleContinuation(item.context, preface=preface, topk=topk, max_tokens=max_tokens, model="gpt-4") # item.context_fct_prompt
+    answer, prob, model_version, inputs = sampleContinuation(item.context, preface=preface, topk=topk, max_tokens=max_tokens, model="gpt-4") # item.context_fct_prompt
     answers.append(answer)
     probs.append(prob)
     results = pd.DataFrame(
         {
         "itemName"     : item.itemName,
+        "inputs": inputs,
         "predictions"  : answers,
         "probs"        : probs,  
         "model_version": [model_version] * len(answers),
@@ -262,7 +279,8 @@ if __name__ == "__main__":
     parser.add_argument("-n", "--num_samples", help = "number of samples to draw (WARNING: high credit cost)", nargs="?", default=1, type = int)
     parser.add_argument("-m", "--max_tokens", help = "maximal number of tokens to sample for each response (WARNING: high credit cost)", nargs="?", default=32, type = int)
     parser.add_argument("-e", "--experiment", help = "which experiment to process?", choices = ["e1", "e2"], default = "e1")
-    
+    parser.add_argument("-pr", "--prompt", help="Type of prompt", default="zero-shot", type=str, choices=["zero-shot", "explanation", "example", "cot"])
+
     args = parser.parse_args()
     if args.experiment == "e1":
         few_shot_items = oneShotExample
@@ -281,7 +299,7 @@ if __name__ == "__main__":
         # one-shot vs zero shot
         if args.one_shot:
             # don't forget to use the appropriate prompt
-            results_oneShotLearner = pd.concat([processItem(items.loc[i], wait = 40, preface = few_shot_items) for i in range(len(items))])
+            results_oneShotLearner = pd.concat([processItem(items.loc[i], wait = 40, preface = examples[args.experiment[args.prompt]]) for i in range(len(items))])
             results_oneShotLearner.to_csv('../data_paper_neural/results_post_cogsci/GPT3-davinci-003-predictions-oneShotLearner-e2.csv', index = False)
         else:
             results_zeroShotLearner = pd.concat([processItem(items.loc[i], wait = 40, preface = "") for i in range(len(items))])
@@ -292,13 +310,13 @@ if __name__ == "__main__":
         if args.one_shot:
             # don't forget to use the appropriate prompt
             # samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = oneShotExampleE2_mismatch, topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
-            samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = few_shot_items, topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
-            samples_oneShotLearner.to_csv(f'../data_paper_neural/results_post_cogsci/GPT4-samples-oneShot-speaker_CoT_{args.experiment}_{timestamp}.csv', index = False)
+            samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = examples[args.experiment[args.prompt]], topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
+            samples_oneShotLearner.to_csv(f'../data_paper_neural/results_post_cogsci/GPT4-samples-{args.prompt}_{args.experiment}_{timestamp}.csv', index = False)
         # vs zero shot
         else:
             
             samples_zeroShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = "", topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
-            samples_zeroShotLearner.to_csv(f'../data_paper_neural/results_post_cogsci/GPT4-samples-zero-shot-{args.experiment}_{timestamp}.csv', index = False)
+            samples_zeroShotLearner.to_csv(f'../data_paper_neural/results_post_cogsci/GPT4-samples-{args.prompt}-{args.experiment}_{timestamp}.csv', index = False)
 
     else:
         raise ValueError("Unknown task type")
