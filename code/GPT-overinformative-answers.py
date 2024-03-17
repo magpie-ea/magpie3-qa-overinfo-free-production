@@ -248,24 +248,27 @@ def sampleAnswersForItem(item, wait = 0, preface = '', topk = 1, max_tokens = 32
     """
     answers = []
     probs = []
+    inputs_list = []
+
     if preface == "diverseQA":
         preface = "EXAMPLE: " + item.CoT
     answer, prob, model_version, inputs = sampleContinuation(item.context, preface=preface, topk=topk, max_tokens=max_tokens, model="gpt-4") # item.context_fct_prompt
     answers.append(answer)
     probs.append(prob)
+    inputs_list.append(inputs)
     results = pd.DataFrame(
         {
-        "itemName"     : item.itemName,
-        "inputs": inputs,
+        "itemName"     : [item.itemName] * len(answers),
+        "inputs": inputs_list,
         "predictions"  : answers,
         "probs"        : probs,  
         "model_version": [model_version] * len(answers),
-        }, index = [item.itemName]
+        }
     )
     # flatten df in case more than one answer was sampled
     results = results.explode(["predictions", "probs"])
     # also save each item for the case of time outs
-    results.to_csv(f"../data_paper_neural/results_post_cogsci/GPT4-samples-e1-{item.itemName}.csv")
+    results.to_csv(f"../data_paper_neural/results_post_cogsci/GPT4-samples-e1-{item.itemName}.csv", index=False)
     time.sleep(wait) # to prevent overburdening free tier of OpenAI
     return results    
 
@@ -299,7 +302,7 @@ if __name__ == "__main__":
         # one-shot vs zero shot
         if args.one_shot:
             # don't forget to use the appropriate prompt
-            results_oneShotLearner = pd.concat([processItem(items.loc[i], wait = 40, preface = examples[args.experiment[args.prompt]]) for i in range(len(items))])
+            results_oneShotLearner = pd.concat([processItem(items.loc[i], wait = 40, preface = examples[args.experiment][args.prompt]) for i in range(len(items))])
             results_oneShotLearner.to_csv('../data_paper_neural/results_post_cogsci/GPT3-davinci-003-predictions-oneShotLearner-e2.csv', index = False)
         else:
             results_zeroShotLearner = pd.concat([processItem(items.loc[i], wait = 40, preface = "") for i in range(len(items))])
@@ -310,7 +313,7 @@ if __name__ == "__main__":
         if args.one_shot:
             # don't forget to use the appropriate prompt
             # samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = oneShotExampleE2_mismatch, topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
-            samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = examples[args.experiment[args.prompt]], topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
+            samples_oneShotLearner = pd.concat([sampleAnswersForItem(items.loc[i], wait = 45, preface = examples[args.experiment][args.prompt], topk=args.num_samples, max_tokens=args.max_tokens) for i in range(len(items))])
             samples_oneShotLearner.to_csv(f'../data_paper_neural/results_post_cogsci/GPT4-samples-{args.prompt}_{args.experiment}_{timestamp}.csv', index = False)
         # vs zero shot
         else:

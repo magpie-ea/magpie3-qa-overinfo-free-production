@@ -193,11 +193,11 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
         context = r["context_qa"] 
         if few_shot:
             if prompt == "cot":
-                context = few_shot_context + " " + few_shot_question + " " + few_shot_cot + " " + few_shot_answer + " " + context
+                context = few_shot_context + " " + few_shot_question + " " + few_shot_cot + " " + few_shot_answer + "\n\nYour turn.\n" + context
             elif prompt == "explanation":
-                context = few_shot_context + " " + few_shot_question + " " + few_shot_cot + context
+                context = few_shot_context + " " + few_shot_question + " " + few_shot_cot + "\n\nYour turn.\n" + context
             elif prompt == "example":
-                context = few_shot_context + " " + few_shot_question + " " + few_shot_answer + " " + context
+                context = few_shot_context + " " + few_shot_question + " " + few_shot_answer + "\n\nYour turn.\n" + context
             else:
                 context = context
 
