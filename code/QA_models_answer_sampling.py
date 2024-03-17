@@ -114,7 +114,7 @@ def predict_from_qa_model(model, stimuli, output_path, topk, max_length):
     
     df.to_csv(output_path, index=False)    
 
-def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_length=0, temperature=0, top_p=1.0, top_k=0, seed=1234, few_shot=False, prompt="zero-shot"):
+def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_length=0, temperature=0, top_p=1.0, top_k=0, seed=1234, few_shot=False, prompt="zero-shot", experiment="e1"):
     """
     Helper for sampling responses from huggingface pretrained QA language models.
 
@@ -144,9 +144,11 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
         Flag indicating whether to use the one-shot example context additionally to the story context.
     prompt: str
         Type of prompt to use for sampling.
+    experiment: str
+        Experiment number.
     """
     model_out = model.split("/")[-1]
-    constructed_output_path = output_path + f"results_e1_{model_out}_{prompt}.csv"
+    constructed_output_path = output_path + f"results_{experiment}_{model_out}_{prompt}.csv"
     torch.manual_seed(seed)
     random.seed(seed)
     # read file with questions and answers
@@ -178,13 +180,21 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
         tokenizer = transformers.AutoTokenizer.from_pretrained(model)
 
     # model_qa.to(device)
-
-    few_shot_context = """
-    You are hosting a barbecue party. You are standing behind the barbecue. You have the following goods to offer: pork sausages, vegan burgers, grilled potatoes and beef burgers.
-    """
-    few_shot_question = "Someone asks: Do you have grilled zucchini?"
-    few_shot_answer = "You reply: I'm sorry, I don't have any grilled zucchini. But I do have some grilled potatoes."
-    few_shot_cot = "Let's think step by step. You reason about what that person most likely wanted to have. That they asked for grilled zucchini suggests that they might want vegetarian food. From the items you have pork sausages and beef burgers are least likely to satisfy the persons desires. Vegan burgers and grilled potatoes come much closer. Grilled potatoes are most similar to grilled zucchini."
+    if experiment == "e1":
+        few_shot_context = """
+        You are hosting a barbecue party. You are standing behind the barbecue. You have the following goods to offer: pork sausages, vegan burgers, grilled potatoes and beef burgers. 
+        """
+        few_shot_question = "Someone asks: Do you have grilled zucchini? "
+        few_shot_answer = "You reply: I'm sorry, I don't have any grilled zucchini. But I do have some grilled potatoes."
+        few_shot_cot = "Let's think step by step. You reason about what that person most likely wanted to have. That they asked for grilled zucchini suggests that they might want vegetarian food. From the items you have pork sausages and beef burgers are least likely to satisfy the persons desires. Vegan burgers and grilled potatoes come much closer. Grilled potatoes are most similar to grilled zucchini."
+    elif experiment == "e2":
+        few_shot_context = "You give a dinner party at your apartment. More people showed up than you expected. Your neighbor, who just arrived, approaches you and asks: Do you have a spare chair I could borrow? You do not, in fact, have a spare chair, but you do have the following items: a broom, a TV armchair, a stool, a ladder and a kitchen table. "
+        few_shot_question = ""
+        few_shot_answer = "So you say: No, I don't have a spare chair, but you can have the stool."
+        few_shot_cot = "You deliberate your response as follows. The practical goal of the questioner is to sit down at the dinner table. For this purpose, the most useful object from the list of available items is the stool."
+    else:
+        raise ValueError("Experiment type incorrect!")
+    
     model_name = []
     predictions = []
     probs = []
@@ -195,11 +205,11 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
         context = r["context_qa"] 
         if few_shot:
             if prompt == "cot":
-                context = few_shot_context + " " + few_shot_question + " " + few_shot_cot + " " + few_shot_answer + "\n\nYour turn.\n" + context
+                context = few_shot_context + few_shot_question + few_shot_cot + " " + few_shot_answer + "\n\nYour turn.\n" + context
             elif prompt == "explanation":
-                context = few_shot_context + " " + few_shot_question + " " + few_shot_cot + "\n\nYour turn.\n" + context
+                context = few_shot_context + few_shot_question + few_shot_cot + "\n\nYour turn.\n" + context
             elif prompt == "example":
-                context = few_shot_context + " " + few_shot_question + " " + few_shot_answer + "\n\nYour turn.\n" + context
+                context = few_shot_context + few_shot_question + few_shot_answer + "\n\nYour turn.\n" + context
             else:
                 context = context
 
@@ -440,6 +450,7 @@ if __name__ == "__main__":
     parser.add_argument("-r", "--reduction", help = "cross entropy calculation reduction strategy for scoring answer options with LMs", nargs="?", default="mean", type=str, choices=["mean", "sum"])
     parser.add_argument("-fs", "--few_shot", help = "should the few-shot example context be used for LMs?", action="store_true")
     parser.add_argument("-pr", "--prompt", help="Type of prompt", default="zero-shot", type=str, choices=["zero-shot", "explanation", "example", "cot"])
+    parser.add_argument("-ex", "--experiment", help="Type of experiment", default="e1", type=str, choices=["e1", "e2"])
 
     args = parser.parse_args()
 
@@ -447,7 +458,7 @@ if __name__ == "__main__":
         predict_from_qa_model(args.model, args.path, args.output, args.topk, args.max_length)
 
     elif args.task == "lm_sampling":
-        sample_response_from_lm(args.model, args.path, args.output, args.topk, args.num_beams, args.max_length, args.temperature, args.top_p, args.top_k, args.seed, args.few_shot, args.prompt)
+        sample_response_from_lm(args.model, args.path, args.output, args.topk, args.num_beams, args.max_length, args.temperature, args.top_p, args.top_k, args.seed, args.few_shot, args.prompt, args.experiment)
 
     elif args.task == "lm_prob":
         score_answers_with_lm(args.model, args.path, args.output, args.reduction, args.seed)

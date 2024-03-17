@@ -19,6 +19,6 @@ for i in ${!prompts[*]}; do
         -os \
         -n=5 \
         -m=64 \
-        -e="e1" \
+        -e="e2" \
         -pr="${prompts[$i]}"
 done

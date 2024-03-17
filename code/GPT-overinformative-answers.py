@@ -30,9 +30,9 @@ examples = {
     },
     "e2": {
         "zero-shot": "",
-        "cot": "",
-        "explanation": "",
-        "example": ""
+        "cot": "You give a dinner party at your apartment. More people showed up than you expected.\nYour neighbor, who just arrived, approaches you and asks: Do you have a spare chair I could borrow? You do not, in fact, have a spare chair, but you do have the following items: a broom, a TV armchair, a stool, a ladder and a kitchen table. You deliberate your response as follows. The practical goal of the questioner is to sit down at the dinner table. For this purpose, the most useful object from the list of available items is the stool. So you say: No, I don't have a spare chair, but you can have the stool.",
+        "explanation": "You give a dinner party at your apartment. More people showed up than you expected.\nYour neighbor, who just arrived, approaches you and asks: Do you have a spare chair I could borrow? You do not, in fact, have a spare chair, but you do have the following items: a broom, a TV armchair, a stool, a ladder and a kitchen table. You deliberate your response as follows. The practical goal of the questioner is to sit down at the dinner table. For this purpose, the most useful object from the list of available items is the stool.",
+        "example": "You give a dinner party at your apartment. More people showed up than you expected.\nYour neighbor, who just arrived, approaches you and asks: Do you have a spare chair I could borrow? You do not, in fact, have a spare chair, but you do have the following items: a broom, a TV armchair, a stool, a ladder and a kitchen table. So you say: No, I don't have a spare chair, but you can have the stool."
     }
 }
 # preface for GPT3 as a one-shot learner in E1
