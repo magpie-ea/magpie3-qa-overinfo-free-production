@@ -1,9 +1,8 @@
 #!/bin/bash
 #SBATCH --partition=single
 #SBATCH --tasks=1
-#SBATCH --gres=gpu:A100:2
 #SBATCH --time=05:00:00
-#SBATCH --mem=237gb
+#SBATCH --mem=2gb
 
 module load devel/miniconda/3
 source $MINICONDA_HOME/etc/profile.d/conda.sh
