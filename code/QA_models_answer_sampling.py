@@ -145,6 +145,8 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
     prompt: str
         Type of prompt to use for sampling.
     """
+    model_out = model.split("/")[-1]
+    constructed_output_path = output_path + f"results_e1_{model_out}_{prompt}.csv"
     torch.manual_seed(seed)
     random.seed(seed)
     # read file with questions and answers
@@ -266,7 +268,7 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
 
     df = df.explode(["predictions", "probs"])
     
-    df.to_csv(output_path, index=False)  
+    df.to_csv(constructed_output_path, index=False)  
 
 def score_answers_with_lm(model, path, output_path, reduction="mean", seed=1234):
     """
