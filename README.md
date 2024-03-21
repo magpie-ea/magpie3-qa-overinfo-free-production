@@ -1,4 +1,21 @@
-# Text production experiment on over-informative answers to preference-signaling questions
+# Experiments & analysis for pragmatic question choice and answer choices
+
+This repository contains experimental code and data for a project on pragmatic choice of questions and answers.
+Experiments are contained in `experiments`.
+Code for comparison to LLMs, data and data analysis is in `code`, `data+analysis`, and `data_paper_neural`. 
+
+## Overal structure
+
+
+### `experiments`
+
+This directory contains experiments implemented in magpie (see above for live hosted versions and local hosting instructions).
+
+* `contextSensitive_free_production`: directory with experiment 2 (free production given vignettes which were paired and presented same alternatives in two different contexts, manipulating their functional relevance)
+* `free_production`: directory with experiment 1 (free production given different options in contexts)
+* `prior_elicitation`: prior / conditional likability / similarity rating of items used in E1. (slider rating experiment)
+
+
 
 This is an online experiment using [magpie](https://magpie-experiments.org/).
 
@@ -104,10 +121,3 @@ Anonymized, categorized, possibly post-exclusion files from human experiments. T
 
 Directory containing exported plots from various analyses. The plots used for cogsci are `e1_4prompts.pdf`, `e2_byPrompt_cogsci_final.pdf`.
 
-### `experiments`
-
-This directory contains experiments implemented in magpie (see above for live hosted versions and local hosting instructions).
-
-* `contextSensitive_free_production`: directory with experiment 2 (free production given vignettes which were paired and presented same alternatives in two different contexts, manipulating their functional relevance)
-* `free_production`: directory with experiment 1 (free production given different options in contexts)
-* `prior_elicitation`: prior / conditional likability / similarity rating of items used in E1. (slider rating experiment)
