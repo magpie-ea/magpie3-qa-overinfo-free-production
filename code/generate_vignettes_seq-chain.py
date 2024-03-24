@@ -15,7 +15,23 @@ import openai
 from datetime import datetime
 import argparse
 
+############ updated API ########
+from langchain_openai import ChatOpenAI
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+
 load_dotenv()
+llm = ChatOpenAI(openai_api_key=os.getenv("OPENAI_API_KEY"))
+llm.invoke("how can langsmith help with testing?")
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are world class technical documentation writer."),
+    ("user", "{input}")
+])
+output_parser = StrOutputParser()
+chain = prompt | llm | output_parser
+chain.invoke({"input": "how can langsmith help with testing?"})
+
+####################
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 INSTRUCTIONS_DIR = 'instructions'
@@ -455,7 +471,7 @@ def sample_secondary_goals_vignettes(
         **kwargs,
 ):    
      # instantiate model
-    model = OpenAI(model_name=model, temperature=temperature, **kwargs)
+    model = ChatOpenAI(openai_api_key=os.getenv("OPENAI_API_KEY"))
     examples = pd.read_csv("../data+analysis/vignette_examples/secondary_goals_subgoals_examples.csv")
 
     # read in instructions
