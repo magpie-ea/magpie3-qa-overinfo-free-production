@@ -2,7 +2,7 @@
   <Experiment title="question-answering-experiment">
 
     <InstructionScreen :title="'Welcome'">
-      Thanks for taking part in our experiment! It will take approximately 4-5 minutes.
+      Thanks for taking part in our experiment! It will take approximately 3-4 minutes.
       <br />
       <br />
       In this study we are interested in how you think about other people.
@@ -60,7 +60,7 @@
 
 <script>
 import _ from 'lodash';
-import trialsAll from '../trials/trials_split_priorElicitation_pilot3.csv';
+import trialsAll from '../trials/trials_split_priorElicitation_full.csv';
 import fillersAll from '../trials/fillers_split_priorElicitation_pilot3.csv';
 import ParallelRatingScreen from './ParallelRatingScreen';
 
