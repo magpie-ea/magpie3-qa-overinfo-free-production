@@ -1,0 +1,311 @@
+---
+title: "QA Prior elicitation pilot for full matrix"
+author: "PT"
+date: "2022-12-04"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, include = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidyboot)
+library(aida)
+library(forcats)
+library("gridExtra")
+library(cspplot)
+```
+
+```{r, include=FALSE}
+# these options help Stan run faster
+options(mc.cores = parallel::detectCores())
+
+# use the aida-theme for plotting
+#theme_set(theme_aida())
+
+# global color scheme / non-optimized
+#project_colors = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
+
+# setting theme colors globally
+#scale_colour_discrete <- function(...) {
+#  scale_colour_manual(..., values = project_colors)
+#}
+#scale_fill_discrete <- function(...) {
+#  scale_fill_manual(..., values = project_colors)
+#} 
+```
+
+## Full experiment
+
+This experiment implements a full scale study based on the design from the prior elicitation [pilot 3](https://github.com/magpie-ea/magpie3-qa-overinfo-free-production/blob/main/data%2Banalysis/04_pilot3_prior_elicitation_analysis..md). The experiment can be viewed [here](https://magpie3-qa-overinformative-priors.netlify.app/).
+
+Each participant saw one trial for four vignettes sampled at random from the full set of 30 vignettes used in E1 of the CogSci 2023 experiment; additionally they saw one attention check, resulting in five trials / subject. The target is N=450, for expected 15 ratings per cell of each vignette (for 16 cell / vignette; 30 x 16 x 15 / 16 = 450).
+
+## Analysis
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+answerOrder <- c('target', 'competitor', 'sameCategory', 'otherCategory')
+#df <- read_csv("data/PragmaticQA-E1-priorElicitation-sliderRating-full_450.csv") 
+# look at comments to see if anything went wrong
+#df |> pull(comments) |> unique()
+#df %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>% write_csv("data/PragmaticQA-E1-priorElicitation-sliderRating-full_450_anonymized.csv")
+
+df <- read_csv("data/PragmaticQA-E1-priorElicitation-sliderRating-full_450_anonymized.csv")
+# head(df)
+# target number of subjects for full experiment: n = 450
+cat("Number of recruited subjects: ", df %>% pull(submission_id) %>% unique() %>% length())
+```
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+# check attention check completion
+df <- df %>% mutate(
+  expected_attention = case_when(
+    itemName == 'jobCenter-office' ~ 0,
+    itemName == 'jobCenter-engineer' ~ 0,
+    itemName == 'art-painting' ~ 100,
+    itemName == 'art-drawing' ~ 100,
+    itemName == 'carRental-fun' ~ 0,
+    itemName == 'carRental-moving' ~ 0,
+    itemName == 'music-hardrock' ~ 100,
+    itemName == 'music-softrock' ~ 100,
+    itemName == 'airport-usa' ~ 0,
+    itemName == 'airport-europe-UPDATED' ~ 0,
+    TRUE ~ 50
+  )
+)
+
+df_attention <- df %>% filter(trial_type == "filler") %>% 
+  select(submission_id, itemQuestion, targetOption, competitor, sameCategory, otherCategory, expected_attention, itemName) %>% 
+  pivot_longer(cols = c(itemQuestion, competitor, sameCategory, otherCategory), names_to = "answerType", values_to = "response") %>%
+  rowwise() %>%
+  mutate(passed_trial = abs(response - expected_attention) < 5 )
+
+df_attention_fail <- df_attention %>% group_by(submission_id) %>% 
+  mutate(passed_subj = sum(passed_trial) > 0)
+
+# participants who failed attention checks 
+subj_id_attention_fails <- df_attention_fail %>% filter(passed_subj == FALSE) %>% pull(submission_id) %>% unique()
+cat("Numbrer of subjects who failed attention checks: ", length(subj_id_attention_fails)  )
+cat("\nSubject exclusion rate: ", length(subj_id_attention_fails)/(unique(df$submission_id) %>% length()))
+```
+
+Explore participants' behavior on the attention checks since again, an unexpectedly high proportion failed them.
+To do so, we use a classification of the requested-item + provided-item pair (called "answer type" because this represents the rated answer). Each item of each vignette can from one of the four categories: itemQuestion (=target option in our vignettes and experiments), competitor, sameCategory, otherCategory. In order to understand whether varying the requested target results in intuitive responses, the requested item (target) - answer type combinations were categorized into the following rating categories: "target" (target = answer type), "competitor" (when either the target or the answer type are competitor or itemQuestion), "sameCategory" (when either target or answer type were itemQuestion / competitor or sameCategory), "otherCategory" (any ratings involving otherCategory except the target case). This categorization is used to check whether target > competitor ratings, sameCategory > otherCategory ratings, as suggested by intuition.  It can be found under categorized_response.
+Mean ratings by-category and by-item are also shown below.
+
+It seems that participants just ignored the instructions and "correctly answered" the filler trials. The following analyses were conduced with and without exclusions; since there was no qualitative difference, the participants who failed the attention checks were *NOT excluded* in the following write up and provided empirical means.
+```{r, echo=FALSE}
+df_attention_fail %>%
+  mutate(
+    categorized_response = case_when(
+      targetOption == answerType ~ "target",
+      targetOption == "itemQuestion" ~ answerType,
+      (targetOption == "competitor") & (answerType == "itemQuestion") ~ "competitor",
+      (targetOption == "competitor") & (answerType == "sameCategory") ~ "sameCategory",
+      (targetOption == "competitor") & (answerType == "otherCategory") ~ "otherCategory",
+      (targetOption == "sameCategory") & (answerType == "itemQuestion") ~ "sameCategory",
+      (targetOption == "sameCategory") & (answerType == "competitor") ~ "sameCategory",
+      (targetOption == "sameCategory") & (answerType == "otherCategory") ~ "otherCategory",
+      targetOption == "otherCategory" ~ "otherCategory",
+      TRUE ~ answerType
+    ),
+    categorized_response = factor(categorized_response, levels = answerOrder), 
+    ) %>%
+  filter(passed_subj == F) %>%
+  ggplot(., aes(x = categorized_response, y = response)) +
+  geom_point()
+```
+
+```{r, echo=FALSE, include = FALSE, message=FALSE, warning=FALSE}
+# get main clean data and center responses
+df_clean_main <- df %>% #filter(!(submission_id %in% subj_id_attention_fails)) %>%
+  filter(trial_type == "main") 
+cat("Numbrer of main trial data points that are used for analysis: ", nrow(df_clean_main) )
+
+
+df_clean_main_long <- df_clean_main %>%
+  select(itemName, trialNr, submission_id, targetOption, itemQuestion, competitor, sameCategory, otherCategory) %>%
+   pivot_longer(cols = c(itemQuestion, competitor, sameCategory, otherCategory), names_to = 'answerType', values_to = "response") %>%
+  mutate(
+    categorized_response = case_when(
+      targetOption == answerType ~ "target",
+      targetOption == "itemQuestion" ~ answerType,
+      (targetOption == "competitor") & (answerType == "itemQuestion") ~ "competitor",
+      (targetOption == "competitor") & (answerType == "sameCategory") ~ "sameCategory",
+      (targetOption == "competitor") & (answerType == "otherCategory") ~ "otherCategory",
+      (targetOption == "sameCategory") & (answerType == "itemQuestion") ~ "sameCategory",
+      (targetOption == "sameCategory") & (answerType == "competitor") ~ "sameCategory",
+      (targetOption == "sameCategory") & (answerType == "otherCategory") ~ "otherCategory",
+      targetOption == "otherCategory" ~ "otherCategory",
+      TRUE ~ answerType
+    )
+  ) 
+```
+
+One subject is excluded because they provided all ratings within 5 points. 
+
+```{r, echo=FALSE}
+df_bad_subj <- df_clean_main_long %>% group_by(submission_id) %>%
+  mutate(bad_subj = (max(response) - min(response)) < 5)
+df_bad_subj %>% filter(bad_subj == TRUE)
+cat("\nnumber of subjects who provided the same responses within 5 points on all main trials:",  df_bad_subj %>% filter(bad_subj == TRUE) %>% pull(submission_id) %>% unique() %>% length())
+bad_subj_ids <- df_bad_subj %>% filter(bad_subj == TRUE) %>% pull(submission_id) %>% unique()
+
+df_clean_main <- df_clean_main %>% filter(!(submission_id %in% bad_subj_ids))
+df_clean_main_long <- df_clean_main_long %>% filter(!(submission_id %in% bad_subj_ids))
+
+```
+
+In the dataset, "targetOption" refers to the category of the item that is mentioned as the requested target in the context ("Suppose someone wants to have X", where X is the option). The variable "answerType" refers to the item category of the received option for a given rating ("instead they get Y"). Whenever target option and answer type match, the rating is the one for the case when the received option is the actual target. 
+Below, the counts of different option combinations for each vignette are presented. 
+
+```{r, echo=FALSE}
+cat("\nNumber of analysed vignette trials: ", nrow(df_clean_main))
+# expected number of combinations: 30 x 4 = 120
+cat("\nNumber of vignettes X rated requested options (expected 120): ", nrow(df_clean_main %>% count(itemName, targetOption) ))
+# expected number of combinations: 30 x 4 x 4 = 480
+cat("\nNumber of vignettes X rated requested options X rated received options (expected 480): ", nrow(df_clean_main_long %>%  count(itemName, targetOption, answerType) ))
+# we want ~15 responses per cell
+cat("\nAverage number of rating per measurements per vignette: ", df_clean_main_long %>%  count(itemName, targetOption, answerType) %>% pull(n) %>% mean() )
+```
+
+Explore target ratings in order to check if there are any unexpected results. It seems that for all vignettes the participants behaved as expected (mean rating when requested target = received target is > 90).
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+df_clean_main_long %>% filter(categorized_response == "target") %>% group_by(itemName) %>%
+  summarize(mean_rating=mean(response)) %>% arrange(mean_rating)
+```
+
+## Means
+
+Below, means of the ratings by-target option (requested) by-answer type (received) are computed. The by-item empirical means are written as a csv with the columns "requested_option", "received option", and "itemName" (the vignette names) for use with the RSA model.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+df_clean_main_long_summary <- df_clean_main_long %>% 
+  mutate(targetOption = ifelse(targetOption == "itemQuestion", "target", targetOption),
+         answerType = ifelse(answerType == "itemQuestion", "target", answerType),
+         targetOption = factor(targetOption, levels = answerOrder),
+         answerType  = factor(answerType, levels = answerOrder)) %>%
+  group_by(targetOption, answerType) %>%
+  summarize(mean_response = mean(response)) 
+
+df_clean_main_long_summary
+
+df_clean_main_long_byItem_summary <- df_clean_main_long %>% group_by(itemName, targetOption, answerType) %>%
+  summarize(mean_response = mean(response)) #tidyboot_mean(column = "response")
+
+# same with exclusions, so that we can compare how much of a difference they make
+#df_clean_main_long_byItem_summary_wExclusion <- df_clean_main_long %>% group_by(itemName, targetOption, answerType) %>%
+#  summarize(mean_response = mean(response)) #tidyboot_mean(column = "response")
+#df_clean_combined <- left_join(df_clean_main_long_byItem_summary, df_clean_main_long_byItem_summary_wExclusion %>% rename(mean_response_wExclusion = mean_response), by = c("itemName", "targetOption", "answerType"))
+
+#df_clean_combined <- df_clean_combined %>%
+#  mutate(exclusion_diff = abs(mean_response - mean_response_wExclusion)) 
+#df_clean_combined %>% arrange(exclusion_diff) %>% pull(exclusion_diff) %>% median()
+```
+
+```{r}
+df_clean_main_long_byItem_summary_clean <- df_clean_main_long_byItem_summary |> ungroup() |>
+  mutate(targetOption = ifelse(targetOption == "itemQuestion", "target", targetOption),
+         answerType = ifelse(answerType == "itemQuestion", "target", answerType),
+         targetOption = factor(targetOption, levels = answerOrder),
+         answerType  = factor(answerType, levels = answerOrder)
+         ) |>
+  rename(requested_option = targetOption, received_option = answerType)
+
+#df_clean_main_long_byItem_summary_clean |> write_csv("data/PragmaticQA-E1-priorElicitation-sliderRating-full_450_byItem_means.csv")
+```
+
+```{r, echo=FALSE}
+num_subj <- df_clean_main_long %>% pull(submission_id) %>% unique() %>% length()
+df_clean_main_long <- df_clean_main_long %>% 
+  mutate(categorized_response = factor(categorized_response, levels = answerOrder),
+         by_trial_nr = rep(1:(num_subj*4), each = 4),
+         by_trial_nr = factor(by_trial_nr)
+         ) 
+```
+
+Below, the ratings are plotted by-target option, collapsing across vignettes.
+```{r, fig.height = 7, fig.width=8, echo=FALSE, warning=FALSE, message=FALSE}
+df_clean_main_long <- df_clean_main_long %>%
+  mutate(targetOption = ifelse(targetOption == "itemQuestion", "target", targetOption),
+         answerType = ifelse(answerType == "itemQuestion", "target", answerType),
+         targetOption = factor(targetOption, levels = answerOrder),
+         answerType  = factor(answerType, levels = answerOrder))
+
+df_clean_main_long %>%
+  ggplot(., aes(x = answerType, y = response, fill = answerType, color = answerType)) +
+  geom_point(alpha = 0.7) +
+  geom_point(data = df_clean_main_long_summary, aes(x = answerType, y = mean_response), size = 4) + 
+  geom_line(data = df_clean_main_long, inherit.aes=F, aes(x = answerType, y = response, group = by_trial_nr), alpha  = 0.4) +
+  facet_wrap(targetOption~., ncol = 2) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  theme(legend.position="none") +
+  ylab("Rating of alternative") +
+  ylim(0, 100) +
+  xlab("Category of alternative")
+```
+
+```{r, echo=FALSE, fig.height=30, fig.width=25, eval=FALSE}
+# Below, the ratings are plotted by-target option by-vignette. For some vignette-target option combinations, there is only one data point.
+# add natural language alternative names
+df_vignettes <- read_delim("../experiments/03-prior_elicitation/trials/trials_split_priorElicitation_full.csv", delim=",") %>% 
+  select(itemName, itemQuestion, competitor, sameCategory, otherCategory)
+
+df_clean_main_wItems <- df_clean_main %>% left_join(., df_vignettes, by="itemName", suffix=c("", "_string"))
+
+d_clean_main_long_wItems <- df_clean_main_wItems %>% 
+  select(itemName, trialNr, submission_id, targetOption, itemQuestion, competitor, sameCategory, otherCategory, itemQuestion_string, competitor_string, sameCategory_string, otherCategory_string) %>%
+  pivot_longer(cols = c(itemQuestion_string, competitor_string, sameCategory_string, otherCategory_string), names_to = 'answerType_string', values_to = "answerOption_string") %>%
+  mutate(answerType_string = gsub("_string", "", answerType_string)) %>%
+  pivot_longer(cols = c(itemQuestion, competitor, sameCategory, otherCategory), names_to = 'answerType', values_to = "response") %>%
+  filter((answerType_string == answerType)) %>%
+  mutate(
+    categorized_response = case_when(
+      targetOption == answerType ~ "target",
+      targetOption == "itemQuestion" ~ answerType,
+      (targetOption == "competitor") & (answerType == "itemQuestion") ~ "competitor",
+      (targetOption == "competitor") & (answerType == "sameCategory") ~ "sameCategory",
+      (targetOption == "competitor") & (answerType == "otherCategory") ~ "otherCategory",
+      (targetOption == "sameCategory") & (answerType == "itemQuestion") ~ "sameCategory",
+      (targetOption == "sameCategory") & (answerType == "competitor") ~ "sameCategory",
+      (targetOption == "sameCategory") & (answerType == "otherCategory") ~ "otherCategory",
+      targetOption == "otherCategory" ~ "otherCategory",
+      TRUE ~ answerType
+    ),
+    centered_response = response - 50
+  ) %>%
+   mutate(categorized_response = factor(categorized_response, levels = answerOrder),
+         by_trial_nr = rep(1:(num_subj*4), each = 4),
+         by_trial_nr = factor(by_trial_nr)
+         ) 
+d_clean_main_long_wItems_targetOptions <- d_clean_main_long_wItems %>% rowwise() %>% filter((targetOption == answerType_string)) %>% distinct(itemName, targetOption, answerOption_string) %>% mutate(targetOption_string = answerOption_string)
+  
+df_clean_main_wItems_long_summary <- d_clean_main_long_wItems %>%
+  left_join(., d_clean_main_long_wItems_targetOptions, by = c("itemName", "answerOption_string")) %>%
+  group_by(itemName, answerType, answerOption_string, targetOption_string) %>% 
+  summarize(mean_response = mean(response)) 
+
+df_clean_main_wItems_long2 <- left_join(d_clean_main_long_wItems, df_clean_main_wItems_long_summary, by=c('answerOption_string', 'answerType', 'itemName') ) %>% left_join(., d_clean_main_long_wItems_targetOptions, by = c("itemName", "answerOption_string", "targetOption_string", "targetOption"))
+
+df_clean_main_wItems_long2 %>%
+  mutate(answerType = factor(answerType, levels = c("itemQuestion", "competitor", "sameCategory", "otherCategory"))) %>%
+  mutate(answerOption_string = tidytext::reorder_within(answerOption_string, response, targetOption_string)) %>%
+  ggplot(., aes(x = reorder(answerOption_string, response), y = response, color = answerType)) + # , fill = answerType
+  geom_point() +
+  geom_point(aes(x = answerOption_string, y = mean_response), size = 4) +
+  #geom_line( inherit.aes=F, aes(x = answerOption_string, y = response, group = by_trial_nr), alpha  = 0.4) +
+  tidytext::scale_x_reordered() +
+  facet_wrap(itemName~targetOption_string, scales='free') +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  theme(legend.position="none") +
+  ylab("Rating of alternative") +
+  ylim(0, 100) +
+  xlab("Category of alternative")
+```
