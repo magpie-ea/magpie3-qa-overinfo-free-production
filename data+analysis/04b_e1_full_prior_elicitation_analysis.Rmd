@@ -228,7 +228,7 @@ df_clean_main_long <- df_clean_main_long %>%
 ```
 
 Below, the ratings are plotted by-target option, collapsing across vignettes.
-```{r, fig.height = 7, fig.width=8, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, fig.height = 7, fig.width=8, echo=FALSE}
 df_clean_main_long <- df_clean_main_long %>%
   mutate(targetOption = ifelse(targetOption == "itemQuestion", "target", targetOption),
          answerType = ifelse(answerType == "itemQuestion", "target", answerType),
