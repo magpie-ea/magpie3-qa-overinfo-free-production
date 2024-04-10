@@ -5,13 +5,13 @@ import pandas as pd
 from dotenv import load_dotenv
 
 import numpy as np
-from langchain import PromptTemplate, FewShotPromptTemplate
+from langchain_core.prompts import PromptTemplate, FewShotPromptTemplate
 from langchain.prompts.example_selector.base import BaseExampleSelector
 from langchain.example_generator import generate_example
-from langchain.llms import OpenAI
-from langchain.chains.llm import LLMChain
+# from langchain_community.llms import OpenAI
+# from langchain.chains.llm import LLMChain
 from langchain.chains import SequentialChain, TransformChain
-import openai
+# import openai
 from datetime import datetime
 import argparse
 
@@ -32,11 +32,12 @@ chain = prompt | llm | output_parser
 chain.invoke({"input": "how can langsmith help with testing?"})
 
 ####################
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# openai.api_key = os.getenv("OPENAI_API_KEY")
 
 INSTRUCTIONS_DIR = 'instructions'
 
 def transform_fct(inputs: dict) -> dict:
+    print("Inputs received by transform fct ", inputs)
     inputs = inputs["sampled_objects"]
     print("executing transform fct")
     transformed_dict = {
@@ -248,7 +249,11 @@ class RandomExampleSelector(BaseExampleSelector):
 def sample_prior_vignettes(model, temperature, **kwargs):
 
     # instantiate model
-    model = OpenAI(model_name=model, temperature=temperature, **kwargs)
+    model = ChatOpenAI(
+        openai_api_key=os.getenv("OPENAI_API_KEY"),
+        temperature=temperature,
+        **kwargs   
+    ) 
     examples = pd.read_csv("../data+analysis/vignette_examples/prior_examples.csv")
 
     # read in instructions
@@ -279,191 +284,195 @@ def sample_prior_vignettes(model, temperature, **kwargs):
         example_separator="\n\n",
     )    
     print("Predicting objects")
-    objects_chain = LLMChain(
-        llm=model, 
-        prompt=few_shot_prompt, 
-        verbose=True, 
-        output_key="sampled_objects"
-    ) 
+    
+    # objects_chain = LLMChain(
+    #     llm=model, 
+    #     prompt=few_shot_prompt, 
+    #     verbose=True, 
+    #     output_key="sampled_objects"
+    # ) 
     object_transformation_chain = TransformChain(
         input_variables=["sampled_objects"], 
         output_variables=["basic_category", "typical", "atypical"], 
         transform=transform_fct, 
         verbose=True
     )
+    chain = few_shot_prompt | model | output_parser | object_transformation_chain
+    r = chain.invoke({"input": ""})
+
     # TODO add a an agent based check / LMQL or so to check whether the proposals match the criteria
 
    #######################################################################################
     # read in instructions
-    with open(os.path.join(INSTRUCTIONS_DIR, 'stage2_sample_context.txt'), 'r') as f:
-        instructions_text_context = f.read()
+#     with open(os.path.join(INSTRUCTIONS_DIR, 'stage2_sample_context.txt'), 'r') as f:
+#         instructions_text_context = f.read()
 
-    context_template = """
-    Object category: {basic_category}
-    Common kind: {typical}
-    Uncommon kind: {atypical}
-    Context_common: {context_common}
-    Context_uncommon: {context_uncommon}    
-    """
+#     context_template = """
+#     Object category: {basic_category}
+#     Common kind: {typical}
+#     Uncommon kind: {atypical}
+#     Context_common: {context_common}
+#     Context_uncommon: {context_uncommon}    
+#     """
 
-    # read in examples
-    example_selector_s2 = RandomExampleSelector(examples, "stage2")
-    selected_examples_context = example_selector_s2.select_examples(num_examples=3)
-    print("selected examples stage 2 ", selected_examples_context)
-    # model = OpenAI(model_name=model, temperature=temperature, **kwargs)
-    # out_parser_list = CommaSeparatedListOutputParser()
-    prompt_template_context = PromptTemplate(
-        template = context_template,
-        input_variables = ['basic_category', 'context_common', 'context_uncommon', 'typical', 'atypical'],
-    )
-    suffix_template_context = """
-    Object category: {basic_category}
-    Common kind: {typical}
-    Uncommon kind: {atypical}
-    """
-    # format the few_shot prompt
-    few_shot_prompt_context = FewShotPromptTemplate(
-        prefix=instructions_text_context, 
-        examples=selected_examples_context,
-        example_prompt=prompt_template_context, 
-        input_variables=["basic_category", "typical", "atypical"], 
-        suffix=suffix_template_context,
-        example_separator="\n\n",
-    )    
+#     # read in examples
+#     example_selector_s2 = RandomExampleSelector(examples, "stage2")
+#     selected_examples_context = example_selector_s2.select_examples(num_examples=3)
+#     print("selected examples stage 2 ", selected_examples_context)
+#     # model = OpenAI(model_name=model, temperature=temperature, **kwargs)
+#     # out_parser_list = CommaSeparatedListOutputParser()
+#     prompt_template_context = PromptTemplate(
+#         template = context_template,
+#         input_variables = ['basic_category', 'context_common', 'context_uncommon', 'typical', 'atypical'],
+#     )
+#     suffix_template_context = """
+#     Object category: {basic_category}
+#     Common kind: {typical}
+#     Uncommon kind: {atypical}
+#     """
+#     # format the few_shot prompt
+#     few_shot_prompt_context = FewShotPromptTemplate(
+#         prefix=instructions_text_context, 
+#         examples=selected_examples_context,
+#         example_prompt=prompt_template_context, 
+#         input_variables=["basic_category", "typical", "atypical"], 
+#         suffix=suffix_template_context,
+#         example_separator="\n\n",
+#     )    
 
-    print("Predicting context")
+#     print("Predicting context")
 
-    context_chain = LLMChain(llm=model, prompt=few_shot_prompt_context, verbose=True, output_key="sampled_context") 
-    print("transformation of context")
-    context_transformation_chain = TransformChain(
-        input_variables=["sampled_context", "basic_category", "typical", "atypical"], 
-        output_variables=["basic_category_c", "typical_c", "atypical_c", "context_common", "context_uncommon"], 
-        transform=transform_fct_context
-    )
+#     context_chain = LLMChain(llm=model, prompt=few_shot_prompt_context, verbose=True, output_key="sampled_context") 
+#     print("transformation of context")
+#     context_transformation_chain = TransformChain(
+#         input_variables=["sampled_context", "basic_category", "typical", "atypical"], 
+#         output_variables=["basic_category_c", "typical_c", "atypical_c", "context_common", "context_uncommon"], 
+#         transform=transform_fct_context
+#     )
     
-  ############################################################################################
-    # read in instructions
-    with open(os.path.join(INSTRUCTIONS_DIR, 'stage3_sample_preference.txt'), 'r') as f:
-        instructions_text_pref = f.read()
-    preference_template ="""
-    Object category: {basic_category}
-    Common kind: {typical}
-    Uncommon kind: {atypical}
-    Context: {context_common}
-    Question: {question}
-    """
-    suffix_template_pref = """
-    Object category: {basic_category_c}
-    Common kind: {typical_c}
-    Uncommon kind: {atypical_c}
-    Context: {context_common}
-    """
+#   ############################################################################################
+#     # read in instructions
+#     with open(os.path.join(INSTRUCTIONS_DIR, 'stage3_sample_preference.txt'), 'r') as f:
+#         instructions_text_pref = f.read()
+#     preference_template ="""
+#     Object category: {basic_category}
+#     Common kind: {typical}
+#     Uncommon kind: {atypical}
+#     Context: {context_common}
+#     Question: {question}
+#     """
+#     suffix_template_pref = """
+#     Object category: {basic_category_c}
+#     Common kind: {typical_c}
+#     Uncommon kind: {atypical_c}
+#     Context: {context_common}
+#     """
 
-    example_selector_s3 = RandomExampleSelector(examples, "stage3")
-    selected_examples_preference = example_selector_s3.select_examples(num_examples=3)
-    print("selected examples stage 3 ", selected_examples_preference)
+#     example_selector_s3 = RandomExampleSelector(examples, "stage3")
+#     selected_examples_preference = example_selector_s3.select_examples(num_examples=3)
+#     print("selected examples stage 3 ", selected_examples_preference)
 
-    prompt_template_pref = PromptTemplate(
-        template = preference_template,
-        input_variables = ['question', 'typical', 'atypical', 'basic_category', 'context_common'],
-    )
+#     prompt_template_pref = PromptTemplate(
+#         template = preference_template,
+#         input_variables = ['question', 'typical', 'atypical', 'basic_category', 'context_common'],
+#     )
 
-    few_shot_prompt_pref = FewShotPromptTemplate(
-        prefix=instructions_text_pref, 
-        examples=selected_examples_preference,
-        example_prompt=prompt_template_pref, 
-        input_variables=['basic_category_c', 'typical_c', 'atypical_c', 'context_common'], 
-        suffix=suffix_template_pref,
-        example_separator="\n\n",
-    )    
+#     few_shot_prompt_pref = FewShotPromptTemplate(
+#         prefix=instructions_text_pref, 
+#         examples=selected_examples_preference,
+#         example_prompt=prompt_template_pref, 
+#         input_variables=['basic_category_c', 'typical_c', 'atypical_c', 'context_common'], 
+#         suffix=suffix_template_pref,
+#         example_separator="\n\n",
+#     )    
 
-    print("Predicting preference")
-    preferences_chain = LLMChain(llm=model, prompt=few_shot_prompt_pref, output_key="sampled_preference") 
+#     print("Predicting preference")
+#     preferences_chain = LLMChain(llm=model, prompt=few_shot_prompt_pref, output_key="sampled_preference") 
 
-    print("trasnformation of preference")
-    preference_transformation_chain = TransformChain(
-        input_variables=["context_common", "basic_category", "typical", "atypical", "sampled_preference"], 
-        output_variables=["basic_category_p", "typical_p", "atypical_p", "context_common_p", "question"], 
-        transform=transform_fct_preference
-    )
-    #######################################
-    # sanity check of the resulting story
-    # TODO this can be extended as an agent with different tools 
-    # including editing the stories to be more natural
-    with open(os.path.join(INSTRUCTIONS_DIR, 'stage4_edit_priors.txt'), 'r') as f:
-        instructions_text_edit = f.read()
-    edit_template ="""
-    Context: {context}
-    Question: {question}
-    Revision: {revision}
-    """
-    suffix_template_edit = """
-    Context: {context_common}
-    Question: {question}
-    """
+#     print("trasnformation of preference")
+#     preference_transformation_chain = TransformChain(
+#         input_variables=["context_common", "basic_category", "typical", "atypical", "sampled_preference"], 
+#         output_variables=["basic_category_p", "typical_p", "atypical_p", "context_common_p", "question"], 
+#         transform=transform_fct_preference
+#     )
+#     #######################################
+#     # sanity check of the resulting story
+#     # TODO this can be extended as an agent with different tools 
+#     # including editing the stories to be more natural
+#     with open(os.path.join(INSTRUCTIONS_DIR, 'stage4_edit_priors.txt'), 'r') as f:
+#         instructions_text_edit = f.read()
+#     edit_template ="""
+#     Context: {context}
+#     Question: {question}
+#     Revision: {revision}
+#     """
+#     suffix_template_edit = """
+#     Context: {context_common}
+#     Question: {question}
+#     """
 
-    example_selector_s4 = RandomExampleSelector(
-        pd.read_csv("../data+analysis/vignette_examples/prior_edits.csv"), 
-        "stage4"
-    )
-    selected_examples_edit = example_selector_s4.select_examples(num_examples=3)
-    print("selected examples stage 4 ", selected_examples_edit)
+#     example_selector_s4 = RandomExampleSelector(
+#         pd.read_csv("../data+analysis/vignette_examples/prior_edits.csv"), 
+#         "stage4"
+#     )
+#     selected_examples_edit = example_selector_s4.select_examples(num_examples=3)
+#     print("selected examples stage 4 ", selected_examples_edit)
 
-    prompt_template_edit = PromptTemplate(
-        template = edit_template,
-        input_variables = ['question','revision', 'context'],
-    )
+#     prompt_template_edit = PromptTemplate(
+#         template = edit_template,
+#         input_variables = ['question','revision', 'context'],
+#     )
 
-    few_shot_prompt_edit = FewShotPromptTemplate(
-        prefix=instructions_text_edit, 
-        examples=selected_examples_preference,
-        example_prompt=prompt_template_pref, 
-        input_variables=['context_common', 'question'], 
-        suffix=suffix_template_edit,
-        example_separator="\n\n",
-    )    
+#     few_shot_prompt_edit = FewShotPromptTemplate(
+#         prefix=instructions_text_edit, 
+#         examples=selected_examples_preference,
+#         example_prompt=prompt_template_pref, 
+#         input_variables=['context_common', 'question'], 
+#         suffix=suffix_template_edit,
+#         example_separator="\n\n",
+#     )    
 
-    print("Predicting preference")
-    edit_chain = LLMChain(llm=model, prompt=few_shot_prompt_edit, output_key="sampled_revision") 
+#     print("Predicting preference")
+#     edit_chain = LLMChain(llm=model, prompt=few_shot_prompt_edit, output_key="sampled_revision") 
 
-    print("trasnformation of preference")
-    edit_transformation_chain = TransformChain(
-        input_variables=["context_common", "question", "sampled_revision"], 
-        output_variables=["context_e", "question_e", "revision"], 
-        transform=transform_fct_edit
-    )
-    #######################################
-    # define chain end to end
-    overall_chain = SequentialChain(
-        chains=[objects_chain,
-                object_transformation_chain, 
-                context_chain,
-                context_transformation_chain,
-                preferences_chain,
-                preference_transformation_chain,
-                edit_chain,
-                edit_transformation_chain,
-                ],
-        input_variables=[""], ############# THIS IS THE BIT THAT CAUSED THE STR VS DICT INPUT ISSUES #########
-        # Here we return multiple variables
-        output_variables=["basic_category", "typical", "atypical", "context_common", "context_uncommon", "question", "revision"], # this is the bit defining how outputs are called at each step and what is returned from the entire chain (otherwise default key of generation is 'text')
-        verbose=True
-    )
-    r = overall_chain(inputs=[])
+#     print("trasnformation of preference")
+#     edit_transformation_chain = TransformChain(
+#         input_variables=["context_common", "question", "sampled_revision"], 
+#         output_variables=["context_e", "question_e", "revision"], 
+#         transform=transform_fct_edit
+#     )
+#     #######################################
+#     # define chain end to end
+#     overall_chain = SequentialChain(
+#         chains=[objects_chain,
+#                 object_transformation_chain, 
+#                 context_chain,
+#                 context_transformation_chain,
+#                 preferences_chain,
+#                 preference_transformation_chain,
+#                 edit_chain,
+#                 edit_transformation_chain,
+#                 ],
+#         input_variables=[""], ############# THIS IS THE BIT THAT CAUSED THE STR VS DICT INPUT ISSUES #########
+#         # Here we return multiple variables
+#         output_variables=["basic_category", "typical", "atypical", "context_common", "context_uncommon", "question", "revision"], # this is the bit defining how outputs are called at each step and what is returned from the entire chain (otherwise default key of generation is 'text')
+#         verbose=True
+#     )
+#     r = overall_chain(inputs=[])
     print("------ FINAL OUTPUTS ------ ", r)
-    df = pd.DataFrame({
-        "basic_category": r["basic_category"],
-        "typical": r["typical"],
-        "atypical": r["atypical"],
-        "sampled_context_common": r["context_common"],
-        "sampled_context_uncommon": r["context_uncommon"],
-        "question": r["question"],
-        "revision": r["revision"],
-    }, index=[0])
-    print("DF ", df)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    # df.to_csv(f"vignettes_LLM/output_{timestamp}.csv", index=False)
-    return df
+    # df = pd.DataFrame({
+    #     "basic_category": r["basic_category"],
+    #     "typical": r["typical"],
+    #     "atypical": r["atypical"],
+    #     "sampled_context_common": r["context_common"],
+    #     "sampled_context_uncommon": r["context_uncommon"],
+    #     "question": r["question"],
+    #     "revision": r["revision"],
+    # }, index=[0])
+    # print("DF ", df)
+    # timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    # # df.to_csv(f"vignettes_LLM/output_{timestamp}.csv", index=False)
+    # return df
 
 def sample_secondary_goals_vignettes(
         model: str = 'text-davinci-003',
@@ -1021,10 +1030,10 @@ if __name__ == '__main__':
             print("--- Running chain for priors expt --- ")
             print(f"--- Sampling {args.n} vignettes ---")
             for i in range(args.n):
-                d = sample_prior_vignettes(model='text-davinci-003', temperature=0.7)
+                d = sample_prior_vignettes(model='gpt-4-turbo', temperature=0.7)
                 df = pd.concat([df, d], axis=0)
 
-            df.to_csv(f"vignettes_LLM/prior_output_{timestamp}.csv", index=False)
+            df.to_csv(f"vignettes_LLM/prior_output_gpt-4_{timestamp}.csv", index=False)
 
         elif args.expt == "goals":
             print("--- Running chain for secondary goals expt --- ")
