@@ -2,7 +2,7 @@
 #SBATCH --partition=single
 #SBATCH --tasks=1
 #SBATCH --gres=gpu:A100:2
-#SBATCH --time=05:00:00
+#SBATCH --time=03:00:00
 #SBATCH --mem=237gb
 
 module load devel/miniconda/3
@@ -14,7 +14,7 @@ module load devel/cuda/11.6
 
 prompts=("zero-shot" "explanation" "example" "cot")
 prompts_e2=("zero-shot" "explanation" "example" "cot")
-expts=("e1" "e2")
+expts=("e2")
 for j in ${!expts[*]}; do
     echo "Running prompt: ${expts[$j]}"
     case "${expts[$j]}" in 
@@ -23,7 +23,7 @@ for j in ${!expts[*]}; do
             echo "Running prompt: ${prompts_e2[$i]}"
             python QA_models_answer_sampling.py -m="mistralai/Mixtral-8x7B-Instruct-v0.1" \
                 -o="../data_paper_neural/results_post_cogsci/" \
-                -p="../experiments/free_production/trials/trials_LLMs_all_options_postprocessed.csv" \
+                -p="../experiments/contextSensitive_free_production/trials/trials_e2_fctPrompt_fixedOrder.csv" \
                 -ml=64 \
                 -topk=5 \
                 -tm=1 \
@@ -36,7 +36,7 @@ for j in ${!expts[*]}; do
         "e1")
         for i in ${!prompts[*]}; do
             echo "Running prompt: ${prompts[$i]}"
-            python QA_models_answer_sampling.py -m="mistralai/Mixtral-8x7B-Instruct-v0.1" \
+            python QA_models_answer_sampling.py -m="meta-llama/Llama-2-70b-chat-hf" \
                 -o="../data_paper_neural/results_post_cogsci/" \
                 -p="../experiments/free_production/trials/trials_LLMs_all_options_postprocessed.csv" \
                 -ml=64 \
