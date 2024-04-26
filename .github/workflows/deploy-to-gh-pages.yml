@@ -11,8 +11,6 @@ jobs:
     strategy:
       matrix:
         folder:
-          - ./experiments/01-free_production/
-          - ./experiments/02-contextSensitive_free_production/
           - ./experiments/04-priorSensitivity_free_production/
 
     runs-on: ubuntu-latest
