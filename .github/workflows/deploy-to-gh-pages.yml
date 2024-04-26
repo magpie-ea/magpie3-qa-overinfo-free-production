@@ -9,6 +9,7 @@ jobs:
   build-and-deploy:
 
     strategy:
+      max-parallel: 1
       matrix:
         folder:
           - ./experiments/01-free_production/
@@ -22,7 +23,7 @@ jobs:
 
       - name: Change directory
         run: cd ${{ matrix.folder }}
-        
+
       - name: Read package.json node and npm engines version
         uses: skjnldsv/read-package-engines-version-actions@v1.1
         id: versions
