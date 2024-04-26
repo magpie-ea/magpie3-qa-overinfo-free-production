@@ -13,6 +13,7 @@ jobs:
         folder:
           - ./experiments/free_production/
           - ./experiments/contextSensitive_free_production/
+          - ./experiments/priorSensitivity_free_production/
 
     runs-on: ubuntu-latest
     steps:
