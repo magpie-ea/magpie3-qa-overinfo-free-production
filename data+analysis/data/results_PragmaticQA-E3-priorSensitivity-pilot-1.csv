@@ -1,0 +1,152 @@
+submission_id,age,answer,category,comments,condition,correct_response,education,experiment_duration,experiment_end_time,experiment_start_time,gender,itemName,languages,responseTime,trialNr,trial_type
+3333,39,yes we do,taciturn,,high_prior,NA,Graduated High-school,173765,1714383995356,1714383821591,female,streamingOptions,English,45733,1,main
+3333,39,yes there is,taciturn,,low_prior,NA,Graduated High-school,173765,1714383995356,1714383821591,female,coffeeShops,English,30349,2,main
+3333,39,teacher,,,filler,teacher,Graduated High-school,173765,1714383995356,1714383821591,female,jobCenter-office,English,26416,3,filler
+3333,39,yes,taciturn,,low_prior,NA,Graduated High-school,173765,1714383995356,1714383821591,female,socialMedia,English,20950,4,main
+3333,39,yes we do,taciturn,,high_prior,NA,Graduated High-school,173765,1714383995356,1714383821591,female,icecreamFlavors,English,19734,5,main
+3347,49,teacher,,,filler,teacher,Graduated High-school,83924,1714388339159,1714388255235,male,jobCenter-office,english,8132,1,filler
+3347,49,"yes,we do. ",taciturn,,low_prior,NA,Graduated High-school,83924,1714388339159,1714388255235,male,streamingOptions,english,21052,2,main
+3347,49,"yes, we do. ",taciturn,,low_prior,NA,Graduated High-school,83924,1714388339159,1714388255235,male,icecreamFlavors,english,11373,3,main
+3347,49,"yes, just around the corner. ",taciturn_more,,high_prior,NA,Graduated High-school,83924,1714388339159,1714388255235,male,coffeeShops,english,17717,4,main
+3347,49,"yes, we do. ",taciturn,,high_prior,NA,Graduated High-school,83924,1714388339159,1714388255235,male,cardBlanche,english,8224,5,main
+3332,27,Yes we have StreamFlix and WatchWave.,fullList,,high_prior,NA,Higher degree,149976,1714383842826,1714383692850,female,streamingOptions,English,36986,1,main
+3332,27,Yes we do but not American Express,exceptive,,low_prior,NA,Higher degree,149976,1714383842826,1714383692850,female,cardBlanche,English,32050,2,main
+3332,27,Yes I do,taciturn,,high_prior,NA,Higher degree,149976,1714383842826,1714383692850,female,socialMedia,English,17768,3,main
+3332,27,Yes there are some coffee shops around the corner,taciturn_more,,low_prior,NA,Higher degree,149976,1714383842826,1714383692850,female,coffeeShops,English,33914,4,main
+3332,27,motorcycle,,,filler,motorcycle,Higher degree,149976,1714383842826,1714383692850,female,carRental-moving,English,11139,5,filler
+3334,34,"Yes, there are many nearby but the closest would be Roast Republic or Caffeine King around the corner. ",fullList,,low_prior,NA,Graduated College,198322,1714384036970,1714383838648,female,coffeeShops,English,61714,1,main
+3334,34,London,,,filler,London,Graduated College,198322,1714384036970,1714383838648,female,airport-europe-UPDATED,English,9779,2,filler
+3334,34,Yes! I'm on Connectify and ChatCentral. You?,fullList,,low_prior,NA,Graduated College,198322,1714384036970,1714383838648,female,socialMedia,English,35328,3,main
+3334,34,We accept credit card payment except for Card Blanche. ,exceptive,,high_prior,NA,Graduated College,198322,1714384036970,1714383838648,female,cardBlanche,English,26246,4,main
+3334,34,"Yes,we have a wide variety of shows to stream",taciturn_more,,high_prior,NA,Graduated College,198322,1714384036970,1714383838648,female,streamingOptions,English,32630,5,main
+3335,36,"Yes, I do.",taciturn,No further comments.,low_prior,NA,Graduated High-school,237379,1714384064827,1714383827448,female,socialMedia,English,32103,1,main
+3335,36,Yes. We have WatchWave and FlicksOn in all our rooms.,fullList,No further comments.,low_prior,NA,Graduated High-school,237379,1714384064827,1714383827448,female,streamingOptions,English,63132,2,main
+3335,36,teacher,,No further comments.,filler,teacher,Graduated High-school,237379,1714384064827,1714383827448,female,jobCenter-office,English,20236,3,filler
+3335,36,Of course. We accept American Express and Visa.,fullList,No further comments.,high_prior,NA,Graduated High-school,237379,1714384064827,1714383827448,female,cardBlanche,English,36542,4,main
+3335,36,Of course. What flavour would you like?,taciturn_more,No further comments.,high_prior,NA,Graduated High-school,237379,1714384064827,1714383827448,female,icecreamFlavors,English,34456,5,main
+3336,32,motorcycle,,,filler,motorcycle,Graduated High-school,252441,1714384137337,1714383884896,female,carRental-moving,English ,28651,1,filler
+3336,32,"Yes, we serve all kinds of icecream",taciturn_more,,low_prior,NA,Graduated High-school,252441,1714384137337,1714383884896,female,icecreamFlavors,English ,57872,2,main
+3336,32,We accept Amex and visa,fullList,,high_prior,NA,Graduated High-school,252441,1714384137337,1714383884896,female,cardBlanche,English ,37305,3,main
+3336,32,"Yes, outside on the left",taciturn_more,,low_prior,NA,Graduated High-school,252441,1714384137337,1714383884896,female,coffeeShops,English ,37882,4,main
+3336,32,"Yes, you can access via your tv",taciturn_more,,high_prior,NA,Graduated High-school,252441,1714384137337,1714383884896,female,streamingOptions,English ,34853,5,main
+3337,40,Yes we offer different streaming services for you to choose from ,taciturn_more,,high_prior,NA,Graduated College,215031,1714384138885,1714383923854,female,streamingOptions,English ,53206,1,main
+3337,40,Yes we have a range of flavours available ,taciturn_more,,low_prior,NA,Graduated College,215031,1714384138885,1714383923854,female,icecreamFlavors,English ,24910,2,main
+3337,40,Yes we accept credit cards apart from American Express,exceptive,,low_prior,NA,Graduated College,215031,1714384138885,1714383923854,female,cardBlanche,English ,29045,3,main
+3337,40,Motorcycle ,,,filler,motorcycle,Graduated College,215031,1714384138885,1714383923854,female,carRental-moving,English ,15366,4,filler
+3337,40,"Yes there are many to choose from, would you like me to tell you where the nearest shop is located ",taciturn_more,,high_prior,NA,Graduated College,215031,1714384138885,1714383923854,female,coffeeShops,English ,68426,5,main
+3338,33,"Yes I do, although I prefer the less common platforms",taciturn_more,,low_prior,NA,Graduated College,427657,1714384144199,1714383716542,female,socialMedia,English,93469,1,main
+3338,33,teacher,,,filler,teacher,Graduated College,427657,1714384144199,1714383716542,female,jobCenter-engineer,English,11715,2,filler
+3338,33,"Yes, the nearest two are brewmasters and caffeine king that are just around the corner",fullList,,high_prior,NA,Graduated College,427657,1714384144199,1714383716542,female,coffeeShops,English,168394,3,main
+3338,33,Yes we have lots of flavours available today including mint and strawberry,fullList,,low_prior,NA,Graduated College,427657,1714384144199,1714383716542,female,icecreamFlavors,English,64155,4,main
+3338,33,Yes we have lots of options on streaming,taciturn_more,,high_prior,NA,Graduated College,427657,1714384144199,1714383716542,female,streamingOptions,English,59971,5,main
+3339,33,"Yeah, plenty.",taciturn,,high_prior,NA,Higher degree,189439,1714384156793,1714383967354,female,coffeeShops,English,40578,1,main
+3339,33,"Sure, we've got Chocolate Delight and Strawberry Swirl",fullList,,high_prior,NA,Higher degree,189439,1714384156793,1714383967354,female,icecreamFlavors,English,46134,2,main
+3339,33,"We do, but we don't accept Amex",exceptive,,low_prior,NA,Higher degree,189439,1714384156793,1714383967354,female,cardBlanche,English,17777,3,main
+3339,33,sculpture,,,filler,sculpture,Higher degree,189439,1714384156793,1714383967354,female,art-drawing,English,16095,4,filler
+3339,33,We do - we have WatchWave and FlicksOn,fullList,,low_prior,NA,Higher degree,189439,1714384156793,1714383967354,female,streamingOptions,English,33923,5,main
+3340,61,'classic',,,filler,classic,Graduated High-school,304125,1714384188867,1714383884742,female,music-softrock,English,26587,1,filler
+3340,61,"Yes, I use all the platforms apart from SocialSphere",exceptive,,low_prior,NA,Graduated High-school,304125,1714384188867,1714383884742,female,socialMedia,English,69554,2,main
+3340,61,"Yes, all except Card Blanche",exceptive,,high_prior,NA,Graduated High-school,304125,1714384188867,1714383884742,female,cardBlanche,English,44401,3,main
+3340,61,"Yes, this is the list of what we have",taciturn_more,,low_prior,NA,Graduated High-school,304125,1714384188867,1714383884742,female,icecreamFlavors,English,59339,4,main
+3340,61,"Yes, there are a couple round the corner to the left",taciturn_more,,high_prior,NA,Graduated High-school,304125,1714384188867,1714383884742,female,coffeeShops,English,63173,5,main
+3341,57,Yes - we accept American Express and Visa.,fullList,,high_prior,NA,Graduated College,266366,1714384210794,1714383944428,female,cardBlanche,English,56680,1,main
+3341,57,London,,,filler,London,Graduated College,266366,1714384210794,1714383944428,female,airport-usa,English,11663,2,filler
+3341,57,Yes I do.,taciturn,,low_prior,NA,Graduated College,266366,1714384210794,1714383944428,female,socialMedia,English,39014,3,main
+3341,57,Yes we do.,taciturn,,high_prior,NA,Graduated College,266366,1714384210794,1714383944428,female,icecreamFlavors,English,28254,4,main
+3341,57,Yes the rooms do have streaming but we do not have StreamFlix.,exceptive,,low_prior,NA,Graduated College,266366,1714384210794,1714383944428,female,streamingOptions,English,71943,5,main
+3342,29,London,,,filler,London,Higher degree,211629,1714384227963,1714384016334,female,airport-europe-UPDATED,English,14957,1,filler
+3342,29,All but American Express ,exceptive,,low_prior,NA,Higher degree,211629,1714384227963,1714384016334,female,cardBlanche,English,21562,2,main
+3342,29,"Yeah, but not SocialSphere",exceptive,,low_prior,NA,Higher degree,211629,1714384227963,1714384016334,female,socialMedia,English,37013,3,main
+3342,29,"Yeah, there’s a few close by ",taciturn_more,,high_prior,NA,Higher degree,211629,1714384227963,1714384016334,female,coffeeShops,English,50902,4,main
+3342,29,"Yes, streamflix and watchwave ",fullList,,high_prior,NA,Higher degree,211629,1714384227963,1714384016334,female,streamingOptions,English,40833,5,main
+3344,52,"Yes, there are 3 coffee shops you can choose from",taciturn_more,,low_prior,NA,Graduated High-school,317418,1714384248313,1714383930895,female,coffeeShops,English ,60597,1,main
+3344,52,"Yes, we have watchwave and flickson",fullList,,low_prior,NA,Graduated High-school,317418,1714384248313,1714383930895,female,streamingOptions,English ,61447,2,main
+3344,52,"Yes we do, we have 3 flavours the chocolate delight is the favourite of them",mostLikely,,high_prior,NA,Graduated High-school,317418,1714384248313,1714383930895,female,icecreamFlavors,English ,67696,3,main
+3344,52,"Yes i do, but not chatcentral",exceptive,,high_prior,NA,Graduated High-school,317418,1714384248313,1714383930895,female,socialMedia,English ,44830,4,main
+3344,52,sculpture ,,,filler,sculpture,Graduated High-school,317418,1714384248313,1714383930895,female,art-drawing,English ,23529,5,filler
+3343,33,"Yes, we provide all streaming services except for FlicksOn in all our rooms.",exceptive,,high_prior,NA,Graduated High-school,302430,1714384246576,1714383944146,male,streamingOptions,English,56456,1,main
+3343,33,"Yes, we have a variety of flavours available, which would you like?",taciturn_more,,high_prior,NA,Graduated High-school,302430,1714384246576,1714383944146,male,icecreamFlavors,English,124532,2,main
+3343,33,sculpture,,,filler,sculpture,Graduated High-school,302430,1714384246576,1714383944146,male,art-painting,English,13855,3,filler
+3343,33,"Yes, there are a number of coffee shops close by.",taciturn_more,,low_prior,NA,Graduated High-school,302430,1714384246576,1714383944146,male,coffeeShops,English,48289,4,main
+3343,33,"Yes, I do except for SocialSphere.",exceptive,,low_prior,NA,Graduated High-school,302430,1714384246576,1714383944146,male,socialMedia,English,32974,5,main
+3345,64,motorcycle,,,filler,motorcycle,Higher degree,402788,1714384319354,1714383916566,male,carRental-fun,English,22560,1,filler
+3345,64,"yes, but not American Express",exceptive,,low_prior,NA,Higher degree,402788,1714384319354,1714383916566,male,cardBlanche,English,47121,2,main
+3345,64,I use Connectify and ChatCentral frequently,fullList,,low_prior,NA,Higher degree,402788,1714384319354,1714383916566,male,socialMedia,English,87923,3,main
+3345,64,yes all rooms can access StreamFix and Watchwave I hope you enjoy your stay,fullList,,high_prior,NA,Higher degree,402788,1714384319354,1714383916566,male,streamingOptions,English,90682,4,main
+3345,64,"We have all the most popular flavours of ice cream, which one would you like?",taciturn_more,,high_prior,NA,Higher degree,402788,1714384319354,1714383916566,male,icecreamFlavors,English,73586,5,main
+3346,32,"Yes, we have two streaming services for you to choose from; WatchWave and StreamFlix",fullList,,high_prior,NA,Higher degree,936555,1714384759552,1714383822997,female,streamingOptions,English,806794,1,main
+3346,32,Yes there are a variety of coffee shops available in walking distance,taciturn_more,,low_prior,NA,Higher degree,936555,1714384759552,1714383822997,female,coffeeShops,English,32220,2,main
+3346,32,Yes most credit cards are accepted here,taciturn_more,,high_prior,NA,Higher degree,936555,1714384759552,1714383822997,female,cardBlanche,English,16388,3,main
+3346,32,Yes I have a few different accounts,taciturn_more,,low_prior,NA,Higher degree,936555,1714384759552,1714383822997,female,socialMedia,English,56462,4,main
+3346,32,teacher,,,filler,teacher,Higher degree,936555,1714384759552,1714383822997,female,jobCenter-office,English,11376,5,filler
+3348,27,Yes except Card Blanche,exceptive,,high_prior,NA,Graduated High-school,183727,1714388463360,1714388279633,female,cardBlanche,English,31960,1,main
+3348,27,Yes apart from ChatCentral,exceptive,,high_prior,NA,Graduated High-school,183727,1714388463360,1714388279633,female,socialMedia,English,38738,2,main
+3348,27,Yes apart from StreamFlix,exceptive,,low_prior,NA,Graduated High-school,183727,1714388463360,1714388279633,female,streamingOptions,English,52694,3,main
+3348,27,motorcycle,,,filler,motorcycle,Graduated High-school,183727,1714388463360,1714388279633,female,carRental-moving,English,11986,4,filler
+3348,27,Yes except Brewmasters,exceptive,,low_prior,NA,Graduated High-school,183727,1714388463360,1714388279633,female,coffeeShops,English,17654,5,main
+3349,22,Yes,taciturn,,high_prior,NA,,205809,1714388465998,1714388260189,male,coffeeShops,,70016,1,main
+3349,22,Sculpture,,,filler,sculpture,,205809,1714388465998,1714388260189,male,art-painting,,29627,2,filler
+3349,22,Yes,taciturn,,high_prior,NA,,205809,1714388465998,1714388260189,male,streamingOptions,,27027,3,main
+3349,22,Yes,taciturn,,low_prior,NA,,205809,1714388465998,1714388260189,male,socialMedia,,22514,4,main
+3349,22,Yes,taciturn,,low_prior,NA,,205809,1714388465998,1714388260189,male,icecreamFlavors,,24951,5,main
+3350,41,"Hello, Yes we have every flavour available except for Chocolate Delight",exceptive,,low_prior,NA,Higher degree,189352,1714388469831,1714388280479,female,icecreamFlavors,English,47582,1,main
+3350,41,"Yes, I'm on SocialSphere and Connectify",fullList,,high_prior,NA,Higher degree,189352,1714388469831,1714388280479,female,socialMedia,English,29592,2,main
+3350,41,Yes all our rooms come with StreamFlix as standard,mostLikely,,low_prior,NA,Higher degree,189352,1714388469831,1714388280479,female,streamingOptions,English,28288,3,main
+3350,41,We accept all major credit cards except Card Blanche,exceptive,,high_prior,NA,Higher degree,189352,1714388469831,1714388280479,female,cardBlanche,English,25823,4,main
+3350,41,sculpture,,,filler,sculpture,Higher degree,189352,1714388469831,1714388280479,female,art-drawing,English,16239,5,filler
+3356,33,"Yes, all rooms have streaming with StreamFlix and WatchWave available.",fullList,,high_prior,NA,Graduated College,261459,1714388545332,1714388283873,female,streamingOptions,english,67721,1,main
+3356,33,"Yes, I'm on Connectify and ChatCentral.",fullList,,low_prior,NA,Graduated College,261459,1714388545332,1714388283873,female,socialMedia,english,53865,2,main
+3356,33,teacher,,,filler,teacher,Graduated College,261459,1714388545332,1714388283873,female,jobCenter-office,english,22765,3,filler
+3356,33,"Yes, we accept all credit cards except American Express.",exceptive,,low_prior,NA,Graduated College,261459,1714388545332,1714388283873,female,cardBlanche,english,35958,4,main
+3356,33,"Yes, we have Chocolate Delight and Strawberry Swirl ice cream flavours available. ",fullList,,high_prior,NA,Graduated College,261459,1714388545332,1714388283873,female,icecreamFlavors,english,46595,5,main
+3359,56,"Yes we do, we have Stream Fix and Watch Wave available for your stay",fullList,,high_prior,NA,Higher degree,428446,1714388702745,1714388274299,female,streamingOptions,English ,126841,1,main
+3359,56,classic,,,filler,classic,Higher degree,428446,1714388702745,1714388274299,female,music-hardrock,English ,29608,2,filler
+3359,56,"Yes we do, except American Express ",exceptive,,low_prior,NA,Higher degree,428446,1714388702745,1714388274299,female,cardBlanche,English ,52520,3,main
+3359,56,"Yes, there are a couple nearby",taciturn_more,,high_prior,NA,Higher degree,428446,1714388702745,1714388274299,female,coffeeShops,English ,114303,4,main
+3359,56,"We do, yes",taciturn,,low_prior,NA,Higher degree,428446,1714388702745,1714388274299,female,icecreamFlavors,English ,43318,5,main
+3351,37,"Yes, we accept American Express and Visa cards.",fullList,,high_prior,NA,Graduated College,228978,1714388482530,1714388253552,female,cardBlanche,,41288,1,main
+3351,37,I do but I use Connectify and ChatCentral.,fullList,,low_prior,NA,Graduated College,228978,1714388482530,1714388253552,female,socialMedia,,44491,2,main
+3351,37,teacher,,,filler,teacher,Graduated College,228978,1714388482530,1714388253552,female,jobCenter-office,,24347,3,filler
+3351,37,We offer streaming on WatchWave and FlicksOn.,fullList,,low_prior,NA,Graduated College,228978,1714388482530,1714388253552,female,streamingOptions,,67723,4,main
+3351,37,Yes there is a Brewmasters and Caffeine King just around the corner.,fullList,,high_prior,NA,Graduated College,228978,1714388482530,1714388253552,female,coffeeShops,,30865,5,main
+3352,33,teacher,,,filler,teacher,Graduated College,201288,1714388490573,1714388289285,male,jobCenter-engineer,English,14879,1,filler
+3352,33,"Yes! I use all social media platforms, with the exception of ChatCentral. It's not popular enough, and none of my friends are on it.",exceptive,,high_prior,NA,Graduated College,201288,1714388490573,1714388289285,male,socialMedia,English,49847,2,main
+3352,33,"Yes, there are a few nearby; Caffeine King, Espresso Express and Roast Republic",fullList,,low_prior,NA,Graduated College,201288,1714388490573,1714388289285,male,coffeeShops,English,53125,3,main
+3352,33,"Yes, just not AMEX",exceptive,,low_prior,NA,Graduated College,201288,1714388490573,1714388289285,male,cardBlanche,English,22926,4,main
+3352,33,"We do, other than FlicksOn",exceptive,,high_prior,NA,Graduated College,201288,1714388490573,1714388289285,male,streamingOptions,English,22906,5,main
+3353,36,sculpture,,,filler,sculpture,Higher degree,208722,1714388491701,1714388282979,female,art-drawing,English,24163,1,filler
+3353,36,"Yes, WatchWave and FlicksOn. ",fullList,,low_prior,NA,Higher degree,208722,1714388491701,1714388282979,female,streamingOptions,English,38855,2,main
+3353,36,"Yes, we have chocolate and strawberry. ",fullList,,high_prior,NA,Higher degree,208722,1714388491701,1714388282979,female,icecreamFlavors,English,33892,3,main
+3353,36,"Yes, a couple. ",taciturn,,high_prior,NA,Higher degree,208722,1714388491701,1714388282979,female,coffeeShops,English,22183,4,main
+3353,36,Connectify and ChatCentral are what I use. ,fullList,,low_prior,NA,Higher degree,208722,1714388491701,1714388282979,female,socialMedia,English,43003,5,main
+3354,31,Yes we accept all credit cards except from American Express.,exceptive,None,low_prior,NA,Graduated College,242449,1714388513046,1714388270597,female,cardBlanche,English,34940,1,main
+3354,31,classic,,None,filler,classic,Graduated College,242449,1714388513046,1714388270597,female,music-hardrock,English,25400,2,filler
+3354,31,Yes I use SocialSphere and Connectify. I use all social media platforms except from ChatCentral.,fullList,None,high_prior,NA,Graduated College,242449,1714388513046,1714388270597,female,socialMedia,English,59725,3,main
+3354,31,Yes we have all streaming services except from StreamFlix.,exceptive,None,low_prior,NA,Graduated College,242449,1714388513046,1714388270597,female,streamingOptions,English,34260,4,main
+3354,31,Yes there are BrewMasters and Caffeine King coffee shops nearby just around the corner.,fullList,None,high_prior,NA,Graduated College,242449,1714388513046,1714388270597,female,coffeeShops,English,46202,5,main
+3355,26,"yes, around the corner",taciturn_more,,high_prior,NA,Graduated College,259691,1714388537819,1714388278128,female,coffeeShops,English ,40381,1,main
+3355,26,yes,taciturn,,low_prior,NA,Graduated College,259691,1714388537819,1714388278128,female,streamingOptions,English ,85597,2,main
+3355,26,"yes, visa and card blanche",fullList,,low_prior,NA,Graduated College,259691,1714388537819,1714388278128,female,cardBlanche,English ,32232,3,main
+3355,26,teacher,,,filler,teacher,Graduated College,259691,1714388537819,1714388278128,female,jobCenter-engineer,English ,12900,4,filler
+3355,26,yes all except chatcentral,exceptive,,high_prior,NA,Graduated College,259691,1714388537819,1714388278128,female,socialMedia,English ,32749,5,main
+3357,42, Yes we do.  Credit cards are accepted at our establishment.,taciturn,,high_prior,NA,Higher degree,293960,1714388650598,1714388356638,female,cardBlanche,English ,70102,1,main
+3357,42,London ,,,filler,London,Higher degree,293960,1714388650598,1714388356638,female,airport-usa,English ,17008,2,filler
+3357,42,Yes we do.,taciturn,,high_prior,NA,Higher degree,293960,1714388650598,1714388356638,female,streamingOptions,English ,31149,3,main
+3357,42,Yes there are quite a few.,taciturn,,low_prior,NA,Higher degree,293960,1714388650598,1714388356638,female,coffeeShops,English ,50450,4,main
+3357,42,Yes I do.,taciturn,,low_prior,NA,Higher degree,293960,1714388650598,1714388356638,female,socialMedia,English ,24248,5,main
+3358,36,"Yes, there are 3 different chain coffee shops just around the corner",taciturn_more,,high_prior,NA,Higher degree,372996,1714388650802,1714388277806,female,coffeeShops,English,81293,1,main
+3358,36,"Yes, we offer two different streaming services in our rooms",taciturn_more,,low_prior,NA,Higher degree,372996,1714388650802,1714388277806,female,streamingOptions,English,79549,2,main
+3358,36,Teacher,,,filler,teacher,Higher degree,372996,1714388650802,1714388277806,female,jobCenter-engineer,English,26909,3,filler
+3358,36,"Yes, but I'm not on Social Sphere, it's got too popular and there are too many adverts ",exceptive,,low_prior,NA,Higher degree,372996,1714388650802,1714388277806,female,socialMedia,English,86348,4,main
+3358,36,"Yes, would you like chocolate delight or strawberry swirl? ",fullList,,high_prior,NA,Higher degree,372996,1714388650802,1714388277806,female,icecreamFlavors,English,43188,5,main
+3360,40,"Yes there are a few coffee shops nearby, caffeine king, expresso express and roast republic. ",fullList,,low_prior,NA,Graduated College,516961,1714388774225,1714388257264,female,coffeeShops,English ,162626,1,main
+3360,40,Yes we have StreamFlix and WatchWave in all the rooms. ,fullList,,high_prior,NA,Graduated College,516961,1714388774225,1714388257264,female,streamingOptions,English ,110904,2,main
+3360,40,"Yes we have a wide variety including our popular flavours chocolate delight and strawberry swirl.
+",fullList,,high_prior,NA,Graduated College,516961,1714388774225,1714388257264,female,icecreamFlavors,English ,78648,3,main
+3360,40,"Yes I do, I use most of them except SocialSphere.",exceptive,,low_prior,NA,Graduated College,516961,1714388774225,1714388257264,female,socialMedia,English ,69147,4,main
+3360,40,Motorcycle ,,,filler,motorcycle,Graduated College,516961,1714388774225,1714388257264,female,carRental-fun,English ,31653,5,filler
+3361,44,London,,,filler,London,Graduated High-school,624835,1714388907651,1714388282816,male,airport-usa,English,21686,1,filler
+3361,44,Yes I do use social media ,taciturn,,low_prior,NA,Graduated High-school,624835,1714388907651,1714388282816,male,socialMedia,English,133001,2,main
+3361,44,Yes we have all the most popular streaming services,taciturn_more,,high_prior,NA,Graduated High-school,624835,1714388907651,1714388282816,male,streamingOptions,English,39846,3,main
+3361,44,All the most popular coffee shops are nearby apart from Roast Republic,exceptive,,high_prior,NA,Graduated High-school,624835,1714388907651,1714388282816,male,coffeeShops,English,276097,4,main
+3361,44,Yes we do serve ice cream all but chocolate delight,exceptive,,low_prior,NA,Graduated High-school,624835,1714388907651,1714388282816,male,icecreamFlavors,English,108731,5,main
