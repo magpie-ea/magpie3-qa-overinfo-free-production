@@ -100,3 +100,24 @@ d_main_binary_summary %>%
   geom_errorbar(width = 0.4) +
   ylim(0, 1)
 ```
+
+Below, the response categories are plotted by-item, so as to check if respondents might have chosen different strategies, e.g., full-list responses, in e.g. commercial conexts so as to not loose customers:
+```{r}
+df_answerOptions_byCondition_byItem_summary <- d_main %>% 
+  group_by(itemName, condition) %>%
+  mutate(condition_counts = n()) %>%
+  group_by(itemName, category, condition) %>% 
+  summarise(answerType_count = n(), 
+            answerType_proportion = answerType_count / condition_counts
+            ) %>% unique()
+
+
+df_answerOptions_byCondition_byItem_summary %>%
+  ggplot(aes(x = condition, y = answerType_count, fill = category)) +
+  geom_col(color = "#575463") +
+  theme_csp() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  ylab("Proportion of answer type") +
+  facet_wrap(~itemName, ncol=3) +
+  xlab("") 
+```
