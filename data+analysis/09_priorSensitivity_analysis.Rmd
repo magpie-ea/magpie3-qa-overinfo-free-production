@@ -113,3 +113,12 @@ d_main_binary_summary <- d_main %>%
   tidyboot_mean(column = is_taciturn)
 d_main_binary_summary
 ```
+
+We can also looka at the bootstrapped CIs over the rate of exceptive answers; while the difference is larger, the CIs overlap.
+```{r}
+d_main_binary_summary <- d_main %>% 
+  mutate(is_exceptive = ifelse(category == "exceptive", 1, 0)) %>%
+  group_by(condition) %>% 
+  tidyboot_mean(column = is_exceptive)
+d_main_binary_summary
+```

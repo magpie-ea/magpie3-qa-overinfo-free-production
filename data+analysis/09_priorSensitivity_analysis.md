@@ -130,5 +130,28 @@ d_main_binary_summary
     ## # A tibble: 2 × 6
     ##   condition      n empirical_stat ci_lower  mean ci_upper
     ##   <chr>      <int>          <dbl>    <dbl> <dbl>    <dbl>
-    ## 1 high_prior    60          0.183   0.0984 0.184    0.279
-    ## 2 low_prior     60          0.217   0.109  0.214    0.333
+    ## 1 high_prior    60          0.183   0.0909 0.182    0.279
+    ## 2 low_prior     60          0.217   0.113  0.216    0.328
+
+We can also looka at the bootstrapped CIs over the rate of exceptive
+answers; while the difference is larger, the CIs overlap.
+
+``` r
+d_main_binary_summary <- d_main %>% 
+  mutate(is_exceptive = ifelse(category == "exceptive", 1, 0)) %>%
+  group_by(condition) %>% 
+  tidyboot_mean(column = is_exceptive)
+```
+
+    ## Warning: `cols` is now required when using unnest().
+    ## Please use `cols = c(strap)`
+
+``` r
+d_main_binary_summary
+```
+
+    ## # A tibble: 2 × 6
+    ##   condition      n empirical_stat ci_lower  mean ci_upper
+    ##   <chr>      <int>          <dbl>    <dbl> <dbl>    <dbl>
+    ## 1 high_prior    60          0.183   0.0862 0.183    0.283
+    ## 2 low_prior     60          0.333   0.222  0.335    0.450
