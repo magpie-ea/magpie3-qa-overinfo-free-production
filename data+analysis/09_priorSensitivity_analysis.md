@@ -130,8 +130,8 @@ d_main_binary_summary
     ## # A tibble: 2 × 6
     ##   condition      n empirical_stat ci_lower  mean ci_upper
     ##   <chr>      <int>          <dbl>    <dbl> <dbl>    <dbl>
-    ## 1 high_prior    60          0.183   0.0909 0.182    0.279
-    ## 2 low_prior     60          0.217   0.113  0.216    0.328
+    ## 1 high_prior    60          0.183   0.0937 0.183    0.286
+    ## 2 low_prior     60          0.217   0.120  0.215    0.328
 
 We can also looka at the bootstrapped CIs over the rate of exceptive
 answers; while the difference is larger, the CIs overlap.
@@ -153,5 +153,5 @@ d_main_binary_summary
     ## # A tibble: 2 × 6
     ##   condition      n empirical_stat ci_lower  mean ci_upper
     ##   <chr>      <int>          <dbl>    <dbl> <dbl>    <dbl>
-    ## 1 high_prior    60          0.183   0.0862 0.183    0.283
-    ## 2 low_prior     60          0.333   0.222  0.335    0.450
+    ## 1 high_prior    60          0.183   0.0909 0.187    0.291
+    ## 2 low_prior     60          0.333   0.216  0.331    0.453
