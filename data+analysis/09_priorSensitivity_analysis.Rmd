@@ -83,24 +83,6 @@ df_answerOptions_byCondition_summary %>%
   xlab("") 
 ```
 
-The main hypothesis is that speakers will be more overinformative in the low prior condition; i.e., they will produce more responses of categories exceptive, fullList, taciturn_more, mostLikely. This binarized distinction is used to plot "overinformativeness" proportions by-condition below:
-
-```{r, include=FALSE}
-d_main_binary_summary <- d_main %>% 
-  mutate(is_overinformative = ifelse(category != "taciturn", 1, 0)) %>%
-  group_by(condition) %>% 
-  tidyboot_mean(column = is_overinformative)
-```
-
-We see that the difference is not very large.
-```{r}
-d_main_binary_summary %>%
-  ggplot(., aes(x = condition, y = mean, ymin=ci_lower, ymax=ci_upper)) +
-  geom_col() +
-  geom_errorbar(width = 0.4) +
-  ylim(0, 1)
-```
-
 Below, the response categories are plotted by-item, so as to check if respondents might have chosen different strategies, e.g., full-list responses, in e.g. commercial conexts so as to not loose customers:
 ```{r}
 df_answerOptions_byCondition_byItem_summary <- d_main %>% 
@@ -120,4 +102,14 @@ df_answerOptions_byCondition_byItem_summary %>%
   ylab("Proportion of answer type") +
   facet_wrap(~itemName, ncol=3) +
   xlab("") 
+```
+
+We might ask if speakers will be more overinformative, in general, in the low prior condition; i.e., if they will produce more responses of categories exceptive, fullList, taciturn_more, mostLikely in the low prior condition, compared to the high prior condition. Essentially, the rates of taciturn responses are compared. We see that the difference is not very large.
+
+```{r}
+d_main_binary_summary <- d_main %>% 
+  mutate(is_taciturn = ifelse(category == "taciturn", 1, 0)) %>%
+  group_by(condition) %>% 
+  tidyboot_mean(column = is_taciturn)
+d_main_binary_summary
 ```

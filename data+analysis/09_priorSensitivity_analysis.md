@@ -70,24 +70,6 @@ df_answerOptions_byCondition_summary %>%
 
 ![](09_priorSensitivity_analysis_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-The main hypothesis is that speakers will be more overinformative in the
-low prior condition; i.e., they will produce more responses of
-categories exceptive, fullList, taciturn_more, mostLikely. This
-binarized distinction is used to plot “overinformativeness” proportions
-by-condition below:
-
-We see that the difference is not very large.
-
-``` r
-d_main_binary_summary %>%
-  ggplot(., aes(x = condition, y = mean, ymin=ci_lower, ymax=ci_upper)) +
-  geom_col() +
-  geom_errorbar(width = 0.4) +
-  ylim(0, 1)
-```
-
-![](09_priorSensitivity_analysis_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
-
 Below, the response categories are plotted by-item, so as to check if
 respondents might have chosen different strategies, e.g., full-list
 responses, in e.g. commercial conexts so as to not loose customers:
@@ -116,4 +98,37 @@ df_answerOptions_byCondition_byItem_summary %>%
   xlab("") 
 ```
 
-![](09_priorSensitivity_analysis_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](09_priorSensitivity_analysis_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+We might ask if speakers will be more overinformative, in general, in
+the low prior condition; i.e., if they will produce more responses of
+categories exceptive, fullList, taciturn_more, mostLikely in the low
+prior condition, compared to the high prior condition. Essentially, the
+rates of taciturn responses are compared. We see that the difference is
+not very large.
+
+``` r
+d_main_binary_summary <- d_main %>% 
+  mutate(is_taciturn = ifelse(category == "taciturn", 1, 0)) %>%
+  group_by(condition) %>% 
+  tidyboot_mean(column = is_taciturn)
+```
+
+    ## Warning: `as_data_frame()` was deprecated in tibble 2.0.0.
+    ## ℹ Please use `as_tibble()` instead.
+    ## ℹ The signature and semantics have changed, see `?as_tibble`.
+    ## ℹ The deprecated feature was likely used in the purrr package.
+    ##   Please report the issue at <]8;;https://github.com/tidyverse/purrr/issueshttps://github.com/tidyverse/purrr/issues]8;;>.
+
+    ## Warning: `cols` is now required when using unnest().
+    ## Please use `cols = c(strap)`
+
+``` r
+d_main_binary_summary
+```
+
+    ## # A tibble: 2 × 6
+    ##   condition      n empirical_stat ci_lower  mean ci_upper
+    ##   <chr>      <int>          <dbl>    <dbl> <dbl>    <dbl>
+    ## 1 high_prior    60          0.183   0.0984 0.184    0.279
+    ## 2 low_prior     60          0.217   0.109  0.214    0.333
