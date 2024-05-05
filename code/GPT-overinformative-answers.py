@@ -292,7 +292,7 @@ if __name__ == "__main__":
         few_shot_items = oneShotExampleE2
         items = pd.read_csv('../experiments/contextSensitive_free_production/trials/trials_e2_fctPrompt_fixedOrder.csv')
         # remove items that were used as one-shot example
-        items = items[(items.itemName != "chair-repair") & (items.itemName != "chair-party")]
+        items = items[(items.itemName != "chair-repair") & (items.itemName != "chair-party")].reset_index()
         print("Number of items for E2: ", len(items))
     else:
         raise ValueError("Unknown experiment number")

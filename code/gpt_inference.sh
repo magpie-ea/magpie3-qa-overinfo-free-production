@@ -11,7 +11,7 @@ conda activate llmlink
 echo $(which python)
 module load devel/cuda/11.6
 
-prompts=("explanation" "example")
+prompts=("explanation" "example" "zero-shot" "cot")
 for i in ${!prompts[*]}; do
     echo "Running prompt: ${prompts[$i]}"
     python GPT-overinformative-answers.py \
