@@ -2,7 +2,7 @@
 #SBATCH --partition=single
 #SBATCH --tasks=1
 #SBATCH --gres=gpu:A100:2
-#SBATCH --time=03:00:00
+#SBATCH --time=04:00:00
 #SBATCH --mem=237gb
 
 module load devel/miniconda/3
@@ -24,7 +24,7 @@ for j in ${!expts[*]}; do
             python QA_models_answer_sampling.py -m="mistralai/Mixtral-8x7B-Instruct-v0.1" \
                 -o="../data_paper_neural/results_post_cogsci/" \
                 -p="../experiments/contextSensitive_free_production/trials/trials_e2_fctPrompt_fixedOrder.csv" \
-                -ml=64 \
+                -ml=128 \
                 -topk=5 \
                 -tm=1 \
                 -pr="${prompts_e2[$i]}" \
