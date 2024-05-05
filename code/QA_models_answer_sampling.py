@@ -11,6 +11,25 @@ import random
 import argparse
 import numpy as np
 
+def format_inst_context(text, model):
+    """
+    Helper for inserting appropriate special tokens
+    for Llama-chat / instruct and Mixtral-Instruct.
+    """
+    # NOTE: no system messages are used
+    # NOTE: the few shot example is formatted as part of the instruction; not the model's own previous output
+    if "70b-chat" in model:
+        formatted_text = f"[INST] {text} [/INST]"
+    elif "Mixtral-8x7B-Instruct" in model:
+        formatted_text = f"[INST] {text} [/INST]"
+    elif "Llama-3" in model:
+        formatted_text = f"[INST]{text}[/INST]"
+    else:
+        formatted_text = text
+
+    return formatted_text
+
+
 def correct_answer(answer):
     """
     Helper for decoding subword tokens as single words.
@@ -220,12 +239,19 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
         else:
             input = f"{context} {question}" #f"question: {question} context: {context}"
         inputs.append(input)
-        encoded_input = tokenizer(
+        formatted_input = format_inst_context(
             input,
+            model,
+        )
+        print("### Formatted input#### ", formatted_input)
+        encoded_input = tokenizer(
+            formatted_input,
             return_tensors='pt',
             # max_length=512,
             # truncation=True
         )
+        # print("Encoded formatted input: ", encoded_input)
+        # print("Encoding decoded back w special tokens:", tokenizer.decode(encoded_input.input_ids[0], skip_special_tokens=False) )
         print("Input ids ", len(encoded_input.input_ids))
         encoded_input.to(model_qa.device)
         
