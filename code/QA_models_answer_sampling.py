@@ -11,7 +11,7 @@ import random
 import argparse
 import numpy as np
 
-def format_inst_context(text, model):
+def format_inst_context(text, model, tokenizer):
     """
     Helper for inserting appropriate special tokens
     for Llama-chat / instruct and Mixtral-Instruct.
@@ -23,7 +23,15 @@ def format_inst_context(text, model):
     elif "Mixtral-8x7B-Instruct" in model:
         formatted_text = f"[INST] {text} [/INST]"
     elif "Llama-3" in model:
-        formatted_text = f"[INST]{text}[/INST]"
+        message = [
+            {"role": "user", "content": text},
+        ]
+
+        formatted_text = tokenizer.apply_chat_template(
+                message, 
+                tokenize=False, 
+                add_generation_prompt=True
+        )
     else:
         formatted_text = text
 
@@ -242,6 +250,7 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
         formatted_input = format_inst_context(
             input,
             model,
+            tokenizer,
         )
         print("### Formatted input#### ", formatted_input)
         encoded_input = tokenizer(
