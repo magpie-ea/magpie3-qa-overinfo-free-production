@@ -54,17 +54,22 @@ function createText(trial, condition, trial_type){
         var slide_text = [vignette_start, context, vignette_continuation, "\"".concat(question).concat("\""), "\\n\\n", "You reply: "].join(" ");
         return slide_text
       } else {
+        // randomize the initial order of alternatives
+        var alternativeOrder = _.shuffle(['highProb_option', 'midProb_option', 'lowProb_option'])
+        console.log(alternativeOrder)
         // retrieve text corresponding to condition
         var continuation = trial[condition]
         console.log(continuation)
-        // var vignette_start = trial.vignette_start
-        // var vignette_continuation = trial.vignette_continuation
+        var vignette_start = trial.context_begin
+        var vignette_continuation = trial.context_cont
         var question = trial.question
-        // console.log(trial.correct_response)
-        var context = trial.context //itemOrder.map(x => trial[x])
+        // retrieve the alternatives in the randomized order
+        var context = alternativeOrder.map(x => trial[x])
+        // add and before the last alternative
+        context.splice(-1, 1, "and ".concat(context.at(-1)));
+        var context = context.join(", ").concat(".");
         var answerTemplate = trial.answer_template
-        // context.splice(-1, 1, "and ".concat(context.at(-1)));
-        var slide_text = [context, continuation, question, answerTemplate].join("\\n\\n"); //context.join(", ").concat(".");
+        var slide_text = [[[vignette_start, context, vignette_continuation].join(" "), continuation].join("\\n"), question, answerTemplate].join("\\n\\n"); //context.join(", ").concat(".");
         console.log(slide_text)
         // var slide_text = [vignette_start, context, vignette_continuation, "\"".concat(question).concat("\""), "\\n\\n", "You reply: "].join(" ");
         return slide_text
