@@ -8,7 +8,7 @@
       Your participation in this research is voluntary.
       You may decline to answer any or all of the following questions.
       You may decline further participation, at any time, without adverse consequences.<br />
-      The experiment will take 4-5 minutes.
+      The experiment will take 5-6 minutes.
       <br />
       <br />
       Your anonymity is assured; the researchers who have requested your
