@@ -219,6 +219,16 @@ def sample_response_from_lm(model, path, output_path, topk, num_beams=1, max_len
         few_shot_question = ""
         few_shot_answer = "So you say: No, I don't have a spare chair, but you can have the stool."
         few_shot_cot = "You deliberate your response as follows. The practical goal of the questioner is to sit down at the dinner table. For this purpose, the most useful object from the list of available items is the stool."
+    elif experiment == "e3_highprior":
+        few_shot_context = "There are three types of laptops commonly used in your town: Acer laptops, MacBooks and Dell laptops. It is common knowledge that Acer laptops are used by most people, MacBooks are used by fewer people, and Dell laptops are very rare."
+        few_shot_question = "A hypermarket carries laptop chargers for all types of laptops except the least common Dell laptops. A customer walks in and asks a salesperson: Do you have laptop chargers?"
+        few_shot_answer = "The salesperson replies: Yes, we do."
+        few_shot_cot = " Let's think step by step. The salesperson reasons about the kind of laptop the customer most likely needs a charger for. Given their common knowledge, it is most likely that the customer has an Acer laptop. Therefore, it is likely that the customer is interested in an Acer charger. The hypermarket has Acer chargers and can therefore satisfy the customer's potential needs."
+    elif experiment == "e3_lowprior":
+        few_shot_context = "There are three types of laptops commonly used in your town: Acer laptops, MacBooks and Dell laptops. It is common knowledge that Acer laptops are used by most people, MacBooks are used by fewer people, and Dell laptops are very rare."
+        few_shot_question = "A hypermarket carries laptop accessories for all types of laptops except the most common Acer laptops. A customer walks in and asks a salesperson: Do you have laptop chargers?"
+        few_shot_answer = "The salesperson replies: Yes, but we don't have Acer chargers."
+        few_shot_cot = "Let's think step by step. The salesperson reasons about the kind of laptop the customer most likely needs a charger for. Given their common knowledge, it is most likely that the customer has an Acer laptop. Therefore, it is likely that the customer is interested in an Acer charger. However, the hypermarket doesn't have Acer chargers and therefore might not be able to satisfy the customer's potential needs."
     else:
         raise ValueError("Experiment type incorrect!")
     
@@ -485,7 +495,7 @@ if __name__ == "__main__":
     parser.add_argument("-r", "--reduction", help = "cross entropy calculation reduction strategy for scoring answer options with LMs", nargs="?", default="mean", type=str, choices=["mean", "sum"])
     parser.add_argument("-fs", "--few_shot", help = "should the few-shot example context be used for LMs?", action="store_true")
     parser.add_argument("-pr", "--prompt", help="Type of prompt", default="zero-shot", type=str, choices=["zero-shot", "explanation", "example", "cot"])
-    parser.add_argument("-ex", "--experiment", help="Type of experiment", default="e1", type=str, choices=["e1", "e2"])
+    parser.add_argument("-ex", "--experiment", help="Type of experiment", default="e1", type=str, choices=["e1", "e2", "e3_highprior", "e3_lowprior"])
 
     args = parser.parse_args()
 

@@ -1,0 +1,16 @@
+prompting_strategy,category,prop,prompt
+cot,competitor,0.76,one-shot CoT
+cot,other,0.13333333333333333,one-shot CoT
+cot,sameCategory,0.09333333333333334,one-shot CoT
+cot,taciturn,0.013333333333333334,one-shot CoT
+example,competitor,0.7066666666666667,one-shot QA
+example,fullList,0.15333333333333332,one-shot QA
+example,other,0.013333333333333334,one-shot QA
+example,sameCategory,0.12666666666666668,one-shot QA
+explanation,competitor,0.5933333333333334,one-shot Explanation
+explanation,other,0.3333333333333333,one-shot Explanation
+explanation,sameCategory,0.07333333333333333,one-shot Explanation
+zero-shot,competitor,0.30666666666666664,zero-shot
+zero-shot,fullList,0.5066666666666667,zero-shot
+zero-shot,other,0.02666666666666667,zero-shot
+zero-shot,sameCategory,0.16,zero-shot
