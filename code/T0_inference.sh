@@ -12,7 +12,7 @@ conda activate llmlink
 echo $(which python)
 module load devel/cuda/11.6
 
-prompts=("zero-shot" "explanation" "example" "cot")
+prompts=("cot")
 prompts_e2=("zero-shot" "explanation" "example" "cot")
 expts=("e1" "e2")
 for j in ${!expts[*]}; do
@@ -21,7 +21,7 @@ for j in ${!expts[*]}; do
         "e2")
         for i in ${!prompts_e2[*]}; do
             echo "Running prompt: ${prompts_e2[$i]}"
-            python QA_models_answer_sampling.py -m="mistralai/Mixtral-8x7B-Instruct-v0.1" \
+            python QA_models_answer_sampling.py -m="meta-llama/Meta-Llama-3-70B-Instruct" \
                 -o="../data_paper_neural/results_post_cogsci/" \
                 -p="../experiments/contextSensitive_free_production/trials/trials_e2_fctPrompt_fixedOrder.csv" \
                 -ml=128 \
@@ -36,7 +36,7 @@ for j in ${!expts[*]}; do
         "e1")
         for i in ${!prompts[*]}; do
             echo "Running prompt: ${prompts[$i]}"
-            python QA_models_answer_sampling.py -m="mistralai/Mixtral-8x7B-Instruct-v0.1" \
+            python QA_models_answer_sampling.py -m="meta-llama/Meta-Llama-3-70B-Instruct" \
                 -o="../data_paper_neural/results_post_cogsci/" \
                 -p="../experiments/free_production/trials/trials_LLMs_all_options_postprocessed.csv" \
                 -ml=128 \
