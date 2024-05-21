@@ -33,7 +33,19 @@ examples = {
         "cot": "You give a dinner party at your apartment. More people showed up than you expected.\nYour neighbor, who just arrived, approaches you and asks: Do you have a spare chair I could borrow? You do not, in fact, have a spare chair, but you do have the following items: a broom, a TV armchair, a stool, a ladder and a kitchen table. You deliberate your response as follows. The practical goal of the questioner is to sit down at the dinner table. For this purpose, the most useful object from the list of available items is the stool. So you say: No, I don't have a spare chair, but you can have the stool.",
         "explanation": "You give a dinner party at your apartment. More people showed up than you expected.\nYour neighbor, who just arrived, approaches you and asks: Do you have a spare chair I could borrow? You do not, in fact, have a spare chair, but you do have the following items: a broom, a TV armchair, a stool, a ladder and a kitchen table. You deliberate your response as follows. The practical goal of the questioner is to sit down at the dinner table. For this purpose, the most useful object from the list of available items is the stool.",
         "example": "You give a dinner party at your apartment. More people showed up than you expected.\nYour neighbor, who just arrived, approaches you and asks: Do you have a spare chair I could borrow? You do not, in fact, have a spare chair, but you do have the following items: a broom, a TV armchair, a stool, a ladder and a kitchen table. So you say: No, I don't have a spare chair, but you can have the stool."
-    }
+    },
+    "e3_lowprior": {
+        "zero-shot": "",
+        "cot": "There are three types of laptops commonly used in your town: Acer laptops, MacBooks and Dell laptops. It is common knowledge that Acer laptops are used by most people, MacBooks are used by fewer people, and Dell laptops are very rare. A hypermarket carries laptop accessories for all types of laptops except the most common Acer laptops. A customer walks in and asks a salesperson: Do you have laptop chargers?\nLet's think step by step. The salesperson reasons about the kind of laptop the customer most likely needs a charger for. Given their common knowledge, it is most likely that the customer has an Acer laptop. Therefore, it is likely that the customer is interested in an Acer charger. However, the hypermarket doesn't have Acer chargers and therefore might not be able to satisfy the customer's potential needs. The salesperson replies: Yes, but we don't have Acer chargers.",
+        "explanation": "There are three types of laptops commonly used in your town: Acer laptops, MacBooks and Dell laptops. It is common knowledge that Acer laptops are used by most people, MacBooks are used by fewer people, and Dell laptops are very rare. A hypermarket carries laptop accessories for all types of laptops except the most common Acer laptops. A customer walks in and asks a salesperson: Do you have laptop chargers?\nLet's think step by step. The salesperson reasons about the kind of laptop the customer most likely needs a charger for. Given their common knowledge, it is most likely that the customer has an Acer laptop. Therefore, it is likely that the customer is interested in an Acer charger. However, the hypermarket doesn't have Acer chargers and therefore might not be able to satisfy the customer's potential needs.",
+        "example": "There are three types of laptops commonly used in your town: Acer laptops, MacBooks and Dell laptops. It is common knowledge that Acer laptops are used by most people, MacBooks are used by fewer people, and Dell laptops are very rare. A hypermarket carries laptop accessories for all types of laptops except the most common Acer laptops. A customer walks in and asks a salesperson: Do you have laptop chargers?\nThe salesperson replies: Yes, but we don't have Acer chargers."
+    },
+    "e3_highprior": {
+        "zero-shot": "",
+        "cot": "There are three types of laptops commonly used in your town: Acer laptops, MacBooks and Dell laptops. It is common knowledge that Acer laptops are used by most people, MacBooks are used by fewer people, and Dell laptops are very rare. A hypermarket carries laptop chargers for all types of laptops except the least common Dell laptops. A customer walks in and asks a salesperson: Do you have laptop chargers?\nLet's think step by step. The salesperson reasons about the kind of laptop the customer most likely needs a charger for. Given their common knowledge, it is most likely that the customer has an Acer laptop. Therefore, it is likely that the customer is interested in an Acer charger. The hypermarket has Acer chargers and can therefore satisfy the customer's potential needs. The salesperson replies: Yes, we do.",
+        "explanation": "There are three types of laptops commonly used in your town: Acer laptops, MacBooks and Dell laptops. It is common knowledge that Acer laptops are used by most people, MacBooks are used by fewer people, and Dell laptops are very rare. A hypermarket carries laptop chargers for all types of laptops except the least common Dell laptops. A customer walks in and asks a salesperson: Do you have laptop chargers?\nLet's think step by step. The salesperson reasons about the kind of laptop the customer most likely needs a charger for. Given their common knowledge, it is most likely that the customer has an Acer laptop. Therefore, it is likely that the customer is interested in an Acer charger. The hypermarket has Acer chargers and can therefore satisfy the customer's potential needs.",
+        "example": "There are three types of laptops commonly used in your town: Acer laptops, MacBooks and Dell laptops. It is common knowledge that Acer laptops are used by most people, MacBooks are used by fewer people, and Dell laptops are very rare. A hypermarket carries laptop chargers for all types of laptops except the least common Dell laptops. A customer walks in and asks a salesperson: Do you have laptop chargers?\nThe salesperson replies: Yes, we do."
+    }    
 }
 # preface for GPT3 as a one-shot learner in E1
 oneShotExample = '''EXAMPLE: 
@@ -111,6 +123,8 @@ def sampleContinuation(initialSequence, topk = 1, max_tokens = 32, preface = '',
     answers = []
     probs = []
     inputs = []
+
+    print("Initial sequence of gpt 4 ", initialSequence)
 
     if (model == "text-davinci-003"):
         response = openai.Completion.create(
@@ -252,7 +266,7 @@ def sampleAnswersForItem(item, wait = 0, preface = '', topk = 1, max_tokens = 32
 
     if preface == "diverseQA":
         preface = "EXAMPLE: " + item.CoT
-    answer, prob, model_version, inputs = sampleContinuation(item.context, preface=preface, topk=topk, max_tokens=max_tokens, model="gpt-4") # item.context_fct_prompt
+    answer, prob, model_version, inputs = sampleContinuation(item.context_qa + " " + item.question, preface=preface, topk=topk, max_tokens=max_tokens, model="gpt-4") # item.context_fct_prompt
     answers.append(answer)
     probs.append(prob)
     inputs_list.append(inputs)
@@ -281,7 +295,7 @@ if __name__ == "__main__":
     parser.add_argument("-os", "--one_shot", help = "one shot or zero shot context for GPT3?", action="store_true")
     parser.add_argument("-n", "--num_samples", help = "number of samples to draw (WARNING: high credit cost)", nargs="?", default=1, type = int)
     parser.add_argument("-m", "--max_tokens", help = "maximal number of tokens to sample for each response (WARNING: high credit cost)", nargs="?", default=32, type = int)
-    parser.add_argument("-e", "--experiment", help = "which experiment to process?", choices = ["e1", "e2"], default = "e1")
+    parser.add_argument("-e", "--experiment", help = "which experiment to process?", choices = ["e1", "e2", "e3_lowprior", "e3_highprior"], default = "e1")
     parser.add_argument("-pr", "--prompt", help="Type of prompt", default="zero-shot", type=str, choices=["zero-shot", "explanation", "example", "cot"])
 
     args = parser.parse_args()
@@ -294,6 +308,12 @@ if __name__ == "__main__":
         # remove items that were used as one-shot example
         items = items[(items.itemName != "chair-repair") & (items.itemName != "chair-party")].reset_index()
         print("Number of items for E2: ", len(items))
+    elif args.experiment == "e3_lowprior":
+        few_shot_items = ""
+        items = pd.read_csv('../experiments/04-priorSensitivity_free_production/trials/trials_pilot2_models.csv')
+    elif args.experiment == "e3_highprior":
+        few_shot_items = ""
+        items = pd.read_csv('../experiments/04-priorSensitivity_free_production/trials/trials_pilot2_models.csv')
     else:
         raise ValueError("Unknown experiment number")
     

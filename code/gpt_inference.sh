@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --partition=single
 #SBATCH --tasks=1
-#SBATCH --time=05:00:00
+#SBATCH --time=02:00:00
 #SBATCH --mem=2gb
 
 module load devel/miniconda/3
@@ -19,6 +19,6 @@ for i in ${!prompts[*]}; do
         -os \
         -n=5 \
         -m=64 \
-        -e="e2" \
+        -e="e3_lowprior" \
         -pr="${prompts[$i]}"
 done
