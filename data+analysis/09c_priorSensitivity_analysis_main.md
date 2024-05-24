@@ -162,7 +162,7 @@ responses in the lowPrior condition than in the highPrior condition.
 d_main_fullList_binary <- d_main_clean %>% 
   mutate(is_fullList = ifelse(category == "exceptive", 1, ifelse(category == "fullList", 1, 0))) 
 
-priors <- set_prior("student_t(1, 0, 0.25)", class = "b")
+priors <- set_prior("student_t(1, 0, 2)", class = "b")
 
 lm_full <- brm(
   is_fullList ~ condition + (1 + condition | submission_id) + (1 + condition | itemName),
@@ -201,10 +201,6 @@ lm_full <- brm(
 summary(lm_full)
 ```
 
-    ## Warning: There were 1 divergent transitions after warmup. Increasing adapt_delta
-    ## above 0.95 may help. See http://mc-stan.org/misc/warnings.html#divergent-
-    ## transitions-after-warmup
-
     ##  Family: bernoulli 
     ##   Links: mu = logit 
     ## Formula: is_fullList ~ condition + (1 + condition | submission_id) + (1 + condition | itemName) 
@@ -215,28 +211,28 @@ summary(lm_full)
     ## Group-Level Effects: 
     ## ~itemName (Number of levels: 10) 
     ##                                   Estimate Est.Error l-95% CI u-95% CI Rhat
-    ## sd(Intercept)                         1.19      0.45     0.50     2.25 1.00
-    ## sd(conditionlow_prior)                0.64      0.47     0.03     1.76 1.00
-    ## cor(Intercept,conditionlow_prior)    -0.16      0.52    -0.94     0.88 1.00
+    ## sd(Intercept)                         1.19      0.46     0.50     2.31 1.00
+    ## sd(conditionlow_prior)                0.69      0.49     0.03     1.85 1.00
+    ## cor(Intercept,conditionlow_prior)    -0.16      0.52    -0.95     0.89 1.00
     ##                                   Bulk_ESS Tail_ESS
-    ## sd(Intercept)                         2172     3047
-    ## sd(conditionlow_prior)                1587     1934
-    ## cor(Intercept,conditionlow_prior)     3527     3194
+    ## sd(Intercept)                         2029     2856
+    ## sd(conditionlow_prior)                1459     2350
+    ## cor(Intercept,conditionlow_prior)     3401     2607
     ## 
     ## ~submission_id (Number of levels: 121) 
     ##                                   Estimate Est.Error l-95% CI u-95% CI Rhat
-    ## sd(Intercept)                         2.74      0.65     1.72     4.21 1.01
-    ## sd(conditionlow_prior)                1.38      0.74     0.10     2.94 1.01
-    ## cor(Intercept,conditionlow_prior)    -0.61      0.36    -0.98     0.48 1.00
+    ## sd(Intercept)                         2.76      0.65     1.71     4.22 1.00
+    ## sd(conditionlow_prior)                1.45      0.76     0.10     2.97 1.00
+    ## cor(Intercept,conditionlow_prior)    -0.59      0.37    -0.98     0.48 1.00
     ##                                   Bulk_ESS Tail_ESS
-    ## sd(Intercept)                         1018     2769
-    ## sd(conditionlow_prior)                 757     1170
-    ## cor(Intercept,conditionlow_prior)     2284     2596
+    ## sd(Intercept)                         1225     2819
+    ## sd(conditionlow_prior)                 789     1344
+    ## cor(Intercept,conditionlow_prior)     2182     2307
     ## 
     ## Population-Level Effects: 
     ##                    Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-    ## Intercept              0.90      0.48    -0.04     1.90 1.00     2313     3046
-    ## conditionlow_prior     0.09      0.26    -0.40     0.64 1.00     5631     3733
+    ## Intercept              0.86      0.54    -0.14     1.99 1.00     1921     2515
+    ## conditionlow_prior     0.18      0.44    -0.73     1.02 1.00     3376     3191
     ## 
     ## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
     ## and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -299,28 +295,28 @@ summary(lm_exceptive)
     ## Group-Level Effects: 
     ## ~itemName (Number of levels: 10) 
     ##                                   Estimate Est.Error l-95% CI u-95% CI Rhat
-    ## sd(Intercept)                         1.50      0.57     0.65     2.83 1.00
-    ## sd(conditionlow_prior)                1.23      0.70     0.11     2.82 1.00
-    ## cor(Intercept,conditionlow_prior)     0.10      0.48    -0.76     0.93 1.00
+    ## sd(Intercept)                         1.49      0.57     0.67     2.80 1.00
+    ## sd(conditionlow_prior)                1.22      0.72     0.10     2.90 1.00
+    ## cor(Intercept,conditionlow_prior)     0.09      0.48    -0.77     0.93 1.00
     ##                                   Bulk_ESS Tail_ESS
-    ## sd(Intercept)                         2773     3541
-    ## sd(conditionlow_prior)                1528     2090
-    ## cor(Intercept,conditionlow_prior)     2706     3359
+    ## sd(Intercept)                         3256     4254
+    ## sd(conditionlow_prior)                1888     1855
+    ## cor(Intercept,conditionlow_prior)     3357     3560
     ## 
     ## ~submission_id (Number of levels: 121) 
     ##                                   Estimate Est.Error l-95% CI u-95% CI Rhat
-    ## sd(Intercept)                         1.39      0.49     0.49     2.46 1.00
-    ## sd(conditionlow_prior)                0.82      0.58     0.04     2.18 1.00
-    ## cor(Intercept,conditionlow_prior)    -0.22      0.54    -0.96     0.89 1.00
+    ## sd(Intercept)                         1.39      0.48     0.54     2.49 1.00
+    ## sd(conditionlow_prior)                0.80      0.57     0.04     2.12 1.00
+    ## cor(Intercept,conditionlow_prior)    -0.24      0.54    -0.97     0.89 1.00
     ##                                   Bulk_ESS Tail_ESS
-    ## sd(Intercept)                         1297     1478
-    ## sd(conditionlow_prior)                1212     2432
-    ## cor(Intercept,conditionlow_prior)     3061     3724
+    ## sd(Intercept)                         1587     2311
+    ## sd(conditionlow_prior)                1385     2921
+    ## cor(Intercept,conditionlow_prior)     3536     3442
     ## 
     ## Population-Level Effects: 
     ##                    Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-    ## Intercept             -2.88      0.66    -4.30    -1.66 1.00     2214     3135
-    ## conditionlow_prior     0.39      0.52    -0.35     1.68 1.00     3091     3107
+    ## Intercept             -2.88      0.67    -4.31    -1.70 1.00     3309     3610
+    ## conditionlow_prior     0.41      0.53    -0.36     1.68 1.00     4073     2941
     ## 
     ## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
     ## and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -383,28 +379,28 @@ summary(lm_taciturn)
     ## Group-Level Effects: 
     ## ~itemName (Number of levels: 10) 
     ##                                   Estimate Est.Error l-95% CI u-95% CI Rhat
-    ## sd(Intercept)                         1.72      0.58     0.84     3.10 1.00
-    ## sd(conditionlow_prior)                0.68      0.55     0.02     2.00 1.00
-    ## cor(Intercept,conditionlow_prior)    -0.09      0.54    -0.94     0.92 1.00
+    ## sd(Intercept)                         1.72      0.57     0.87     3.06 1.00
+    ## sd(conditionlow_prior)                0.68      0.54     0.02     2.02 1.00
+    ## cor(Intercept,conditionlow_prior)    -0.09      0.54    -0.94     0.90 1.00
     ##                                   Bulk_ESS Tail_ESS
-    ## sd(Intercept)                         2479     3582
-    ## sd(conditionlow_prior)                2033     3500
-    ## cor(Intercept,conditionlow_prior)     5245     3898
+    ## sd(Intercept)                         2479     4118
+    ## sd(conditionlow_prior)                2595     3384
+    ## cor(Intercept,conditionlow_prior)     6219     4220
     ## 
     ## ~submission_id (Number of levels: 121) 
     ##                                   Estimate Est.Error l-95% CI u-95% CI Rhat
-    ## sd(Intercept)                         3.56      0.83     2.25     5.44 1.00
-    ## sd(conditionlow_prior)                1.76      0.90     0.14     3.64 1.00
-    ## cor(Intercept,conditionlow_prior)    -0.51      0.38    -0.96     0.55 1.00
+    ## sd(Intercept)                         3.56      0.83     2.19     5.45 1.01
+    ## sd(conditionlow_prior)                1.76      0.91     0.15     3.67 1.01
+    ## cor(Intercept,conditionlow_prior)    -0.52      0.37    -0.97     0.49 1.00
     ##                                   Bulk_ESS Tail_ESS
-    ## sd(Intercept)                         1183     2744
-    ## sd(conditionlow_prior)                 728     1238
-    ## cor(Intercept,conditionlow_prior)     2853     2172
+    ## sd(Intercept)                         1394     2641
+    ## sd(conditionlow_prior)                 873     1202
+    ## cor(Intercept,conditionlow_prior)     3018     2726
     ## 
     ## Population-Level Effects: 
     ##                    Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-    ## Intercept             -2.07      0.73    -3.56    -0.67 1.00     2458     3380
-    ## conditionlow_prior    -0.24      0.39    -1.17     0.37 1.00     4521     3902
+    ## Intercept             -2.02      0.73    -3.52    -0.63 1.00     3060     3820
+    ## conditionlow_prior    -0.24      0.39    -1.18     0.36 1.00     4879     3154
     ## 
     ## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
     ## and Tail_ESS are effective sample size measures, and Rhat is the potential

@@ -142,7 +142,7 @@ We can also check whether there is a credible difference between the rate of ful
 d_main_fullList_binary <- d_main_clean %>% 
   mutate(is_fullList = ifelse(category == "exceptive", 1, ifelse(category == "fullList", 1, 0))) 
 
-priors <- set_prior("student_t(1, 0, 0.25)", class = "b")
+priors <- set_prior("student_t(1, 0, 2)", class = "b")
 
 lm_full <- brm(
   is_fullList ~ condition + (1 + condition | submission_id) + (1 + condition | itemName),
