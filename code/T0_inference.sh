@@ -14,7 +14,7 @@ module load devel/cuda/11.6
 
 prompts=("zero-shot" "explanation" "example" "cot")
 prompts_e2=("zero-shot" "explanation" "example" "cot")
-expts=("e3_highprior" "e3_lowprior")
+expts=("e3_lowprior")
 for j in ${!expts[*]}; do
     echo "Running prompt: ${expts[$j]}"
     case "${expts[$j]}" in 
@@ -26,7 +26,7 @@ for j in ${!expts[*]}; do
                 -p="../experiments/04-priorSensitivity_free_production/trials/trials_pilot2_models.csv" \
                 -ml=128 \
                 -topk=5 \
-                -tm=1 \
+               -tm=1 \
                 -pr="${prompts_e2[$i]}" \
                 -t="lm_sampling" \
                 -fs \
@@ -34,8 +34,8 @@ for j in ${!expts[*]}; do
         done
     ;;
         "e3_lowprior")
-        for i in ${!prompts[*]}; do
-            echo "Running prompt: ${prompts[$i]}"
+        for i in ${!prompts_e2[*]}; do
+            echo "Running prompt: ${prompts_e2[$i]}"
             python QA_models_answer_sampling.py -m="mistralai/Mixtral-8x7B-Instruct-v0.1" \
                 -o="../data_paper_neural/results_post_cogsci/" \
                 -p="../experiments/04-priorSensitivity_free_production/trials/trials_pilot2_models.csv" \
@@ -47,5 +47,8 @@ for j in ${!expts[*]}; do
                 -fs \
                 -ex="${expts[$j]}"
         done
+    ;;
+    *)
+        echo "Invalid experiment"
     esac
 done
