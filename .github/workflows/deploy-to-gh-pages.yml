@@ -13,6 +13,7 @@ jobs:
       matrix:
         folder:
           - ./experiments/04-priorSensitivity_free_production/
+          - ./experiments/05-contextSensitive-prior_elicitation/
 
     runs-on: ubuntu-latest
     steps:
