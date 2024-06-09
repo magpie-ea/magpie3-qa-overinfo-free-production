@@ -19,6 +19,6 @@ for i in ${!prompts[*]}; do
         -os \
         -n=5 \
         -m=64 \
-        -e="e3_lowprior" \
+        -e="e3_highprior" \
         -pr="${prompts[$i]}"
 done
