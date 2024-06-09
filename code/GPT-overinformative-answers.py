@@ -282,7 +282,7 @@ def sampleAnswersForItem(item, wait = 0, preface = '', topk = 1, max_tokens = 32
     # flatten df in case more than one answer was sampled
     results = results.explode(["predictions", "probs"])
     # also save each item for the case of time outs
-    results.to_csv(f"../data_paper_neural/results_post_cogsci/GPT4-samples-e1-{item.itemName}.csv", index=False)
+    results.to_csv(f"../data_paper_neural/results_post_cogsci/GPT4-samples-e3-{item.itemName}.csv", index=False)
     time.sleep(wait) # to prevent overburdening free tier of OpenAI
     return results    
 
