@@ -14,6 +14,8 @@ You can inspect a live version of the prior elicitation experiment (E3) [here](h
 
 You can inspect a live version of the prior sensitivity experiment (E4) [here](https://magpie-ea.github.io/magpie3-qa-overinfo-free-production/experiments/04-priorSensitivity_free_production/).
 
+You can inspect a live version of the utility elicitation for the context-sensitivity items (E5) [here](https://magpie-ea.github.io/magpie3-qa-overinfo-free-production/experiments/05-contextSensitive-prior_elicitation/).
+
 ### Local execution 
 
 First, clone the repository and set up the project with `npm install`.
