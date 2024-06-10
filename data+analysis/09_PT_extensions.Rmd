@@ -507,3 +507,15 @@ e2_context_summaries_wide_woHuman %>%
 
 #ggsave("viz/PT_paper/E2_model_transparent_wGPT3_wHuman.pdf", bg="transparent", width = 12, height = 7)
 ```
+
+```{r}
+# reformat items from E3 for LLMs
+d_e3 <- read_csv("~/Documents/PhD/03_gpt3_QA/magpie3-qa-overinfo-free-production/experiments/04-priorSensitivity_free_production/trials/trials_pilot2.csv")
+e3_models <- d_e3 %>%
+  mutate(options_combined = str_c(highProb_option, ", ", midProb_option, " and ", lowProb_option, "."),
+         prepped_context = str_c(context_begin, options_combined, context_cont, sep = " ")) %>%
+  pivot_longer(cols = c(high_prior, low_prior), names_to = "condition", values_to = "condition_context") %>%
+  mutate(context_qa = str_c(prepped_context, condition_context, sep = " "), 
+         question = str_c(question, answer_template, sep = " "))
+#e3_models %>% write_csv("~/Documents/PhD/03_gpt3_QA/magpie3-qa-overinfo-free-production/experiments/04-priorSensitivity_free_production/trials/trials_pilot2_models.csv")
+```
