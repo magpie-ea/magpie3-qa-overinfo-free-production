@@ -78,7 +78,7 @@ import ParallelRatingScreen from './ParallelRatingScreen';
 
 var group = _.sample(['odd', 'even']);
 
-const n_vignettes = 5;
+const n_vignettes = 4;
 const n_fillers = 1;
 
 const trials =
@@ -92,7 +92,9 @@ const trials =
        return index % 2 != 0;
      });
 const repeating_trials = _.sampleSize(trials, n_vignettes); //_.sampleSize(trials, n_vignettes).map(x => _.fill(Array(6), x)).flat()
-const repeating_targets = _.shuffle(['competitor', 'mostSimilar', 'sameCategory', 'otherCategory', 'itemQuestion']); 
+//const repeating_targets = _.shuffle(['competitor', 'mostSimilar', 'sameCategory', 'otherCategory', 'itemQuestion']); 
+const repeating_targets = _.shuffle(['itemQuestion', 'itemQuestion', 'itemQuestion', 'itemQuestion']); 
+
 const trials_w_target = _.zip(repeating_trials, repeating_targets)
 console.log("trails_w_target")
 console.log(repeating_trials)

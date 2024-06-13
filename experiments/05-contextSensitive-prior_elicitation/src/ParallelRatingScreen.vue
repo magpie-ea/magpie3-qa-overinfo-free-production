@@ -16,13 +16,13 @@
       
       <span v-html="createContext(trial, targetOption)">
       </span>
-      <p>How happy do you think they would be if...</p>
+      <p>How useful do you think they would find it if...</p>
       <br />
 
       <span v-html="createAnswerOption(trial, itemOrder[0], targetOption)"></span>
       <SliderInput
-        left="completely unhappy"
-        right="completely happy"
+        left="completely useless"
+        right="very useful"
         initial="50"
         :response.sync=$magpie.measurements[itemOrder[0]]
       />
@@ -30,8 +30,8 @@
 
       <span v-html="createAnswerOption(trial, itemOrder[1], targetOption)"></span>
       <SliderInput
-        left="completely unhappy"
-        right="completely happy"
+        left="completely useless"
+        right="very useful"
         initial="50"
         :response.sync=$magpie.measurements[itemOrder[1]]
       />
@@ -39,8 +39,8 @@
 
       <span v-html="createAnswerOption(trial, itemOrder[2], targetOption)"></span>
       <SliderInput
-        left="completely unhappy"
-        right="completely happy"
+        left="completely useless"
+        right="very useful"
         initial="50"
         :response.sync=$magpie.measurements[itemOrder[2]]
       />
@@ -48,16 +48,16 @@
 
       <span v-html="createAnswerOption(trial, itemOrder[3], targetOption)"></span>
       <SliderInput
-        left="completely unhappy"
-        right="completely happy"
+        left="completely useless"
+        right="very useful"
         initial="50"
         :response.sync=$magpie.measurements[itemOrder[3]]
       />
 
       <span v-html="createAnswerOption(trial, itemOrder[4], targetOption)"></span>
       <SliderInput
-        left="completely unhappy"
-        right="completely happy"
+        left="completely useless"
+        right="very useful"
         initial="50"
         :response.sync=$magpie.measurements[itemOrder[4]]
       />
