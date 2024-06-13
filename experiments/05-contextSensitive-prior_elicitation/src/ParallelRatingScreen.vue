@@ -144,8 +144,8 @@ export default {
         },
   },
   methods: {
-    checkResponses: function (a, b, c, d) {
-      return !(isNaN(a) | isNaN(b) | isNaN(c) | isNaN(d));
+    checkResponses: function (a, b, c, d, e) {
+      return !(isNaN(a) | isNaN(b) | isNaN(c) | isNaN(d) | isNaN(e));
     },
     createAnswerOption,
     createContext
