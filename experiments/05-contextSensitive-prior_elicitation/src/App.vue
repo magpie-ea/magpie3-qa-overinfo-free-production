@@ -58,7 +58,7 @@
               :trial_type="'filler'" 
               :targetOption="'itemQuestion'"
               :progress="i / trials.length" 
-              :itemOrder="_.shuffle(['competitor', 'sameCategory', 'otherCategory', 'itemQuestion'])" 
+              :itemOrder="_.shuffle(['competitor', 'sameCategory', 'otherCategory', 'itemQuestion', 'mostSimilar'])" 
           />   
         </template>
     </template>
