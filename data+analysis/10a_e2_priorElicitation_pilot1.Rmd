@@ -1,0 +1,170 @@
+---
+title: "E2 prior elicitation"
+author: "PT"
+date: "2024-06-14"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Here we elicit prior utilities for the alternatives that could be mentioned by a pragmatic respondent for [E2](https://magpie-ea.github.io/magpie3-qa-overinfo-free-production/experiments/contextSensitive_free_production/) from CogSci.
+The experiment followed the prior elicitation for E1, but presented the rating in functional context, drawn from the vignettes of the free production experiment E2. Additionally, utilities were only elicited for the alternatives, given the target trigger from the free production experiment (i.e., not the full utilities matrix was elicited). 
+The live experiment can be found [here](https://magpie-ea.github.io/magpie3-qa-overinfo-free-production/experiments/05-contextSensitive-prior_elicitation/).
+
+```{r}
+library(tidyverse)
+library(tidyboot)
+library(cspplot)
+```
+
+The rated options are categorized as competitor 1 (anticipated to be the best alternative in context 1), competitor 2 (anticipated to be the best alternative in context 2), mostSimilar (a priori most similar object to target), otherCategory (unrelated alternative).
+```{r}
+answerOrder <- c('itemQuestion', 'competitor', 'mostSimilar', 'sameCategory', 'otherCategory')
+
+df <- read_csv("../experiments/05-contextSensitive-prior_elicitation/trials/results_22_PragmaticQA-E2-priorElicitation-pilot_PT.csv") 
+# look at comments to see if anything went wrong
+#df |> pull(comments) |> unique()
+#df %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>% write_csv("../experiments/05-contextSensitive-prior_elicitation/trials/results_22_PragmaticQA-E2-priorElicitation-pilot_anonymized.csv")
+
+df <- read_csv("../experiments/05-contextSensitive-prior_elicitation/trials/results_22_PragmaticQA-E2-priorElicitation-pilot_anonymized.csv")
+# head(df)
+# target number of subjects for full experiment: n = 24 * 20 / 4 = 120
+cat("Number of recruited subjects: ", df %>% pull(submission_id) %>% unique() %>% length())
+```
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+# check attention check completion
+df <- df %>% mutate(
+  expected_attention = case_when(
+    itemName == 'jobCenter-office' ~ 0,
+    itemName == 'jobCenter-engineer' ~ 0,
+    itemName == 'art-painting' ~ 100,
+    itemName == 'art-drawing' ~ 100,
+    itemName == 'carRental-fun' ~ 0,
+    itemName == 'carRental-moving' ~ 0,
+    itemName == 'music-hardrock' ~ 100,
+    itemName == 'music-softrock' ~ 100,
+    itemName == 'airport-usa' ~ 0,
+    itemName == 'airport-europe-UPDATED' ~ 0,
+    TRUE ~ 50
+  )
+)
+
+df_attention <- df %>% filter(trial_type == "filler") %>% 
+  select(submission_id, itemQuestion, targetOption, competitor, sameCategory, otherCategory, expected_attention, itemName) %>% 
+  pivot_longer(cols = c(itemQuestion, competitor, sameCategory, otherCategory), names_to = "answerType", values_to = "response") %>%
+  rowwise() %>%
+  mutate(passed_trial = abs(response - expected_attention) < 5 )
+
+df_attention_fail <- df_attention %>% group_by(submission_id) %>% 
+  mutate(passed_subj = sum(passed_trial) > 0)
+
+# participants who failed attention checks 
+subj_id_attention_fails <- df_attention_fail %>% filter(passed_subj == FALSE) %>% pull(submission_id) %>% unique()
+cat("Numbrer of subjects who failed attention checks: ", length(subj_id_attention_fails)  )
+cat("\nSubject exclusion rate: ", length(subj_id_attention_fails)/(unique(df$submission_id) %>% length()))
+```
+
+```{r}
+# get main clean data and center responses
+df_clean_main <- df %>% #filter(!(submission_id %in% subj_id_attention_fails)) %>%
+  filter(trial_type == "main") 
+cat("Numbrer of main trial data points that are used for analysis: ", nrow(df_clean_main) )
+
+
+df_clean_main_long <- df_clean_main %>%
+  select(itemName, trialNr, submission_id, targetOption, itemQuestion, competitor, sameCategory, otherCategory, mostSimilar,) %>%
+   pivot_longer(cols = c(itemQuestion, competitor, sameCategory, otherCategory, mostSimilar), names_to = 'answerType', values_to = "response") %>%
+  mutate(
+    categorized_response = targetOption
+  ) 
+```
+Check for lazy subject who only provide ratings within 5 points:
+One subject is excluded because they provided all ratings within 5 points. 
+
+```{r, echo=FALSE}
+df_bad_subj <- df_clean_main_long %>% group_by(submission_id) %>%
+  mutate(bad_subj = (max(response) - min(response)) < 5)
+df_bad_subj %>% filter(bad_subj == TRUE)
+cat("\nnumber of subjects who provided the same responses within 5 points on all main trials:",  df_bad_subj %>% filter(bad_subj == TRUE) %>% pull(submission_id) %>% unique() %>% length())
+bad_subj_ids <- df_bad_subj %>% filter(bad_subj == TRUE) %>% pull(submission_id) %>% unique()
+
+df_clean_main <- df_clean_main %>% filter(!(submission_id %in% bad_subj_ids))
+df_clean_main_long <- df_clean_main_long %>% filter(!(submission_id %in% bad_subj_ids))
+
+```
+
+Check how many ratings / vignette we have:
+```{r}
+df_clean_main %>% count(itemName)
+```
+
+Compute means:
+```{r}
+df_clean_main_summary <- df_clean_main_long %>%
+  group_by(answerType) %>%
+  tidyboot_mean(column = response)
+```
+
+Plot across contexts:
+```{r}
+df_clean_main_summary %>%
+  mutate(answerType = factor(answerType, levels = answerOrder, labels = c("target", "competitor", "most similar", "similar option \n(other context competitor)", "unrelated option"))) %>%
+  ggplot(., aes(x = answerType, y = mean, ymin = ci_lower, ymax = ci_upper, fill = answerType)) +
+  geom_col() +
+  geom_errorbar(width = 0.2) +
+  theme(legend.position = "none") +
+  #theme_csp() +
+  xlab("rated option") +
+  ylab("rating")
+```
+
+Plot by context, just to be sure:
+```{r}
+# add context number information
+context_info <- read_csv("../data_paper_neural/e2_vignettes.csv")
+df_clean_main_long_wContext <- df_clean_main_long %>%
+  left_join(., context_info, by=c("itemName" ))
+
+# summary
+df_clean_main_summary_byContext <- df_clean_main_long_wContext %>%
+  group_by(answerType, context_nr) %>%
+  tidyboot_mean(column = response)
+
+df_clean_main_summary_byContext %>%
+  mutate(answerType = factor(answerType, levels = answerOrder, labels = c("target", "competitor", "most similar", "similar option \n(other context competitor)", "unrelated option"))) %>%
+  ggplot(., aes(x = answerType, y = mean, ymin = ci_lower, ymax = ci_upper, fill = answerType)) +
+  geom_col() +
+  facet_wrap(~context_nr) +
+  geom_errorbar(width = 0.2) +
+  theme(legend.position = "none") +
+  #theme_csp() +
+  xlab("rated option") +
+  ylab("rating")
+```
+
+Plot the single-trial lines to make sure that there are no weird bi-modalities in the distribution / weird orders in single items that are averaged in the means:
+```{r}
+num_subj <- df_clean_main_long %>% pull(submission_id) %>% unique() %>% length()
+df_clean_main_long <- df_clean_main_long %>% 
+  mutate(categorized_response = factor(categorized_response, levels = answerOrder),
+         by_trial_nr = rep(1:(num_subj*4), each = 5),
+         by_trial_nr = factor(by_trial_nr)
+         )
+
+
+df_clean_main_long %>%
+  ggplot(., aes(x = answerType, y = response, fill = answerType, color = answerType)) +
+  geom_point(alpha = 0.7) +
+  geom_point(data = df_clean_main_summary, aes(x = answerType, y = mean), size = 4) + 
+  geom_line(data = df_clean_main_long, inherit.aes=F, aes(x = answerType, y = response, group = by_trial_nr), alpha  = 0.4) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(panel.spacing = unit(3, "lines")) +
+  theme(legend.position="none") +
+  ylab("Rating of alternative") +
+  ylim(0, 100) +
+  xlab("Category of alternative")
+```
