@@ -23,12 +23,12 @@ The rated options are categorized as competitor 1 (anticipated to be the best al
 ```{r}
 answerOrder <- c('itemQuestion', 'competitor', 'mostSimilar', 'sameCategory', 'otherCategory')
 
-df <- read_csv("../experiments/05-contextSensitive-prior_elicitation/trials/results_22_PragmaticQA-E2-priorElicitation-pilot_PT.csv") 
+df <- read_csv("../experiments/05-contextSensitive-prior_elicitation/trials/PragmaticQA-E2-priorElicitation-sliderRating-full_120.csv") 
 # look at comments to see if anything went wrong
 #df |> pull(comments) |> unique()
-#df %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>% write_csv("../experiments/05-contextSensitive-prior_elicitation/trials/results_22_PragmaticQA-E2-priorElicitation-pilot_anonymized.csv")
+#df %>% select(-prolific_pid, -prolific_session_id, -prolific_study_id) %>% write_csv("data/PragmaticQA-E2-priorElicitation-sliderRating-full_120.csv")
 
-df <- read_csv("../experiments/05-contextSensitive-prior_elicitation/trials/results_22_PragmaticQA-E2-priorElicitation-pilot_anonymized.csv")
+df <- read_csv("data/PragmaticQA-E2-priorElicitation-sliderRating-full_120.csv")
 # head(df)
 # target number of subjects for full experiment: n = 24 * 20 / 4 = 120
 cat("Number of recruited subjects: ", df %>% pull(submission_id) %>% unique() %>% length())
@@ -98,7 +98,7 @@ df_clean_main_long <- df_clean_main_long %>% filter(!(submission_id %in% bad_sub
 
 Check how many ratings / vignette we have:
 ```{r}
-df_clean_main %>% count(itemName)
+df_clean_main %>% count(itemName) %>% pull(n) %>% mean()
 ```
 
 Compute means:
@@ -106,6 +106,15 @@ Compute means:
 df_clean_main_summary <- df_clean_main_long %>%
   group_by(answerType) %>%
   tidyboot_mean(column = response)
+```
+By-item means:
+```{r}
+df_clean_main_byItem_summary <- df_clean_main_long %>% 
+  group_by(itemName, answerType) %>%
+  summarize(mean_response = mean(response))
+
+#df_clean_main_byItem_summary %>% write_csv("data/PragmaticQA-E2-priorElicitation-sliderRating-full_means.csv")
+#df_clean_main_long %>% write_csv("data/PragmaticQA-E2-priorElicitation-sliderRating-full_120_long.csv")
 ```
 
 Plot across contexts:
