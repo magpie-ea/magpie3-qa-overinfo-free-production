@@ -1,0 +1,551 @@
+---
+title: "09-PT-extensions.Rmd"
+author: "PT"
+date: "2024-05-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Intro
+
+Below, results of new LLMs are processed and integrated with CogSci results.
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tidyboot)
+library(brms)
+library(tidybayes)
+library(ggpattern)
+library(cspplot)
+```
+
+
+```{r data, echo=FALSE, message=FALSE, warning=FALSE}
+answerOrder <- c( 'competitor', 'sameCategory', 'otherCategory', 'fullList', 'taciturn', 'other')
+
+e1_humans <- read_csv("data/results_QA-overinfo-freeTyping-cogsci_full_anonymized_categorized_cleaned.csv") %>% select(category, answer, itemName) %>% # results_QA_e1_cleaned.csv
+  mutate(prompt = "human E1") %>% rename("predictions" = "answer")
+
+e2_humans <- read_csv("../data_paper_neural/e2_human_summary_wide.csv") %>% 
+  mutate(prompt = "human E2")
+e2_human_byCategory <- read_csv("data/results_e2_human_category_raw_cleaned.csv")
+e2_items_cats <- read_csv("../data_paper_neural/e2_ItemCategorization.csv") 
+e2_vignettes <-  read_csv("../data_paper_neural/e2_vignettes.csv")
+
+
+nm_samples_categorized_e1 <- read_csv("../data_paper_neural/QA_neural_models_categorized_samples_E1.csv") #("../supplementary_materials/QA_neural_models_categorized_samples_E1.csv") 
+nm_samples_categorized_e2 <- read_csv("../data_paper_neural/QA_neural_models_categorized_samples_E2.csv")#("../supplementary_materials/QA_neural_models_categorized_samples_E2.csv")
+
+e1_samples_global <- nm_samples_categorized_e1 %>%
+  select(-probs, -is_few_shot, -dataset, -model_type) %>%
+  rename("prompt" = "model_name") %>%
+  rbind(., e1_humans)
+
+e1_gpt3_summary <- read_csv("../data_paper_neural/e1_gpt3_byPrompt_summary.csv")
+
+e2_gpt3_category_summary <- read_csv("../data_paper_neural/e2_gpt3_byPrompt_byCategory_summary.csv")
+e2_gpt3_context_summary <- read_csv("../data_paper_neural/e2_gpt3_byPrompt_byContext_summary.csv")
+
+e2_samples_global <- nm_samples_categorized_e2 %>% select(-probs, -is_few_shot, -dataset, -model_type) %>%
+  rename("prompt" = "model_name") %>%
+  rbind(., e2_human_byCategory %>% select(-submission_id, -settingName, -response_option) %>% mutate(prompt = "human E2") %>% rename("predictions" = "answer"))
+```
+
+```{r data2, echo=FALSE, message=FALSE, warning=FALSE}
+read_extract <- function(p){
+  prompt <- str_replace(p, ".+GPT4-samples-", "")
+  prompt <- str_replace(prompt, "_e.+", "")
+  print(prompt)
+  df <- read_csv(p)
+  df <- df %>% mutate(prompting_strategy = prompt)
+  return(df)
+}
+
+# read raw results of other models
+gpt4_results_e1 <- list.files(path='~/Documents/PhD/03_gpt3_QA/magpie3-qa-overinfo-free-production/data_paper_neural/results_post_cogsci/annotated/', pattern='GPT4-samples-.+e1', full.names=TRUE)
+gpt4_results_e2 <- list.files(path='~/Documents/PhD/03_gpt3_QA/magpie3-qa-overinfo-free-production/data_paper_neural/results_post_cogsci/annotated/processed_exp2/', pattern='GPT4-samples-.+e2', full.names=TRUE)
+mixtral_results_e1 <- list.files(path='~/Documents/PhD/03_gpt3_QA/magpie3-qa-overinfo-free-production/data_paper_neural/results_post_cogsci/annotated/', pattern='results_e1_Mixtral-', full.names=TRUE)
+mixtral_results_e2 <- list.files(path='~/Documents/PhD/03_gpt3_QA/magpie3-qa-overinfo-free-production/data_paper_neural/results_post_cogsci/annotated/processed_exp2/', pattern='results_e2_Mixtral-', full.names=TRUE)
+llama_results_e1 <- list.files(path='~/Documents/PhD/03_gpt3_QA/magpie3-qa-overinfo-free-production/data_paper_neural/results_post_cogsci/annotated/', pattern='results_e1_Meta-', full.names=TRUE)
+llama_results_e2 <- list.files(path='~/Documents/PhD/03_gpt3_QA/magpie3-qa-overinfo-free-production/data_paper_neural/results_post_cogsci/annotated/processed_exp2/', pattern='results_e2_Meta-', full.names=TRUE)
+
+gpt4_e1_raw <- bind_rows(map(gpt4_results_e1, read_extract))
+gpt4_e2_raw <- bind_rows(map(gpt4_results_e2, read_extract))
+mixtral_e1_raw <- bind_rows(map(mixtral_results_e1, read.csv))
+mixtral_e2_raw <- bind_rows(map(mixtral_results_e2, read.csv))
+llama_e1_raw <- bind_rows(map(llama_results_e1, read.csv))
+llama_e2_raw <- bind_rows(map(llama_results_e2, read.csv))
+
+gpt4_e1_clean <- gpt4_e1_raw %>% filter(category != "yes") %>%
+  # fix annotation errors
+  filter(category != "")
+mixtral_e1_clean <- mixtral_e1_raw %>% filter(category != "yes") %>%
+  # fix annotation errors
+  filter(category != "")
+gpt4_e2_clean <- gpt4_e2_raw %>% filter(category != "yes") %>%
+  # fix annotation errors
+  filter(category != "")
+mixtral_e2_clean <- mixtral_e2_raw %>% filter(category != "yes") %>%
+  # fix annotation errors
+  filter(category != "")
+llama_e1_clean <- llama_e1_raw %>% filter(category != "yes") %>%
+  # fix annotation errors
+  filter(category != "")
+llama_e2_clean <- llama_e2_raw %>% filter(category != "yes") %>%
+  # fix annotation errors
+  filter(category != "")
+```
+
+```{r, echo=F, include=F}
+gpt4_e1_summary <- gpt4_e1_clean %>%
+  group_by(prompting_strategy) %>%
+  mutate(prompt_n = n()) %>%
+  group_by(prompting_strategy, category) %>%
+  summarize(prop = n() / prompt_n) %>% unique() %>%
+  mutate(prompt = prompting_strategy,
+         category = ifelse(category == "fullLlist", "fullList", category),
+         prompt = case_when(prompt == "cot" ~ "one-shot CoT",
+                            prompt == "example" ~ "one-shot QA",
+                            prompt == "explanation" ~ "one-shot Explanation",
+                            TRUE ~ "zero-shot")) %>% select(-prompting_strategy)
+
+mixtral_e1_summary <- mixtral_e1_clean %>%
+  group_by(prompting_strategy) %>%
+  mutate(prompt_n = n()) %>%
+  group_by(prompting_strategy, category) %>%
+  summarize(prop = n() / prompt_n) %>% unique() %>%
+  mutate(prompt = prompting_strategy,
+         prompt = case_when(prompt == "cot" ~ "one-shot CoT",
+                            prompt == "example" ~ "one-shot QA",
+                            prompt == "explanation" ~ "one-shot Explanation",
+                            TRUE ~ "zero-shot")) %>% select(-prompting_strategy)
+
+llama_e1_summary <- llama_e1_clean %>%
+  group_by(prompting_strategy) %>%
+  mutate(prompt_n = n()) %>%
+  group_by(prompting_strategy, category) %>%
+  summarize(prop = n() / prompt_n) %>% unique() %>%
+  mutate(prompt = prompting_strategy,
+         prompt = case_when(prompt == "cot" ~ "one-shot CoT",
+                            prompt == "example" ~ "one-shot QA",
+                            prompt == "explanation" ~ "one-shot Explanation",
+                            TRUE ~ "zero-shot")) %>% select(-prompting_strategy)
+
+gpt4_e2_summary <- gpt4_e2_clean %>%
+  group_by(prompting_strategy) %>%
+  mutate(prompt_n = n()) %>%
+  group_by(prompting_strategy, category) %>%
+  summarize(prop = n() / prompt_n) %>% unique() %>%
+  mutate(prompt = prompting_strategy,
+         prompt = case_when(prompt == "cot" ~ "one-shot CoT",
+                            prompt == "example" ~ "one-shot QA",
+                            prompt == "explanation" ~ "one-shot Explanation",
+                            TRUE ~ "zero-shot")) %>% select(-prompting_strategy)
+
+mixtral_e2_summary <- mixtral_e2_clean %>%
+  group_by(prompting_strategy) %>%
+  mutate(prompt_n = n()) %>%
+  group_by(prompting_strategy, category) %>%
+  summarize(prop = n() / prompt_n) %>% unique() %>%
+  mutate(prompt = prompting_strategy,
+         prompt = case_when(prompt == "cot" ~ "one-shot CoT",
+                            prompt == "example" ~ "one-shot QA",
+                            prompt == "explanation" ~ "one-shot Explanation",
+                            TRUE ~ "zero-shot")) %>% select(-prompting_strategy)
+
+llama_e2_summary <- llama_e2_clean %>%
+  group_by(prompting_strategy) %>%
+  mutate(prompt_n = n()) %>%
+  group_by(prompting_strategy, category) %>%
+  summarize(prop = n() / prompt_n) %>% unique() %>%
+  mutate(prompt = prompting_strategy,
+         prompt = case_when(prompt == "cot" ~ "one-shot CoT",
+                            prompt == "example" ~ "one-shot QA",
+                            prompt == "explanation" ~ "one-shot Explanation",
+                            TRUE ~ "zero-shot")) %>% select(-prompting_strategy)
+
+
+#gpt4_e1_summary %>% write_csv("../data_paper_neural/e1_gpt4_byPrompt_summary.csv")
+#mixtral_e1_summary %>% write_csv("../data_paper_neural/e1_mixtral_byPrompt_summary.csv")
+#gpt4_e2_summary %>% write_csv("../data_paper_neural/e2_gpt4_byPrompt_summary.csv")
+#mixtral_e2_summary %>% write_csv("../data_paper_neural/e2_mixtral_byPrompt_summary.csv")
+#llama_e1_summary %>% write_csv("../data_paper_neural/e1_llama3_byPrompt_summary.csv")
+#llama_e2_summary %>% write_csv("../data_paper_neural/e2_llama3_byPrompt_summary.csv")
+```
+
+```{r}
+mixtral_e1_summary %>%group_by(prompt) %>% summarize( summed = sum(prop))
+```
+Reproducing plot for E1 results by-model:
+
+```{r}
+e1_gpt3_summary %>% 
+  mutate(prompt = factor(prompt, levels = c("zero-shot", "one-shot Explanation", "one-shot QA", "one-shot CoT", "human E1"), 
+                         labels = c("zero-shot\n(V)", "one-shot\nExplanation\n(I+II+IV+V)", "one-shot\nQA\n(I+III+IV+V)", "one-shot\nCoT\n(I-V)", "human\nE1\n(V)")),
+    category = factor(category, levels = rev(c("taciturn", "other", "fullList", "otherCategory", "sameCategory", "competitor")), labels = rev(c("no options",  "other", "all options", "unrelated option\n(Chardonnay)", "similar option\n(soda)", "competitor\n(iced coffee)"  ) ))) %>%
+  ggplot(., aes(x = prompt, y = prop, fill = category, label = category)) +
+  geom_col(color = "#575463")+ # , aes(linetype=prompt), size = 1, show.legend = F
+  #geom_text(inherit.aes = FALSE, data = e1_plot_summary_labels, aes(x = category, y = max_val, label = category), stat = 'unique', nudge_y = 0.08, size = 4, check_overlap = TRUE) +
+  theme_csp() +
+  scale_y_continuous( limits = c(0, 1), breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)) +
+  # theme(plot.title = element_text(hjust = 0.5),  legend.title = element_text(size=12), legend.text = element_text(size=12), axis.ticks.x = element_blank(), axis.text.x = element_text(angle = 35),
+   # panel.background = element_rect(fill='transparent'), #transparent panel bg
+  #  plot.background = element_rect(fill='transparent', color=NA), #transparent plot bg
+    #panel.grid.major = element_blank(), #remove major gridlines
+    #panel.grid.minor = element_blank(), #remove minor gridlines
+  #  legend.background = element_rect(fill='transparent'), #transparent legend bg
+  #  legend.box.background = element_rect(fill='transparent') #transparent legend panel
+  #       ) +  
+  ylab("Proportion of answer type") +
+  xlab("Prompt type") +
+  guides(fill=guide_legend(title="Response category")) +
+  ggtitle("GPT-3")
+```
+Explore computation of distance between human and model proportions:
+```{r}
+euclidean_dist <- function(p, q){
+  return(sqrt(sum((p-q)**2)))
+}
+# try l2 norm
+e1_gpt3_summary_wide <- e1_gpt3_summary %>% pivot_wider(names_from = prompt, values_from = prop, values_fill = 0.00001)
+e1_gpt3_summary_wide_l2 <- e1_gpt3_summary_wide %>%
+  mutate(one_shot_l2 = euclidean_dist(`human E1`, `one-shot QA`),
+         cot_l2 = euclidean_dist(`human E1`, `one-shot CoT`),
+         zero_l2 = euclidean_dist(`human E1`, `zero-shot`),
+         expl_l2 = euclidean_dist(`human E1`, `one-shot Explanation`))
+# eye balling results makes sense here
+
+# try JS divergence
+js_divergence <- function(p, q){
+  m = 0.5*(p + q)
+  p_log = p*(log(p/m))
+  q_log = q*(log(q/m))
+  print(p_log)
+  print(q_log)
+  jsp = 0.5*(sum(p*(log(p/m)))) + 0.5*(sum(q*(log(q/m))))
+  return(jsp)
+}
+e1_gpt3_summary_wide_js <- e1_gpt3_summary_wide %>%
+  mutate(one_shot_js = js_divergence(`human E1`, `one-shot QA`),
+         cot_js = js_divergence(`human E1`, `one-shot CoT`),
+         zero_js = js_divergence(`human E1`, `zero-shot`),
+         expl_js = js_divergence(`human E1`, `one-shot Explanation`))
+```
+
+```{r}
+gpt4_e1_summary %>% 
+  mutate(prompt = factor(prompt, levels = c("zero-shot", "one-shot Explanation", "one-shot QA", "one-shot CoT"), 
+                         labels = c("zero-shot\n(V)", "one-shot\nExplanation\n(I+II+IV+V)", "one-shot\nQA\n(I+III+IV+V)", "one-shot\nCoT\n(I-V)")),
+    category = factor(category, levels = rev(c("taciturn", "other", "fullList", "otherCategory", "sameCategory", "competitor")), labels = rev(c("no options",  "other", "all options", "unrelated option\n(Chardonnay)", "similar option\n(soda)", "competitor\n(iced coffee)"  ) ))) %>%
+  ggplot(., aes(x = prompt, y = prop, fill = category, label = category)) +
+  geom_col(color = "#575463")+ # , aes(linetype=prompt), size = 1, show.legend = F
+  #geom_text(inherit.aes = FALSE, data = e1_plot_summary_labels, aes(x = category, y = max_val, label = category), stat = 'unique', nudge_y = 0.08, size = 4, check_overlap = TRUE) +
+  scale_y_continuous( limits = c(0, 1), breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)) +
+   #theme(plot.title = element_text(hjust = 0.5),  legend.title = element_text(size=12), legend.text = element_text(size=12), axis.ticks.x = element_blank(), axis.text.x = element_text(angle = 35),
+#    panel.background = element_rect(fill='transparent'), #transparent panel bg
+#    plot.background = element_rect(fill='transparent', color=NA), #transparent plot bg
+    #panel.grid.major = element_blank(), #remove major gridlines
+    #panel.grid.minor = element_blank(), #remove minor gridlines
+    #legend.background = element_rect(fill='transparent'), #transparent legend bg
+    #legend.box.background = element_rect(fill='transparent') #transparent legend panel
+  #       ) +  
+  ylab("Proportion of answer type") +
+  xlab("Prompt type") +
+  #guides(fill=guide_legend(title="Response category")) +
+  ggtitle("GPT-4") +
+  theme_csp() 
+#ggsave("gpt4_e1_plot.png")
+```
+
+```{r}
+mixtral_e1_summary %>% 
+  mutate(prompt = factor(prompt, levels = c("zero-shot", "one-shot Explanation", "one-shot QA", "one-shot CoT"), 
+                         labels = c("zero-shot\n(V)", "one-shot\nExplanation\n(I+II+IV+V)", "one-shot\nQA\n(I+III+IV+V)", "one-shot\nCoT\n(I-V)")),
+    category = factor(category, levels = rev(c("taciturn", "other", "fullList", "otherCategory", "sameCategory", "competitor")), labels = rev(c("no options",  "other", "all options", "unrelated option\n(Chardonnay)", "similar option\n(soda)", "competitor\n(iced coffee)"  ) ))) %>%
+  ggplot(., aes(x = prompt, y = prop, fill = category, label = category)) +
+  geom_col(color = "#575463")+ # , aes(linetype=prompt), size = 1, show.legend = F
+  #geom_text(inherit.aes = FALSE, data = e1_plot_summary_labels, aes(x = category, y = max_val, label = category), stat = 'unique', nudge_y = 0.08, size = 4, check_overlap = TRUE) +
+  scale_y_continuous(  breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)) +
+   #theme(plot.title = element_text(hjust = 0.5),  legend.title = element_text(size=12), legend.text = element_text(size=12), axis.ticks.x = element_blank(), axis.text.x = element_text(angle = 35),
+#    panel.background = element_rect(fill='transparent'), #transparent panel bg
+#    plot.background = element_rect(fill='transparent', color=NA), #transparent plot bg
+    #panel.grid.major = element_blank(), #remove major gridlines
+    #panel.grid.minor = element_blank(), #remove minor gridlines
+    #legend.background = element_rect(fill='transparent'), #transparent legend bg
+    #legend.box.background = element_rect(fill='transparent') #transparent legend panel
+  #       ) +  
+  ylab("Proportion of answer type") +
+  xlab("Prompt type") +
+  #guides(fill=guide_legend(title="Response category")) +
+  ggtitle("Mixtral") +
+  theme_csp() 
+#ggsave("mixtral_e1_plot.png")
+```
+```{r}
+llama_e1_summary %>% 
+  mutate(prompt = factor(prompt, levels = c("zero-shot", "one-shot Explanation", "one-shot QA", "one-shot CoT"), 
+                         labels = c("zero-shot\n(V)", "one-shot\nExplanation\n(I+II+IV+V)", "one-shot\nQA\n(I+III+IV+V)", "one-shot\nCoT\n(I-V)")),
+    category = factor(category, levels = rev(c("taciturn", "other", "fullList", "otherCategory", "sameCategory", "competitor")), labels = rev(c("no options",  "other", "all options", "unrelated option\n(Chardonnay)", "similar option\n(soda)", "competitor\n(iced coffee)"  ) ))) %>%
+  ggplot(., aes(x = prompt, y = prop, fill = category, label = category)) +
+  geom_col(color = "#575463")+ # , aes(linetype=prompt), size = 1, show.legend = F
+  #geom_text(inherit.aes = FALSE, data = e1_plot_summary_labels, aes(x = category, y = max_val, label = category), stat = 'unique', nudge_y = 0.08, size = 4, check_overlap = TRUE) +
+  scale_y_continuous( limits = c(0, 1), breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)) +
+   #theme(plot.title = element_text(hjust = 0.5),  legend.title = element_text(size=12), legend.text = element_text(size=12), axis.ticks.x = element_blank(), axis.text.x = element_text(angle = 35),
+#    panel.background = element_rect(fill='transparent'), #transparent panel bg
+#    plot.background = element_rect(fill='transparent', color=NA), #transparent plot bg
+    #panel.grid.major = element_blank(), #remove major gridlines
+    #panel.grid.minor = element_blank(), #remove minor gridlines
+    #legend.background = element_rect(fill='transparent'), #transparent legend bg
+    #legend.box.background = element_rect(fill='transparent') #transparent legend panel
+  #       ) +  
+  ylab("Proportion of answer type") +
+  xlab("Prompt type") +
+  #guides(fill=guide_legend(title="Response category")) +
+  ggtitle("Llama-3") +
+  theme_csp() 
+#ggsave("mixtral_e1_plot.png")
+```
+Plot all E1 results together:
+```{r}
+# combine summaries
+e1_summaries_woHuman <- rbind(
+  e1_gpt3_summary %>% mutate(model = "GPT-3.5") %>% filter(prompt != "human E1"),
+  gpt4_e1_summary %>% mutate(model = "GPT-4") %>% ungroup() %>% select(-prompting_strategy),
+  mixtral_e1_summary %>% mutate(model = "Mixtral-Inst.") %>% ungroup() %>% select(-prompting_strategy),
+  llama_e1_summary %>% mutate(model = "Llama-3-70B-Inst.") %>% ungroup() %>% select(-prompting_strategy)
+)
+
+# plot humans separately
+e1_humans_plot <- e1_gpt3_summary %>% mutate(model = "Humans") %>% filter(prompt == "human E1") %>%
+  mutate(
+    category = factor(category, levels = rev(c("taciturn", "other", "fullList", "otherCategory", "sameCategory", "competitor")), labels = rev(c("no options",  "other", "all options", "unrelated option\n(Chardonnay)", "similar option\n(soda)", "competitor\n(iced coffee)"  ) )),
+    model = factor(model, levels = c("Humans", "GPT-3.5", "GPT-4", "Llama-3-70B-Inst.", "Mixtral-Inst."))
+    ) 
+
+e1_humans_p <- e1_humans_plot %>%
+  ggplot(., aes(x = prompt, y = prop, fill = category, label = category)) +
+  geom_col(color = "#575463")+ # , aes(linetype=prompt), size = 1, show.legend = F
+  #geom_text(inherit.aes = FALSE, data = e1_plot_summary_labels, aes(x = category, y = max_val, label = category), stat = 'unique', nudge_y = 0.08, size = 4, check_overlap = TRUE) +
+    theme_csp()  +
+  scale_y_continuous( breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)) +
+   theme(plot.title = element_text(hjust = 0.5),  legend.title = element_text(size=12), legend.text = element_text(size=12), axis.ticks.x = element_blank(), axis.text.x = element_text(angle = 45, margin = margin(t = 10), size = 10)) +
+#    panel.background = element_rect(fill='transparent'), #transparent panel bg
+#    plot.background = element_rect(fill='transparent', color=NA), #transparent plot bg
+    #panel.grid.major = element_blank(), #remove major gridlines
+    #panel.grid.minor = element_blank(), #remove minor gridlines
+    #legend.background = element_rect(fill='transparent'), #transparent legend bg
+    #legend.box.background = element_rect(fill='transparent') #transparent legend panel
+  #       ) +  
+  ylab("Proportion of answer type") +
+  xlab("Prompt type")
+
+# plot
+#e1_models_p <- 
+e1_summaries_woHuman %>% 
+  mutate(prompt = factor(prompt, levels = c("zero-shot", "one-shot Explanation", "one-shot QA", "one-shot CoT"), 
+                         labels = c("zero-shot\n(V)", "one-shot\nExplanation\n(I+II+IV+V)", "one-shot\nQA (I+III+IV+V)", "one-shot\nCoT (I-V)")),
+    category = factor(category, levels = rev(c("taciturn", "other", "fullList", "otherCategory", "sameCategory", "competitor")), labels = rev(c("no options",  "other", "all options", "unrelated option\n(Chardonnay)", "similar option\n(soda)", "competitor\n(iced coffee)"  ) )),
+    model = factor(model, levels = c("Humans", "GPT-3.5", "GPT-4", "Llama-3-70B-Inst.", "Mixtral-Inst."))) %>%
+  ggplot(., aes(x = prompt, y = prop, fill = category, label = category)) +
+  geom_col(color = "#575463", width = 0.9)+ # , aes(linetype=prompt), size = 1, show.legend = F
+  geom_col(data = e1_humans_plot, aes(x = prompt, y = prop, fill = category), width = 0.9, color = "#575463") +
+  #geom_text(inherit.aes = FALSE, data = e1_plot_summary_labels, aes(x = category, y = max_val, label = category), stat = 'unique', nudge_y = 0.08, size = 4, check_overlap = TRUE) +
+    theme_csp()  +
+  scale_y_continuous( breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)) +
+   theme(plot.title = element_text(hjust = 0.5),  legend.title = element_text(size=12), legend.text = element_text(size=12), axis.ticks.x = element_blank(), axis.text.x = element_text(angle = 45, margin = margin(t = 10), size = 12)) +
+#    panel.background = element_rect(fill='transparent'), #transparent panel bg
+#    plot.background = element_rect(fill='transparent', color=NA), #transparent plot bg
+    #panel.grid.major = element_blank(), #remove major gridlines
+    #panel.grid.minor = element_blank(), #remove minor gridlines
+    #legend.background = element_rect(fill='transparent'), #transparent legend bg
+    #legend.box.background = element_rect(fill='transparent') #transparent legend panel
+  #       ) +  
+  ylab("Proportion of answer type") +
+  xlab("Prompt type") +
+  facet_grid(.~model, scales = "free_x", space = "free_x") +
+  #guides(fill=guide_legend(title="Response category")) +
+  ggtitle("Do you have iced tea?")
+
+# ggsave("viz/PT_paper/e1_summary_wGPT3_wHuman.pdf", width = 15, height = 7)
+```
+
+Create a summary table for E1:
+```{r}
+human <- e1_gpt3_summary %>% filter(prompt == "human E1") %>% mutate(model = 'human')
+e1_summaries <- rbind(e1_gpt3_summary %>% mutate(model = 'GPT-3') %>% filter(prompt != 'human E1'),
+                      mixtral_e1_summary %>% mutate(model = 'Mixtral') %>% ungroup() %>% select(-prompting_strategy),
+                      gpt4_e1_summary %>% mutate(model = 'GPT-4')%>% ungroup()  %>% select(-prompting_strategy),
+                      human
+                      ) %>% mutate(prop = round(prop, 2))
+e1_summaries_wide <- e1_summaries %>% filter(category != "") %>% pivot_wider(names_from = category, values_from = prop, values_fill = 0)
+
+#e1_summaries_wide %>% write_csv("e1_new_models_summary.csv")
+```
+
+Reproducing table for E2 similar to Table 1 in the CogSci paper but with more models:
+
+```{r}
+human_e2 <- e2_gpt3_category_summary %>% filter(prompt == "human E2") %>% mutate(model = 'human')
+e2_summaries <- rbind(e2_gpt3_category_summary %>% mutate(model = 'GPT-3') %>% filter(prompt != 'human E2'),
+                      mixtral_e2_summary %>% mutate(model = 'Mixtral') %>% ungroup() %>% select(-prompting_strategy),
+                      gpt4_e2_summary %>% mutate(model = 'GPT-4')%>% ungroup()  %>% select(-prompting_strategy),
+                      human_e2
+                      ) %>% mutate(prop = round(prop, 2))
+e2_summaries_wide <- e2_summaries %>% filter(category != "") %>% pivot_wider(names_from = category, values_from = prop, values_fill = 0)
+#e2_summaries_wide %>%write_csv("e2_new_models_summary.csv")
+```
+
+E2 plots:
+
+```{r}
+# create by-context summaries for each model for E2
+gpt4_e2_context_summary <- gpt4_e2_clean %>% 
+  # assign context number
+  left_join(., e2_vignettes, by=c("itemName")) %>%
+  mutate(global_category = str_split(global_category, ", ")) %>%
+  unnest(global_category) %>%
+  group_by(prompting_strategy, context_nr) %>%
+  mutate(
+    counts= n()
+  ) %>%
+  group_by(prompting_strategy, context_nr, global_category) %>%
+  summarize(
+    prop = n() / counts
+  ) %>% unique() %>%
+  mutate(model = "GPT-4") %>%
+  # filter out items that were used as one-shot example
+  filter(global_category != "prompt")
+  
+# 4 points were not categorized, 1 was taciturn and 3 failed the string matching (out of 517)
+mixtral_e2_context_summary <- mixtral_e2_clean %>% 
+  # assign context number
+  left_join(., e2_vignettes, by=c("itemName")) %>%
+  mutate(global_category = str_split(global_category, ", ")) %>%
+  unnest(global_category) %>%
+  group_by(prompting_strategy, context_nr) %>%
+  mutate(
+    counts= n()
+  ) %>%
+  group_by(prompting_strategy, context_nr, global_category) %>%
+  summarize(
+    prop = n() / counts
+  ) %>% unique() %>%
+  mutate(model = "Mixtral-Inst.") %>%
+  # filter out items that were used as one-shot example
+  filter(global_category != "prompt") %>% filter(global_category != "")
+
+# 1 point failed string matching (out of 520)
+llama_e2_context_summary <- llama_e2_clean %>% 
+  # assign context number
+  left_join(., e2_vignettes, by=c("itemName")) %>%
+  mutate(global_category = str_split(global_category, ", ")) %>%
+  unnest(global_category) %>%
+  group_by(prompting_strategy, context_nr) %>%
+  mutate(
+    counts= n()
+  ) %>%
+  group_by(prompting_strategy, context_nr, global_category) %>%
+  summarize(
+    prop = n() / counts
+  ) %>% unique() %>%
+  mutate(model = "Llama-3-70B-Inst.") %>%
+  # filter out items that were used as one-shot example
+  filter(global_category != "prompt")  %>% filter(global_category != "")
+```
+
+Combine the summaries:
+```{r}
+e2_context_summaries <- rbind(
+  llama_e2_context_summary,
+  gpt4_e2_context_summary,
+  mixtral_e2_context_summary
+) %>%
+mutate(prompt = prompting_strategy,
+         prompt = case_when(prompt == "cot" ~ "one-shot CoT",
+                            prompt == "example" ~ "one-shot QA",
+                            prompt == "explanation" ~ "one-shot Explanation",
+                            TRUE ~ "zero-shot")) %>% ungroup() %>% select(-prompting_strategy)
+
+e2_context_summaries_wide <- e2_context_summaries %>%
+  pivot_wider(names_from = context_nr, values_from = prop, values_fill = 0) %>% ungroup() %>%
+  rbind(e2_gpt3_context_summary %>% mutate(model = "GPT-3.5"))
+```
+```{r}
+# human data for segment plotting
+e2_context_summaries_human <- e2_context_summaries_wide %>% filter(prompt == "human E2") 
+e2_context_summaries_human_baseline <- e2_context_summaries_human %>%
+  mutate(prompt = "one-shot CoT") %>%
+  rbind(., e2_context_summaries_human %>%
+  mutate(prompt = "one-shot Explanation"),
+  e2_context_summaries_human %>%
+  mutate(prompt = "one-shot QA"),
+  e2_context_summaries_human %>%
+  mutate(prompt = "zero-shot")
+  )
+
+e2_context_summaries_human_baseline <- rbind(
+  e2_context_summaries_human_baseline,
+  e2_context_summaries_human_baseline %>% mutate(model = "GPT-4"),
+  e2_context_summaries_human_baseline %>% mutate(model = "Llama-3-70B-Inst."),
+  e2_context_summaries_human_baseline %>% mutate(model = "Mixtral-Inst.")
+)
+```
+
+
+```{r}
+e2_context_summaries_wide_woHuman <- e2_context_summaries_wide %>% filter(prompt != "human E2")
+
+# TODO add human data if needed, add gpt-3 if needed
+e2_context_summaries_wide_woHuman %>%
+  mutate(prompt = factor(prompt, levels = c("zero-shot", "one-shot Explanation", "one-shot QA", "one-shot CoT"))) %>%
+  #mutate(prompt = factor(prompt, levels = c("mismatch QA", "mismatch CoT"))) %>%
+  mutate(global_category = factor(global_category, levels = c( 'otherCategory', 'mostSimilar', 'competitor_c2', 'competitor_c1'),
+                           labels = c("unrelated option\n(carpet)", "a priori\nsimilar (pillow)", "competitor 2\n(bubble wrap)", "competitor 1\n(sleeping bag)")
+                           )) %>%
+  ggplot(., aes(fill = prompt, x = global_category)) +
+  geom_col(aes(y = context1), position = position_dodge(preserve = "single"), color = "#575463" ) +
+  geom_col(aes(y = -context2), position = position_dodge(preserve = "single"), color = "#575463" ) +
+  geom_segment(data=e2_context_summaries_human_baseline, aes(x=3.5,xend=4.5, y=-0.27, yend=-0.27), size=0.5, linetype=1) + 
+  geom_segment(data=e2_context_summaries_human_baseline, aes(x=2.5,xend=3.5, y=-0.72, yend=-0.72), size=0.5, linetype=1) + 
+  geom_segment(data=e2_context_summaries_human_baseline, aes(x=1.5,xend=2.5, y=-0.56, yend=-0.56), size=0.5, linetype=1) + 
+  geom_segment(data=e2_context_summaries_human_baseline, aes(x=0.5,xend=1.5, y=-0.08, yend=-0.08), size=0.5, linetype=1) + 
+  geom_segment(data=e2_context_summaries_human_baseline, aes(x=3.5,xend=4.5, y=0.79, yend=0.79), size=0.5, linetype=1) + 
+  geom_segment(data=e2_context_summaries_human_baseline, aes(x=2.5,xend=3.5, y=0.28, yend=0.28), size=0.5, linetype=1) + 
+  geom_segment(data=e2_context_summaries_human_baseline, aes(x=1.5,xend=2.5, y=0.31, yend=0.31), size=0.5, linetype=1) + 
+  geom_segment(data=e2_context_summaries_human_baseline, aes(x=0.5,xend=1.5, y=0.07, yend=0.07), size=0.5, linetype=1) + 
+  theme_csp() + 
+  theme( axis.text.y = element_text(size = 12), axis.text.x = element_text(size = 12),  legend.title = element_text(size=12), legend.text = element_text(size=12), legend.position = "right", plot.title = element_text(hjust = 0.5),
+         panel.background = element_rect(fill='transparent'), #transparent panel bg
+    plot.background = element_rect(fill='transparent', color=NA), #transparent plot bg
+    #panel.grid.major = element_blank(), #remove major gridlines
+    #panel.grid.minor = element_blank(), #remove minor gridlines
+    legend.background = element_rect(fill='transparent'), #transparent legend bg
+    legend.box.background = element_rect(fill='transparent') #transparent legend panel
+         ) + # , axis.ticks.y = element_blank(), 
+  scale_y_continuous( breaks = c(-1, -0.5, 0, 0.5, 1), labels = c("1", "0.5", "0", "0.5", "1")) +
+  geom_hline(yintercept = 0, color = "white", size = 1) +
+  coord_flip() +
+  ylab("mirror transport <--> sleepover") +
+  xlab("") +
+  facet_wrap(~model) +
+  ggtitle("Do you have a blanket?")
+
+# TODO add lines as human production proportions
+
+#ggsave("viz/PT_paper/E2_model_transparent_wGPT3_wHuman.pdf", bg="transparent", width = 12, height = 7)
+```
+
+```{r}
+# reformat items from E3 for LLMs
+d_e3 <- read_csv("~/Documents/PhD/03_gpt3_QA/magpie3-qa-overinfo-free-production/experiments/04-priorSensitivity_free_production/trials/trials_pilot2.csv")
+e3_models <- d_e3 %>%
+  mutate(options_combined = str_c(highProb_option, ", ", midProb_option, " and ", lowProb_option, "."),
+         prepped_context = str_c(context_begin, options_combined, context_cont, sep = " ")) %>%
+  pivot_longer(cols = c(high_prior, low_prior), names_to = "condition", values_to = "condition_context") %>%
+  mutate(context_qa = str_c(prepped_context, condition_context, sep = " "), 
+         question = str_c(question, answer_template, sep = " "))
+#e3_models %>% write_csv("~/Documents/PhD/03_gpt3_QA/magpie3-qa-overinfo-free-production/experiments/04-priorSensitivity_free_production/trials/trials_pilot2_models.csv")
+```
