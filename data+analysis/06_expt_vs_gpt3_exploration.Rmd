@@ -766,3 +766,44 @@ prompts_e2 %>%
 
 #ggsave("viz/e2_byPrompt_vertical_final_lessNA.pdf", width = 5.5, height = 4 )
 ```
+
+```{r}
+diverse_zero <- read_csv("../code/results/GPT3-davinci-003-samples-zeroShotLearner-diverseQA.csv") %>% 
+  mutate(prompt = "zeroShot")
+diverse_one <- read_csv("../code/results/GPT3-davinci-003-samples-oneShotLearner-diverseQA.csv") %>% 
+  mutate(prompt = "oneShot")
+diverse_one_mismatch <- read_csv("../code/results/GPT3-davinci-003-samples-oneShotLearner-diverseQA-mismatch.csv") %>% 
+  mutate(prompt = "oneShot_mismatch")
+diverse_two <- read_csv("../code/results/GPT3-davinci-003-samples-twoShotLearner-diverseQA.csv") %>% 
+  mutate(prompt = "twoShot")
+
+diverse_all <- rbind(diverse_zero, diverse_one, diverse_one_mismatch, diverse_two)
+```
+
+```{r}
+diverse_all_summary <- diverse_all %>% 
+  filter(!is.na(response_type)) %>%
+  group_by(prompt) %>%
+  mutate(num_resp = n()) %>%
+  ungroup() %>%
+  group_by(prompt, response_type) %>%
+  summarize(num_cat = n(), prop = num_cat / num_resp) %>% unique()
+
+diverse_all_byItem_summary <- diverse_all %>% 
+  filter(!is.na(response_type)) %>%
+  group_by(prompt, itemName) %>%
+  mutate(num_resp = n()) %>%
+  ungroup() %>%
+  group_by(prompt, itemName, response_type) %>%
+  summarize(num_cat = n(), prop = num_cat / num_resp) %>% unique()
+```
+
+```{r, fig.height=10, fig.width=7}
+diverse_all_byItem_summary %>% 
+  mutate(response_type = factor(response_type),
+         prompt = factor(prompt)) %>%
+  ggplot(., aes(x = response_type, y = prop, fill = prompt)) +
+  geom_col(position = position_dodge(preserve = "single")) +
+  facet_wrap(itemName~., ncol=2) +
+  theme_csp()
+```

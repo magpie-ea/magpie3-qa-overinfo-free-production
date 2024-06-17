@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, include = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(tidyboot)
-library(aida)
+#library(aida)
 library(forcats)
 library("gridExtra")
 library(cspplot)
@@ -249,6 +249,38 @@ df_clean_main_long %>%
   ylim(0, 100) +
   xlab("Category of alternative")
 ```
+
+```{r}
+# use the CSP-theme for plotting
+theme_set(theme_csp())
+# global color scheme from CSP
+project_colors = cspplot::list_colors() |> pull(hex)
+# setting theme colors globally
+scale_colour_discrete <- function(...) {
+  scale_colour_manual(..., values = project_colors)
+}
+scale_fill_discrete <- function(...) {
+  scale_fill_manual(..., values = project_colors)
+}
+```
+
+```{r}
+df_clean_main_long_summary_target <- df_clean_main_long %>% 
+  filter(targetOption == "target") %>%
+  group_by(answerType) %>%
+  tidyboot_mean(column = response)
+
+df_clean_main_long_summary_target %>%
+  mutate(answerType = factor(answerType, labels = c("target", "competitor", "similar option", "unrelated option"))) %>%
+  ggplot(., aes(x = answerType, y = mean, ymin = ci_lower, ymax = ci_upper, fill = answerType)) +
+  geom_col() +
+  geom_errorbar(width = 0.2) +
+  theme(legend.position = "none") +
+  #theme_csp() +
+  xlab("rated option") +
+  ylab("rating")
+```
+
 
 ```{r, echo=FALSE, fig.height=30, fig.width=25, eval=FALSE}
 # Below, the ratings are plotted by-target option by-vignette. For some vignette-target option combinations, there is only one data point.

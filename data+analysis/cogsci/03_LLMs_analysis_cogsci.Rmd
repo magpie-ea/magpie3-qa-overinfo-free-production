@@ -56,6 +56,8 @@ e2_gpt3_context_summary <- read_csv("../../data_paper_neural/e2_gpt3_byPrompt_by
 e2_samples_global <- nm_samples_categorized_e2 %>% select(-probs, -is_few_shot, -dataset, -model_type) %>%
   rename("prompt" = "model_name") %>%
   rbind(., e2_human_byCategory %>% select(-submission_id, -settingName, -response_option) %>% mutate(prompt = "human E2") %>% rename("predictions" = "answer"))
+
+e1_prior_target <- read_csv("../../data+analysis/e1_prior_target_summary.csv")
 ```
 
 
@@ -439,4 +441,16 @@ e2_mismatch_category_summary %>%
   ylab("Proportion of answer type") +
   xlab("Answer type") +
   ggtitle("Do you have a blanket?")
+```
+
+```{r}
+e1_prior_target %>%  
+  mutate(answerType = factor(answerType, levels = c("target", "competitor", "similar option", "unrelated option"))) %>%
+  ggplot(., aes(x = answerType, y = mean, ymin=ci_lower, ymax = ci_upper)) +
+  geom_col(aes(fill = answerType))+
+  geom_errorbar(width = 0.2) +
+  scale_fill_manual(values=c("#7781AF", "#B85A57", "#A1C1C1", "#61735A")) +
+  theme(legend.position="none") +
+  xlab("answer type") +
+  ylab("ratings")
 ```
