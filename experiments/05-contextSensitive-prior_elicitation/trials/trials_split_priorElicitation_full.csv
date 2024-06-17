@@ -1,0 +1,25 @@
+,itemName,settingName,priorElicitation_context,priorElicitation_question,itemQuestion,competitor,sameCategory,mostSimilar,otherCategory,correct_response
+0,blanket-sleepover,blanket,Suppose someone hosts a sleepover and asks for ,got,a blanket,a sleeping bag,bubble wrap,a pillow,a carpet,main
+1,blanket-transportation,blanket,Suppose someone has to transport a mirror and asks for ,got,a blanket,bubble wrap,a sleeping bag,a pillow,a carpet,main
+2,box-muffins,box,Suppose someone is about to take home some muffins and asks for a ,got,a box,a cake container,a ziplock bag,a carton,a tote bag,main
+3,box-bbq,box,Suppose someone is about to take home BBQ leftovers and asks for ,got,a box,a ziplock bag,a cake container,a carton,a tote bag,main
+4,sugar-coffee,sugar,Suppose someone wants to sweeten their coffee and asks for ,got,sugar,sweetener tablets,agave syrup,honey,salt,main
+5,sugar-baking,sugar,Suppose someone is about to bake and asks for ,got,sugar,agave syrup,sweetener tablets,honey,salt,main
+6,handkerchief-injury,handkerchief,Suppose someone helps a child who just fell down and hurt their knee and asks for  ,got,a handkerchief,band aids,wet wipes,paper napkins,a cell phone,main
+7,handkerchief-sauce,handkerchief,Suppose someone spilled sauce on their sweater and asks for ,got,a handkerchief,wet wipes,band aids,paper napkins,a cell phone,main
+8,broom-renovation,broom,Suppose someone cleans their apartment after a renovation and asks for ,got,a broom,vacuum cleaner,shovel,a hand brush,a lamp,main
+9,broom-snow,broom,Suppose someone is about to clean snow off a driveway and asks for ,got,a broom,shovel,vacuum cleaner,a hand brush,a lamp,main
+10,sweatpants-sleepover,sweatpants,Suppose someone is staying for a sleepover and asks for ,got,a pair of sweatpants,pyjamas,shorts,a pair of leggings,towels,main
+11,sweatpants-spill,sweatpants,Suppose someone spilled coffee on their pants at a garden party and asks for ,got,a pair of sweatpants,shorts,pyjamas,a pair of leggings,towels,main
+12,umbrella-summer,umbrella,Suppose someone is about to spend time outside in the garden on a sunny day and asks for ,got,an umbrella,sunscreen,a rain jacket,a plastic bike cover,a tent,main
+13,umbrella-rain,umbrella,Suppose someone is about to leave the house during a heavy rain and asks for ,got,an umbrella,a rain jacket,sunscreen,a plastic bike cover,a tent,main
+14,postit-board,postit,Suppose someone is organizing a workshop around a whiteboard and asks for    ,got,post-its,a whiteboard marker,sticky bookmarks,a notebook,an eraser,main
+15,postit-reading,postit,Suppose someone reads through a lot of documents and asks for ,got,post-its,sticky bookmarks,a whiteboard marker,a notebook,an eraser,main
+16,pot-garden,pot,Suppose someone is repotting their garden plants and asks for ,got,a pot,old cans,camping cookware,a pan,ceramic plates,main
+17,pot-jam,pot,Suppose someone is cooking apple jam in their garden and asks for ,got,a pot,camping cookware,old cans,a pan,ceramic plates,main
+18,towel-hair,towel,Suppose someone got into a heavy rain on their way to a Halloween party and asks for ,got,a towel,a hair dryer,a dryer,paper towels,a blanket,main
+19,towel-clothes,towel,Suppose someone got into a heavy rain on their way to a Halloween party and asks for ,got,a towel,a dryer,a hair dryer,paper towels,a blanket,main
+20,candy-halloween,candy,Suppose someone is about to give out treats to kids on Halloween and asks for  ,got,candy,little trail mix packages,ice cream,a big chocolate bar,soda,main
+21,candy-dessert,candy,Suppose someone finished dinner and asks for  ,got,candy,ice cream,little trail mix packages,a big chocolate bar,soda,main
+22,bottle-plants,bottle,Suppose someone is about to water plants at their office and asks for ,got,a bottle,a watering can,a to-go mug,a glass,a spoon,main
+23,bottle-water,bottle,Suppose someone is preparing for a long walk during a hot day and asks for ,got,a bottle,a to-go mug,a watering can,a glass,a spoon,main

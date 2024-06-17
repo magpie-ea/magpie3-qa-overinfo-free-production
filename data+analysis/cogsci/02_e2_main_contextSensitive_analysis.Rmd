@@ -85,11 +85,50 @@ e2_wVignette_raw <- e2_wVignette %>% filter((response_option != "yes") & (respon
   mutate(response_option = gsub(" ", "", response_option)) %>%
   left_join(., e2_items_cats, by = c("settingName", "response_option"))
 
+process_response <- function(r, setting){
+  str_clean <- gsub(" ", "", r)
+  split_response <- str_split(str_clean, ",", simplify = TRUE)
+  #print(split_response)
+  categories <- list()
+  for(s in split_response){
+    print(s)
+    cats <- e2_items_cats %>% filter(settingName == setting) %>% filter(response_option == s) %>% .$global_category
+    categories <- c(categories, cats)
+    #print(cats)
+  }
+  
+  categories_str <- paste(categories, collapse = ',')
+  print(typeof(categories_str))
+  print(categories_str)
+  return(categories_str)  
+}
+
+e2_wVignette_unsplit <- e2_wVignette %>% 
+  filter((response_option != "yes") & (response_option != "no") & (response_option != "other")) %>%
+  rowwise() %>%
+  mutate(powerset_member = process_response(response_option, settingName))
+
 e2_byContext_summary <- e2_wVignette_raw %>% select(itemName, context_nr, global_category, submission_id, context_count) %>% 
   arrange(submission_id) %>% 
   group_by(context_nr, global_category) %>% summarize(x = n() / context_count) %>% unique() %>%
   pivot_wider(values_from = "x", names_from = "context_nr") %>% mutate(prompt = "human E2")
 
+e2_wVignette_summary <- e2_wVignette %>% ungroup() %>% group_by(context_nr) %>% 
+  mutate(context_count = n()) %>%
+  group_by(category, context_nr) %>%
+  mutate(responseCategory_count = n(),
+         responseCategory_proportion = responseCategory_count / context_count
+         ) %>% ungroup() %>%
+  select(category, responseCategory_proportion, context_nr) %>% unique() %>%
+  pivot_wider(names_from = context_nr, values_from = responseCategory_proportion)
+
+e2_wVignette_raw %>% count(context_nr, global_category) %>% pivot_wider(names_from = context_nr, values_from = n)
+
+# note that the following is order sensitive, i.e.m, different orders of options were counted separately 
+# the combination across orders was performed manually.
+e2_wVignette_unsplit %>% count(context_nr, powerset_member) %>% pivot_wider(names_from = context_nr, values_from = n, values_fill = 0) #%>% write_csv("e2_human_powerset_counts.csv")
+
+e2_wVignette %>% filter((response_option != "yes") & (response_option != "no") & (response_option != "other")) %>% count(context_nr)
 ```
 
 Below, the response type patterns are reported. The types are classified akin to Experiment 1, with the addition of the mostSimilar category.
@@ -110,6 +149,25 @@ e2_summary %>%
   ggtitle("Do you have a blanket?")
   
 ```
+```{r}
+
+e2_summary %>% 
+  mutate(category = factor(category, levels = answerOrder,
+#                           labels = c("other", "no option", "all options", "unrelated option\n(carpet)","similar option\n(pillow)", "related option\n(bubble wrap)", "competitor\n(sleeping bag)")
+                           )) %>%
+  ggplot(., aes(x = category, y = responseCategory_proportion, fill = category)) +
+  geom_col(color = "#575463") +
+  theme_csp() +
+  theme(legend.position = "none", plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 45, hjust = 1)) +
+  #theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Proportion of answer type") +
+  xlab("") +
+  labs(fill = "Answer type") + 
+  ggtitle("Do you have a blanket?")
+  
+#ggsave("e2_answerCategory.png", width=5, height=5)
+```
+
 
 Below, context 1 vs context 2 are compared in terms of numbers of mentions of the different option types in the respective context (comp_c1, comp_c2, mostSimilar, otherCategory; mostSimilar and otherCategory match for both contexts ). The mapping of alternatives to these option types depending on context can be found in the data folder. To this end, the responses which do not mention any alternatives are excluded (i.e., other, yes, and no are excluded).
 
@@ -121,7 +179,7 @@ e2_byContext_summary %>%
   ggplot(., aes(fill = global_category, x = global_category)) +
   geom_col(aes(y = context1)) +
   geom_col(aes(y = -context2)) +
-  scale_fill_manual(values = c("#E2BA78", "#99C2C2", "#C65353", "#7581B3")) +
+  #scale_fill_manual(values = c("#E2BA78", "#99C2C2", "#C65353", "#7581B3")) +
   theme(legend.position = "none", axis.text.y = element_text(size = 14), axis.text.x = element_text(size = 14)) + # , axis.ticks.y = element_blank(), 
   scale_y_continuous( limits = c(-1, 1), breaks = c(-1, -0.5, 0, 0.5, 1), labels = c("1", "0.5", "0", "0.5", "1")) +
   geom_hline(yintercept = 0, color = "white", size = 1) +

@@ -1,0 +1,152 @@
+submission_id,age,answer,category,comments,condition,correct_response,education,gender,itemName,languages,responseTime,trialNr,trial_type
+3363,30,Yes we do! How can I help you?,taciturn,This was a fun study.,low_prior,NA,Graduated College,female,videoGames,English and Spanish,67432,1,main
+3363,30,"Yes, you can. Your closest options would be McCafé and Starbucks. I recommend you check out Starbuckd first, as they always have decaf options.",fullList,This was a fun study.,high_prior,NA,Graduated College,female,coffeeShop,English and Spanish,114744,2,main
+3363,30,Hi! We accept all credit cards except Card Blanche.,exceptive,This was a fun study.,high_prior,NA,Graduated College,female,cardBlanche,English and Spanish,44867,3,main
+3363,30,"There is a small phone repair shop located in our mall, however I advise against going if you happen to own an iPhone, as they do not repair those.",exceptive,This was a fun study.,low_prior,NA,Graduated College,female,phoneRepair,English and Spanish,87495,4,main
+3363,30,teacher,,This was a fun study.,filler,teacher,Graduated College,female,jobCenter-engineer,English and Spanish,27231,5,filler
+3364,29,"Yes, we gave parking for bikes and helicopters, but no parking garage for cars.","fullList, exceptive",,low_prior,NA,Graduated College,female,parking,English,76351,1,main
+3364,29,London,,,filler,London,Graduated College,female,airport-usa,English,15582,2,filler
+3364,29,"Yes, there are multiple vehicles from Zipcar and Car2Go here.",fullList,,high_prior,NA,Graduated College,female,carshring,English,95583,3,main
+3364,29,You could try Taco Bell or McDonalds to see what they offer.,fullList,,high_prior,NA,Graduated College,female,foodCourt,English,36801,4,main
+3364,29,Yes we have green juice and orange juice.,fullList,,low_prior,NA,Graduated College,female,airplaneJuice,English,35399,5,main
+3365,24,"We have electric bikes, electric scooters, and mopeds.",yes,,low_prior,NA,Graduated College,other,dricersLicense,English,26726,1,main
+3365,24,You can! I have Facebook and Instagram!,fullList,,high_prior,NA,Graduated College,other,socialMedia,English,29104,2,main
+3365,24,We accept American Express and Visa.,fullList,,high_prior,NA,Graduated College,other,cardBlanche,English,16156,3,main
+3365,24,"There is, but they can only repair Samsung and Google Pixels.",fullList,,low_prior,NA,Graduated College,other,phoneRepair,English,40040,4,main
+3365,24,classic,,,filler,classic,Graduated College,other,music-hardrock,English,7026,5,filler
+3366,61,There is McDonalds which has a limited amount f vegan options as well as Shake Shack which may or may not have some vegan options,fullList,,low_prior,NA,Higher degree,female,foodCourt,English and Spanish,87311,1,main
+3366,61,You can try McCAfe which sometimes has decaf options or try Cafe Nero which sometimes has limited edition decaf options.,fullList,,low_prior,NA,Higher degree,female,coffeeShop,English and Spanish,88965,2,main
+3366,61,"Yes you can, there are Car2Go and Zipcar available right in front of the cinema",fullList,,high_prior,NA,Higher degree,female,carshring,English and Spanish,80714,3,main
+3366,61,Yes we have tomato juice and orange juice available.,fullList,,high_prior,NA,Higher degree,female,airplaneJuice,English and Spanish,45899,4,main
+3366,61,teacher,,,filler,teacher,Higher degree,female,jobCenter-engineer,English and Spanish,23518,5,filler
+3367,84,Yes. You are most likely to find vegan options at Taco Bell and McDonalds.,fullList,,high_prior,NA,Graduated College,female,foodCourt,English,67029,1,main
+3367,84,London,,,filler,London,Graduated College,female,airport-europe-UPDATED,English,15334,2,filler
+3367,84,"Yes, we except all cards except American Express.",exceptive,,low_prior,NA,Graduated College,female,cardBlanche,English,52551,3,main
+3367,84,"Yes, it accepts all phones except Google Pixels.",exceptive,,high_prior,NA,Graduated College,female,phoneRepair,English,46880,4,main
+3367,84,"Yes, your best bet is Starbucks.",mostLikely,,low_prior,NA,Graduated College,female,coffeeShop,English,32993,5,main
+3368,34,"Yes,we do.",taciturn,,low_prior,NA,Higher degree,female,airplaneJuice,English,53988,1,main
+3368,34,London,,,filler,London,Higher degree,female,airport-usa,English,16205,2,filler
+3368,34,"Yes, we have parking for cars and bikes. Thank you.",fullList,,high_prior,NA,Higher degree,female,parking,English,59373,3,main
+3368,34,"Yes, please. We have two; Taco Bell and McDonalds .",fullList,,high_prior,NA,Higher degree,female,foodCourt,English,144108,4,main
+3368,34,"Yes, please. He is my handles for Instagram and Thread,",fullList,,low_prior,NA,Higher degree,female,socialMedia,English,67325,5,main
+3369,21,"Yes, we sell many.",taciturn,,low_prior,NA,Graduated College,female,videoGames,English,24069,1,main
+3369,21,Yes! I will gladly direct you to it.,taciturn,,low_prior,NA,Graduated College,female,phoneRepair,English,35546,2,main
+3369,21,sculpture,,,filler,sculpture,Graduated College,female,art-drawing,English,29385,3,filler
+3369,21,Certainly! How can I get you started?,taciturn,,high_prior,NA,Graduated College,female,carshring,English,35315,4,main
+3369,21,"Yes, we have juice. What flavor would you like?",taciturn_more,,high_prior,NA,Graduated College,female,airplaneJuice,English,27166,5,main
+3370,27,Yes there is.,taciturn,,high_prior,NA,Graduated High-school,female,phoneRepair,English,34158,1,main
+3370,27,"There are 2 fast food places, Taco Bell and McDonalds. However, Taco Bell will have more options.",fullList,,high_prior,NA,Graduated High-school,female,foodCourt,English,74765,2,main
+3370,27,Classic,,,filler,classic,Graduated High-school,female,music-hardrock,English,12805,3,filler
+3370,27,We accept all credit cards except American Express.,exceptive,,low_prior,NA,Graduated High-school,female,cardBlanche,English,52017,4,main
+3370,27,We have orange and green juice.,fullList,,low_prior,NA,Graduated High-school,female,airplaneJuice,English,37220,5,main
+3371,54,"Yes, we accept visa and card Blanche ",fullList,,low_prior,NA,Graduated College,female,cardBlanche,English ,57288,1,main
+3371,54,"Sure, I use instagram and threads but not facebook ","fullList, exceptive",,low_prior,NA,Graduated College,female,socialMedia,English ,45077,2,main
+3371,54,Would you like orange juice or tomato juice?,fullList,,high_prior,NA,Graduated College,female,airplaneJuice,English ,63154,3,main
+3371,54,London,,,filler,London,Graduated College,female,airport-usa,English ,11393,4,filler
+3371,54,Yes we do,taciturn,,high_prior,NA,Graduated College,female,parking,English ,24821,5,main
+3372,75,"Yes, but not car garage parking.",exceptive,Interesting survey.,low_prior,NA,Graduated College,male,parking,English,45157,1,main
+3372,75,"Yes, we have tomato juice and orange juice.",fullList,Interesting survey.,high_prior,NA,Graduated College,male,airplaneJuice,English,44461,2,main
+3372,75,sculpture,,Interesting survey.,filler,sculpture,Graduated College,male,art-painting,English,25157,3,filler
+3372,75,"Yes, but not for PlayStation.",exceptive,Interesting survey.,low_prior,NA,Graduated College,male,videoGames,English,57486,4,main
+3372,75,"Yes, Car2Go and Zipcar are available.",fullList,Interesting survey.,high_prior,NA,Graduated College,male,carshring,English,73469,5,main
+3373,32,"Yes, there's Taco Bell, which usually has vegan options, and McDonalds, which sometimes has limited edition vegan options.",fullList,,high_prior,NA,Graduated College,female,foodCourt,English,41168,1,main
+3373,32,"Definitely! I'm not on Facebook, but are you on Instagram or Threads?","fullList, exceptive",,low_prior,NA,Graduated College,female,socialMedia,English,66754,2,main
+3373,32,sculpture,,,filler,sculpture,Graduated College,female,art-drawing,English,14432,3,filler
+3373,32,"I'm so sorry, unfortunately we only have bike parking. We do have a platform for a helicopter if you happen to have one of those, but no, unfortunately we do not currently have a garage for cars at the moment.","exceptive, leastLikely",,low_prior,NA,Graduated College,female,parking,English,89457,4,main
+3373,32,"We do, we have games for Wii and Playstation. What kinds of games are you looking for?",fullList,,high_prior,NA,Graduated College,female,videoGames,English,59426,5,main
+3374,25,"Which type of parking are you looking for? If car or bike, absolutely! If Helicopter, I apologize we do not.",fullList,,high_prior,NA,Graduated High-school,male,parking,English,44444,1,main
+3374,25,"Absolutely! McCafe and Starbucks both possess decaf options, at Starbucks you'll for sure get a decaf, McCafe might be out. If you see Cafe Nero, don't go - they usually don't have any.",fullList,,high_prior,NA,Graduated High-school,male,coffeeShop,English,87792,2,main
+3374,25,"Absolutely, right outside are some cars! CityCar, Zipcar, and Car2Go, though I think Zipcar might not have any outside at the moment.","exceptive, fullList",,low_prior,NA,Graduated High-school,male,carshring,English,57013,3,main
+3374,25,"All of them except American Express, we apologize in advance for any inconvenience that causes.",exceptive,,low_prior,NA,Graduated High-school,male,cardBlanche,English,26339,4,main
+3374,25,motorcycle,,,filler,motorcycle,Graduated High-school,male,carRental-moving,English,15906,5,filler
+3375,40,"Yes, we sell lots of videogames for most major consoles. Which console games are you looking for?",taciturn_more,,high_prior,NA,Graduated High-school,male,videoGames,English,67179,1,main
+3375,40,"Yes, right now we have either green, or orange juice. Which one would you like?",fullList,,low_prior,NA,Graduated High-school,male,airplaneJuice,English,64573,2,main
+3375,40,"Yes, they usually are parked in front of the cinema plaza.",taciturn,,high_prior,NA,Graduated High-school,male,carshring,English,90210,3,main
+3375,40,"Yes, McCafe should have what you need.",mostLikely,,low_prior,NA,Graduated High-school,male,coffeeShop,English,51170,4,main
+3375,40,London,,,filler,London,Graduated High-school,male,airport-usa,English,16180,5,filler
+3376,32,"Yes, we have mopeds and electric bikes. However, both are only available for licensed users. ",fullList,,low_prior,NA,Graduated High-school,female,dricersLicense,english,87318,1,main
+3376,32,"Yes, car2go and citycar have cars parked out front.",fullList,,low_prior,NA,Graduated High-school,female,carshring,english,106328,2,main
+3376,32,sculpture,,,filler,sculpture,Graduated High-school,female,art-drawing,english,12849,3,filler
+3376,32,Yes.,taciturn,,high_prior,NA,Graduated High-school,female,parking,english,55765,4,main
+3376,32,"Yes, Starbucks is close by as well as McCafe. However, McCafe doesnt always have decaf. Starbucks is probably your best bet. ",fullList,,high_prior,NA,Graduated High-school,female,coffeeShop,english,87880,5,main
+3377,68,"Yes, we have scooters, mopeds, and bicycles.",other,I enjoyed completing this survey.,low_prior,NA,Graduated College,female,dricersLicense,English,35710,1,main
+3377,68,London,,I enjoyed completing this survey.,filler,London,Graduated College,female,airport-europe-UPDATED,English,16766,2,filler
+3377,68,I am on Facebook and Instagram.  You can connect with me on either one of those.,fullList,I enjoyed completing this survey.,high_prior,NA,Graduated College,female,socialMedia,English,33880,3,main
+3377,68,Mcdonalds has some limited vegan options.,mostLikely,I enjoyed completing this survey.,low_prior,NA,Graduated College,female,foodCourt,English,41890,4,main
+3377,68,"Yes, we have orange juice and tomato juice.",fullList,I enjoyed completing this survey.,high_prior,NA,Graduated College,female,airplaneJuice,English,22826,5,main
+3378,,teacher,,,filler,teacher,,,jobCenter-engineer,,32267,1,filler
+3378,,Of course we do,taciturn,,low_prior,NA,,,videoGames,,41248,2,main
+3378,,Yes there’s a couple of coffee places nearby.,taciturn,,high_prior,NA,,,coffeeShop,,61976,3,main
+3378,,"Yes, we have plenty of vehicle parking and bike parking.",fullList,,high_prior,NA,,,parking,,44720,4,main
+3378,,Yes we have some from Car2Go and CityCar,fullList,,low_prior,NA,,,carshring,,96548,5,main
+3379,41,London,,,filler,London,Higher degree,male,airport-europe-UPDATED,English,33460,1,filler
+3379,41,Yes. We accept American Express and Visa cards.,fullList,,high_prior,NA,Higher degree,male,cardBlanche,English,44158,2,main
+3379,41,Yes. We sell games for Wii and GameCube.,fullList,,low_prior,NA,Higher degree,male,videoGames,English,48349,3,main
+3379,41,Yep. I'm on Instagram and Threads. Look me up there.,fullList,,low_prior,NA,Higher degree,male,socialMedia,English,50485,4,main
+3379,41,"Absolutely. Starbucks is nearby and has decaf options. There is a McCafe nearby, too, that sometimes has decaf.",fullList,,high_prior,NA,Higher degree,male,coffeeShop,English,102696,5,main
+3380,30,London,,,filler,London,Graduated High-school,male,airport-usa,English,24217,1,filler
+3380,30,Yes we do. We have mopeds and bikes available.,fullList,,low_prior,NA,Graduated High-school,male,dricersLicense,English,128518,2,main
+3380,30,"Sure, whats your insta?",mostLikely,,low_prior,NA,Graduated High-school,male,socialMedia,English,49035,3,main
+3380,30,"I do, we have a parking garage and bike parking.",fullList,,high_prior,NA,Graduated High-school,male,parking,English,51271,4,main
+3380,30,There is a Starbucks close to here.,mostLikely,,high_prior,NA,Graduated High-school,male,coffeeShop,English,49432,5,main
+3381,21,"Yes, there is a repair shop on the third floor of the mall at the end. They can repair all types of phones, except for iPhones",exceptive,,low_prior,NA,Graduated College,male,phoneRepair,English,76946,1,main
+3381,21,"Yes, we do! We have a wide selection of video games for all consoles except GameCube. We carry popular titles for PlayStation and Wii, as well as some retro games for older consoles.","exceptive, fullList",,high_prior,NA,Graduated College,male,videoGames,English,33718,2,main
+3381,21,"Yes, we do have a variety of parking options available for our guests! We offer secure bike parking and a helipad for those arriving by helicopter. However, we currently do not have a traditional car garage on-site","exceptive, fullList",,low_prior,NA,Graduated College,male,parking,English,30066,3,main
+3381,21,"Absolutely! We offer a variety of micro mobility options to help you explore the town conveniently. You can rent electric scooters or mopeds from our rental service right here at the hotel. Both are perfect for getting around town quickly and easily. However, we currently don't offer electric bikes as they require a special license.","exceptive, fullList",,high_prior,NA,Graduated College,male,dricersLicense,English,19806,4,main
+3381,21,"Unfortunately, we don't have any ink drawings for this particular exhibition. The artist is showcasing their work in crayons, oil paints, and pencil drawings. However, we do carry a wide selection of ink from various brands in the back if you'd like to explore that option for your own creations!",,,filler,sculpture,Graduated College,male,art-drawing,English,20476,5,filler
+3382,39,Taco Bell and McDonalds have some vegan options. Occasionally Shake Shack does as well. ,other,This was rather irritating to do on mobile (using safari as the browser). I had to turn my phone to landscape orientation because even the 50% zoom didn’t display all the text fully.,high_prior,NA,Graduated High-school,female,foodCourt,English,125487,1,main
+3382,39,"Yes, we do.",taciturn,This was rather irritating to do on mobile (using safari as the browser). I had to turn my phone to landscape orientation because even the 50% zoom didn’t display all the text fully.,high_prior,NA,Graduated High-school,female,parking,English,57726,2,main
+3382,39,"Yes, we have green juice and orange juice.",fullList,This was rather irritating to do on mobile (using safari as the browser). I had to turn my phone to landscape orientation because even the 50% zoom didn’t display all the text fully.,low_prior,NA,Graduated High-school,female,airplaneJuice,English,87930,3,main
+3382,39,"Yes, I’d try McCafe first, because the only other option Cafe Nero, only occasionally has decaf. ",fullList,This was rather irritating to do on mobile (using safari as the browser). I had to turn my phone to landscape orientation because even the 50% zoom didn’t display all the text fully.,low_prior,NA,Graduated High-school,female,coffeeShop,English,116587,4,main
+3382,39,sculpture,,This was rather irritating to do on mobile (using safari as the browser). I had to turn my phone to landscape orientation because even the 50% zoom didn’t display all the text fully.,filler,sculpture,Graduated High-school,female,art-painting,English,30347,5,filler
+3383,22,"Yes, we have electric scooters and mopeds.",fullList,,high_prior,NA,Graduated College,female,dricersLicense,English,58196,1,main
+3383,22,teacher,,,filler,teacher,Graduated College,female,jobCenter-office,English,11369,2,filler
+3383,22,There is Zipcar and Car2Go outside the cinema,fullList,,high_prior,NA,Graduated College,female,carshring,English,34498,3,main
+3383,22,There is McCafe and Cafe Nero,fullList,,low_prior,NA,Graduated College,female,coffeeShop,English,21164,4,main
+3383,22,"Yes, I use Instagram and Threads.",fullList,,low_prior,NA,Graduated College,female,socialMedia,English,23716,5,main
+3384,49,yes their are but not always,taciturn_more,thanks,high_prior,NA,Higher degree,male,foodCourt,,52853,1,main
+3384,49,no i dont sell video games,no,thanks,low_prior,NA,Higher degree,male,videoGames,,38727,2,main
+3384,49,sure you can some not quite far,taciturn,thanks,low_prior,NA,Higher degree,male,coffeeShop,,19140,3,main
+3384,49,you can get some but dont actually know where,taciturn,thanks,high_prior,NA,Higher degree,male,dricersLicense,,29200,4,main
+3384,49,classic,,thanks,filler,classic,Higher degree,male,music-hardrock,,23219,5,filler
+3385,45,Of course! ,taciturn,,low_prior,NA,Graduated High-school,female,socialMedia,english,48416,1,main
+3385,45,"Yes, there is a small repair shop in the mall. ",taciturn,,high_prior,NA,Graduated High-school,female,phoneRepair,english,51426,2,main
+3385,45,McDonalds has limited options and Shake Shack only has vegan options sometimes.,fullList,,low_prior,NA,Graduated High-school,female,foodCourt,english,62559,3,main
+3385,45,"Yes, we accept Visa and American Express, thank you!",fullList,,high_prior,NA,Graduated High-school,female,cardBlanche,english,68347,4,main
+3385,45,motorcycle,,,filler,motorcycle,Graduated High-school,female,carRental-fun,english,26301,5,filler
+3386,46,"Yes, Taco Bell should have vegan options. If not, you can try McDonalds.",fullList,,high_prior,NA,Graduated High-school,female,foodCourt,English,51654,1,main
+3386,46,"You can try McCafe, they usually have decaf options.",mostLikely,,low_prior,NA,Graduated High-school,female,coffeeShop,English,44718,2,main
+3386,46,"Yes, try Zipcar or Car2Go. Both should have cars outside.",fullList,,high_prior,NA,Graduated High-school,female,carshring,English,56396,3,main
+3386,46,classic,,,filler,classic,Graduated High-school,female,music-softrock,English,13494,4,filler
+3386,46,"As long as you don't have an iPhone, there is a repair shop here.",exceptive,,low_prior,NA,Graduated High-school,female,phoneRepair,English,42412,5,main
+3387,43,"Yes, we accept American Express and Visa.",fullList,,high_prior,NA,Graduated College,female,cardBlanche,English,44197,1,main
+3387,43,"Yes, you can use CityCar and Car2Go.",fullList,,low_prior,NA,Graduated College,female,carshring,English,89305,2,main
+3387,43,"Yes, we have green and orange juice only.",fullList,,low_prior,NA,Graduated College,female,airplaneJuice,English,24452,3,main
+3387,43,Classic,,,filler,classic,Graduated College,female,music-softrock,English,11629,4,filler
+3387,43,"Yes,Starbucks always has decaf and McCafe sometimes has decaf options. ",fullList,,high_prior,NA,Graduated College,female,coffeeShop,English,125300,5,main
+3388,38,motorcycle,,n/a,filler,motorcycle,Higher degree,female,carRental-moving,English,32409,1,filler
+3388,38,Yes. You can find carshare vehicles parked right outside.,taciturn_more,n/a,high_prior,NA,Higher degree,female,carshring,English,71245,2,main
+3388,38,McCafe may have decaf available. Cafe Nero only occasionally offers limited edition decaf options.,fullList,n/a,low_prior,NA,Higher degree,female,coffeeShop,English,80553,3,main
+3388,38,We offer parking but do not have a parking garage. What type of vehicle are you looking to park?,exceptive,n/a,low_prior,NA,Higher degree,female,parking,English,84544,4,main
+3388,38,"Sure, I have Facebook and Instagram.",fullList,n/a,high_prior,NA,Higher degree,female,socialMedia,English,34786,5,main
+3389,21,Car2Go and CityCar are the most available options.,fullList,,low_prior,NA,Graduated High-school,female,carshring,English,95787,1,main
+3389,21,All but the Card Blanche is accepted.,exceptive,,high_prior,NA,Graduated High-school,female,cardBlanche,English,63405,2,main
+3389,21,We have the tomato juice and the orange juice. Which would you prefer?,fullList,,high_prior,NA,Graduated High-school,female,airplaneJuice,English,113667,3,main
+3389,21,London,,,filler,London,Graduated High-school,female,airport-usa,English,26208,4,filler
+3389,21,"Yes, we offer vehicles services such as mopeds and electric bikes. Which one would you like to rent?",fullList,,low_prior,NA,Graduated High-school,female,dricersLicense,English,110802,5,main
+3390,36,No,no,A nice study,low_prior,NA,Higher degree,male,foodCourt,,93464,1,main
+3390,36,Yes,taciturn,A nice study,high_prior,NA,Higher degree,male,socialMedia,,76486,2,main
+3390,36,London,,A nice study,filler,London,Higher degree,male,airport-usa,,30886,3,filler
+3390,36,"Yes, you can",taciturn,A nice study,high_prior,NA,Higher degree,male,carshring,,80392,4,main
+3390,36,Yes but not the frequent American Express,exceptive,A nice study,low_prior,NA,Higher degree,male,cardBlanche,,77834,5,main
+3391,30,We have several tiers. What are you looking for?,taciturn_more,,high_prior,NA,Graduated College,male,dricersLicense,"English, Spanish",58810,1,main
+3391,30,"Yes, we do, but we're currently out of the Playstation.",exceptive,,low_prior,NA,Graduated College,male,videoGames,"English, Spanish",59412,2,main
+3391,30,"Sure, I got Instagram and Facebook.",fullList,,high_prior,NA,Graduated College,male,socialMedia,"English, Spanish",104076,3,main
+3391,30,"No, but we have an array of other styles.",no,,filler,sculpture,Graduated College,male,art-drawing,"English, Spanish",153670,4,filler
+3391,30,"Unfortunately we offer other types of parking.
+",taciturn_more,,low_prior,NA,Graduated College,male,parking,"English, Spanish",227823,5,main
+3392,45,"Yes, we only accept Visa cards.",mostLikely,,low_prior,NA,Graduated College,male,cardBlanche,English,56264,1,main
+3392,45,"Yes, there are are Car2Go and CityCar drivers up front.",fullList,,low_prior,NA,Graduated College,male,carshring,English,54919,2,main
+3392,45,Sure. Here is my Facebook and Instagram information.,fullList,,high_prior,NA,Graduated College,male,socialMedia,English,149237,3,main
+3392,45,"Yes, we have PlayStation and Wii game available.",fullList,,high_prior,NA,Graduated College,male,videoGames,English,36732,4,main
+3392,45,classic,,,filler,classic,Graduated College,male,music-hardrock,English,29171,5,filler

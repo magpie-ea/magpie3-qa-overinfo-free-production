@@ -1,30 +1,8 @@
-# Text production experiment on over-informative answers to preference-signaling questions
+# Experiments & analysis for pragmatic question choice and answer choices
 
-This is an online experiment using [magpie](https://magpie-experiments.org/).
-
-You can inspect a live version of the free typing experiment [here](https://magpie-ea.github.io/magpie3-qa-overinfo-free-production/experiments/free_production/).
-
-You can inspect a live version of the prior elicitation experiment [here](https://magpie3-qa-overinformative-priors.netlify.app/).
-
-You can inspect the context-sensitivity free produciont experiment (E2) [here](https://magpie-ea.github.io/magpie3-qa-overinfo-free-production/experiments/contextSensitive_free_production/).
-
-### Local execution 
-
-First, clone the repository and set up the project with `npm install`.
-
-To run the project locally, run `npm run serve`.
-
-To build the project for deployment (e.g. to Netlify), run `npm run build`.
-
-For more information, see the [manual](https://magpie-experiments.org/).
-
-
-# Neural models
-
-This repository also contains code for sampling responses to the same questions used in the human experiment from neural models. Additionally, pretrained neural language models are used in order to score different types of overinformative responses (of the same types used in the classification of the human data) under these models. 
-
-The directory `code` contains scripts for sampling results from models made available on Huggingface hub. The summarized results in the directory `data_paper_neural`. For raw files, contact Polina. 
-
+This repository contains experimental code and data for a project on pragmatic choice of questions and answers.
+Experiments are contained in `experiments`.
+Code for comparison to LLMs, data and data analysis is in `code`, `data+analysis`, and `data_paper_neural`, as detailed below.
 
 ### `code`
 Directory containing scripts for sampling neural model results. Both scripts allow to both sample responses and to score different types of overinformative responses (of the same types used in the classification of the human data) under pretrained neural language models. 
@@ -104,10 +82,3 @@ Anonymized, categorized, possibly post-exclusion files from human experiments. T
 
 Directory containing exported plots from various analyses. The plots used for cogsci are `e1_4prompts.pdf`, `e2_byPrompt_cogsci_final.pdf`.
 
-### `experiments`
-
-This directory contains experiments implemented in magpie (see above for live hosted versions and local hosting instructions).
-
-* `contextSensitive_free_production`: directory with experiment 2 (free production given vignettes which were paired and presented same alternatives in two different contexts, manipulating their functional relevance)
-* `free_production`: directory with experiment 1 (free production given different options in contexts)
-* `prior_elicitation`: prior / conditional likability / similarity rating of items used in E1. (slider rating experiment)

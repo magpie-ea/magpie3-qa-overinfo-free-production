@@ -204,6 +204,36 @@ e1_gpt3_summary %>%
   guides(fill=guide_legend(title="Response category")) +
   ggtitle("GPT-3")
 ```
+Explore computation of distance between human and model proportions:
+```{r}
+euclidean_dist <- function(p, q){
+  return(sqrt(sum((p-q)**2)))
+}
+# try l2 norm
+e1_gpt3_summary_wide <- e1_gpt3_summary %>% pivot_wider(names_from = prompt, values_from = prop, values_fill = 0.00001)
+e1_gpt3_summary_wide_l2 <- e1_gpt3_summary_wide %>%
+  mutate(one_shot_l2 = euclidean_dist(`human E1`, `one-shot QA`),
+         cot_l2 = euclidean_dist(`human E1`, `one-shot CoT`),
+         zero_l2 = euclidean_dist(`human E1`, `zero-shot`),
+         expl_l2 = euclidean_dist(`human E1`, `one-shot Explanation`))
+# eye balling results makes sense here
+
+# try JS divergence
+js_divergence <- function(p, q){
+  m = 0.5*(p + q)
+  p_log = p*(log(p/m))
+  q_log = q*(log(q/m))
+  print(p_log)
+  print(q_log)
+  jsp = 0.5*(sum(p*(log(p/m)))) + 0.5*(sum(q*(log(q/m))))
+  return(jsp)
+}
+e1_gpt3_summary_wide_js <- e1_gpt3_summary_wide %>%
+  mutate(one_shot_js = js_divergence(`human E1`, `one-shot QA`),
+         cot_js = js_divergence(`human E1`, `one-shot CoT`),
+         zero_js = js_divergence(`human E1`, `zero-shot`),
+         expl_js = js_divergence(`human E1`, `one-shot Explanation`))
+```
 
 ```{r}
 gpt4_e1_summary %>% 

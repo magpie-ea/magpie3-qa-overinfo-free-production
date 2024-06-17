@@ -1,0 +1,31 @@
+,itemName,settingName,priorElicitation_context,priorElicitation_question,itemQuestion,competitor,sameCategory,otherCategory,correct_response
+0,cafe-pie,cafe,Suppose someone wants,got,raspberry cake,raspberry pie,chocolate cookies,cheese pizza,main
+1,cafe-pizza,cafe,Suppose someone wants,got,veggie pizza,cheese pizza,pepperoni pizza,raspberry pie,main
+2,bar-whiteWine,bar,Suppose someone wants,got,Sauvignon Blanc,Chardonnay,craft beer,iced coffee,main
+3,bar-tea,bar,Suppose someone wants,got,iced tea,iced coffee,soda,Chardonnay,main
+4,touristInfo-childTheatre,touristInfo,Suppose someone wants to see,saw,a theatre performance for children,a circus show,a trade fare,a club event with a hip hop DJ,main
+5,touristInfo-clubbing,touristInfo,Suppose someone wants to see,saw,a club event with electronic music,a club event with a hip hop DJ,live jazz music,a circus show,main
+6,bookingAgency-lowClassAccommodation,bookingAgency,Suppose someone wants,got,a bed in the youth hostel,a room in a cheap bed-and-breakfast,a room in a budget hotel,a suite in a four-star hotel,main
+7,bookingAgency-highClassAccommodation,bookingAgency,Suppose someone wants,got,a single room in a five-star hotel.,a suite in a four-star hotel,an expensive apartment close to the city,a cheap bed-and-breakfast,main
+8,waterSport-motor,waterSport,Suppose someone wants to rent ,got,a jet ski,water ski equipment,a rubber dinghy,a kayak,main
+9,waterSport-muscle,waterSport,Suppose someone wants to rent ,got,a canoe,a kayak,a pedal boat,water ski equipment,main
+10,dutyFree-smokes,dutyFree,Suppose someone wants,got,cigars,cigarettes,gin,gingerbread,main
+11,dutyFree-sweets,dutyFree,Suppose someone wants,got,cookies,gingerbread,granola bars,cigarettes,main
+12,clothing-clothes,clothing,Suppose someone wants,got,a Hawaiian shirt,shorts,a sweatshirt,a necklace,main
+13,clothing-acc,clothing,Suppose someone wants,got,earrings,a necklace,sunglasses,shorts,main
+14,petAdoption-dogs,petAdoption,Suppose someone wants,got,a Dalmatian,a golden retriever,chihuahuas,a gerbil,main
+15,petAdoption-hamster,petAdoption,Suppose someone wants,got,a hamster,a gerbil,a ferret,a golden retriever,main
+16,books-romance,books,Suppose someone wants,got,a book of love poems,a book of French love letters,a historical drama book,a mystery novel,main
+17,books-fantasy,books,Suppose someone wants,got,a psychological thriller,a mystery novel,an adventure novel,a book of French love letters,main
+18,electronics-laptop,electronics,Suppose someone wants,got,a MacBook Pro,a MacBook Air,a desktop computer,an Xbox,main
+19,electronics-console,electronics,Suppose someone wants,got,a PlayStation,an Xbox,a Gameboy,a MacBook Air,main
+20,gym-yoga,gymActivities,Suppose someone wants to take ,took,a yoga class,a pilates class,a zumba class,a kickboxing class,main
+21,gym-boxing,gymActivities,Suppose someone wants to take ,took,a boxing class,a kickboxing class,a karate class,a pilates class,main
+22,kidsActivities-crafts,kidsActivities,Suppose someone wants to take ,took,a pottery class,a watercolor painting class,a carpentry workshop,an acrobatics class,main
+23,kidsActivities-sports,kidsActivities,Suppose someone wants to take ,took,a gymnastics class,an acrobatics class,a karate class,a watercolor painting class,main
+24,friendsActivities-boardGames,friendsActivities,Suppose someone wants to spend time with,spent time with,Scrabble,Monopoly,checkers,some movies,main
+25,friendsActivities-videoEntertainment,friendsActivities,Suppose someone wants to spend time with,spent time with,Netflix,some movies,Xbox games,Monopoly,main
+26,interior-green,interior,Suppose someone wants,got,an aloe vera plant,an agave plant,tulips,an oil painting,main
+27,interior-deco,interior,Suppose someone wants,got,watercolor painting,an oil painting,some printed photographs,an agave plant,main
+28,zoo-xl,zoo,Suppose someone wants to see ,saw,a tiger,a lion,a giraffe,an iguana,main
+29,zoo-reptiles,zoo,Suppose someone wants to see ,saw,a chameleon,an iguana,a turtle,a lion,main
