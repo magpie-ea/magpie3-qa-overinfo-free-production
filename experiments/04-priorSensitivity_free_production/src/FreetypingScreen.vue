@@ -82,7 +82,7 @@ function createText(trial, condition, trial_type){
         console.log(questionKey)
         console.log(contextKey)
         if (contextKey == "yes") {
-          var alternativesPowerset = powerSetRecursive( _.shuffle(['optionA', 'optionB', 'optionC']));
+          var alternativesPowerset = [['optionA', 'optionB', 'optionC'], ['optionA'], ['optionA', 'optionB'], ['optionA', 'optionC']];
         } else {
           var alternativesPowerset = powerSetRecursive( _.shuffle(['optionB', 'optionC']));
         }
