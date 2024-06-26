@@ -8,7 +8,8 @@
               itemName: trial.itemName,
               trial_type: trial_type,
               correct_response: trial.correct_response,
-              condition: condition
+              condition: condition,
+              alternatives: trialAlternatives
             }"
           />
 
@@ -40,7 +41,7 @@
 import _ from 'lodash';
 
 
-function createText(trial, condition, trial_type){
+function createText(trial, condition, trial_type, trialAlternatives){
       if (trial_type == 'filler'){
         // shuffle the order of the alternatives
         var itemOrder = _.shuffle(['competitor', 'sameCategory', 'otherCategory'])
@@ -56,50 +57,26 @@ function createText(trial, condition, trial_type){
         return slide_text
       } else {
 
-        const powerSetRecursive = (arr, prefix=[], set=[[]]) => {
-          if(arr.length === 0) return// Base case, end recursion
-          
-          for (let i = 0; i < arr.length; i++) {
-              set.push(prefix.concat(arr[i]))// If a prefix comes through, concatenate value
-              powerSetRecursive(arr.slice(i + 1), prefix.concat(arr[i]), set)
-              // Call function recursively removing values at or before i and adding  
-              // value at i to prefix
-          }
-          return set
-        }
         var allOptions = ['optionA', 'optionB', 'optionC'];
-        
+
         // retrieve question corresponding to condition
         var continuation = trial['continuation']
         console.log(continuation)
         var vignette_start = trial.context_begin
         var vignette_continuation = trial.context_cont
-        // split the condition to get the question and the applicable context
+        
+        // console.log(alternativeOrder)
+        // $magpie.measurements["alternatives"] = alternativeOrder;
         var questionKey = condition.split("|")[0]
         var contextKey = condition.split("|")[1]
         var question = trial[questionKey]
-        console.log(condition)
-        console.log(questionKey)
-        console.log(contextKey)
-        if (contextKey == "yes") {
-          var alternativesPowerset = [['optionA', 'optionB', 'optionC'], ['optionA'], ['optionA', 'optionB'], ['optionA', 'optionC']];
-        } else {
-          var alternativesPowerset = powerSetRecursive( _.shuffle(['optionB', 'optionC']));
-        }
-        // remove the empty set
-        alternativesPowerset.shift();
-        console.log(alternativesPowerset);
-        // select a random alternative set
-        var alternativeOrder = _.sample(alternativesPowerset)
-        console.log(alternativeOrder)
-
         // retrieve the alternatives in the randomized order
         var context = allOptions.map(x => trial[x])
         // add and before the last alternative
         context.splice(-1, 1, "and ".concat(context.at(-1))).concat(".");
         var context = context.join(", ").concat(".");
 
-        var available_alternatives = alternativeOrder.map(x => trial[x])
+        var available_alternatives = trialAlternatives.map(x => trial[x])
         if (available_alternatives.length > 1) {
           available_alternatives.splice(-1, 1, "and ".concat(available_alternatives.at(-1)));
         } 
@@ -137,6 +114,10 @@ export default {
         condition: {
           type: String,
           default: undefined
+        },
+        trialAlternatives: {
+          type: Array,
+          default: undefined
         }
     },
     methods: {
@@ -144,7 +125,7 @@ export default {
     },
     computed: {
       createScreen(){
-        return createText(this.trial, this.condition, this.trial_type)
+        return createText(this.trial, this.condition, this.trial_type, this.trialAlternatives)
       }
     }
 };  

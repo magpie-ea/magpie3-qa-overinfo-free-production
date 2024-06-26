@@ -37,7 +37,7 @@
 
     <template v-for="(trial, i) in trials">
      <template v-if="!trial.type">
-      <FreetypingScreen :key=i :trial=trial[0] :trial_type="'main'" :index=i :progress="i / trials.length" :condition=trial[1] />     
+      <FreetypingScreen :key=i :trial=trial[0] :trial_type="'main'" :index=i :progress="i / trials.length" :condition=trial[1] :trialAlternatives=trial[2] />     
      </template>
      <template v-else>
       <FreetypingScreen :key=i :trial=trial :trial_type="'filler'" :index=i :progress="i / trials.length" :condition="'filler'" />     
@@ -59,14 +59,52 @@ import FreetypingScreen from './FreetypingScreen';
 
 var group = _.sample(['odd', 'even']);
 
+const powerSetRecursive = (arr, prefix=[], set=[[]]) => {
+  if(arr.length === 0) return// Base case, end recursion
+  
+  for (let i = 0; i < arr.length; i++) {
+      set.push(prefix.concat(arr[i]))// If a prefix comes through, concatenate value
+      powerSetRecursive(arr.slice(i + 1), prefix.concat(arr[i]), set)
+      // Call function recursively removing values at or before i and adding  
+      // value at i to prefix
+  }
+  return set
+};
+
+const createAlternatives = (condition) => {
+  // split the condition to get the question and the applicable context
+  var questionKey = condition.split("|")[0]
+  var contextKey = condition.split("|")[1]
+  console.log(condition)
+  console.log(questionKey)
+  console.log(contextKey)
+  if (contextKey == "yes") {
+    var alternativesPowerset = [['optionA', 'optionB', 'optionC'], ['optionA'], ['optionA', 'optionB'], ['optionA', 'optionC']];
+  } else {
+    var alternativesPowerset = powerSetRecursive( _.shuffle(['optionB', 'optionC']));
+  }
+  // remove the empty set
+  alternativesPowerset.shift();
+  console.log(alternativesPowerset);
+  // select a random alternative set
+  var alternativeOrder = _.sample(alternativesPowerset);
+
+  return alternativeOrder
+};
+
+var allOptions = ['optionA', 'optionB', 'optionC'];
+
 const n_vignettes = 6;
 const n_fillers = 1;
 // trials types to be used in expt (equal number of high and low prior trials)
 const trial_types = _.shuffle(['question_any', 'question_any', 'question_optionA|yes', 'question_optionA|no', 'question_optionA|yes', 'question_optionA|no']);
+const trial_alternatives = trial_types.map(createAlternatives);
+console.log("trial_alternatives")
+console.log(trial_alternatives);
 // sample main trials
 const selected_trials =_.sampleSize(trials, n_vignettes);
 // combine trials and their types at random
-const trials_w_types = _.zip(selected_trials, trial_types);
+const trials_w_types = _.zip(selected_trials, trial_types, trial_alternatives);
 
 const fillers =
   group == 'odd'
