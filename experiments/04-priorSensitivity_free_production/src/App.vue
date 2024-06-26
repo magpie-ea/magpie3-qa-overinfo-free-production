@@ -53,7 +53,7 @@
 
 <script>
 import _ from 'lodash';
-import trials from '../trials/trials_pilot3.csv';
+import trials from '../trials/trials_pilot3_general.csv';
 import fillersAll from '../trials/fillers.csv';
 import FreetypingScreen from './FreetypingScreen';
 
@@ -62,7 +62,7 @@ var group = _.sample(['odd', 'even']);
 const n_vignettes = 6;
 const n_fillers = 1;
 // trials types to be used in expt (equal number of high and low prior trials)
-const trial_types = _.shuffle(['question_any', 'question_optionA', 'question_optionB', 'question_any', 'question_optionA', 'question_optionB']);
+const trial_types = _.shuffle(['question_any', 'question_any', 'question_optionA|yes', 'question_optionA|no', 'question_optionA|yes', 'question_optionA|no']);
 // sample main trials
 const selected_trials =_.sampleSize(trials, n_vignettes);
 // combine trials and their types at random

@@ -39,6 +39,7 @@
 <script>
 import _ from 'lodash';
 
+
 function createText(trial, condition, trial_type){
       if (trial_type == 'filler'){
         // shuffle the order of the alternatives
@@ -54,22 +55,60 @@ function createText(trial, condition, trial_type){
         var slide_text = [vignette_start, context, vignette_continuation, "\"".concat(question).concat("\""), "\\n\\n", "You reply: "].join(" ");
         return slide_text
       } else {
-        // randomize the initial order of alternatives
-        var alternativeOrder = _.shuffle(['optionA', 'optionB', 'optionC'])
-        console.log(alternativeOrder)
+
+        const powerSetRecursive = (arr, prefix=[], set=[[]]) => {
+          if(arr.length === 0) return// Base case, end recursion
+          
+          for (let i = 0; i < arr.length; i++) {
+              set.push(prefix.concat(arr[i]))// If a prefix comes through, concatenate value
+              powerSetRecursive(arr.slice(i + 1), prefix.concat(arr[i]), set)
+              // Call function recursively removing values at or before i and adding  
+              // value at i to prefix
+          }
+          return set
+        }
+        var allOptions = ['optionA', 'optionB', 'optionC'];
+        
         // retrieve question corresponding to condition
         var continuation = trial['continuation']
         console.log(continuation)
         var vignette_start = trial.context_begin
         var vignette_continuation = trial.context_cont
-        var question = trial[condition]
+        // split the condition to get the question and the applicable context
+        var questionKey = condition.split("|")[0]
+        var contextKey = condition.split("|")[1]
+        var question = trial[questionKey]
+        console.log(condition)
+        console.log(questionKey)
+        console.log(contextKey)
+        if (contextKey == "yes") {
+          var alternativesPowerset = powerSetRecursive( _.shuffle(['optionA', 'optionB', 'optionC']));
+        } else {
+          var alternativesPowerset = powerSetRecursive( _.shuffle(['optionB', 'optionC']));
+        }
+        // remove the empty set
+        alternativesPowerset.shift();
+        console.log(alternativesPowerset);
+        // select a random alternative set
+        var alternativeOrder = _.sample(alternativesPowerset)
+        console.log(alternativeOrder)
+
         // retrieve the alternatives in the randomized order
-        var context = alternativeOrder.map(x => trial[x])
+        var context = allOptions.map(x => trial[x])
         // add and before the last alternative
-        context.splice(-1, 1, "and ".concat(context.at(-1)));
+        context.splice(-1, 1, "and ".concat(context.at(-1))).concat(".");
         var context = context.join(", ").concat(".");
+
+        var available_alternatives = alternativeOrder.map(x => trial[x])
+        if (available_alternatives.length > 1) {
+          available_alternatives.splice(-1, 1, "and ".concat(available_alternatives.at(-1)));
+        } 
+        var available_alternatives = available_alternatives.join(", ").concat(".");
+        var question_prep = trial['question_prep']
+        
         var answerTemplate = trial.answer_template
-        var slide_text = [[[vignette_start, context].join(" "), continuation].join("\\n"), question, answerTemplate].join("\\n\\n"); //context.join(", ").concat(".");
+        var slide_text = [[
+          [vignette_start, context].join(" "), [continuation, available_alternatives].join(" ")].join("\\n"), [question_prep, question].join(" "), answerTemplate].join("\\n\\n"); //context.join(", ").concat(".");
         console.log(slide_text)
         // var slide_text = [vignette_start, context, vignette_continuation, "\"".concat(question).concat("\""), "\\n\\n", "You reply: "].join(" ");
         return slide_text
