@@ -1,0 +1,179 @@
+submission_id,age,alternatives,answer,category,comments,condition,correct_response,education,gender,itemName,languages,responseTime,trialNr,trial_type
+3944,35,optionB,"yes, you can find them right in front of the cinema. ",error,,question_optionA|no,NA,Higher degree,male,carshring,ENGLISH,32840,1,main
+3944,35,NA,sculpture,,,filler,sculpture,Higher degree,male,art-drawing,ENGLISH,20024,2,filler
+3944,35,optionB,"yes, we do have. ",taciturn,,question_any,NA,Higher degree,male,parking,ENGLISH,21560,3,main
+3944,35,optionA|optionC,"yes, we have them in store.",taciturn,,question_optionA|yes,NA,Higher degree,male,videoGames,ENGLISH,16848,4,main
+3944,35,optionC,"yes, we do ",error,,question_optionA|no,NA,Higher degree,male,dricersLicense,ENGLISH,27184,5,main
+3944,35,optionA|optionC,"yes, there is Starbucks nearby. ",option,,question_optionA|yes,NA,Higher degree,male,coffeeShop,ENGLISH,26887,6,main
+3944,35,optionC,"yes, we can connect on Threads. ",fullList,,question_any,NA,Higher degree,male,socialMedia,ENGLISH,16016,7,main
+3945,29,optionA,"Yes, we have a garage at our hotel for cars. ",taciturn,,question_optionA|yes,NA,Higher degree,female,parking,English,76253,1,main
+3945,29,NA,motorcycle,,,filler,motorcycle,Higher degree,female,carRental-fun,English,14808,2,filler
+3945,29,optionB,"I don't have a Facebook, I mostly use Instagram.",fullList,,question_optionA|no,NA,Higher degree,female,socialMedia,English,27256,3,main
+3945,29,optionB,"Yes, there is a Taco Bell in the mall. ",fullList,,question_optionA|no,NA,Higher degree,female,foodCourt,English,16688,4,main
+3945,29,optionB,"Yes, there are a number of cars from Car2Go in front of the movie theater.",fullList,,question_any,NA,Higher degree,female,carshring,English,35021,5,main
+3945,29,optionA,"Yes, we do accept American Express. ",taciturn,,question_optionA|yes,NA,Higher degree,female,cardBlanche,English,13173,6,main
+3945,29,optionC,"Yes, we offer a number of juices. We have tomato juice, orange juice and green juice. ",error,,question_any,NA,Higher degree,female,airplaneJuice,English,38698,7,main
+3946,28,NA,teacher,,,filler,teacher,Graduated College,female,jobCenter-engineer,English ,22661,1,filler
+3946,28,optionC,"Yes, Cafe Nero is nearby ",fullList,,question_any,NA,Graduated College,female,coffeeShop,English ,33970,2,main
+3946,28,optionA|optionC,"Yes, there is a garage for cars. ",option,,question_optionA|yes,NA,Graduated College,female,parking,English ,50453,3,main
+3946,28,optionC|optionB,"Yes, I am on Threads and Instagram ",fullList,,question_any,NA,Graduated College,female,socialMedia,English ,32360,4,main
+3946,28,optionC|optionB,"No, there is no taco bell at the mall",taciturn,,question_optionA|no,NA,Graduated College,female,foodCourt,English ,19403,5,main
+3946,28,optionA,"Yes, there are Zipcars in front of the cinema. ",taciturn,,question_optionA|yes,NA,Graduated College,female,carshring,English ,35779,6,main
+3946,28,optionC,"No, we only have green juice ",fullList,,question_optionA|no,NA,Graduated College,female,airplaneJuice,English ,24052,7,main
+3947,27,optionA|optionC,Yes we do,taciturn,,question_optionA|yes,NA,Graduated High-school,male,videoGames,English,16399,1,main
+3947,27,optionB,No but there is a McCafe ,fullList,,question_optionA|no,NA,Graduated High-school,male,coffeeShop,English,25228,2,main
+3947,27,NA,London,,,filler,London,Graduated High-school,male,airport-europe-UPDATED,English,25961,3,filler
+3947,27,optionC,No but there is a shake shack,fullList,,question_optionA|no,NA,Graduated High-school,male,foodCourt,English,22184,4,main
+3947,27,optionA|optionC,Yes we do,taciturn,,question_optionA|yes,NA,Graduated High-school,male,cardBlanche,English,67757,5,main
+3947,27,optionC,Sure I use threads,fullList,,question_any,NA,Graduated High-school,male,socialMedia,English,16717,6,main
+3947,27,optionC|optionB,Yes ,taciturn,,question_any,NA,Graduated High-school,male,carshring,English,20887,7,main
+3948,32,optionA,"Yes, there are Zipcars in front of the cinema.",taciturn,,question_optionA|yes,NA,Graduated High-school,female,carshring,English,37466,1,main
+3948,32,optionC,"No, we do not have rental electric scooters, however we do offer electric bikes.",fullList,,question_optionA|no,NA,Graduated High-school,female,dricersLicense,English,41623,2,main
+3948,32,optionB,"No, unfortunately Delta only offers orange juice.",fullList,,question_optionA|no,NA,Graduated High-school,female,airplaneJuice,English,40791,3,main
+3948,32,optionA|optionC,"Yes, there is a Starbucks nearby.",option,,question_optionA|yes,NA,Graduated High-school,female,coffeeShop,English,29432,4,main
+3948,32,optionC,"Yes, the food court has a Shake Shack.",fullList,,question_any,NA,Graduated High-school,female,foodCourt,English,30679,5,main
+3948,32,optionB|optionC,"We have parking for bikes, as well as a landing platform for helicopters. ",fullList,,question_any,NA,Graduated High-school,female,parking,English,46478,6,main
+3948,32,NA,London,,,filler,London,Graduated High-school,female,airport-europe-UPDATED,English,15728,7,filler
+3955,41,optionA|optionB,Yes,taciturn,,question_optionA|yes,NA,Graduated High-school,female,airplaneJuice,English ,37195,1,main
+3955,41,optionA|optionC,Yes,taciturn,,question_optionA|yes,NA,Graduated High-school,female,carshring,English ,61998,2,main
+3955,41,optionB,No,taciturn,,question_optionA|no,NA,Graduated High-school,female,coffeeShop,English ,40583,3,main
+3955,41,optionB|optionC,No not for cars,taciturn,,question_any,NA,Graduated High-school,female,parking,English ,49881,4,main
+3955,41,optionB,Yes,error,,question_optionA|no,NA,Graduated High-school,female,videoGames,English ,35457,5,main
+3955,41,NA,No,,,filler,London,Graduated High-school,female,airport-usa,English ,19538,6,filler
+3955,41,optionB,Yes,taciturn,,question_any,NA,Graduated High-school,female,socialMedia,English ,33159,7,main
+3949,34,optionC|optionB,Sure! Do you have a Threads account?,option,,question_any,NA,Graduated College,female,socialMedia,English,45662,1,main
+3949,34,optionA|optionB,Yup. There should be some parked right up front.,taciturn,,question_optionA|yes,NA,Graduated College,female,carshring,English,84309,2,main
+3949,34,optionB|optionC,"Yes, we accept MaterCard and Card Blanche.",fullList,,question_any,NA,Graduated College,female,cardBlanche,English,53827,3,main
+3949,34,optionA|optionC,"Yes, in the food court.",taciturn,,question_optionA|yes,NA,Graduated College,female,foodCourt,English,34268,4,main
+3949,34,optionB,"Unfortunately during this long-distance flight, we are only offering orange juice.",fullList,,question_optionA|no,NA,Graduated College,female,airplaneJuice,English,82442,5,main
+3949,34,optionB|optionC,We actually have mopeds and electric bikes available for rental.,fullList,,question_optionA|no,NA,Graduated College,female,dricersLicense,English,78448,6,main
+3949,34,NA,classic,,,filler,classic,Graduated College,female,music-hardrock,English,30515,7,filler
+3950,57,optionA|optionB,Yes we do,taciturn,,question_optionA|yes,NA,Higher degree,female,dricersLicense,English,44992,1,main
+3950,57,NA,classic,,,filler,classic,Higher degree,female,music-softrock,English,41855,2,filler
+3950,57,optionC,You sure can,taciturn,,question_any,NA,Higher degree,female,carshring,English,50124,3,main
+3950,57,optionC|optionB,I don't have a Facebook account but you can get me on Threads and Instgram.,fullList,,question_optionA|no,NA,Higher degree,female,socialMedia,English,82078,4,main
+3950,57,optionA,Yes we do.,taciturn,,question_optionA|yes,NA,Higher degree,female,videoGames,English,38670,5,main
+3950,57,optionC|optionB,Yes there is. There are two.,taciturn,,question_any,NA,Higher degree,female,coffeeShop,English,44181,6,main
+3950,57,optionB|optionC,No there isn't but there is one right around the corner,taciturn,,question_optionA|no,NA,Higher degree,female,foodCourt,English,58552,7,main
+3951,30,optionA,Yes we do. Would you like some?,taciturn,Great Study!,question_optionA|yes,NA,Graduated College,female,airplaneJuice,English,119488,1,main
+3951,30,optionB,I'm sorry I don't have facebook.,taciturn,Great Study!,question_optionA|no,NA,Graduated College,female,socialMedia,English,35298,2,main
+3951,30,optionA|optionC,We sure do. Would you like to see it?,taciturn,Great Study!,question_optionA|yes,NA,Graduated College,female,videoGames,English,47889,3,main
+3951,30,optionC,"Yes, it's called CityCar. Would you like me to call them for you?",fullList,Great Study!,question_any,NA,Graduated College,female,carshring,English,153878,4,main
+3951,30,optionB,Yes we do.,taciturn,Great Study!,question_any,NA,Graduated College,female,parking,English,75058,5,main
+3951,30,optionC,"No, we only offer rentals for electric bikes.",fullList,Great Study!,question_optionA|no,NA,Graduated College,female,dricersLicense,English,118798,6,main
+3951,30,NA,Motorcycle,,Great Study!,filler,motorcycle,Graduated College,female,carRental-moving,English,68153,7,filler
+3952,31,optionA|optionC,yes we do!,taciturn,,question_optionA|yes,NA,Higher degree,female,airplaneJuice,english,57000,1,main
+3952,31,NA,motorcycle,,,filler,motorcycle,Higher degree,female,carRental-moving,english,30920,2,filler
+3952,31,optionB,"sorry we do not but we do have electric scooters, mopeds and electric bikes",error,,question_any,NA,Higher degree,female,dricersLicense,english,117365,3,main
+3952,31,optionA|optionB,sure! Right in front of the cinema,taciturn,,question_optionA|yes,NA,Higher degree,female,carshring,english,99174,4,main
+3952,31,optionC,"yes we do. there are parking options for three different types of vehicles: a garage for cars, parking for bikes and a landing platform for helicopters",error,,question_any,NA,Higher degree,female,parking,english,124782,5,main
+3952,31,optionB|optionC,oh i am sorry i am not on facebook but we can connect on instagram and threads if you have any of these,fullList,,question_optionA|no,NA,Higher degree,female,socialMedia,english,104741,6,main
+3952,31,optionC|optionB,the nearest coffee shops are cafe nero and mccafe. ,fullList,,question_optionA|no,NA,Higher degree,female,coffeeShop,english,132445,7,main
+3953,37,optionC|optionB,"Yes, we have green juice and orange juice.",fullList,,question_any,NA,Graduated High-school,male,airplaneJuice,English,65334,1,main
+3953,37,optionA|optionC,"Yes, one is parked right in front of the cinema.",taciturn,,question_optionA|yes,NA,Graduated High-school,male,carshring,English,63955,2,main
+3953,37,optionB|optionC,"No, unfortunately we don't. However we do accept Mastercard & Card Blanche.",fullList,,question_optionA|no,NA,Graduated High-school,male,cardBlanche,English,80935,3,main
+3953,37,NA,We have a morning flight to Boston. Unfortunately we don't have an afternoon flight.,,,filler,London,Graduated High-school,male,airport-usa,English,84414,4,filler
+3953,37,optionA,"Yes, there is a Taco Bell located in the food court.",taciturn,,question_optionA|yes,NA,Graduated High-school,male,foodCourt,English,45970,5,main
+3953,37,optionB,We exclusively sell Wii video game consoles.,fullList,,question_any,NA,Graduated High-school,male,videoGames,English,98067,6,main
+3953,37,optionB,We don't have electric scooters but we do offer mopeds.,fullList,,question_optionA|no,NA,Graduated High-school,male,dricersLicense,English,85622,7,main
+3954,33,optionC|optionB,We have got every parking you could imagine ,taciturn,,question_any,NA,Graduated College,male,parking,English ,35310,1,main
+3954,33,optionA|optionC,You bet,taciturn,,question_optionA|yes,NA,Graduated College,male,cardBlanche,English ,24870,2,main
+3954,33,optionA|optionB,Mopeds and bikes also,fullList,,question_optionA|yes,NA,Graduated College,male,dricersLicense,English ,29442,3,main
+3954,33,NA,Sculpture ,,,filler,sculpture,Graduated College,male,art-painting,English ,16520,4,filler
+3954,33,optionB|optionC,Wii and game cube,fullList,,question_any,NA,Graduated College,male,videoGames,English ,35228,5,main
+3954,33,optionB,No,taciturn,,question_optionA|no,NA,Graduated College,male,foodCourt,English ,20650,6,main
+3954,33,optionB,No,taciturn,,question_optionA|no,NA,Graduated College,male,airplaneJuice,English ,10402,7,main
+3956,31,optionA,Yes it is next to mccafe and cafe nero just go around till you see it,error,none,question_optionA|yes,NA,Graduated High-school,male,coffeeShop,english,39411,1,main
+3956,31,optionC,no we only have landing platforms for helicopters,fullList,none,question_optionA|no,NA,Graduated High-school,male,parking,english,28753,2,main
+3956,31,optionC,we only have electric bikes. ,fullList,none,question_any,NA,Graduated High-school,male,dricersLicense,english,16218,3,main
+3956,31,optionC,Sure add my threads,fullList,none,question_any,NA,Graduated High-school,male,socialMedia,english,11722,4,main
+3956,31,optionB|optionC,There are no zipcars at the cinema today,taciturn,none,question_optionA|no,NA,Graduated High-school,male,carshring,english,26876,5,main
+3956,31,NA,London,,none,filler,London,Graduated High-school,male,airport-europe-UPDATED,english,12570,6,filler
+3956,31,optionA|optionC,Yes we do,taciturn,none,question_optionA|yes,NA,Graduated High-school,male,cardBlanche,english,13355,7,main
+3957,31,optionC,"Yes, We have 3 types, do you have one you are interested in?",error,,question_any,NA,Graduated High-school,female,videoGames,English,35472,1,main
+3957,31,optionB|optionC,"Sorry, I don't actually use Facebook. Do you use Instagram or Threads though? I'd be happy to connect there. ",fullList,,question_optionA|no,NA,Graduated High-school,female,socialMedia,English,51033,2,main
+3957,31,optionB,"Yes, There is a McCafe close by. ",fullList,,question_any,NA,Graduated High-school,female,coffeeShop,English,45187,3,main
+3957,31,optionA|optionC,"Yes, We have electric scooters. I can help you rent it. ",taciturn,,question_optionA|yes,NA,Graduated High-school,female,dricersLicense,English,48918,4,main
+3957,31,optionA|optionB,"Yes, We do accept American Express. ",taciturn,,question_optionA|yes,NA,Graduated High-school,female,cardBlanche,English,40657,5,main
+3957,31,optionC,"No, but there is a Shake Shack. ",fullList,,question_optionA|no,NA,Graduated High-school,female,foodCourt,English,27889,6,main
+3957,31,NA,sculpture,,,filler,sculpture,Graduated High-school,female,art-drawing,English,21833,7,filler
+3958,64,NA,sculpture,,,filler,sculpture,Graduated High-school,female,art-drawing,English,28045,1,filler
+3958,64,optionA|optionB,Yes I do. Would you like some?,taciturn,,question_optionA|yes,NA,Graduated High-school,female,airplaneJuice,English,42676,2,main
+3958,64,optionC,No there is not. There is a Cafe' Nero nearby.,fullList,,question_optionA|no,NA,Graduated High-school,female,coffeeShop,English,65700,3,main
+3958,64,optionC,Yes we accept Card Blanche .,fullList,,question_any,NA,Graduated High-school,female,cardBlanche,English,25494,4,main
+3958,64,optionA|optionB,Yes we offer electric scooters and mopeds.,fullList,,question_optionA|yes,NA,Graduated High-school,female,dricersLicense,English,33408,5,main
+3958,64,optionB|optionC,Yes we only have parking for bikes.,option,,question_any,NA,Graduated High-school,female,parking,English,40926,6,main
+3958,64,optionC,Not here is not a Taco Bell at the mall. There is a Shake Shack there.,fullList,,question_optionA|no,NA,Graduated High-school,female,foodCourt,English,51633,7,main
+3959,32,optionA|optionC,"We do, let me get that for you.",taciturn,,question_optionA|yes,NA,Graduated College,male,airplaneJuice,English,29643,1,main
+3959,32,optionB,We do.,error,,question_optionA|no,NA,Graduated College,male,parking,English,44685,2,main
+3959,32,optionC|optionB,"We have a few options available nearby. Cafe Nero, and McCafe.",fullList,,question_any,NA,Graduated College,male,coffeeShop,English,48185,3,main
+3959,32,NA,classic,,,filler,classic,Graduated College,male,music-softrock,English,11954,4,filler
+3959,32,optionB|optionC,"We do have Zipcar in our city, outside right now though there is Car2Go, and Citycar which are also car-sharing apps.",fullList,,question_optionA|no,NA,Graduated College,male,carshring,English,55781,5,main
+3959,32,optionC|optionB,"Sure, do you have Threads or Instagram?",fullList,,question_any,NA,Graduated College,male,socialMedia,English,27521,6,main
+3959,32,optionA|optionB,We accept American Express as well as MasterCard.,fullList,,question_optionA|yes,NA,Graduated College,male,cardBlanche,English,19625,7,main
+3960,26,optionC,"No, there isn't. The closest one would be several blocks away.",taciturn,,question_optionA|no,NA,Graduated College,female,coffeeShop,English,99318,1,main
+3960,26,optionA|optionC,"Yes, we do. Which system are you looking for exactly?",taciturn,,question_optionA|yes,NA,Graduated College,female,videoGames,English,26176,2,main
+3960,26,optionA|optionC,"Yes, we do. Would you like a cup?",taciturn,,question_optionA|yes,NA,Graduated College,female,airplaneJuice,English,16315,3,main
+3960,26,optionC,"Yes, there is one. There's a Shake Shack in the food court.",fullList,,question_any,NA,Graduated College,female,foodCourt,English,42269,4,main
+3960,26,optionC,"Yes, we have electric bikes that you are able to rent out.",fullList,,question_any,NA,Graduated College,female,dricersLicense,English,28839,5,main
+3960,26,NA,London,,,filler,London,Graduated College,female,airport-usa,English,11390,6,filler
+3960,26,optionB,"Sorry, we don't accept American Express. We currently only accept MasterCard.",fullList,,question_optionA|no,NA,Graduated College,female,cardBlanche,English,27653,7,main
+3961,43,NA,sculpture,,,filler,sculpture,Graduated College,female,art-painting,English ,27855,1,filler
+3961,43,optionB,There is on in the City but the most nearby Coffee Shop i s McCafe,fullList,,question_optionA|no,NA,Graduated College,female,coffeeShop,English ,83977,2,main
+3961,43,optionC,"Yes, we have orange, green and tomato. ",error,,question_any,NA,Graduated College,female,airplaneJuice,English ,71235,3,main
+3961,43,optionC|optionB,"We sell GameCube and Wii, no Playstations.
+",fullList,,question_optionA|no,NA,Graduated College,female,videoGames,English ,63914,4,main
+3961,43,optionA|optionC,We sure do as well as electric bikes.,fullList,,question_optionA|yes,NA,Graduated College,female,dricersLicense,English ,46117,5,main
+3961,43,optionB,"Yes, credit card, one. Mastercard.",fullList,,question_any,NA,Graduated College,female,cardBlanche,English ,32399,6,main
+3961,43,optionA,"Yep, the is a lime of them right over there.",taciturn,,question_optionA|yes,NA,Graduated College,female,carshring,English ,77775,7,main
+3962,36,optionC,"Yes, we currently have GameCube consoles available.",fullList,,question_any,NA,Graduated High-school,female,videoGames,English,50975,1,main
+3962,36,optionA|optionC,"Yes, we have tomato juice. Is there anything else I can get you?",error,,question_optionA|yes,NA,Graduated High-school,female,airplaneJuice,English,37520,2,main
+3962,36,optionA|optionB,"Yes, there is, as well as a McCafe. Would you like directions?",fullList,,question_optionA|yes,NA,Graduated High-school,female,coffeeShop,English,98286,3,main
+3962,36,optionC,"No, but there's a Shake Shack in the food court.",fullList,,question_optionA|no,NA,Graduated High-school,female,foodCourt,English,26632,4,main
+3962,36,optionC,There are a few cars from CityCar currently available out front. There's also Zipcar and Car2Go in town through their apps.,fullList,,question_any,NA,Graduated High-school,female,carshring,English,135607,5,main
+3962,36,optionC|optionB,"Our hotel offers electric bikes and mopeds, but not electric scooters. Those are available in town elsewhere.",fullList,,question_optionA|no,NA,Graduated High-school,female,dricersLicense,English,121991,6,main
+3962,36,NA,sculpture,,,filler,sculpture,Graduated High-school,female,art-painting,English,14904,7,filler
+3963,50,optionB,"Unfortunately we do not, but we do offer mopeds. In town, there are other rental options, such as mopeds, electric bikes, and electric scooters.",fullList,N/A,question_any,NA,Higher degree,female,dricersLicense,English/Spanish,328022,1,main
+3963,50,optionB,"We do have Starbucks shops in the city, as well as Cafe Nero shops, but the nearest coffee shops are going to be McCafe. ",fullList,N/A,question_optionA|no,NA,Higher degree,female,coffeeShop,English/Spanish,321511,2,main
+3963,50,NA,"teacher
+
+No, but there is a bookkeeping position available.",,N/A,filler,teacher,Higher degree,female,jobCenter-office,English/Spanish,240202,3,filler
+3963,50,optionA,"Yes, we do accept American Express.",taciturn,N/A,question_optionA|yes,NA,Higher degree,female,cardBlanche,English/Spanish,39820,4,main
+3963,50,optionB,"Yes, we offer parking for bikes.",fullList,N/A,question_any,NA,Higher degree,female,parking,English/Spanish,42240,5,main
+3963,50,optionC|optionB,"No, there is not, but there is taco bell in town.",option,N/A,question_optionA|no,NA,Higher degree,female,foodCourt,English/Spanish,114672,6,main
+3963,50,optionA|optionC,"Yes, today you can find a zipcar in front of the cinema. ",fullList,N/A,question_optionA|yes,NA,Higher degree,female,carshring,English/Spanish,84096,7,main
+3964,31,optionC|optionB,"In front of the cinema, is CityCar, and Car2Go.",fullList,,question_optionA|no,NA,Graduated High-school,female,carshring,English ,133884,1,main
+3964,31,optionB,"No, only Wii.",fullList,,question_optionA|no,NA,Graduated High-school,female,videoGames,English ,41185,2,main
+3964,31,NA,London,,,filler,London,Graduated High-school,female,airport-europe-UPDATED,English ,41496,3,filler
+3964,31,optionC,"No, electric bikes we have.",fullList,,question_any,NA,Graduated High-school,female,dricersLicense,English ,82851,4,main
+3964,31,optionA|optionB,Yes,taciturn,,question_optionA|yes,NA,Graduated High-school,female,coffeeShop,English ,21439,5,main
+3964,31,optionC,Yes Shake Shack.,fullList,,question_any,NA,Graduated High-school,female,foodCourt,English ,35483,6,main
+3964,31,optionA|optionC,Yes,taciturn,,question_optionA|yes,NA,Graduated High-school,female,cardBlanche,English ,14025,7,main
+3965,31,optionC|optionB,We don't have a way of processing an American Express card at this time. We can take you order with a Card Blanche or a MasterCard.,fullList,i have nothing to add.,question_optionA|no,NA,Graduated College,male,cardBlanche,english,76864,1,main
+3965,31,optionC,"We currently have green juice onboard the plane, may I interest you in a green juice?",fullList,i have nothing to add.,question_any,NA,Graduated College,male,airplaneJuice,english,60429,2,main
+3965,31,NA,sculpture,,i have nothing to add.,filler,sculpture,Graduated College,male,art-painting,english,30374,3,filler
+3965,31,optionA|optionC,"Yes, absolutely. If you go to the city center, you will should see the Starbucks nearby. It's nearby the big conference center.",taciturn,i have nothing to add.,question_optionA|yes,NA,Graduated College,male,coffeeShop,english,90385,4,main
+3965,31,optionC,"No, we don't have Playstations in stock here. We have Gamecube consoles. Do you want to look around and see if there something that interests you?",fullList,i have nothing to add.,question_optionA|no,NA,Graduated College,male,videoGames,english,109315,5,main
+3965,31,optionA|optionB,"Yea, when you leave this store, walk towards the food court down the way. They have a Taco Bell and a few other fast food spots.",fullList,i have nothing to add.,question_optionA|yes,NA,Graduated College,male,foodCourt,english,112055,6,main
+3965,31,optionB,"No, sorry, not at the moment. We currently have parking spaces for bikes only.",fullList,i have nothing to add.,question_any,NA,Graduated College,male,parking,english,57997,7,main
+3966,27,optionC,yes we do have a garage for cars .would you like more information about it,error,,question_optionA|no,NA,Graduated College,male,parking,English,209619,1,main
+3966,27,optionB|optionC,yes. McDonalds and shake shack,fullList,,question_any,NA,Graduated College,male,foodCourt,English,86221,2,main
+3966,27,optionA|optionB,yes in front of the cinema,taciturn,,question_optionA|yes,NA,Graduated College,male,carshring,English,50594,3,main
+3966,27,optionA,we kindly do sir,taciturn,,question_optionA|yes,NA,Graduated College,male,videoGames,English,20983,4,main
+3966,27,optionC,we accept,error,,question_optionA|no,NA,Graduated College,male,cardBlanche,English,49277,5,main
+3966,27,optionB,"sure,why not",taciturn,,question_any,NA,Graduated College,male,socialMedia,English,28321,6,main
+3966,27,NA,sculpture,,,filler,sculpture,Graduated College,male,art-painting,English,35773,7,filler
+3967,47,optionA|optionB,No we don't have tomato juice ,error,It was nice ,question_optionA|yes,NA,Higher degree,male,airplaneJuice,English ,67184,1,main
+3967,47,optionC|optionB,"Yes we do, but currently not available ",error,It was nice ,question_optionA|no,NA,Higher degree,male,dricersLicense,English ,66515,2,main
+3967,47,optionB,Yes we do sell video games consoles ,taciturn,It was nice ,question_any,NA,Higher degree,male,videoGames,English ,81854,3,main
+3967,47,optionB,Off course you can connect with me on social media ,taciturn,It was nice ,question_any,NA,Higher degree,male,socialMedia,English ,75584,4,main
+3967,47,optionA|optionC,"Yes, you can find Zipcars around here only if you can hold on a little ",taciturn,It was nice ,question_optionA|yes,NA,Higher degree,male,carshring,English ,155962,5,main
+3967,47,optionB,"Good day sir/ma, I'm we don't accept American Express ",taciturn,It was nice ,question_optionA|no,NA,Higher degree,male,cardBlanche,English ,60449,6,main
+3967,47,NA,Classic ,,It was nice ,filler,classic,Higher degree,male,music-hardrock,English ,39727,7,filler
+3968,26,optionC,"Hi! No, sorry. We only have parking options for cars, bikes and a landing platform for helicopters. Thank you!",error,,question_any,NA,Graduated College,male,parking,English,180689,1,main
+3968,26,optionB,"O sorry, i do not access Facebook, i am only on Instagram.",fullList,,question_optionA|no,NA,Graduated College,male,socialMedia,English,144839,2,main
+3968,26,optionA|optionB,"Yes we do, it is available.",taciturn,,question_optionA|yes,NA,Graduated College,male,foodCourt,English,215128,3,main
+3968,26,optionA,"Yes, we do!",taciturn,,question_optionA|yes,NA,Graduated College,male,videoGames,English,133488,4,main
+3968,26,optionB|optionC,"Here are our options, which would you prefer? electric scooters, mopeds, and electric bikes.",error,,question_any,NA,Graduated College,male,dricersLicense,English,142200,5,main
+3968,26,NA,motorcycle,,,filler,motorcycle,Graduated College,male,carRental-moving,English,40471,6,filler
+3968,26,optionC,"No, what is nearby is a coffee shop of Cafe Nero.",fullList,,question_optionA|no,NA,Graduated College,male,coffeeShop,English,149359,7,main

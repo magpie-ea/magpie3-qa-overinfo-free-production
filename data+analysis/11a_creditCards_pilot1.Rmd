@@ -1,0 +1,70 @@
+---
+title: "Credit cards"
+author: "PT"
+date: "2024-06-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(tidyboot)
+library(brms)
+library(tidybayes)
+library(ggpattern)
+library(cspplot)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+d <- read_csv('data/results_24_PragmaticQA-E3-creditCards-25-annotated.csv')
+```
+
+```{r}
+# error rate: 0.1
+d %>% filter(category == "error") %>% nrow()
+d %>% nrow()
+d_clean <- d %>% filter(category != "error") %>% filter(trial_type == "main")
+
+d_clean %>% count(condition, category)
+
+d_clean %>% group_by(condition) %>%
+  mutate(condition_count = n()) %>%
+  ungroup() %>%
+  group_by(condition, category) %>%
+  summarise(response_prop = n() / condition_count) %>% unique()
+
+d_clean_taciturn <- d_clean %>% mutate(is_taciturn = ifelse(category == "taciturn", 1, 0)) 
+d_clean_taciturn %>%
+  group_by(condition) %>%
+  tidyboot_mean(column = is_taciturn)
+```
+
+```{r}
+d_clean_exhaustive <- d_clean %>% mutate(is_exhaustive = ifelse(category == "fullList", 1, 0)) 
+d_clean_exhaustive %>%
+  group_by(condition) %>%
+  tidyboot_mean(column = is_exhaustive)
+```
+
+```{r}
+lm_exhaustive <- brm(is_exhaustive ~ condition + (1|submission_id),
+                     data = d_clean_exhaustive,
+                     family = "bernoulli",
+                     chains = 4,
+                     iter = 3000)
+summary(lm_exhaustive)
+```
+
+```{r}
+lm_taciturn <- brm(is_taciturn ~ condition + (1|submission_id),
+                     data = d_clean_taciturn,
+                     family = "bernoulli",
+                     chains = 4,
+                     iter = 3000)
+summary(lm_taciturn)
+```
