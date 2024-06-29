@@ -1,0 +1,141 @@
+---
+title: "JSD analysis"
+author: "PT"
+date: "2024-06-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(tidyboot)
+library(brms)
+library(tidybayes)
+library(ggpattern)
+```
+
+
+```{r}
+#### final JSD analysis ###
+e1_llms_clean <- read_csv("e1_llms_results.csv")
+e1_humans <- read_csv("results_e1_human_full_anonymized_categorized_cleaned.csv") 
+
+e1_llms_summary <- e1_llms_clean %>% 
+  group_by(model, prompt) %>%
+  mutate(model_count = n()) %>%
+  ungroup() %>%
+  group_by(model, prompt, category) %>%
+  mutate(prop = n() / model_count) %>% select(model, category, prompt, prop) %>% unique() 
+
+e1_humans_summary <- e1_humans %>%
+  mutate(total_count = n()) %>%
+  group_by(category) %>%
+  mutate(`human E1_human` = n() / total_count) %>% select(category, `human E1_human`) %>% unique()
+
+e1_llms_summary_wide <- e1_llms_summary %>% ungroup() %>%
+  mutate(model_prompt = str_c(prompt, model, sep="_")) %>%
+  select(-model, -prompt) %>%
+  pivot_wider(names_from = model_prompt, values_from = prop, values_fill = 0.00001) %>%
+  left_join(., e1_humans_summary, by=c("category"))
+
+js_divergence <- function(p, q){
+  m = 0.5*(p + q)
+  p_log = p*(log(p/m))
+  q_log = q*(log(q/m))
+  print(p_log)
+  print(q_log)
+  jsp = 0.5*(sum(p*(log(p/m)))) + 0.5*(sum(q*(log(q/m))))
+  return(jsp)
+}
+
+
+# similarity computation with JSD (models, by prompting condition, against human data)
+e1_human_vs_model_js <- e1_llms_summary_wide %>%
+  mutate(`human E1_human` = ifelse(`human E1_human` == 0, 0.00001, `human E1_human`)) %>%
+  mutate(`js_one-shot QA_Llama-3` = js_divergence(`human E1_human`, `one-shot QA_meta-llama/Meta-Llama-3-70B-Instruct`),
+         `js_one-shot CoT_Llama-3` = js_divergence(`human E1_human`, `one-shot CoT_meta-llama/Meta-Llama-3-70B-Instruct`),
+         `js_zero-shot_Llama-3` = js_divergence(`human E1_human`, `zero-shot_meta-llama/Meta-Llama-3-70B-Instruct`),
+         `js_one-shot Explanation_Llama-3` = js_divergence(`human E1_human`, `one-shot Explanation_meta-llama/Meta-Llama-3-70B-Instruct`),
+         `js_one-shot QA_GPT-4` = js_divergence(`human E1_human`, `one-shot QA_gpt-4-0613`),
+         `js_one-shot CoT_GPT-4` = js_divergence(`human E1_human`, `one-shot CoT_gpt-4-0613`),
+         `js_zero-shot_GPT-4` = js_divergence(`human E1_human`, `zero-shot_gpt-4-0613`),
+         `js_one-shot Explanation_GPT-4` = js_divergence(`human E1_human`, `one-shot Explanation_gpt-4-0613`),
+         `js_one-shot QA_Mixtral` = js_divergence(`human E1_human`, `one-shot QA_mistralai/Mixtral-8x7B-Instruct-v0.1`),
+         `js_one-shot CoT_Mixtral` = js_divergence(`human E1_human`, `one-shot CoT_mistralai/Mixtral-8x7B-Instruct-v0.1`),
+         `js_zero-shot_Mixtral` = js_divergence(`human E1_human`, `zero-shot_mistralai/Mixtral-8x7B-Instruct-v0.1`),
+         `js_one-shot Explanation_Mixtral` = js_divergence(`human E1_human`, `one-shot Explanation_mistralai/Mixtral-8x7B-Instruct-v0.1`),
+         `js_one-shot QA_GPT-3` = js_divergence(`human E1_human`, `one-shot QA_GPT-3.5`),
+         `js_one-shot CoT_GPT-3` = js_divergence(`human E1_human`, `one-shot CoT_GPT-3.5`),
+         `js_zero-shot_GPT-3` = js_divergence(`human E1_human`, `zero-shot_GPT-3.5`),
+         `js_one-shot Explanation_GPT-3` = js_divergence(`human E1_human`, `one-shot Explanation_GPT-3.5`)
+        ) %>% select(starts_with("js_")) %>% unique()
+
+# according to these results, one-shot CoT_Mixtral is the best result
+e1_human_vs_model_js 
+# across prompting conditions, the best model is Llama-3
+e1_human_vs_model_js %>% pivot_longer(cols = colnames(.), names_to="prompt_model", values_to = "jsd") %>%
+  rowwise() %>%
+  mutate(model = str_split(prompt_model, "_")[[1]][3]) %>%
+  group_by(model) %>%
+  summarise(mean_jsd = mean(jsd))
+
+# write out respective plotting proportions (humans, Llama-3 zero-shot and one-shot CoT)
+#e1_llms_summary_wide %>% select(category, `human E1_human`, `one-shot CoT_meta-llama/Meta-Llama-3-70B-Instruct`, `zero-shot_meta-llama/Meta-Llama-3-70B-Instruct`) %>% write_csv("e1_plotting_proportions.csv")
+
+#### E2 analysis, done across context conditions ####
+
+e2_llms_clean <- read_csv("e2_llms_results.csv")
+e2_humans <- read_csv("results_e2_human_category_raw_cleaned.csv") 
+
+e2_llms_summary <- e2_llms_clean %>% 
+  group_by(model, prompt) %>%
+  mutate(model_count = n()) %>%
+  ungroup() %>%
+  group_by(model, prompt, category) %>%
+  mutate(prop = n() / model_count) %>% select(model, category, prompt, prop) %>% unique() 
+
+e2_humans_summary <- e2_humans %>%
+  mutate(total_count = n()) %>%
+  group_by(category) %>%
+  mutate(`human E2_human` = n() / total_count) %>% select(category, `human E2_human`) %>% unique()
+
+e2_llms_summary_wide <- e2_llms_summary %>% ungroup() %>%
+  mutate(model_prompt = str_c(prompt, model, sep="_")) %>%
+  select(-model, -prompt) %>%
+  pivot_wider(names_from = model_prompt, values_from = prop, values_fill = 0.00001) %>%
+  left_join(., e2_humans_summary, by=c("category"))
+
+# similarity computation with JSD (models, by prompting condition, against human data)
+e2_human_vs_model_js <- e2_llms_summary_wide %>%
+  mutate(`human E2_human` = ifelse(`human E2_human` == 0, 0.00001, `human E2_human`)) %>%
+  mutate(`js_one-shot QA_Llama-3` = js_divergence(`human E2_human`, `one-shot QA_meta-llama/Meta-Llama-3-70B-Instruct`),
+         `js_one-shot CoT_Llama-3` = js_divergence(`human E2_human`, `one-shot CoT_meta-llama/Meta-Llama-3-70B-Instruct`),
+         `js_zero-shot_Llama-3` = js_divergence(`human E2_human`, `zero-shot_meta-llama/Meta-Llama-3-70B-Instruct`),
+         `js_one-shot Explanation_Llama-3` = js_divergence(`human E2_human`, `one-shot Explanation_meta-llama/Meta-Llama-3-70B-Instruct`),
+         `js_one-shot QA_GPT-4` = js_divergence(`human E2_human`, `one-shot QA_gpt-4-0613`),
+         `js_one-shot CoT_GPT-4` = js_divergence(`human E2_human`, `one-shot CoT_gpt-4-0613`),
+         `js_zero-shot_GPT-4` = js_divergence(`human E2_human`, `zero-shot_gpt-4-0613`),
+         `js_one-shot Explanation_GPT-4` = js_divergence(`human E2_human`, `one-shot Explanation_gpt-4-0613`),
+         `js_one-shot QA_Mixtral` = js_divergence(`human E2_human`, `one-shot QA_mistralai/Mixtral-8x7B-Instruct-v0.1`),
+         `js_one-shot CoT_Mixtral` = js_divergence(`human E2_human`, `one-shot CoT_mistralai/Mixtral-8x7B-Instruct-v0.1`),
+         `js_zero-shot_Mixtral` = js_divergence(`human E2_human`, `zero-shot_mistralai/Mixtral-8x7B-Instruct-v0.1`),
+         `js_one-shot Explanation_Mixtral` = js_divergence(`human E2_human`, `one-shot Explanation_mistralai/Mixtral-8x7B-Instruct-v0.1`),
+         `js_one-shot QA_GPT-3` = js_divergence(`human E2_human`, `one-shot QA_GPT-3.5`),
+         `js_one-shot CoT_GPT-3` = js_divergence(`human E2_human`, `one-shot CoT_GPT-3.5`),
+         `js_zero-shot_GPT-3` = js_divergence(`human E2_human`, `zero-shot_GPT-3.5`),
+         `js_one-shot Explanation_GPT-3` = js_divergence(`human E2_human`, `one-shot Explanation_GPT-3.5`)
+        ) %>% select(starts_with("js_")) %>% unique()
+
+# according to this, one-shot Explanation_Mixtral is the best fit 
+e2_human_vs_model_js
+
+# across prompting conditions, the best model is Mixtral
+e2_human_vs_model_js %>% pivot_longer(cols = colnames(.), names_to="prompt_model", values_to = "jsd") %>%
+  rowwise() %>%
+  mutate(model = str_split(prompt_model, "_")[[1]][3]) %>%
+  group_by(model) %>%
+  summarise(mean_jsd = mean(jsd))
+
+# write out respective plotting proportions (humans, Mixtral zero-shot and one-shot CoT)
+#e2_llms_summary_wide %>% select(category, `human E2_human`, `one-shot CoT_mistralai/Mixtral-8x7B-Instruct-v0.1`, `zero-shot_mistralai/Mixtral-8x7B-Instruct-v0.1`) %>% write_csv("e2_plotting_proportions.csv")
+
+```
