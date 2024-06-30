@@ -16,8 +16,8 @@ library(ggpattern)
 
 ```{r}
 #### final JSD analysis ###
-e1_llms_clean <- read_csv("e1_llms_results.csv")
-e1_humans <- read_csv("results_e1_human_full_anonymized_categorized_cleaned.csv") 
+e1_llms_clean <- read_csv("e1_llms_results.csv") %>% filter(category != "other")
+e1_humans <- read_csv("results_e1_human_full_anonymized_categorized_cleaned.csv")  %>% filter(category != "other")
 
 e1_llms_summary <- e1_llms_clean %>% 
   group_by(model, prompt) %>%
@@ -69,13 +69,19 @@ e1_human_vs_model_js <- e1_llms_summary_wide %>%
          `js_one-shot Explanation_GPT-3` = js_divergence(`human E1_human`, `one-shot Explanation_GPT-3.5`)
         ) %>% select(starts_with("js_")) %>% unique()
 
-# according to these results, one-shot CoT_Mixtral is the best result
+# according to these results, js_one-shot Explanation_Mixtral is the best result
 e1_human_vs_model_js 
 # across prompting conditions, the best model is Llama-3
 e1_human_vs_model_js %>% pivot_longer(cols = colnames(.), names_to="prompt_model", values_to = "jsd") %>%
   rowwise() %>%
-  mutate(model = str_split(prompt_model, "_")[[1]][3]) %>%
+  mutate(prompt = str_split(prompt_model, "_")[[1]][2], model = str_split(prompt_model, "_")[[1]][3]) %>%
   group_by(model) %>%
+  summarise(mean_jsd = mean(jsd))
+
+e1_human_vs_model_js %>% pivot_longer(cols = colnames(.), names_to="prompt_model", values_to = "jsd") %>%
+  rowwise() %>%
+  mutate(prompt = str_split(prompt_model, "_")[[1]][2], model = str_split(prompt_model, "_")[[1]][3]) %>%
+  group_by(prompt) %>%
   summarise(mean_jsd = mean(jsd))
 
 # write out respective plotting proportions (humans, Llama-3 zero-shot and one-shot CoT)
@@ -83,8 +89,8 @@ e1_human_vs_model_js %>% pivot_longer(cols = colnames(.), names_to="prompt_model
 
 #### E2 analysis, done across context conditions ####
 
-e2_llms_clean <- read_csv("e2_llms_results.csv")
-e2_humans <- read_csv("results_e2_human_category_raw_cleaned.csv") 
+e2_llms_clean <- read_csv("e2_llms_results.csv") %>% filter(category != "other")
+e2_humans <- read_csv("results_e2_human_category_raw_cleaned.csv") %>% filter(category != "other")
 
 e2_llms_summary <- e2_llms_clean %>% 
   group_by(model, prompt) %>%
@@ -125,7 +131,7 @@ e2_human_vs_model_js <- e2_llms_summary_wide %>%
          `js_one-shot Explanation_GPT-3` = js_divergence(`human E2_human`, `one-shot Explanation_GPT-3.5`)
         ) %>% select(starts_with("js_")) %>% unique()
 
-# according to this, one-shot Explanation_Mixtral is the best fit 
+# according to this, js_one-shot Explanation_Mixtral is the best fit 
 e2_human_vs_model_js
 
 # across prompting conditions, the best model is Mixtral
@@ -135,7 +141,34 @@ e2_human_vs_model_js %>% pivot_longer(cols = colnames(.), names_to="prompt_model
   group_by(model) %>%
   summarise(mean_jsd = mean(jsd))
 
+e2_human_vs_model_js %>% pivot_longer(cols = colnames(.), names_to="prompt_model", values_to = "jsd") %>%
+  rowwise() %>%
+  mutate(model = str_split(prompt_model, "_")[[1]][3], prompt = str_split(prompt_model, "_")[[1]][2]) %>%
+  group_by(prompt) %>%
+  summarise(mean_jsd = mean(jsd))
 # write out respective plotting proportions (humans, Mixtral zero-shot and one-shot CoT)
 #e2_llms_summary_wide %>% select(category, `human E2_human`, `one-shot CoT_mistralai/Mixtral-8x7B-Instruct-v0.1`, `zero-shot_mistralai/Mixtral-8x7B-Instruct-v0.1`) %>% write_csv("e2_plotting_proportions.csv")
 
+```
+
+```{r}
+
+expts_llms_human <- rbind(
+  e1_human_vs_model_js %>% pivot_longer(cols = colnames(.), names_to="prompt_model", values_to = "jsd") %>% rowwise() %>%
+  mutate(prompt = str_split(prompt_model, "_")[[1]][2], model = str_split(prompt_model, "_")[[1]][3]) %>%
+  ungroup() %>% mutate(experiment = "Case Study 2"),
+  e2_human_vs_model_js %>% pivot_longer(cols = colnames(.), names_to="prompt_model", values_to = "jsd") %>% rowwise() %>%
+  mutate(prompt = str_split(prompt_model, "_")[[1]][2], model = str_split(prompt_model, "_")[[1]][3]) %>%
+  ungroup() %>%mutate(experiment = "Case Study 3")
+)
+ 
+expts_llms_human %>% 
+  ggplot(., aes(x=prompt, y = jsd, color = model)) +
+  geom_point(size =3) +
+  geom_line(aes(group=model))+
+  facet_wrap(.~experiment) +
+  ylab("JSD") +
+  theme(axis.text.x = element_text(angle = 25, hjust = 1))
+
+#ggsave("jsd_e1.pdf", width=10, height=5)
 ```
