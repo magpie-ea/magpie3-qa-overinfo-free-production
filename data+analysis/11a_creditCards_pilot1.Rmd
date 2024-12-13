@@ -29,7 +29,7 @@ d <- read_csv('data/results_24_PragmaticQA-E3-creditCards-25-annotated.csv')
 d %>% filter(category == "error") %>% nrow()
 d %>% nrow()
 d_clean <- d %>% filter(category != "error") %>% filter(trial_type == "main")
-
+#d_clean %>% write_csv("~/Documents/PhD/03_gpt3_QA/prior-pq/data/human/case_study_1/e1_free_production_human_categorized.csv")
 d_clean %>% count(condition, category)
 
 d_clean %>% group_by(condition) %>%
