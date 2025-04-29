@@ -91,9 +91,12 @@ const trials =
   trialsAll.filter((element, index) => {
        return index % 2 != 0;
      });
-const repeating_trials = _.sampleSize(trials, n_vignettes); //_.sampleSize(trials, n_vignettes).map(x => _.fill(Array(6), x)).flat()
+// const repeating_trials = _.sampleSize(trials, n_vignettes); //_.sampleSize(trials, n_vignettes).map(x => _.fill(Array(6), x)).flat()
+const repeating_trials = trials.slice(0, n_vignettes);
 //const repeating_targets = _.shuffle(['competitor', 'mostSimilar', 'sameCategory', 'otherCategory', 'itemQuestion']); 
-const repeating_targets = _.shuffle(['itemQuestion', 'itemQuestion', 'itemQuestion', 'itemQuestion']); 
+// const repeating_targets = _.shuffle(['itemQuestion', 'itemQuestion', 'itemQuestion', 'itemQuestion']); 
+// changes for sampling remaining utils for PhilTrans CS3
+const repeating_targets = _.shuffle(['competitor', 'competitor', 'competitor', 'competitor']);
 
 const trials_w_target = _.zip(repeating_trials, repeating_targets)
 console.log("trails_w_target")
