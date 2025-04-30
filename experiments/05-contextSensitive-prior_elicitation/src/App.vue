@@ -92,7 +92,7 @@ const trials =
        return index % 2 != 0;
      });
 // const repeating_trials = _.sampleSize(trials, n_vignettes); //_.sampleSize(trials, n_vignettes).map(x => _.fill(Array(6), x)).flat()
-const repeating_trials = trials.slice(4, 8);
+const repeating_trials = trials.slice(8, 12);
 //const repeating_targets = _.shuffle(['competitor', 'mostSimilar', 'sameCategory', 'otherCategory', 'itemQuestion']); 
 // const repeating_targets = _.shuffle(['itemQuestion', 'itemQuestion', 'itemQuestion', 'itemQuestion']); 
 // changes for sampling remaining utils for PhilTrans CS3
