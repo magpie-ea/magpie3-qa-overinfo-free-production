@@ -96,7 +96,7 @@ const repeating_trials = trials.slice(0, 4);
 //const repeating_targets = _.shuffle(['competitor', 'mostSimilar', 'sameCategory', 'otherCategory', 'itemQuestion']); 
 // const repeating_targets = _.shuffle(['itemQuestion', 'itemQuestion', 'itemQuestion', 'itemQuestion']); 
 // changes for sampling remaining utils for PhilTrans CS3
-const repeating_targets = _.shuffle(['sameCategory', 'sameCategory', 'sameCategory', 'sameCategory']);
+const repeating_targets = _.shuffle(['otherCategory', 'otherCategory', 'otherCategory', 'otherCategory']);
 
 const trials_w_target = _.zip(repeating_trials, repeating_targets)
 console.log("trails_w_target")
