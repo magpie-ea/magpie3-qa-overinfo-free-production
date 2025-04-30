@@ -76,7 +76,7 @@ import trialsAll from '../trials/trials_split_priorElicitation_full.csv';
 import fillersAll from '../trials/fillers_split_priorElicitation_pilot3.csv';
 import ParallelRatingScreen from './ParallelRatingScreen';
 
-var group = 'even';// _.sample(['odd', 'even']);
+var group = 'odd';// _.sample(['odd', 'even']);
 
 const n_vignettes = 4;
 const n_fillers = 1;
